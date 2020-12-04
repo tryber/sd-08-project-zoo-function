@@ -13,12 +13,12 @@ const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  if(ids.length === 0) {
+  if (ids.length === 0) {
     return [];
   }
-  return ids.map((id) => animals.find((animal) => animal.id === id));
-  //feito com dica do Lauro no plantão.
-};
+  return ids.map(id => animals.find(animal => animal.id === id));
+  //  feito com dica do Lauro no plantão.
+}
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
