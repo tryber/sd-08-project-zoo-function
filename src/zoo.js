@@ -28,9 +28,9 @@ function employeeByName(employeeName) {
   // seu código aqui
   if (typeof employeeName === 'undefined') {
     return {};
-  } else {
-    return employees.find((employee) => employee.firstName === employeeName || employee.lastName === employeeName);
   }
+  return employees.find(employee =>
+  employee.firstName === employeeName || employeelastName === employeeName);
 }
 console.log(employeeByName('Emery'));
 
