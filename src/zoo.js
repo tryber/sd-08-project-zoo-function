@@ -20,9 +20,11 @@ const animalsByIds = (...ids) => {
   return listAnimalsById.reduce((acc, curr) => acc.concat(curr), []);
 };
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
-}
+const animalsOlderThan = (species, age) => {
+  const animalsSearch = data.animals.find(animal => animal.name === species);
+  const animalsResidents = Object.values(animalsSearch.residents);
+  return ((animalsResidents.filter(animal => animal.age < age)).length === 0);
+};
 
 function employeeByName(employeeName) {
   // seu código aqui
