@@ -67,11 +67,35 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const timeArray = Object.keys(data.hours).map((day) => {
+    const obj = {};
+    let { open, close } = data.hours[day];
+
+    open = open > 12 ? `${open - 12}pm` : `${open}am`;
+    close = close > 12 ? `${close - 12}pm` : `${close}am`;
+
+    obj[day] = (open === close) ? 'CLOSED' : `Open from ${open} until ${close}`;
+
+    return obj;
+  });
+
+  return dayName ?
+    timeArray.find((day) => day[dayName]) :
+    timeArray.reduce((acc, curr) => {
+      return {...acc, ...curr}
+    }, {});
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const speciesId = data.employees.find((employee) => employee.id === id).responsibleFor[0];
+
+  const animalsFromSpecies = data.animals.find((animal) => animal.id === speciesId);
+
+  const { name, sex, age } = animalsFromSpecies.residents.reduce(
+    (acc, curr) => (acc.age > curr.age) ? acc : curr
+  );
+
+  return [name, sex, age];
 }
 
 function increasePrices(percentage) {
