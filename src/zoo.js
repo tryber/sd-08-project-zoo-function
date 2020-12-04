@@ -25,9 +25,8 @@ const employeeByName = employeeName => employees
 const createEmployee = (personalInfo, associatedWith) =>
 Object.assign({}, personalInfo, associatedWith);
 
-function isManager(id) {
-  // seu código aqui
-}
+const isManager = id => employees
+.some(element => element.id === id && element.responsibleFor.length > 3);
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
