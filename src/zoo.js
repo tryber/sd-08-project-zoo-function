@@ -19,10 +19,9 @@ function animalsByIds(...ids) {
   return filtredAnimals || [];
 }
 
-console.log(animalsByIds());
-
-function animalsOlderThan(animal, age) {
-  // seu código aqui
+function animalsOlderThan(animalName, age) {
+  residentAnimals = animals.filter(animal => animal.name === animalName)[0].residents;
+  return residentAnimals.every(animal => animal.age >= age);
 }
 
 function employeeByName(employeeName) {
