@@ -35,10 +35,13 @@ function employeeByName(employeeName) {
       employee.firstName === employeeName || employee.lastName === employeeName,
   );
 }
-console.log(employeeByName());
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  return {
+    ...personalInfo,
+    ...associatedWith,
+  };
 }
 
 function isManager(id) {
