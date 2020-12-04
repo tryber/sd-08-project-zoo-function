@@ -35,8 +35,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const managers = employees.reduce((acc, { managers }) => [...acc, ...managers] , []);
-  return managers.some(manager => manager === id);
+  const allManagers = employees.reduce((acc, { managers }) => [...acc, ...managers] , []);
+  return allManagers.some(manager => manager === id);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
