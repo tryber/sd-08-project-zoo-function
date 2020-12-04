@@ -41,9 +41,13 @@ const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []
   employees.push(insertEmployee);
 };
 
-function animalCount(species) {
-  // seu código aqui
-}
+const animalCount = (species) => {
+  const sum = animals.reduce((acc, { name, residents }) => {
+    acc[name] = residents.length;
+    return acc;
+  }, {});
+  return (!species) ? sum : sum[species];
+};
 
 function entryCalculator(entrants) {
   // seu código aqui
