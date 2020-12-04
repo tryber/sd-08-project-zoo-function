@@ -27,17 +27,17 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   if (typeof employeeName !== 'string' || employeeByName.length === 0) return {};
   const { employees } = data;
-  return employees.find(employee => {
+  return employees.find((employee) => {
     const { firstName, lastName } = employee;
     return firstName === employeeName || lastName === employeeName;
-  })
+  });
 }
 
 function createEmployee(personalInfo, associatedWith) {
   return {
     ...personalInfo,
-    ...associatedWith
-  }
+    ...associatedWith,
+  };
 }
 
 function isManager(id) {
