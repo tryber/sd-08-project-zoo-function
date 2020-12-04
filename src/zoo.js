@@ -150,12 +150,6 @@ function animalMap(options = {}) {
   return mapSimple(opt);
 }
 
-// if (opt.sorted) {
-//   Object.values(map).forEach(item => {
-//     item.sort((ra, rb) => ra > rb);
-//   });
-// }
-
 const scheduleDay = (
   day = {
     open: 0,
@@ -183,10 +177,10 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const animalId = employees.find(e => e.id === id).responsibleFor[0];
-  const resList = animals.find(a => a.id === animalId).residents;
-  const { name, sex, age } = resList.sort((a, b) => a.age <= b.age)[0];
-  return [name, sex, age];
+  const emp = employees.find(e => e.id === id);
+  const resp = emp.responsibleFor.map(r => animals.find(a => a.id === r));
+  const oldest = resp[0].residents.reduce((a, b) => (a.age > b.age ? a : b));
+  return Object.values(oldest);
 }
 
 function increasePrices(percentage) {
