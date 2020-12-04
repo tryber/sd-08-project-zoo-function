@@ -6,7 +6,8 @@ eslint no-unused-vars: [
     "vars": "local",
     "varsIgnorePattern": "data"
   }
-]
+]  
+
 */
 
 const data = require('./data');
