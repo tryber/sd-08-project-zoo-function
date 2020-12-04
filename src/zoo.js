@@ -20,16 +20,15 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const verifyAge = data.animals.find((elem) => elem.name === animal);
-  
-  return verifyAge.residents.every((elem) => elem.age > age);
+  const verifyAge = data.animals.find((elem) => (elem.name === animal));
+  return verifyAge.residents.every((elem) => (elem.age > age));
 }
 
 function employeeByName(string) {
   if (string === undefined) {
     return {};
   }
-  const verifyEmployee = data.employees.find((elem) => elem.firstName === string || elem.lastName === string);
+  const verifyEmployee = data.employees.find((elem) => (elem.firstName === string || elem.lastName === string));
   return verifyEmployee;
 }
 
