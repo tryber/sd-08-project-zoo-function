@@ -40,17 +40,24 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const employee = {
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
-    managers: managers,
-    responsibleFor: responsibleFor,
-  }
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
   data.employees.push(employee);
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (!species) {
+    const animalSelector = {};
+    data.animals.map(animal => (
+      animalSelector[animal.name] = animal.residents.length
+    ));
+    return animalSelector;
+  }
+  return data.animals.find(animal => animal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
