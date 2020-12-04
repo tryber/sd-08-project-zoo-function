@@ -14,8 +14,6 @@ const { animals } = require('./data');
 const { employees } = require('./data');
 const { prices } = require('./data');
 
-
-
 function animalsByIds(...ids) {
   if (ids === undefined) return ([]);
   const allids = [];
@@ -58,18 +56,16 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (species !== undefined) return animals.find(element=> element.name === species).residents.length
-  let fullName={}
-  animals.forEach(element => {  
-  fullName[element.name] = element.residents.length
-  });
-  return fullName
+  if (species !== undefined) return animals.find((e) => e.name === species).residents.length;
+  const fullName = {}
+  animals.forEach(e => {
+    fullName[e.name] = e.residents.length
+ });
+  return fullName;
 }
 
 function entryCalculator(...entrants) {
-  
 }
-console.log(entryCalculator(1,2,3))
 function animalMap(options) {
   // seu código aqui
 }
