@@ -45,8 +45,14 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  let result = [];
+  employees.forEach((elem) => {
+    result.push(elem.managers);
+    result = result.flat(Infinity);
+  });
+  return result.some(num => num === id);
 }
+console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
