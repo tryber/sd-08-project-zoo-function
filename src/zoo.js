@@ -84,17 +84,15 @@ function entryCalculator(entrants = {}) {
   if (keys.length === 0) {
     return cTotal;
   }
-  else {
-    const keysP = Object.keys(prices);
-    const valP = Object.values(prices);
-    keys.forEach((ele, ind) => {
-      for (let index = 0; index < keysP.length; index += 1) {
-        if (ele === keysP[index]) {
-          cTotal += (val[ind] * valP[index]);
-        }
+  const keysP = Object.keys(prices);
+  const valP = Object.values(prices);
+  keys.forEach((ele, ind) => {
+    for (let index = 0; index < keysP.length; index += 1) {
+      if (ele === keysP[index]) {
+        cTotal += (val[ind] * valP[index]);
       }
-    });
-  }
+    }
+  });
   return cTotal;
 }
 
