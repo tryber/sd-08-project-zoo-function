@@ -119,7 +119,7 @@ function schedule(dayName) {
     const { open, close } = hours[day];
     let string;
     if (open === 0) {
-      string = `CLOSED`;
+      string = 'CLOSED';
     } else {
       string = `Open from ${open}am until ${close - 12}pm`;
     }
