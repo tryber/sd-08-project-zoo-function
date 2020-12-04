@@ -40,8 +40,8 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   let mapa = employees.map(element => element)
-  let lookFor = mapa.some(element => element.managers.includes(id))
-  return lookFor
+  let lookFor = mapa.some(element => element.managers.includes(id));
+  return lookFor;
 
 }
 
