@@ -1,4 +1,4 @@
-version: "2"         # required to adjust maintainability checks
+version: "2" # required to adjust maintainability checks
 checks:
   argument-count:
     config:
@@ -31,9 +31,10 @@ checks:
     config:
       threshold: # language-specific defaults. an override will affect all languages.
 exclude_patterns:
-- "test/"
-- "src/data.js"
-- "node_modules/"
+  - "test/"
+  - "src/data.js"
+  - "node_modules/"
+  - "README.md"
 plugins:
   editorconfig:
     enabled: true
