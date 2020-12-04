@@ -39,7 +39,10 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  let mapa = employees.map(element => element)
+  let lookFor = mapa.some(element => element.managers.includes(id))
+  return lookFor
+
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
