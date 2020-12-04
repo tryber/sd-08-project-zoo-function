@@ -12,11 +12,12 @@ eslint no-unused-vars: [
 const { animals, employees } = require('./data');
 const data = require('./data');
 
-function animalsByIds(ids) {
+function animalsByIds(...ids) {
   if (!ids) {
     return undefined;
   }
-  const found = animals.find(element => element.id === ids);
+  const found = ids
+  .map(id => animals.find(element => element.id === id));
   return found;
   // seu código aqui
 }
@@ -43,16 +44,26 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
+  const trueOrFalse = employees
+  .some(element => element.managers.includes(id));
+  return trueOrFalse;
   // seu código aqui
 }
+console.log(isManager('b0dc644a-5335-489b-8a2c-4e086c7819a2'));
+console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (!species) {
+    return {};
+  }
+  const number = animals.find(element => element.name === species);
+  return number.residents.length;
 }
+console.log(animalCount('giraffes'));
 
 function entryCalculator(entrants) {
   // seu código aqui
