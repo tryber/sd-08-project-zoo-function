@@ -33,14 +33,14 @@ function employeeByName(employeeName) {
   employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
-function createEmployee({ eid, efirstName, elastName }, { emanagers, eresponsibleFor }) {
+function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
   // seu código aqui
   return {
-    id: eid,
-    firstName: efirstName,
-    lastName: elastName,
-    managers: emanagers,
-    responsibleFor: eresponsibleFor,
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    managers: managers,
+    responsibleFor: responsibleFor,
   };
 }
 
