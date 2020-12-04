@@ -30,7 +30,7 @@ function employeeByName(employeeName) {
     return {};
   }
   return employees.find(employee =>
-  employee.firstName === employeeName || employeelastName === employeeName);
+  employee.firstName === employeeName || employee.lastName === employeeName);
 }
 console.log(employeeByName('Emery'));
 
