@@ -14,10 +14,8 @@ const data = require('./data');
 
 const animalsByIds = (...ids) => animals.filter(animal => ids.includes(animal.id));
 
-const animalsOlderThan = (animal, age) => {
-  return animals.find(specie => specie.name === animal)
+const animalsOlderThan = (animal, age) => animals.find(specie => specie.name === animal) 
   .residents.every((specie => specie.age >= age));
-};
 
 function employeeByName(employeeName) {
   // seu código aqui
