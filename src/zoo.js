@@ -147,7 +147,8 @@ const mapSimple = () => {
 };
 
 function animalMap(options) {
-  if (options.includeNames) {
+  const opt = parseOptions(options);
+  if (opt.includeNames) {
     return mapNamed(options);
   }
   return mapSimple(options);
