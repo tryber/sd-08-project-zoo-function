@@ -147,9 +147,9 @@ function employeeCoverage(idOrName) {
     return getCoverage(employee);
   }
   const { employees } = data;
-  return employees.reduce((acc, cur) => {
-    return Object.assign(acc, getCoverage(cur))
-  }, {});
+  return employees.reduce((acc, cur) => (
+    Object.assign(acc, getCoverage(cur))
+  ), {});
 }
 
 module.exports = {
