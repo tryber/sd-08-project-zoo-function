@@ -40,7 +40,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.find(e => e.id === id).managers.length === 0;
+  const answer = employees.reduce((acc, curr) => acc.concat(curr.managers), []);
+  return answer.includes(id);
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -96,8 +97,9 @@ function grabAnimalsListName(animal, sex = '', sorted = false) {
 }
 
 function animalMap(options) {
-  const { includeNames = false } = options;
-  if (options === undefined || !includeNames) return animalsByRegionArray();
+  if (options === undefined || !Object.keys(options).includes('includeNames')) {
+    return animalsByRegionArray();
+  }
   const { sex = '', sorted = false } = options;
   const animalsByRegion = animalsByRegionArray();
 
@@ -115,9 +117,9 @@ function animalMap(options) {
 function schedule(dayName) {
   Object.keys(hours).forEach((day) => {
     const { open, close } = hours[day];
-    let string = '';
+    let string;
     if (open === 0) {
-      string = 'CLOSED';
+      string = `CLOSED`;
     } else {
       string = `Open from ${open}am until ${close - 12}pm`;
     }
@@ -129,8 +131,6 @@ function schedule(dayName) {
   return newObj;
 }
 
-console.log(schedule());
-
 function oldestFromFirstSpecies(id) {
   const employee = employees.find(element => element.id === id);
   const firstAnimal = employee.responsibleFor[0];
@@ -141,7 +141,8 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const apply = (1 + percentage) / 100;
+  let apply = percentage / 100;
+  apply += 1;
   Object.keys(prices).forEach((key) => {
     let fare = prices[key];
     fare = Math.round(fare * apply * 100) / 100;
