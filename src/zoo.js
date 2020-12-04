@@ -6,8 +6,7 @@ eslint no-unused-vars: [
     "vars": "local",
     "varsIgnorePattern": "data"
   }
-]
-git status*/
+]*/
 
 const { prices } = require('./data');
 const { employees } = require('./data');
@@ -17,22 +16,24 @@ const { hours } = require('./data');
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
   return animals.filter((e) => {
-    return ids.includes(e.id);
+    ids.includes(e.id);
   });
 }
 
 function animalsOlderThan(animal, age) {
   return animals
     .find((e) => {
-      return e.name === animal;
+      e.name === animal;
     })
-    .residents.every((e) => e.age >= age);
+    .residents.every((e) => {
+      e.age >= age;
+    });
 }
 
 function employeeByName(employeeName) {
   if (employeeName === undefined || employeeName.length === 0) return {};
   return employees.find((e) => {
-    return e.firstName === employeeName || e.lastName === employeeName;
+    e.firstName === employeeName || e.lastName === employeeName;
   });
 }
 
@@ -51,7 +52,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   return (
     employees.find((e) => {
-      return e.id === id;
+      e.id === id;
     }).managers.length === 0
   );
 }
@@ -69,11 +70,13 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (species === undefined) {
     const answer = {};
-    animals.forEach((e) => (answer[e.name] = e.residents.length));
+    animals.forEach((e) => {
+      answer[e.name] = e.residents.length;
+    });
     return answer;
   }
   return animals.find((e) => {
-    return e.name === species;
+    e.name === species;
   }).residents.length;
 }
 
@@ -87,15 +90,21 @@ function entryCalculator(entrants) {
 }
 
 function animalsByRegionArray() {
-  const locations = [...new Set(animals.map((e) => e.location))];
+  const locations = [
+    ...new Set(
+      animals.map((e) => {
+        e.location;
+      })
+    ),
+  ];
   const animalsByLocation = {};
   locations.forEach((region) => {
     const animalsNames = animals
       .filter((animal) => {
-        return animal.location === region;
+        animal.location === region;
       })
       .map((animal) => {
-        return animal.name;
+        animal.name;
       });
     animalsByLocation[region] = animalsNames;
   });
