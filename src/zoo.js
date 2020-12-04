@@ -82,7 +82,7 @@ function addEmployee(
 function animalCount(species) {
   if (species === undefined) {
     const returnObj = {};
-    data.animals.forEach(animal => {
+    data.animals.forEach((animal) => {
       returnObj[animal.name] = animal.residents.length;
     });
     return returnObj;
@@ -94,9 +94,7 @@ function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
   }
-  return Object.keys(entrants).reduce((previousValue, currentValue) => {
-    return previousValue + data.prices[currentValue] * entrants[currentValue];
-  }, 0);
+  return Object.keys(entrants).reduce((previousValue, currentValue) => previousValue + (data.prices[currentValue] * entrants[currentValue]), 0);
 }
 
 function animalMap(options) {
