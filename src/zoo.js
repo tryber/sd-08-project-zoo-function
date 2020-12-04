@@ -17,7 +17,7 @@ function animalsByIds(...ids) {
   if (ids.length === 0) {
     return [];
   }
-  const animalsData = animals.filter((especie) => ids.includes(especie.id));
+  const animalsData = animals.filter(especie => ids.includes(especie.id));
   return animalsData;
 }
 
