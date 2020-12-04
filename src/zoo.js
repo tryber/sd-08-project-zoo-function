@@ -12,16 +12,20 @@ eslint no-unused-vars: [
 //
 const data = require('./data');
 
+const {
+  animals, employees, hours, prices,
+} = data;
+
 function animalsByIds(...ids) {
   const res = [];
   ids.forEach((id) => {
-    res.push(data.animals.find((animal) => animal.id === id));
+    res.push(animals.find((animal) => animal.id === id));
   });
   return res;
 }
 
 function animalsOlderThan(animal, age) {
-  return data.animals
+  return animals
     .find((a) => a.name === animal)
     .residents.every((e) => e.age >= age);
 }
@@ -29,7 +33,7 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   if (!employeeName) return {};
   const v = employeeName;
-  return data.employees.find((e) => e.firstName === v || e.lastName === v) || {};
+  return employees.find((e) => e.firstName === v || e.lastName === v) || {};
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -40,7 +44,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return data.employees.some((e) => e.managers.some((m) => m === id));
+  return employees.some((e) => e.managers.some((m) => m === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
@@ -51,18 +55,18 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
     managers: managers || [],
     responsibleFor: responsibleFor || [],
   };
-  data.employees.push(newEmployee);
+  employees.push(newEmployee);
 }
 
 function animalCount(species) {
   if (!species) {
     const res = {};
-    data.animals.forEach((a) => {
+    animals.forEach((a) => {
       res[a.name] = a.residents.length;
     });
     return res;
   }
-  return data.animals.find((a) => a.name === species).residents.length;
+  return animals.find((a) => a.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
@@ -115,12 +119,12 @@ const animalMapBuilder = (options = {}) => {
   const opt = parseOptions(options);
   // No Names
   if (!opt.includeNames) {
-    data.animals.forEach((a) => {
+    animals.forEach((a) => {
       map[a.location].push(a.name);
     });
     return map;
   }
-  data.animals.forEach((a) => {
+  animals.forEach((a) => {
     const field = {};
     field[a.name] = getResidentsNames(a.residents, opt.sex);
     if (opt.sorted) {
@@ -150,10 +154,10 @@ const scheduleDay = (day = {}) => {
 function schedule(dayName) {
   const list = {};
   if (dayName) {
-    list[dayName] = scheduleDay(data.hours[dayName]);
+    list[dayName] = scheduleDay(hours[dayName]);
     return list;
   }
-  const days = Object.entries(data.hours);
+  const days = Object.entries(hours);
   days.forEach((d) => {
     const [day, prog] = d;
     list[day] = scheduleDay(prog);
@@ -162,32 +166,30 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const animalId = data.employees.find((e) => e.id === id).responsibleFor[0];
-  const resList = data.animals.find((a) => a.id === animalId).residents;
+  const animalId = employees.find((e) => e.id === id).responsibleFor[0];
+  const resList = animals.find((a) => a.id === animalId).residents;
   const { name, sex, age } = resList.sort((a, b) => a.age <= b.age)[0];
   return [name, sex, age];
 }
 
 function increasePrices(percentage) {
   const priceList = {};
-  Object.entries(data.prices).forEach((item) => {
+  Object.entries(prices).forEach((item) => {
     const [key, value] = item;
     priceList[key] = parseFloat(
       (value + Math.round(value * percentage) / 100).toFixed(2),
     );
   });
-  Object.assign(data.prices, priceList);
+  Object.assign(prices, priceList);
 }
 
 const animaisNameByEmployee = (responsibleFor) => {
-  const res = responsibleFor.map(
-    (rf) => data.animals.find((a) => a.id === rf).name,
-  );
+  const res = responsibleFor.map((rf) => animals.find((a) => a.id === rf).name);
   return res;
 };
 
 function employeeCoverage(idOrName) {
-  const ed = data.employees;
+  const ed = employees;
   const res = {};
   if (!idOrName) {
     ed.forEach((e) => {
