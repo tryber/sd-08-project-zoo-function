@@ -22,8 +22,8 @@ const animalsOlderThan = (animal, age) => animals
 const employeeByName = employeeName => employees
 .find(element => element.firstName === employeeName || element.lastName === employeeName) || {};
 
-const createEmployee = (personalInfo, associatedWith) =>
-Object.assign({}, personalInfo, associatedWith);
+const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
+// Object.assign({}, personalInfo, associatedWith);
 
 const isManager = id => employees
 .some(element => element.id === id && element.responsibleFor.length > 3);
@@ -37,9 +37,15 @@ const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []
   responsibleFor,
 });
 
-function animalCount(species) {
-  // seu código aqui
-}
+const animalCount = (species) => {
+  if (species !== undefined) {
+    return animals.find(element => element.name === species).residents.length;
+  }
+  return animals.reduce(((accumulator, current) => accumulator +
+  current.residents.length), {});
+};
+
+console.log(animalCount());
 
 function entryCalculator(entrants) {
   // seu código aqui
