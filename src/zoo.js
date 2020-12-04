@@ -38,10 +38,10 @@ function employeeByName(employeeName) {
   }
   return employees.find(elem => elem.firstName === employeeName || elem.lastName === employeeName);
 }
-console.log(employeeByName('Emery'));
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const newEmployee = Object.assign({}, personalInfo, associatedWith);
+  return newEmployee;
 }
 
 function isManager(id) {
