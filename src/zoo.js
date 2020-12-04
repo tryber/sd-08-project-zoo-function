@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -74,13 +74,65 @@ function entryCalculator(entries) {
   return totalPrice;
 }
 
-function animalMap(options) {
+const noParameter = () => {
+  const result = {}
+  animals.forEach(({ location = '', name }) => {
+    if (result[location] === undefined) {
+      result[location] = [];
+      result[location] = [ name ];
+    }
+    else {
+      const resLocation = result[location]
+      resLocation.push(name)
+    }
+  })
+  return result;
+}
+
+const includeNam = () => {
+}
+
+function animalMap(obj) {
   // seu código aqui
 }
 
-function schedule(dayName) {
-  // seu código aqui
+function scheduleNoParam() {
+  const result = {}
+  const arrayHours = Object.entries(hours);
+  arrayHours.forEach(Element => {
+    result[Element[0]] = `Open from ${Object.values(Element[1])[0]}am until ${Object.values(Element[1])[1] -12}pm`
+    if(Object.values(Element[1])[0] === 0) {
+      result[Element[0]] = 'CLOSED'
+    }
+  })
+  return result
 }
+
+function scheduleDay (day) {
+  const result = {}
+  const arrayHours = Object.entries(hours);
+  arrayHours.forEach(Element => {
+    if (Element[0] === day) {
+      result[Element[0]] = `Open from ${Object.values(Element[1])[0]}am until ${Object.values(Element[1])[1] -12}pm`
+      if(Object.values(Element[1])[0] === 0) {
+        result[Element[0]] = 'CLOSED'
+      }
+    }
+  })
+  return result
+}
+
+function schedule(dayName) {
+  if (dayName === undefined) {
+    return scheduleNoParam()
+  }
+  else {
+    return scheduleDay(dayName);
+  }
+}
+console.log(schedule())
+console.log(schedule('Tuesday'))
+console.log(schedule('Monday'))
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
