@@ -25,9 +25,7 @@ const employeeByName = (employeeName) => {
     || lastName === employeeName));
 };
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
+const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
 
 function isManager(id) {
   // seu código aqui
