@@ -9,12 +9,20 @@ eslint no-unused-vars: [
 ]
 */
 
+const { animals } = require('./data');
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
-  //iniciando projeto vqv
+function animalsByIds() {
+  const arr = [];
+  animals.filter((...id) => {
+    if (id == '') {
+      return arr = [];
+    } else {
+      return arr = id.residents;
+    }
+  })
 }
+console.log(animalsByIds(animals));
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
