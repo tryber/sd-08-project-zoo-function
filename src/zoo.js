@@ -9,26 +9,39 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+// const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+const { animals, employees } = require('./data');
+
+function animalsByIds(...ids) {
+  let results = [];
+  results = animals.filter(animal => ids.some(id => id === animal.id));
+  return results;
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const theAnimal = animals.find(anim => anim.name === animal);
+  return theAnimal.residents.every(anim => anim.age >= age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  const employee = employees.find(emp => emp.firstName === employeeName ||
+    emp.lastName === employeeName);
+  
+  if (employee) {
+    return employee;
+  }
+  return {};
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const { id, firstName, lastName } = personalInfo;
+  const { managers, responsibleFor } = associatedWith;
+  return { id, firstName, lastName, managers, responsibleFor };
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(employee => employee.managers.find(manager => id === manager));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
@@ -36,7 +49,13 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (!species) {
+    return animals.reduce((acc, animal) => {
+      Object.assign(acc, { [animal.name] : animal.residents.length });
+      return acc;
+    }, {});
+  }
+  return animals.find(animal => animal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
