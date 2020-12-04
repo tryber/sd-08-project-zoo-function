@@ -81,12 +81,30 @@ function entryCalculator(entrants) {
   ), 0);
 }
 
+function getAnimalsByLocation() {
+  const { animals } = data;
+  return animals.reduce((acc, animal) => {
+    const { location, name } = animal;
+    if (!acc[location]) acc[location] = [];
+    acc[location].push(name);
+    return acc;
+  }, {});
+}
+
 function animalMap(options) {
-  // seu código aqui
+  const { includeNames = false, sorted = false } = (options || {});
+  return getAnimalsByLocation();
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const { hours } = data;
+  const result = Object.entries(hours).reduce((acc, [key, val]) => {
+    const { open, close } = val;
+    acc[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : `CLOSED`;
+    return acc;
+  }, {});
+  if (result[dayName]) return { [dayName]: result[dayName] };
+  return result;
 }
 
 function oldestFromFirstSpecies(id) {
