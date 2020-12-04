@@ -20,9 +20,10 @@ function animalsOlderThan(animal, age) {
   return data.animals.find(species => species.name === animal)
   .residents.every(age1 => age1.age > age);
 }
-console.log(employeeByName)
+
 function employeeByName(employeeName) {
-  return data.employees.find(name => name.firstName === employeeName || name.lastName === employeeName) || {};
+  return data.employees.find(
+    name => name.firstName === employeeName || name.lastName === employeeName) || {};
 }
 
 function createEmployee(personalInfo, associatedWith) {
