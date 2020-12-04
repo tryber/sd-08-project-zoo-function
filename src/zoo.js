@@ -56,11 +56,7 @@ const addEmployee = (id, firstName, lastName, managers, responsibleFor) => {
 
 const animalCount = (species) => {
   if (!species) {
-    return animals.reduce((accumulator, currentValue) => {
-      accumulator[currentValue.name] = currentValue.residents.length;
-
-      return accumulator;
-    }, {});
+    return animals.reduce((accumulator, currentValue) => accumulator[currentValue.name] = currentValue.residents.length, {});
   };
 
   return animals.find(animal => animal.name === species).residents.length;
@@ -72,8 +68,6 @@ const entryCalculator = (entrants) => {
   return (Object.keys(entrants).reduce((accumulator, currentValue) =>
     accumulator + (entrants[currentValue] * data.prices[currentValue]), 0));
 };
-
-console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 const animalMap = (options) => {
 
