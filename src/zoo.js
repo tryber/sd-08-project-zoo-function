@@ -27,8 +27,8 @@ const isManager = (id) => employees.some(({ managers, id: idKey }) => managers.l
 
 const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => employees.push({id, firstName, lastName, managers, responsibleFor});
 
-function animalCount(species) {
-  // seu código aqui
+const animalCount = (species) => {
+  return species ?  animals.find(animal => animal.name === species).residents.length : animals.reduce((accAnimal, currAnimal) => Object.assign(accAnimal, {[currAnimal.name] : currAnimal.residents.length}), {});
 }
 
 function entryCalculator(entrants) {
