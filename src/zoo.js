@@ -41,9 +41,7 @@ const createEmployee = (personalInfo, associatedWith) => {
   };
 };
 
-const isManager = (id) => {
-
-}
+const isManager = (id) => employees.find(employee => employee.managers.find(manager => manager === id) ? true : false);
 
 const addEmployee = (id, firstName, lastName, managers, responsibleFor) => {
 
