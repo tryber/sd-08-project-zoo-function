@@ -18,8 +18,11 @@ function animalsByIds(...ids) {
   return filtered;
 }
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
+function animalsOlderThan(animal, ageTest) {
+const animalChoosen = animals.find(anim => anim.name === animal);
+const ages = [];
+animalChoosen.residents.forEach(element => ages.push(element.age));
+return ages.every(ag => ag > ageTest);
 }
 
 function employeeByName(employeeName) {
