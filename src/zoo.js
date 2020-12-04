@@ -22,12 +22,15 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   let result;
-  animals.filter(element => {
+  animals.filter((element) => {
     if (element.name === animal) {
-      result = element.residents.every(elem => elem.age > age);
+      result = element.residents.every(elem => elem.age >= age);
     }
+    return result;
   });
-  return result;}
+  return result;
+}
+
 console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
