@@ -15,7 +15,7 @@ function animalsByIds(...ids) {
   if (ids === undefined) {
     return [];
   }
-  const verifyId = ids.map((elem) => (data.animals.find((elem2) => elem2.id.includes(elem))));
+  const verifyId = ids.map(elem => (data.animals.find(elem2 => elem2.id.includes(elem))));
   return verifyId;
 }
 
@@ -28,7 +28,8 @@ function employeeByName(string) {
   if (string === undefined) {
     return {};
   }
-  const verifyEmployee = data.employees.find((elem) => (elem.firstName === string || elem.lastName === string));
+  const verifyEmployee = data.employees
+  .find(elem => (elem.firstName === string || elem.lastName === string));
   return verifyEmployee;
 }
 
@@ -37,13 +38,20 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const getEmployee = data.employees.map((elem) => elem.managers);
-  const verifyManagement = getEmployee.some((elem) => elem.includes(id));
+  const getEmployee = data.employees.map(elem => elem.managers);
+  const verifyManagement = getEmployee.some(elem => elem.includes(id));
   return verifyManagement;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  return data.employees.push(newEmployee);
 }
 
 function animalCount(species) {
