@@ -19,11 +19,16 @@ function animalsByIds(...ids) {
   });
   return values;
 }
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
-}
+  let result;
+  animals.filter(element => {
+    if (element.name === animal) {
+      result = element.residents.every(elem => elem.age > age);
+    }
+  });
+  return result;}
+console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
   // seu código aqui
