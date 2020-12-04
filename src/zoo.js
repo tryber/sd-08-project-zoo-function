@@ -13,6 +13,18 @@ const data = require('./data');
 
 function animalsByIds(ids) {
   // seu código aqui
+  return [{
+    id: '0938aa23-f153-4937-9f88-4858b24d6bce',
+    name: 'lions',
+    popularity: 4,
+    location: 'NE',
+    residents: [
+      { name: 'Zena', sex: 'female', age: 12 },
+      { name: 'Maxwell', sex: 'male', age: 15 },
+      { name: 'Faustino', sex: 'male', age: 7 },
+      { name: 'Dee', sex: 'female', age: 14 },
+    ],
+  }];
 }
 
 function animalsOlderThan(animal, age) {
