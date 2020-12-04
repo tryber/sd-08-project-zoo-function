@@ -73,6 +73,10 @@ function entryCalculator(entries) {
   const totalPrice = adultPrice + childPrice + seniorPrice;
   return totalPrice;
 }
+// console.log(entryCalculator())
+// console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }))
+// console.log(entryCalculator({}))
+
 
 // const noParameter = () => {
 //   const result = {}
@@ -144,7 +148,11 @@ function oldestFromFirstSpecies(ident) {
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const arrayPrices = Object.entries(prices)
+  arrayPrices.forEach((Element) => {
+    const newValor = Element[1] + (percentage / 100 * Element[1]) + 0.005
+    prices[Element[0]] = parseFloat(newValor.toFixed(2))
+    })
 }
 
 function employeeCoverage(idOrName) {

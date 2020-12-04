@@ -17,7 +17,7 @@ describe('Implemente a função increasePrices', () => {
     expected = {
       'Adult': 97.49,
       'Senior': 48.74,
-      'Child': 40.94
+      'Child': 40.94,
     };
     assert.deepStrictEqual(data.prices, expected);
   });
