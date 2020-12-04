@@ -27,7 +27,6 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return objectFuncionario;
   }
-  
   const emplName = employeeName;
   const emplData = data.employees;
 
