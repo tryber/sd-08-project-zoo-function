@@ -37,7 +37,7 @@ function employeeByName(employeeName) {
     return employee.firstName === employeeName || employee.lastName === employeeName;
   });
 }
-console.log(employeeByName('Bethea'));
+// console.log(employeeByName('Bethea'));
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
