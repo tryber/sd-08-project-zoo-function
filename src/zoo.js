@@ -9,20 +9,28 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+const data = require("./data");
 
 function animalsByIds(...ids) {
-  const retorno = data.animals.filter(elemento => ids.includes(elemento.id));
+  const retorno = data.animals.filter((elemento) => ids.includes(elemento.id));
 
   return retorno;
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const animalBuscado = data.animals.find(
+    (elemento) => elemento.name === animal
+  );
+  const especimes = animalBuscado.residents;
+  const comparativoIdades = especimes.every((elemento) => elemento.age > age);
+  return comparativoIdades;
 }
 
+animalsOlderThan("otters", 7);
+
 function employeeByName(employeeName) {
-  // seu código aqui
+  return data.employees.push(employeeName)
+  
 }
 
 function createEmployee(personalInfo, associatedWith) {
