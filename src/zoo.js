@@ -32,9 +32,9 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-function isManager(id) {
-  // seu código aqui
-}
+const isManager = ((id) => {
+  return employees.some(occupation => occupation.managers.find(manager => manager === id))
+});
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
