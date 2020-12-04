@@ -16,7 +16,8 @@ function animalsByIds(...ids) {
   // seu código aqui
   const animalsArray = [];
   if (ids !== undefined) {
-    ids.forEach((element) => { animalsArray.push(animals.find(animal => animals.id === element)); });
+    ids.forEach((element) => { 
+      animalsArray.push(animals.find(animal => animals.id === element)); });
   }
   return animalsArray;
 }
