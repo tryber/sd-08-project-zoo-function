@@ -71,7 +71,7 @@ function animalCount(species = 'all') {
       return acc;
     }, {});
   } else {
-      anCount = animals.find(anim => anim.name === species).residents.length;
+    anCount = animals.find(anim => anim.name === species).residents.length;
   }
   return anCount;
 }
