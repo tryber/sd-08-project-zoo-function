@@ -15,9 +15,7 @@ const { hours } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
-  return animals.filter((e) => {
-    return ids.includes(e.id);
-  });
+  return animals.filter((e) => ids.includes(e.id));
 }
 
 function animalsOlderThan(animal, age) {
