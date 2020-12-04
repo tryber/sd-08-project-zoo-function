@@ -23,16 +23,34 @@ function animalsByIds(...ids) {
   // Caso receba nenhum parâmetro, necessário retornar um array vazio
   // Ao receber como parâmetro um único id, retorna um array com a espécie referente à esse id
   // Ao receber mais de um id, retorna um array com as espécies referentes aos ids
-  console.log(ids);
-  console.log(ids.forEach((id) => animals.filter((animal) => animal.id === id)));
-  const result =[];
+  // console.log(ids);
+  // console.log(ids.forEach((id) => animals.filter((animal) => animal.id === id)));
+  const result = [];
   if (ids.length === 0) { return []; }
-  ids.forEach((id) => result.push(animals.find((animal) => animal.id === id)));
+  ids.forEach(id => result.push(animals.find(animal => animal.id === id)));
   return result;
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  // Esta função, a partir do nome de uma espécie e uma idade mínima, verifica se todos os animais
+  // daquela espécie possuem a idade mínima especificada
+  // Observações técnicas
+  // Deve retornar um valor booleano
+  // O que será avaliado
+  // Ao passar o nome de uma espécie e uma idade, testa se todos os animais desta espécie possuem
+  // a idade mínima especificada
+  let result = true;
+  const dataAnimal = animals.find(creature => creature.name === animal);
+  // console.table(dataAnimal.residents)
+  // console.log(age)
+  dataAnimal.residents.forEach((creature) => {
+    if (creature.age < age) {
+      result = false;
+    }
+  });
+  // console.log(result);
+  return result;
 }
 
 function employeeByName(employeeName) {
