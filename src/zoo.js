@@ -15,10 +15,10 @@ function animalsByIds(...ids) {
   const animals = data.animals;
   const result = [];
   ids.forEach((id) => {
-        animals.forEach((animal) => {
+    animals.forEach((animal) => {
           if (animal.id === id) result.push(animal);
         });
-      });
+  });
   return result;
 }
 
