@@ -19,7 +19,7 @@ console.log(animalsByIds());
 
 function animalsOlderThan(animal, age) {
   return animals.find(animalCallBack => animalCallBack.name === animal)
-  .residents.every(resident => resident.age  > age);
+  .residents.every(resident => resident.age > age);
 }
 console.log(animalsOlderThan('penguins', 10));
 
