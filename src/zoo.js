@@ -18,16 +18,11 @@ function animalsByIds(...ids) {
   return ids.map(id => data.animals.find(animal => animal.id === id));
 }
 
-function animalsOlderThan(animal, age) {
-  // data.animals.forEach((species) => {
-  //   if (species.name === animal && species.residents.age >= age) {
-  //     return true;
-  //   }
-  //   return false;
-  // });
-}
+const animalsOlderThan = (animal, age) => data.animals
+  .filter((species) => species.name === animal)
+  .every((species, index) => species.residents[index].age >= age);
 
-// console.log(animalsOlderThan('otters', 7));
+// console.log(animalsOlderThan('otters', 30));
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
@@ -37,7 +32,6 @@ function employeeByName(employeeName) {
     return employee.firstName === employeeName || employee.lastName === employeeName;
   });
 }
-// console.log(employeeByName('Bethea'));
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
