@@ -12,17 +12,13 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  // seu código aqui
-  if (typeof ids[0] !== "string") {
-    return [];
-  } else {
-    return data.animals.filter((animal) => animal.id === ids[0] || animal.id === ids[1])
+  if (typeof ids[0] !== 'string') { return []; }
+  return data.animals.filter(animal => animal.id === ids[0] || animal.id === ids[1]);
 }
-}
-
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const animalSpecies = data.animals.find(animalSpecie => animalSpecie.name === animal);
+  return animalSpecies.residents.every(animalResidents => animalResidents.age >= age);
 }
 
 function employeeByName(employeeName) {
