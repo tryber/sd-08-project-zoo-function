@@ -15,17 +15,21 @@ function animalsByIds(...ids) {
   if (ids === undefined) {
     return [];
   }
-  const verifyId = ids.map((elem) => data.animals.find((elem2) => elem2.id.includes(elem)));
+  const verifyId = ids.map((elem) => (data.animals.find((elem2) => elem2.id.includes(elem))));
   return verifyId;
 }
 
 function animalsOlderThan(animal, age) {
-  const verifyAge = data.animals.find((elem) => elem.name === animal).residents.every((elem) => elem.age > age);
-  return verifyAge
+  const verifyAge = data.animals.find((elem) => elem.name === animal);
+  
+  return verifyAge.residents.every((elem) => elem.age > age);
 }
 
-function employeeByName(employeeName = {}) {
-  const verifyEmployee = data.employees.find((elem) => elem.firstName === employeeName || elem.lastName === employeeName)
+function employeeByName(string) {
+  if (string === undefined) {
+    return {};
+  }
+  const verifyEmployee = data.employees.find((elem) => elem.firstName === string || elem.lastName === string);
   return verifyEmployee;
 }
 
@@ -34,7 +38,9 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  const getEmployee = data.employees.map((elem) => elem.managers);
+  const verifyManagement = getEmployee.some((elem) => elem.includes(id));
+  return verifyManagement;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
