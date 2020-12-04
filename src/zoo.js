@@ -70,7 +70,7 @@ function entryCalculator(entries) {
   const adultPrice = prices.Adult * Adult;
   const childPrice = prices.Child * Child;
   const seniorPrice = prices.Senior * Senior;
-  const totalPrice = adultPrice + childPrice + seniorPrice
+  const totalPrice = adultPrice + childPrice + seniorPrice;
   return totalPrice;
 }
 
