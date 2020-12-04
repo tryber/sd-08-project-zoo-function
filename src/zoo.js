@@ -9,7 +9,6 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -17,19 +16,25 @@ function animalsByIds(...ids) {
   if (ids.length === 0) {
     return [];
   }
-  const animalsData = animals.filter(especie => ids.includes(especie.id));
+  const animalsData = data.animals.filter(especie => ids.includes(especie.id));
   return animalsData;
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
   // auxilio da Rosiele David
-  const lontras = animals.find(animalName => animalName.name === animal);
+  const lontras = data.animals.find(animalName => animalName.name === animal);
   return lontras.residents.every(idades => idades.age >= age);
 }
 
-function employeeByName(...employeeName) {
+function employeeByName(employeeName) {
   // seu código aqui
+  if (!employeeName) {
+    return {};
+  }
+  const employee = data.employees.find(empregado => (empregado.firstName === employeeName ||
+    empregado.lastName === employeeName));
+  return employee;
 }
 
 function createEmployee(personalInfo, associatedWith) {
