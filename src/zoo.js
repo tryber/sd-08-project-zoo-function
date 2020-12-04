@@ -21,10 +21,10 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  let loco = animals.find(element => element.name === animal).residents;
-  let mapear =loco.map(element => element.age)
-  let verificar = mapear.every(element => element > age)
-  return verificar
+  const loco = animals.find(element => element.name === animal).residents;
+  const mapear = loco.map(element => element.age);
+  const verificar = mapear.every(element => element > age);
+  return verificar;
 }
 
 function employeeByName(employeeName) {
