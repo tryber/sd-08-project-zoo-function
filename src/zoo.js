@@ -14,7 +14,7 @@ const data = require('./data');
 function animalsByIds(...ids) {
   return data.animals.filter(animal => ids.find(id => id === animal.id));
 }
-
+console.log(animalsByIds)
 function animalsOlderThan(animal, age) {
   // seu código aqui
 }
@@ -24,7 +24,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return { ...personalInfo, ...associatedWith}
 }
 
 function isManager(id) {
