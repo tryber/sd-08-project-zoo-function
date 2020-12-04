@@ -32,10 +32,16 @@ function employeeByName(employeeName) {
   return employees.find(employee =>
   employee.firstName === employeeName || employee.lastName === employeeName);
 }
-console.log(employeeByName('Emery'));
 
-function createEmployee(personalInfo, associatedWith) {
+function createEmployee({id, firstName, lastName}, {managers, responsibleFor}) {
   // seu código aqui
+  return {
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    managers: managers,
+    responsibleFor: responsibleFor
+  }
 }
 
 function isManager(id) {
