@@ -26,20 +26,25 @@ const animalsOlderThan = (animal, age) => animals.find(specie => specie.name ===
 const employeeByName = (employeeName) => {
   if (!employeeName) return {};
 
-  return employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+  return employees.find(employee => employee.firstName === employeeName ||
+    employee.lastName === employeeName);
 };
 
-const createEmployee = (personalInfo, associatedWith) => {
-  return employee = {
+const createEmployee = (personalInfo, associatedWith) =>
+  employee = {
     id: personalInfo.id,
     firstName: personalInfo.firstName,
     lastName: personalInfo.lastName,
     managers: [...associatedWith.managers],
     responsibleFor: [...associatedWith.responsibleFor],
   };
-};
 
-const isManager = (id) => employees.find(employee => employee.managers.find(manager => manager === id) ? true : false);
+const isManager = id => {
+  if (employees.find(employee => employee.managers
+    .find(manager => manager === id))) return true;
+
+  return false;
+};
 
 const addEmployee = (id, firstName, lastName, managers, responsibleFor) => {
   if (!managers) managers = [];
@@ -51,12 +56,13 @@ const addEmployee = (id, firstName, lastName, managers, responsibleFor) => {
     lastName,
     managers,
     responsibleFor,
-  });
+  })
 };
 
 const animalCount = (species) => {
   if (!species) {
-    return animals.reduce((accumulator, currentValue) => accumulator[currentValue.name] = currentValue.residents.length, {});
+    return animals.reduce((accumulator, currentValue) =>
+      accumulator[currentValue.name] = currentValue.residents.length, {});
   };
 
   return animals.find(animal => animal.name === species).residents.length;
@@ -71,23 +77,23 @@ const entryCalculator = (entrants) => {
 
 const animalMap = (options) => {
 
-}
+};
 
 const schedule = (dayName) => {
 
-}
+};
 
 const oldestFromFirstSpecies = (id) => {
 
-}
+};
 
 const increasePrices = (percentage) => {
 
-}
+};
 
 const employeeCoverage = (idOrName) => {
 
-}
+};
 
 module.exports = {
   entryCalculator,
