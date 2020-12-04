@@ -25,11 +25,9 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   if (!employeeName) return {};
-  if (data.employees.some((e) => e.firstName === employeeName)) {
-    return data.employees.find((e) => e.firstName === employeeName);
-  }
-  if (data.employees.some((e) => e.lastName === employeeName)) {
-    return data.employees.find((e) => e.lastName === employeeName);
+  const v = employeeName;
+  if (data.employees.some((e) => e.firstName === v || e.lastName === v)) {
+    return data.employees.find((e) => e.firstName === v || e.lastName === v);
   }
   return {};
 }
