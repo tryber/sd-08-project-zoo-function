@@ -22,34 +22,36 @@ Neste projeto, verificamos se você é capaz de:
 
 ## Sumário
 
-- [Entregáveis](#entregáveis)
-  - [O que deverá ser desenvolvido](#o-que-deverá-ser-desenvolvido)
-  - [Desenvolvimento](#desenvolvimento)
-  - [Data de entrega](#data-de-entrega)
-- [Instruções para entregar seu projeto](#instruções-para-entregar-seu-projeto)
-  - [Antes de começar a desenvolver](#antes-de-começar-a-desenvolver)
-  - [Durante o desenvolvimento](#durante-o-desenvolvimento)
-  - [Depois de terminar o desenvolvimento (opcional)](#depois-de-terminar-o-desenvolvimento-opcional)
-- [Requisitos do projeto](#requisitos-do-projeto)
-  - [1. Implemente a função animalsByIds](#1-implemente-a-função-animalsByIds)
-  - [2. Implemente a função animalsOlderThan](#2-implemente-a-função-animalsOlderThan)
-  - [3. Implemente a função employeeByName](#3-implemente-a-função-employeeByName)
-  - [4. Implemente a função createEmployee](#4-implemente-a-função-createEmployee)
-  - [5. Implemente a função isManager](#5-implemente-a-função-isManager)
-  - [6. Implemente a função addEmployee](#6-implemente-a-função-addEmployee)
-  - [7. Implemente a função animalCount](#7-implemente-a-função-animalCount)
-  - [8. Implemente a função entryCalculator](#8-implemente-a-função-entryCalculator)
-  - [9. Implemente a função animalMap](#9-implemente-a-função-animalMap)
-  - [10. Implemente a função schedule](#10-implemente-a-função-schedule)
-  - [11. Implemente a função oldestFromFirstSpecies](#11-implemente-a-função-oldestFromFirstSpecies)
-  - [12. Implemente a função increasePrices](#12-implemente-a-função-increasePrices)
-  - [13. Implemente a função employeeCoverage](#13-implemente-a-função-employeeCoverage)
-- [Avisos finais](#avisos-finais)
-  - [Code Review](#revisando-um-pull-request)
-  - [Avaliação do projeto](#avaliação-do-projeto)
-  - [Ordem dos requisitos no avaliador automático](#ordem-dos-requisitos-no-avaliador-automático)
+- [Boas vindas ao repositório do projeto de ES6 e Higher Order Functions!](#boas-vindas-ao-repositório-do-projeto-de-es6-e-higher-order-functions)
+  - [Habilidades](#habilidades)
+  - [Sumário](#sumário)
+  - [Entregáveis](#entregáveis)
+    - [O QUE DEVERÁ SER DESENVOLVIDO](#o-que-deverá-ser-desenvolvido)
+    - [DESENVOLVIMENTO](#desenvolvimento)
+  - [Instruções para entregar seu projeto](#instruções-para-entregar-seu-projeto)
+    - [ANTES DE COMEÇAR A DESENVOLVER](#antes-de-começar-a-desenvolver)
+    - [DURANTE O DESENVOLVIMENTO](#durante-o-desenvolvimento)
+    - [DEPOIS DE TERMINAR O DESENVOLVIMENTO (OPCIONAL)](#depois-de-terminar-o-desenvolvimento-opcional)
+  - [Requisitos do projeto](#requisitos-do-projeto)
+    - [1. IMPLEMENTE A FUNÇÃO animalsByIds](#1-implemente-a-função-animalsbyids)
+    - [2. IMPLEMENTE A FUNÇÃO animalsOlderThan](#2-implemente-a-função-animalsolderthan)
+    - [3. IMPLEMENTE A FUNÇÃO employeeByName](#3-implemente-a-função-employeebyname)
+    - [4. IMPLEMENTE A FUNÇÃO createEmployee](#4-implemente-a-função-createemployee)
+    - [5. IMPLEMENTE A FUNÇÃO isManager](#5-implemente-a-função-ismanager)
+    - [6. IMPLEMENTE A FUNÇÃO addEmployee](#6-implemente-a-função-addemployee)
+    - [7. IMPLEMENTE A FUNÇÃO animalCount](#7-implemente-a-função-animalcount)
+    - [8. IMPLEMENTE A FUNÇÃO entryCalculator](#8-implemente-a-função-entrycalculator)
+    - [9. IMPLEMENTE A FUNÇÃO animalMap](#9-implemente-a-função-animalmap)
+    - [10. IMPLEMENTE A FUNÇÃO schedule](#10-implemente-a-função-schedule)
+    - [11. IMPLEMENTE A FUNÇÃO oldestFromFirstSpecies](#11-implemente-a-função-oldestfromfirstspecies)
+    - [12. IMPLEMENTE A FUNÇÃO increasePrices](#12-implemente-a-função-increaseprices)
+    - [13. IMPLEMENTE A FUNÇÃO employeeCoverage](#13-implemente-a-função-employeecoverage)
+  - [Avisos Finais](#avisos-finais)
+    - [REVISANDO UM PULL REQUEST](#revisando-um-pull-request)
+    - [AVALIAÇÃO DO PROJETO](#avaliação-do-projeto)
+    - [ORDEM DOS REQUISITOS NO AVALIADOR AUTOMÁTICO](#ordem-dos-requisitos-no-avaliador-automático)
 
---- 
+---
 
 ## Entregáveis
 
@@ -64,7 +66,7 @@ Após clonar o projeto e instalar as dependências, você não precisará realiz
 Todos os arquivos estritamente necessários para finalizar o projeto já estão criados, **não** sendo necessária a criação de outros arquivos.
 Você deverá completar as funções e testes unitários de forma a satisfazer os requisitos listados na próxima seção.
 
-Na pasta raíz do projeto, temos a pasta `src` e a pasta `tests`. A pasta `src` é composta pelo arquivo `zoo.js`, que contém as funções a serem implementadas, e o arquivo `data.js`, que armazena os dados que serão utilizados. Já a pasta `tests`, contém os testes unitários correspondentes a cada função do arquivo `zoo.js`. 
+Na pasta raíz do projeto, temos a pasta `src` e a pasta `tests`. A pasta `src` é composta pelo arquivo `zoo.js`, que contém as funções a serem implementadas, e o arquivo `data.js`, que armazena os dados que serão utilizados. Já a pasta `tests`, contém os testes unitários correspondentes a cada função do arquivo `zoo.js`.
 
 O nome dos arquivos também segue uma ordem definida. Basicamente, os arquivos de teste possuem o nome da função alvo acrescido do nome `.spec.js`.
 O arquivo `src/zoo.js` conterá a implementação de uma função, `animalsByIds,` por exemplo, e o arquivo `tests/animalsByIds.spec.js` conterá os testes unitários referentes à função.
@@ -123,7 +125,7 @@ Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que n
 ### DURANTE O DESENVOLVIMENTO
 
 📌 **PULL REQUESTS COM ISSUES NO CODE CLIMATE NÃO SERÃO AVALIADAS, ATENTE-SE PARA RESOLVÊ-LAS ANTES DE FINALIZAR O DESENVOLVIMENTO!**
- 
+
 📌 **OS NOMES DOS ARQUIVOS NÃO DEVEM SER ALTERADOS!** Você pode adicionar outros arquivos, se julgar necessário. Qualquer dúvida, procure a Pessoa Instrutora que te acompanha.
 
 * Faça `commits` das alterações que você fizer no código regularmente
@@ -170,7 +172,7 @@ Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão
 
   **Observações técnicas**
 
-  - O parâmetro desta função pode ser alterado para atender ao requisito proposto 
+  - O parâmetro desta função pode ser alterado para atender ao requisito proposto
 
   **O que será avaliado**
 
@@ -184,7 +186,7 @@ Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão
 
   **Observações técnicas**
 
-  - Deve retornar um valor booleano 
+  - Deve retornar um valor booleano
 
   **O que será avaliado**
 
@@ -267,7 +269,7 @@ Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão
   A função é responsável pelo mapeamento geográfico das espécies e seus animais, podendo ainda filtrá-los por ordem alfabética e gênero, por exemplo
 
   **Observações técnicas**
-  
+
   - Analise o teste unitário para entender os retornos que são esperados para esta função
 
   **O que será avaliado**
@@ -284,7 +286,7 @@ Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão
   A função é responsável por disponibilizar as informações de horário para uma consulta, que pode querer ter acesso a todo o cronograma da semana ou apenas o cronograma de um dia específico
 
   **Observações técnicas**
-  
+
   - Analise o teste unitário para entender os retornos que são esperados para esta função
 
   **O que será avaliado**
@@ -320,7 +322,7 @@ Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão
   A função é responsável por consultar as espécies pela qual a pessoa colaborada, recebida no parâmetro através de seu `id`, `firstName` ou `lastName`, é responsável
 
   **Observações técnicas**
-  
+
   - Analise o teste unitário para entender os retornos que são esperados para esta função
 
   **O que será avaliado**
