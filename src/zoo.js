@@ -15,7 +15,7 @@ eslint no-unused-vars: [
 // find()
 // sort()
 
-const { animals } = require('./data');
+const { animals, employees } = require('./data');
 
 const animalsByIds = (...ids) => ids.map(id => animals.find(animal => animal.id === id));
 
@@ -26,8 +26,10 @@ const animalsOlderThan = (animal, age) => {
 };
 
 const employeeByName = (employeeName) => {
+  if (employeeName === undefined) return {};
 
-}
+  return employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+};
 
 const createEmployee = (personalInfo, associatedWith) => {
 
