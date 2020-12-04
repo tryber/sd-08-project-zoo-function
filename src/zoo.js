@@ -23,10 +23,11 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  const retorno = data.employees.find(element => element.firstName === employeeName || element.lastName === employeeName)
+  const retorno = data.employees
+  .find(element => element.firstName === employeeName || element.lastName === employeeName);
 
   if (employeeName) {
-    return retorno
+    return retorno;
   } return {};
 }
 
@@ -39,8 +40,8 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  const retorno = data.employees.push(employeeName);
-  return retorno
+  const retorno = data.employees.push(id, firstName, lastName, managers, responsibleFor);
+  return retorno;
   // seu código aqui
 }
 
