@@ -50,12 +50,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     id,
     firstName,
     lastName,
-  }
+  };
 
   const associatedWith = {
     managers,
     responsibleFor,
-  }
+  };
 
   const { employees } = data;
   employees.push(createEmployee(personalInfo, associatedWith));
@@ -74,7 +74,11 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  const { prices } = data;
+  if (typeof entrants === 'undefined') return 0;
+  return Object.entries(entrants).reduce((acc, [key, val]) => (
+    acc + (prices[key] * val)
+  ), 0);
 }
 
 function animalMap(options) {
