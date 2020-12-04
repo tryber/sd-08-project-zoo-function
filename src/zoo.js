@@ -64,7 +64,23 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  let needToBePayed = 0;
+  if (entrants === undefined || Object.keys(entrants).length === 0) return needToBePayed;
+
+  const keys = Object.keys(entrants);
+  keys.forEach(key => {
+    if (key === 'Adult') {
+      needToBePayed += parseFloat(entrants[key] * 49.99);
+    }
+    if (key === 'Child') {
+      needToBePayed += parseFloat(entrants[key] * 20.99);
+    }
+    if (key === 'Senior') {
+      needToBePayed += parseFloat(entrants[key] * 24.99);
+    }
+  })
+
+  return needToBePayed;
 }
 
 function animalMap(options) {
