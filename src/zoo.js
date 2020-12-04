@@ -74,65 +74,57 @@ function entryCalculator(entries) {
   return totalPrice;
 }
 
-const noParameter = () => {
-  const result = {}
-  animals.forEach(({ location = '', name }) => {
-    if (result[location] === undefined) {
-      result[location] = [];
-      result[location] = [ name ];
-    }
-    else {
-      const resLocation = result[location]
-      resLocation.push(name)
-    }
-  })
-  return result;
-}
-
-const includeNam = () => {
-}
+// const noParameter = () => {
+//   const result = {}
+//   animals.forEach(({ location = '', name }) => {
+//     if (result[location] === undefined) {
+//       result[location] = [];
+//       result[location] = [ name ];
+//     }
+//     else {
+//       const resLocation = result[location]
+//       resLocation.push(name)
+//     }
+//   })
+//   return result;
+// }
 
 function animalMap(obj) {
   // seu código aqui
 }
 
 function scheduleNoParam() {
-  const result = {}
+  const result = {};
   const arrayHours = Object.entries(hours);
-  arrayHours.forEach(Element => {
-    result[Element[0]] = `Open from ${Object.values(Element[1])[0]}am until ${Object.values(Element[1])[1] -12}pm`
-    if(Object.values(Element[1])[0] === 0) {
-      result[Element[0]] = 'CLOSED'
+  arrayHours.forEach((Element) => {
+    result[Element[0]] = `Open from ${Object.values(Element[1])[0]}am until ${Object.values(Element[1])[1] - 12}pm`;
+    if (Object.values(Element[1])[0] === 0) {
+      result[Element[0]] = 'CLOSED';
     }
-  })
-  return result
+  });
+  return result;
 }
 
-function scheduleDay (day) {
-  const result = {}
+function scheduleDay(day) {
+  const result = {};
   const arrayHours = Object.entries(hours);
-  arrayHours.forEach(Element => {
-    if (Element[0] === day) {
-      result[Element[0]] = `Open from ${Object.values(Element[1])[0]}am until ${Object.values(Element[1])[1] -12}pm`
-      if(Object.values(Element[1])[0] === 0) {
-        result[Element[0]] = 'CLOSED'
+  arrayHours.forEach((elem) => {
+    if (elem[0] === day) {
+      result[elem[0]] = `Open from ${Object.values(elem[1])[0]}am until ${Object.values(elem[1])[1] - 12}pm`;
+      if (Object.values(elem[1])[0] === 0) {
+        result[elem[0]] = 'CLOSED';
       }
     }
-  })
-  return result
+  });
+  return result;
 }
 
 function schedule(dayName) {
   if (dayName === undefined) {
-    return scheduleNoParam()
+    return scheduleNoParam();
   }
-  else {
-    return scheduleDay(dayName);
-  }
+  return scheduleDay(dayName);
 }
-console.log(schedule())
-console.log(schedule('Tuesday'))
-console.log(schedule('Monday'))
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
