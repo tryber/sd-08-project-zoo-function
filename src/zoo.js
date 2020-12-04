@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 
 const animalsByIds = (...rest) => animals.filter(({ id }) => rest.some(idKey => idKey === id));
 
@@ -23,16 +23,25 @@ const employeeByName = employeeName =>
 
 const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
 
-const isManager = (id) => employees.some(({ managers, id: idKey }) => managers.length === 1 && idKey === id);
+const isManager = id =>
+  employees.some(({ managers, id: idKey }) => managers.length === 1 && idKey === id);
 
-const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => employees.push({id, firstName, lastName, managers, responsibleFor});
+const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) =>
+  employees.push({ id, firstName, lastName, managers, responsibleFor });
 
-const animalCount = (species) => {
-  return species ?  animals.find(animal => animal.name === species).residents.length : animals.reduce((accAnimal, currAnimal) => Object.assign(accAnimal, {[currAnimal.name] : currAnimal.residents.length}), {});
-}
+const animalCount = species =>
+  species
+    ? animals.find(animal => animal.name === species).residents.length
+    : animals.reduce(
+        (accAnimal, currAnimal) =>
+          Object.assign(accAnimal, { [currAnimal.name]: currAnimal.residents.length }),
+        {}
+      );
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(entrants = 0) {
+  let countAnimals = 0;
+  Object.keys(entrants).forEach(key => (countAnimals += prices[key] * entrants[key]));
+  return countAnimals;
 }
 
 function animalMap(options) {
