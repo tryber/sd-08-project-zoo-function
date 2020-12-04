@@ -42,17 +42,10 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // const managersArray = employees.map(employee => employee.managers);
-  // const zooManagers = [...managersArrays]
-  // const zooManagerIds = zooManagers.map(element => (...element))
-  // console.log(managersArray)
-  // console.log(managersArray.length)
-  // return managersArray.some(element => element.includes(id));
   return employees.map(employee => employee.managers)
-  .some(element => element.includes(id));
-  
+    .some(element => element.includes(id));  
 }
-console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'))
+
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
