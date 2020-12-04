@@ -19,12 +19,23 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  // data.animals.forEach((species) => {
+  //   if (species.name === animal && species.residents.age >= age) {
+  //     return true;
+  //   }
+  //   return false;
+  // });
 }
 
+// console.log(animalsOlderThan('otters', 7));
+
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined) {
+    return [];
+  }
+  return data.employees.filter((employee) => employee.firstName === employeeName || employee.lastName === employeeName);
 }
+// console.log(employeeByName('Bethea'));
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
