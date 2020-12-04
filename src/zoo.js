@@ -6,25 +6,34 @@ eslint no-unused-vars: [
     "vars": "local",
     "varsIgnorePattern": "data"
   }
-]  
-git status  
-*/
+]
+git status*/
 
 const { prices } = require('./data');
-const data = require('./data');
+const { employees } = require('./data');
+const { animals } = require('./data');
+const { hours } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
-  return data.animals.filter((e) => ids.includes(e.id));
+  return animals.filter((e) => {
+    return ids.includes(e.id);
+  });
 }
 
 function animalsOlderThan(animal, age) {
-  return data.animals.find((e) => e.name === animal).residents.every((e) => e.age >= age);
+  return animals
+    .find((e) => {
+      return e.name === animal;
+    })
+    .residents.every((e) => e.age >= age);
 }
 
 function employeeByName(employeeName) {
   if (employeeName === undefined || employeeName.length === 0) return {};
-  return data.employees.find((e) => e.firstName === employeeName || e.lastName === employeeName);
+  return employees.find((e) => {
+    return e.firstName === employeeName || e.lastName === employeeName;
+  });
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -40,11 +49,15 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return data.employees.find((e) => e.id === id).managers.length === 0;
+  return (
+    employees.find((e) => {
+      return e.id === id;
+    }).managers.length === 0
+  );
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  data.employees.push({
+  employees.push({
     id,
     firstName,
     lastName,
@@ -56,30 +69,41 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (species === undefined) {
     const answer = {};
-    data.animals.forEach((e) => (answer[e.name] = e.residents.length));
+    animals.forEach((e) => (answer[e.name] = e.residents.length));
     return answer;
   }
-  return data.animals.find((e) => e.name === species).residents.length;
+  return animals.find((e) => {
+    return e.name === species;
+  }).residents.length;
 }
 
 function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) return 0;
   const { Adult = 0, Senior = 0, Child = 0 } = entrants;
-  return data.prices.Adult * Adult + data.prices.Senior * Senior + data.prices.Child * Child;
+  const adultPrice = prices.Adult * Adult;
+  const seniorPrice = prices.Senior * Senior;
+  const childPrice = prices.Child * Child;
+  return adultPrice + seniorPrice + childPrice;
 }
 
 function animalsByRegionArray() {
-  const locations = [...new Set(data.animals.map((e) => e.location))];
+  const locations = [...new Set(animals.map((e) => e.location))];
   const animalsByLocation = {};
   locations.forEach((region) => {
-    const animalsNames = data.animals.filter((animal) => animal.location === region).map((animal) => animal.name);
+    const animalsNames = animals
+      .filter((animal) => {
+        return animal.location === region;
+      })
+      .map((animal) => {
+        return animal.name;
+      });
     animalsByLocation[region] = animalsNames;
   });
   return animalsByLocation;
 }
 
 function grabAnimalsListName(animal, sex = '', sorted = false) {
-  const animalObj = data.animals.find((element) => element.name === animal);
+  const animalObj = animals.find((element) => element.name === animal);
   const answer = animalObj.residents
     .filter((element) => {
       if (sex === 'male' || sex === 'female') return element.sex === sex;
@@ -106,27 +130,26 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const openHours = data.hours;
-  for (const day in openHours) {
-    const { open, close } = openHours[day];
+  for (const day in hours) {
+    const { open, close } = hours[day];
     let string = '';
     if (open === 0) {
       string = 'CLOSED';
     } else {
       string = `Open from ${open}am until ${close - 12}pm`;
     }
-    openHours[day] = string;
+    hours[day] = string;
   }
-  if (dayName === undefined) return openHours;
+  if (dayName === undefined) return hours;
   const newObj = {};
-  newObj[dayName] = openHours[dayName];
+  newObj[dayName] = hours[dayName];
   return newObj;
 }
 
 function oldestFromFirstSpecies(id) {
-  const employee = data.employees.find((element) => element.id === id);
+  const employee = employees.find((element) => element.id === id);
   const firstAnimal = employee.responsibleFor[0];
-  const animal = data.animals.find((element) => element.id === firstAnimal);
+  const animal = animals.find((element) => element.id === firstAnimal);
   const oldest = animal.residents.reduce((acc, curr) => (acc = curr.age > acc.age ? curr : acc));
   const { name, sex, age } = oldest;
   return [name, sex, age];
@@ -134,28 +157,28 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const apply = 1 + percentage / 100;
-  for (const key in data.prices) {
-    let fare = data.prices[key];
+  for (const key in prices) {
+    let fare = prices[key];
     fare = Math.round(fare * apply * 100) / 100;
-    data.prices[key] = fare;
+    prices[key] = fare;
   }
   return;
 }
 
 function getAnimalsFromIds(arrayOfIds) {
-  return arrayOfIds.map((element) => data.animals.find((animal) => animal.id === element).name);
+  return arrayOfIds.map((element) => animals.find((animal) => animal.id === element).name);
 }
 
 function employeeCoverage(idOrName) {
   const allEmployees = {};
-  data.employees.forEach((element) => {
+  employees.forEach((element) => {
     const { firstName, lastName, responsibleFor } = element;
     const key = `${firstName} ${lastName}`;
     allEmployees[key] = getAnimalsFromIds(responsibleFor);
   });
   if (idOrName === undefined) return allEmployees;
 
-  const employee = data.employees.find((element) => {
+  const employee = employees.find((element) => {
     return element.id === idOrName || element.firstName === idOrName || element.lastName === idOrName;
   });
 
