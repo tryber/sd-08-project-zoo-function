@@ -11,36 +11,36 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-//1
+// 1
 function animalsByIds(...ids) {
-  return ids ? ids.map((id) => data.animals.find((animal) => id === animal.id)) : [];
+  return ids ? ids.map(id => data.animals.find(animal => id === animal.id)) : [];
 }
 
-//2
+// 2
 function animalsOlderThan(animal, age) {
   return data.animals
-    .find((anim) => anim.name === animal)
-    .residents.every((resident) => resident.age >= age);
+    .find(anim => anim.name === animal)
+    .residents.every(resident => resident.age >= age);
 }
 
-//3
+// 3
 function employeeByName(employeeName) {
   return employeeName ? data.employees
     .find(
       (employee) => employee.firstName === employeeName || employee.lastName === employeeName) : {};
 }
 
-//4
+// 4
 function createEmployee(personalInfo, associatedWith) {
   return {...personalInfo, ...associatedWith};
 }
 
-//5
+// 5
 function isManager(id) {
-  return data.employees.some((employee) => employee.managers.includes(id));
+  return data.employees.some(employee => employee.managers.includes(id));
 }
 
-//6
+// 6
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   data.employees.push({
     id,
@@ -51,10 +51,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   });
 }
 
-//7
+// 7
 function animalCount(species) {
-  return species ? 
-    data.animals.find((animal) => species === animal.name).residents.length :
+  return species ?
+    data.animals.find(animal => species === animal.name).residents.length :
     data.animals.reduce(
       (acc, curr) => {
         acc[curr.name] = curr.residents.length;
@@ -62,7 +62,7 @@ function animalCount(species) {
       }, {});
 }
 
-//8
+// 8
 function entryCalculator(entrants) {
   return entrants ?
     Object.keys(entrants).reduce(
@@ -70,28 +70,28 @@ function entryCalculator(entrants) {
     0;
 }
 
-//9
+// 9
 function animalsByRegion() {
   const regions = ['NE', 'NW', 'SE', 'SW'];
 
   return regions.reduce((acc, curr) => {
     acc[curr] = data.animals
-      .filter((animal) => animal.location === curr)
-      .map((animal) => animal.name);
-    
+      .filter(animal => animal.location === curr)
+      .map(animal => animal.name);
+
     return acc;
   }, {});
 }
 
 function getAnimalsFromSpecies(specie, sex) {
-  return sex ? 
+  return sex ?
     data.animals
-      .find((animal) => animal.name === specie)
-      .residents.filter((animal) => animal.sex === sex)
-      .map((animal) => animal.name) :
+      .find(animal => animal.name === specie)
+      .residents.filter(animal => animal.sex === sex)
+      .map(animal => animal.name) :
     data.animals
-      .find((animal) => animal.name === specie)
-      .residents.map((animal) => animal.name);
+      .find(animal => animal.name === specie)
+      .residents.map(animal => animal.name);
 }
 
 function sortArray(array, sorted) {
@@ -105,16 +105,16 @@ function animalsByRegionWithNames(sex, sorted) {
 
   return regions.reduce((regionObj, nextRegion) => {
     regionObj[nextRegion] = data.animals
-      .filter((animal) => animal.location === nextRegion)
-      .map((animal) => animal.name)
-      .map((animal) => {
+      .filter(animal => animal.location === nextRegion)
+      .map(animal => animal.name)
+      .map(animal => {
         const objPerRegion = {};
         objPerRegion[animal] = getAnimalsFromSpecies(animal, sex);
         sortArray(objPerRegion[animal], sorted)
 
         return objPerRegion;
       });
-    
+
     return regionObj;
   }, {});
 }
@@ -129,7 +129,7 @@ function animalMap(options) {
   return animals;
 }
 
-//10
+// 10
 function schedule(dayName) {
   const timeArray = Object.keys(data.hours).map((day) => {
     const obj = {};
@@ -144,17 +144,17 @@ function schedule(dayName) {
   });
 
   return dayName ?
-    timeArray.find((day) => day[dayName]) :
+    timeArray.find(day => day[dayName]) :
     timeArray.reduce((acc, curr) => {
       return {...acc, ...curr}
     }, {});
 }
 
-//11
+// 11
 function oldestFromFirstSpecies(id) {
-  const speciesId = data.employees.find((employee) => employee.id === id).responsibleFor[0];
+  const speciesId = data.employees.find(employee => employee.id === id).responsibleFor[0];
 
-  const animalsFromSpecies = data.animals.find((animal) => animal.id === speciesId);
+  const animalsFromSpecies = data.animals.find(animal => animal.id === speciesId);
 
   const { name, sex, age } = animalsFromSpecies.residents.reduce(
     (acc, curr) => (acc.age > curr.age) ? acc : curr
@@ -163,7 +163,7 @@ function oldestFromFirstSpecies(id) {
   return [name, sex, age];
 }
 
-//12
+// 12
 function increasePrices(percentage) {
   const { Adult, Child, Senior } = data.prices;
 
@@ -174,17 +174,17 @@ function increasePrices(percentage) {
   }
 }
 
-//13
+// 13
 function findEmployee(idOrName) {
   return data.employees.find(
-    (employee) => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName
+    employee => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName
   );
 }
 
 function getEmployeeAnimals(employee) {
   const animalArray = animalsByIds(...employee.responsibleFor);
 
-  return animalArray.map((animal) => animal.name);
+  return animalArray.map(animal => animal.name);
 }
 
 function createSingleEmployee(employee) {
