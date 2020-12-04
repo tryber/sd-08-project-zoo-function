@@ -148,10 +148,10 @@ function oldestFromFirstSpecies(ident) {
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 
 function increasePrices(percentage) {
-  const arrayPrices = Object.entries(prices)
+  const arrayPrices = Object.entries(prices);
   arrayPrices.forEach((Element) => {
-    const newValor = Element[1] + (percentage / 100 * Element[1]) + 0.005
-    prices[Element[0]] = parseFloat(newValor.toFixed(2))
+    const newValor = Element[1] + (percentage / 100 * Element[1]) + 0.005;
+    prices[Element[0]] = parseFloat(newValor.toFixed(2));
     })
 }
 
