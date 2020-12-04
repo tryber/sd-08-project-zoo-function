@@ -1,4 +1,7 @@
 module.exports = {
+  // animals: lions, tigers, bears, penguins, otters, frogs, snakes, elephants, giraffes
+  // employees: Nigel, Burl, Ola, Wilburn, Stephanie, Sharonda, Ardith, Emery
+  // hours e prices
   animals: [
     {
       id: '0938aa23-f153-4937-9f88-4858b24d6bce',
