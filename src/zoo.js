@@ -26,7 +26,7 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   return animals
     .find(a => a.name === animal)
-    .residents.every(e => e.age >= age);
+    .residents.every(e => e.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -91,27 +91,26 @@ function entryCalculator(entrants) {
   });
   return sum;
 }
-const animalMapBuilder = (options = {}) => {
-  const parseOptions = op => {
-    const defaults = {
-      includeNames: false,
-      sorted: false,
-      sex: '',
-    };
-    Object.assign(defaults, op);
-    return defaults;
+
+const parseOptions = op => {
+  const defaults = {
+    includeNames: false,
+    sorted: false,
+    sex: '',
   };
+  Object.assign(defaults, op);
+  return defaults;
+};
 
-  const mapFactory = () => ({
-    NE: [],
-    NW: [],
-    SE: [],
-    SW: [],
-  });
-
+const mapFactory = () => ({
+  NE: [],
+  NW: [],
+  SE: [],
+  SW: [],
+});
+const animalMapBuilder = (options = {}) => {
   const opt = parseOptions(options);
   const map = mapFactory();
-
   const getResidentsNames = (residents = [], sorted = false, sex = '') => {
     const res = [];
     residents.forEach(r => {
