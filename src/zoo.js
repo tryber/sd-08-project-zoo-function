@@ -42,7 +42,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   let test = false;
-  employees.forEach(emp => {
+  employees.forEach((emp) => {
     const managersId = emp.managers;
     if (managersId.some(ele => ele === id) === true) {
       test = true;
