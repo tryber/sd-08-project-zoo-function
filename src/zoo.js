@@ -39,7 +39,15 @@ function isManager(id) {
 console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  employees.push(
+    {
+      id,
+      firstName,
+      lastName,
+      managers: managers || [],
+      responsibleFor: responsibleFor || [],
+    },
+  );
 }
 
 function animalCount(species) {
