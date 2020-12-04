@@ -92,7 +92,6 @@ function getAnimalsByLocation() {
 }
 
 function animalMap(options) {
-  const { includeNames = false, sorted = false } = (options || {});
   return getAnimalsByLocation();
 }
 
@@ -100,7 +99,7 @@ function schedule(dayName) {
   const { hours } = data;
   const result = Object.entries(hours).reduce((acc, [key, val]) => {
     const { open, close } = val;
-    acc[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : `CLOSED`;
+    acc[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
     return acc;
   }, {});
   if (result[dayName]) return { [dayName]: result[dayName] };
