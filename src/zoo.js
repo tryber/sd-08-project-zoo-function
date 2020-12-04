@@ -56,7 +56,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     id,
     firstName,
     lastName,
-    managers, 
+    managers,
     responsibleFor,
   };
   employees.push(newEm);
