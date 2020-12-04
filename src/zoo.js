@@ -27,7 +27,7 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return objectFuncionario;
   }
-  const getFuncionario = data.employee.find(nameOrLast => {
+  const getFuncionario = data.employee.find((nameOrLast) => {
     return nameOrLast.firstName === employeeName || nameOrLast.lastName === employeeName;
   });
   return getFuncionario;
