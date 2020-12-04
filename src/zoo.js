@@ -26,9 +26,15 @@ const animalsOlderThan = (species, age) => {
   return ((animalsResidents.filter(animal => animal.age < age)).length === 0);
 };
 
-function employeeByName(employeeName) {
-  // seu código aqui
-}
+const employeeByName = (EmployeeName) => {
+  const finder = data.employees.find(employee =>
+    (employee.firstName === EmployeeName || employee.lastName === EmployeeName));
+  if (typeof finder === 'object') {
+    return finder;
+  }
+  return {};
+};
+
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
