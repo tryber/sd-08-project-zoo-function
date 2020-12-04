@@ -34,7 +34,7 @@ function employeeByName(employeeName) {
     return [];
   }
   return data.employees.filter((employee) =>
-    (employee.firstName === employeeName || employee.lastName === employeeName);
+    (employee.firstName === employeeName || employee.lastName === employeeName)
   );
 }
 // console.log(employeeByName('Bethea'));
