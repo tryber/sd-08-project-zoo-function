@@ -13,7 +13,7 @@ const data = require('./data');
 
 function animalsByIds(ids) {
   // seu código aqui
-  if (!ids) {
+  if (ids === undefined) {
     return [];
   }
   return [{
