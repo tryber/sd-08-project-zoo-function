@@ -20,11 +20,8 @@ const employeeByName = employeeName => {
   if (!employeeName) return {};
   return employees.find(v => v.firstName === employeeName || v.lastName === employeeName);
 };
-console.log(employeeByName());
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
+const createEmployee = (info, awith) => Object.assign({}, info, awith);
 
 function isManager(id) {
   // seu código aqui
