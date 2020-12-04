@@ -13,22 +13,27 @@ const data = require('./data');
 
 function animalsByIds(ids) {
   // seu código aqui
+
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+
 }
 
 function employeeByName(employeeName) {
   // seu código aqui
+
 }
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+
 }
 
 function isManager(id) {
   // seu código aqui
+  
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
