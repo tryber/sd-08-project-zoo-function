@@ -22,7 +22,7 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   const selectedAnimal = data.animals.find(
-    animalName => animalName.name === animal
+    animalName => animalName.name === animal,
   );
   const result = selectedAnimal.residents.reduce(
     (previousValue, currentValue) => {
@@ -31,7 +31,7 @@ function animalsOlderThan(animal, age) {
       }
       return false;
     },
-    true
+    true,
   );
   return result;
 }
