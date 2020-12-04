@@ -18,9 +18,10 @@ function animalsByIds(...ids) {
 
 // 2
 function animalsOlderThan(animal, age) {
-  return data.animals
-    .find(anim => anim.name === animal)
-    .residents.every(resident => resident.age >= age);
+  const ani = data.animals.find(anim => anim.name === animal);
+  const boolOlder = ani.residents.every(resident => resident.age >= age);
+
+  return boolOlder;
 }
 
 // 3
@@ -149,14 +150,16 @@ function schedule(dayName) {
 }
 
 // 11
+function checkGreaterAge(acc, curr) {
+  return acc.age > curr.age ? acc : curr;
+}
+
 function oldestFromFirstSpecies(id) {
   const speciesId = data.employees.find(employee => employee.id === id).responsibleFor[0];
 
   const animalsFromSpecies = data.animals.find(animal => animal.id === speciesId);
 
-  const { name, sex, age } = animalsFromSpecies.residents.reduce(
-    (acc, curr) => acc.age > curr.age ? acc : curr,
-  );
+  const { name, sex, age } = animalsFromSpecies.residents.reduce(checkGreaterAge);
 
   return [name, sex, age];
 }
