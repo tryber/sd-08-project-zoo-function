@@ -26,10 +26,7 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   if (!employeeName) return {};
   const v = employeeName;
-  if (data.employees.some((e) => e.firstName === v || e.lastName === v)) {
-    return data.employees.find((e) => e.firstName === v || e.lastName === v);
-  }
-  return {};
+  return data.employees.find((e) => e.firstName === v || e.lastName === v) || {};
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -122,10 +119,9 @@ const animalMapBuilder = (options = {}) => {
   }
   data.animals.forEach((a) => {
     const field = {};
-    if (!opt.sorted) {
-      field[a.name] = getResidentsNames(a.residents, opt.sex);
-    } else {
-      field[a.name] = getResidentsNames(a.residents, opt.sex).sort((ra, rb) => ra > rb);
+    field[a.name] = getResidentsNames(a.residents, opt.sex);
+    if (opt.sorted) {
+      field[a.name].sort((ra, rb) => ra > rb);
     }
     map[a.location].push(field);
   });
