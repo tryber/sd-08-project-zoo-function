@@ -54,7 +54,6 @@ function animalCount(species) {
         return acc;
       }, {});
 }
-console.log(animalCount())
 
 function entryCalculator(entrants) {
   // seu código aqui
