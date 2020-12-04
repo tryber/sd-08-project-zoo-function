@@ -14,7 +14,7 @@ const { animals } = require('./data');
 const data = require('./data');
 
 
-const animalsByIds = (...ids) => ids.map(id => animals.find(animal => animal.id === id ));
+const animalsByIds = (...ids) => ids.map(id => animals.find(animal => animal.id === id));
 
 
 function animalsOlderThan(animal, age) {
