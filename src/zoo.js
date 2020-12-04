@@ -30,8 +30,8 @@ const employeeByName = (employeeName) => {
     employee.lastName === employeeName);
 };
 
-const createEmployee = (personalInfo, associatedWith) =>
-  employee = {
+const createEmployee = (personalInfo, associatedWith) => {
+  const employee = {
     id: personalInfo.id,
     firstName: personalInfo.firstName,
     lastName: personalInfo.lastName,
@@ -39,7 +39,10 @@ const createEmployee = (personalInfo, associatedWith) =>
     responsibleFor: [...associatedWith.responsibleFor],
   };
 
-const isManager = id => {
+  return employee;
+};
+
+const isManager = (id) => {
   if (employees.find(employee => employee.managers
     .find(manager => manager === id))) return true;
 
@@ -56,14 +59,19 @@ const addEmployee = (id, firstName, lastName, managers, responsibleFor) => {
     lastName,
     managers,
     responsibleFor,
-  })
+  });
 };
 
 const animalCount = (species) => {
   if (!species) {
-    return animals.reduce((accumulator, currentValue) =>
-      accumulator[currentValue.name] = currentValue.residents.length, {});
-  };
+    const list = animals.reduce((accumulator, currentValue) => {
+      accumulator[currentValue.name] = currentValue.residents.length;
+
+      return accumulator;
+    }, {});
+
+    return list;
+  }
 
   return animals.find(animal => animal.name === species).residents.length;
 };
