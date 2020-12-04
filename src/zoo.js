@@ -32,8 +32,14 @@ const employeeByName = (employeeName) => {
 };
 
 const createEmployee = (personalInfo, associatedWith) => {
-
-}
+  return employee = {
+    id: personalInfo.id,
+    firstName: personalInfo.firstName,
+    lastName: personalInfo.lastName,
+    managers: [...associatedWith.managers],
+    responsibleFor: [...associatedWith.responsibleFor],
+  };
+};
 
 const isManager = (id) => {
 
