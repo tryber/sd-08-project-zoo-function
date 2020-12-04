@@ -43,7 +43,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   return employees.map(employee => employee.managers)
-    .some(element => element.includes(id));  
+    .some(element => element.includes(id));
 }
 
 
