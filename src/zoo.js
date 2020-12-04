@@ -44,7 +44,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
   if (species) {
     const foundAnimal = animals.find(animal => animal.name === species);
     const amount = foundAnimal.residents.length;
@@ -55,12 +54,11 @@ function animalCount(species) {
     acc[curr.name] = curr.residents.length; return acc;
   }, {});
 }
-console.log(animalCount());
 
 const invalidEntry = entrants =>
   (!entrants) || (Object.keys(entrants).length === 0);
+
 function entryCalculator(entrants) {
-  // seu código aqui
   if (invalidEntry(entrants)) return 0;
   const prices = data.prices;
   const total = Object.entries(entrants)
