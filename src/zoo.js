@@ -9,13 +9,21 @@ eslint no-unused-vars: [
 ]
 */
 
+// map()
+// reduce()
+// filter()
+// find()
+// sort()
+
 const { animals } = require('./data');
 
 const animalsByIds = (...ids) => ids.map(id => animals.find(animal => animal.id === id));
 
 const animalsOlderThan = (animal, age) => {
+  const name = animals.find(specie => specie.name === animal);
 
-}
+  return ages = name.residents.every(specie => specie.age >= age);
+};
 
 const employeeByName = (employeeName) => {
 
