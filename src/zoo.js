@@ -183,13 +183,20 @@ function increasePrices(percentage) {
   Object.assign(data.prices, priceList);
 }
 
+const responsibleForAnimals = (responsibleFor = []) => {
+  const res = responsibleFor.map(
+    rf => data.animals.find(a => a.id === rf).name,
+  );
+  return res || [];
+};
+
 function employeeCoverage(idOrName) {
   const ed = data.employees;
   const res = {};
   if (!idOrName) {
     ed.forEach(e => {
-      res[`${e.firstName} ${e.lastName}`] = e.responsibleFor.map(
-        rf => data.animals.find(a => a.id === rf).name,
+      res[`${e.firstName} ${e.lastName}`] = responsibleForAnimals(
+        e.responsibleFor,
       );
     });
   } else {
@@ -197,8 +204,8 @@ function employeeCoverage(idOrName) {
     const emp = ed.find(
       e => e.id === p || e.firstName === p || e.lastName === p,
     );
-    res[`${emp.firstName} ${emp.lastName}`] = emp.responsibleFor.map(
-      rf => data.animals.find(a => a.id === rf).name,
+    res[`${emp.firstName} ${emp.lastName}`] = responsibleForAnimals(
+      emp.responsibleFor,
     );
   }
   return res;
