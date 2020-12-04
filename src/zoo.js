@@ -110,7 +110,9 @@ function scheduleDay(day) {
   const arrayHours = Object.entries(hours);
   arrayHours.forEach((elem) => {
     if (elem[0] === day) {
-      obj[elem[0]] = `Open from ${Object.values(elem[1])[0]}am until ${Object.values(elem[1])[1] - 12}pm`;
+      const inicio = Object.values(elem[1])[0]
+      const termino = Object.values(elem[1])[1] - 12
+      obj[elem[0]] = 'Open from ' + inicio + 'am until ' + termino + 'pm';
       if (Object.values(elem[1])[0] < 1) {
         obj[elem[0]] = 'CLOSED';
       }
@@ -125,6 +127,9 @@ function schedule(dayName) {
   }
   return scheduleDay(dayName);
 }
+console.log(schedule('Tuesday'))
+console.log(schedule('Monday'));
+console.log(schedule())
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
