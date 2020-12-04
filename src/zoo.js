@@ -27,11 +27,14 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   if (!employeeName) return {};
-  if (data.employees.some(e => e.firstName === employeeName)) {
-    return data.employees.find(e => e.firstName === employeeName);
-  }
-  if (data.employees.some(e => e.lastName === employeeName)) {
-    return data.employees.find(e => e.lastName === employeeName);
+  if (
+    data.employees.some(
+      e => e.firstName === employeeName || e.lastName === employeeName,
+    )
+  ) {
+    return data.employees.find(
+      e => e.firstName === employeeName || e.lastName === employeeName,
+    );
   }
   return {};
 }
@@ -172,11 +175,10 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const priceList = {};
-  Object.entries(data.prices).forEach(item => {
-    const [key, value] = item;
-    priceList[key] = parseFloat(
-      (value + Math.round(value * percentage) / 100).toFixed(2),
-    );
+  Object.entries(data.prices).forEach(priceItem => {
+    const [item, currentPrice] = priceItem;
+    const ajustment = Math.round(currentPrice * percentage) / 100;
+    priceList[item] = parseFloat((currentPrice + ajustment).toFixed(2));
   });
   Object.assign(data.prices, priceList);
 }
