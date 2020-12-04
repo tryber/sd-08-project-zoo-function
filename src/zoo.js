@@ -40,7 +40,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const animals = data.animals.reduce((accumulator, animal) => {
+    const { name, residents } = animal;
+    return { ...accumulator, [name]: residents.length };
+  }, {});
+  if (!species) return animals;
+  return animals[species];
 }
 
 function entryCalculator(entrants) {
