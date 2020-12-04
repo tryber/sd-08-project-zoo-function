@@ -15,22 +15,22 @@ const { hours } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
-  return animals.filter((e) => ids.includes(e.id));
+  return animals.filter(e => ids.includes(e.id));
 }
 
 function animalsOlderThan(animal, age) {
   return animals
-    .find((e) => {
+    .find(e => {
       e.name === animal;
     })
-    .residents.every((e) => {
+    .residents.every(e => {
       e.age >= age;
     });
 }
 
 function employeeByName(employeeName) {
   if (employeeName === undefined || employeeName.length === 0) return {};
-  return employees.find((e) => {
+  return employees.find(e => {
     e.firstName === employeeName || e.lastName === employeeName;
   });
 }
@@ -49,7 +49,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   return (
-    employees.find((e) => {
+    employees.find(e => {
       e.id === id;
     }).managers.length === 0
   );
@@ -68,12 +68,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (species === undefined) {
     const answer = {};
-    animals.forEach((e) => {
+    animals.forEach(e => {
       answer[e.name] = e.residents.length;
     });
     return answer;
   }
-  return animals.find((e) => {
+  return animals.find(e => {
     e.name === species;
   }).residents.length;
 }
@@ -90,18 +90,18 @@ function entryCalculator(entrants) {
 function animalsByRegionArray() {
   const locations = [
     ...new Set(
-      animals.map((e) => {
+      animals.map(e => {
         e.location;
       })
     ),
   ];
   const animalsByLocation = {};
-  locations.forEach((region) => {
+  locations.forEach(region => {
     const animalsNames = animals
-      .filter((animal) => {
+      .filter(animal => {
         animal.location === region;
       })
-      .map((animal) => {
+      .map(animal => {
         animal.name;
       });
     animalsByLocation[region] = animalsNames;
@@ -110,13 +110,13 @@ function animalsByRegionArray() {
 }
 
 function grabAnimalsListName(animal, sex = '', sorted = false) {
-  const animalObj = animals.find((element) => element.name === animal);
+  const animalObj = animals.find(element => element.name === animal);
   const answer = animalObj.residents
-    .filter((element) => {
+    .filter(element => {
       if (sex === 'male' || sex === 'female') return element.sex === sex;
       return element;
     })
-    .map((element) => element.name);
+    .map(element => element.name);
   if (sorted) answer.sort();
   return answer;
 }
@@ -126,7 +126,7 @@ function animalMap(options) {
   const { sex = '', sorted = false } = options;
   const animalsByRegion = animalsByRegionArray();
   for (const region in animalsByRegion) {
-    const arrayAnimals = animalsByRegion[region].map((element) => {
+    const arrayAnimals = animalsByRegion[region].map(element => {
       const newObj = {};
       newObj[element] = grabAnimalsListName(element, sex, sorted);
       return newObj;
@@ -154,9 +154,9 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const employee = employees.find((element) => element.id === id);
+  const employee = employees.find(element => element.id === id);
   const firstAnimal = employee.responsibleFor[0];
-  const animal = animals.find((element) => element.id === firstAnimal);
+  const animal = animals.find(element => element.id === firstAnimal);
   const oldest = animal.residents.reduce((acc, curr) => (acc = curr.age > acc.age ? curr : acc));
   const { name, sex, age } = oldest;
   return [name, sex, age];
@@ -173,19 +173,19 @@ function increasePrices(percentage) {
 }
 
 function getAnimalsFromIds(arrayOfIds) {
-  return arrayOfIds.map((element) => animals.find((animal) => animal.id === element).name);
+  return arrayOfIds.map(element => animals.find(animal => animal.id === element).name);
 }
 
 function employeeCoverage(idOrName) {
   const allEmployees = {};
-  employees.forEach((element) => {
+  employees.forEach(element => {
     const { firstName, lastName, responsibleFor } = element;
     const key = `${firstName} ${lastName}`;
     allEmployees[key] = getAnimalsFromIds(responsibleFor);
   });
   if (idOrName === undefined) return allEmployees;
 
-  const employee = employees.find((element) => {
+  const employee = employees.find(element => {
     return element.id === idOrName || element.firstName === idOrName || element.lastName === idOrName;
   });
 
