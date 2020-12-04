@@ -13,11 +13,11 @@ const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  let idetn = ids;
+  const idetn = ids;
   let index = -1;
   const animalById = animals.filter((animal) => {
     index += 1;
-    return animal.id === idetn[index]
+    return animal.id === idetn[index];
   });
   return animalById;
 }
