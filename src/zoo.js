@@ -71,8 +71,62 @@ function entryCalculator(entrants) {
 }
 
 //9
+function animalsByRegion() {
+  const regions = ['NE', 'NW', 'SE', 'SW'];
+
+  return regions.reduce((acc, curr) => {
+    acc[curr] = data.animals
+      .filter((animal) => animal.location === curr)
+      .map((animal) => animal.name);
+    
+    return acc;
+  }, {});
+}
+
+function getAnimalsFromSpecies(specie, sex) {
+  return sex ? 
+    data.animals
+      .find((animal) => animal.name === specie)
+      .residents.filter((animal) => animal.sex === sex)
+      .map((animal) => animal.name) :
+    data.animals
+      .find((animal) => animal.name === specie)
+      .residents.map((animal) => animal.name);
+}
+
+function sortArray(array, sorted) {
+  if (sorted) {
+    array.sort();
+  }
+};
+
+function animalsByRegionWithNames(sex, sorted) {
+  const regions = ['NE', 'NW', 'SE', 'SW'];
+
+  return regions.reduce((regionObj, nextRegion) => {
+    regionObj[nextRegion] = data.animals
+      .filter((animal) => animal.location === nextRegion)
+      .map((animal) => animal.name)
+      .map((animal) => {
+        const objPerRegion = {};
+        objPerRegion[animal] = getAnimalsFromSpecies(animal, sex);
+        sortArray(objPerRegion[animal], sorted)
+
+        return objPerRegion;
+      });
+    
+    return regionObj;
+  }, {});
+}
+
 function animalMap(options) {
-  // seu código aqui
+  if (!options) {
+    return animalsByRegion()
+  }
+  const { includeNames = false, sorted = false, sex = false } = options;
+  const animals = includeNames ? animalsByRegionWithNames(sex, sorted) : animalsByRegion();
+
+  return animals;
 }
 
 //10
