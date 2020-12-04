@@ -94,7 +94,11 @@ function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
   }
-  return Object.keys(entrants).reduce((previousValue, currentValue) => previousValue + (data.prices[currentValue] * entrants[currentValue]), 0);
+  return Object.keys(entrants).reduce(
+    (previousValue, currentValue) =>
+      previousValue + data.prices[currentValue] * entrants[currentValue],
+    0,
+  );
 }
 
 function animalMap(options) {
