@@ -21,10 +21,7 @@ function animalsOlderThan(animal, age) {
   const residents = especieRequerida.residents;
   const olderAnimals = residents.filter(currAnimal => currAnimal.age > age);
   return olderAnimals.length === residents.length;
-
-
 }
-
 
 function employeeByName(employeeName) {
   // seu código aqui
