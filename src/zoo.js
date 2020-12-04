@@ -32,8 +32,12 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   if (!employeeName) return {};
-  const v = employeeName;
-  return employees.find(e => e.firstName === v || e.lastName === v) || {};
+  // const v = employeeName;
+  return (
+    employees.find(
+      e => e.firstName === employeeName || e.lastName === employeeName,
+    ) || {}
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -172,13 +176,16 @@ function oldestFromFirstSpecies(id) {
   return [name, sex, age];
 }
 
+const priceAdjustment = (currentPrice, percentage) => {
+  const adjustment = Math.round(currentPrice * percentage) / 100;
+  return parseFloat((currentPrice + adjustment).toFixed(2));
+};
+
 function increasePrices(percentage) {
   const priceList = {};
   Object.entries(prices).forEach(item => {
     const [key, value] = item;
-    priceList[key] = parseFloat(
-      (value + Math.round(value * percentage) / 100).toFixed(2),
-    );
+    priceList[key] = priceAdjustment(value, percentage);
   });
   Object.assign(prices, priceList);
 }
