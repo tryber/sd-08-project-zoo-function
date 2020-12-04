@@ -108,23 +108,24 @@ const mapFactory = () => ({
   SE: [],
   SW: [],
 });
+
+const getResidentsNames = (residents = [], sorted = false, sex = '') => {
+  const res = [];
+  residents.forEach(r => {
+    if (sex === '') {
+      res.push(r.name);
+    } else if (r.sex === sex) {
+      res.push(r.name);
+    }
+  });
+  if (sorted) {
+    res.sort((ra, rb) => ra > rb);
+  }
+  return res;
+};
 const animalMapBuilder = (options = {}) => {
   const opt = parseOptions(options);
   const map = mapFactory();
-  const getResidentsNames = (residents = [], sorted = false, sex = '') => {
-    const res = [];
-    residents.forEach(r => {
-      if (sex === '') {
-        res.push(r.name);
-      } else if (r.sex === sex) {
-        res.push(r.name);
-      }
-    });
-    if (sorted) {
-      res.sort((ra, rb) => ra > rb);
-    }
-    return res;
-  };
 
   const mapNamed = () => {
     animals.forEach(a => {
