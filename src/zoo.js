@@ -105,7 +105,7 @@ const parseOptions = options => {
   return defaults;
 };
 
-const getResidentsNames = (residents = [], sex = '') => {
+const getResidentsNames = (residents = [], sorted = false, sex = '') => {
   const res = [];
   residents.forEach(r => {
     if (sex === '') {
@@ -114,6 +114,10 @@ const getResidentsNames = (residents = [], sex = '') => {
       res.push(r.name);
     }
   });
+  if (sorted) {
+    res.sort((ra, rb) => ra > rb);
+  }
+
   return res;
 };
 
@@ -129,13 +133,7 @@ const animalMapBuilder = (options = {}) => {
   }
   data.animals.forEach(a => {
     const field = {};
-    if (!opt.sorted) {
-      field[a.name] = getResidentsNames(a.residents, opt.sex);
-    } else {
-      field[a.name] = getResidentsNames(a.residents, opt.sex).sort(
-        (ra, rb) => ra > rb,
-      );
-    }
+    field[a.name] = getResidentsNames(a.residents, opt.sorted, opt.sex);
     map[a.location].push(field);
   });
   return map;
@@ -169,7 +167,7 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   const animalId = data.employees.find(e => e.id === id).responsibleFor[0];
   const resList = data.animals.find(a => a.id === animalId).residents;
-  const { name, sex, age } = resList.sort((a, b) => a.age <= b.age)[0];
+  const { name, sex, age } = resList.sort((a, b) => a.age < b.age)[0];
   return [name, sex, age];
 }
 
