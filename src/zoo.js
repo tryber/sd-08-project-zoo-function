@@ -123,42 +123,48 @@ const getResidentsNames = (residents = [], sorted = false, sex = '') => {
   }
   return res;
 };
-const animalMapBuilder = (options = {}) => {
+
+const mapNamed = (options = {}) => {
   const opt = parseOptions(options);
   const map = mapFactory();
 
-  const mapNamed = () => {
-    animals.forEach(a => {
-      const field = {};
-      field[a.name] = getResidentsNames(a.residents, opt.sorted, opt.sex);
-      map[a.location].push(field);
-    });
-    return map;
-  };
+  animals.forEach(a => {
+    const field = {};
+    field[a.name] = getResidentsNames(a.residents, opt.sorted, opt.sex);
+    map[a.location].push(field);
+  });
+  return map;
+};
 
-  const mapSimple = () => {
-    animals.forEach(a => {
-      map[a.location].push(a.name);
-    });
-    // if (opt.sorted) {
-    //   Object.values(map).forEach(item => {
-    //     item.sort((ra, rb) => ra > rb);
-    //   });
-    // }
-    return map;
-  };
+const mapSimple = () => {
+  // const opt = parseOptions(options);
+  const map = mapFactory();
+  animals.forEach(a => {
+    map[a.location].push(a.name);
+  });
 
-  if (opt.includeNames) {
-    return mapNamed();
-  }
-  return mapSimple();
+  return map;
 };
 
 function animalMap(options) {
-  return animalMapBuilder(options);
+  if (options.includeNames) {
+    return mapNamed(options);
+  }
+  return mapSimple(options);
 }
 
-const scheduleDay = (day = { open: 0, close: 0 }) => {
+// if (opt.sorted) {
+//   Object.values(map).forEach(item => {
+//     item.sort((ra, rb) => ra > rb);
+//   });
+// }
+
+const scheduleDay = (
+  day = {
+    open: 0,
+    close: 0,
+  },
+) => {
   if (day.open - day.close === 0) {
     return 'CLOSED';
   }
