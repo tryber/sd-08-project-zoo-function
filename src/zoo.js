@@ -106,17 +106,17 @@ function scheduleNoParam() {
 }
 
 function scheduleDay(day) {
-  const result = {};
+  const obj = {};
   const arrayHours = Object.entries(hours);
   arrayHours.forEach((elem) => {
     if (elem[0] === day) {
-      result[elem[0]] = `Open from ${Object.values(elem[1])[0]}am until ${Object.values(elem[1])[1] - 12}pm`;
-      if (Object.values(elem[1])[0] === 0) {
-        result[elem[0]] = 'CLOSED';
+      obj[elem[0]] = `Open from ${Object.values(elem[1])[0]}am until ${Object.values(elem[1])[1] - 12}pm`;
+      if (Object.values(elem[1])[0] < 1) {
+        obj[elem[0]] = 'CLOSED';
       }
     }
   });
-  return result;
+  return obj;
 }
 
 function schedule(dayName) {
