@@ -29,9 +29,7 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   if (!employeeName) return {};
   const v = employeeName;
-  return (
-    data.employees.find((e) => e.firstName === v || e.lastName === v) || {}
-  );
+  return data.employees.find((e) => e.firstName === v || e.lastName === v) || {};
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -137,12 +135,12 @@ function animalMap(options) {
   return animalMapBuilder(options);
 }
 
-const scheduleDay = (
-  day = {
+const scheduleDay = (day = {}) => {
+  const defday = {
     open: 0,
     close: 0,
-  }
-) => {
+  };
+  Object.assign(defday, day);
   if (day.open - day.close === 0) {
     return 'CLOSED';
   }
@@ -175,7 +173,7 @@ function increasePrices(percentage) {
   Object.entries(data.prices).forEach((item) => {
     const [key, value] = item;
     priceList[key] = parseFloat(
-      (value + Math.round(value * percentage) / 100).toFixed(2)
+      (value + Math.round(value * percentage) / 100).toFixed(2),
     );
   });
   Object.assign(data.prices, priceList);
@@ -183,7 +181,7 @@ function increasePrices(percentage) {
 
 const animaisNameByEmployee = (responsibleFor) => {
   const res = responsibleFor.map(
-    (rf) => data.animals.find((a) => a.id === rf).name
+    (rf) => data.animals.find((a) => a.id === rf).name,
   );
   return res;
 };
@@ -197,16 +195,16 @@ function employeeCoverage(idOrName) {
       //   (rf) => data.animals.find((a) => a.id === rf).name,
       // );
       res[`${e.firstName} ${e.lastName}`] = animaisNameByEmployee(
-        e.responsibleFor
+        e.responsibleFor,
       );
     });
   } else {
     const p = idOrName;
     const emp = ed.find(
-      (e) => e.id === p || e.firstName === p || e.lastName === p
+      (e) => e.id === p || e.firstName === p || e.lastName === p,
     );
     res[`${emp.firstName} ${emp.lastName}`] = animaisNameByEmployee(
-      emp.responsibleFor
+      emp.responsibleFor,
     );
   }
   return res;
