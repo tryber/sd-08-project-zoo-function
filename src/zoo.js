@@ -19,13 +19,15 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   const animalBuscado = data.animals.find(elemento => elemento.name === animal);
-  const especimes = animalBuscado.residents;
-  const comparativoIdades = especimes.every(elemento => elemento.age > age);
-  return comparativoIdades;
+  return animalBuscado.residents.every(elemento => elemento.age > age);
 }
 
 function employeeByName(employeeName) {
-  return data.employees.push(employeeName);
+  const retorno = data.employees.find(element => element.firstName === employeeName || element.lastName === employeeName)
+
+  if (employeeName) {
+    return retorno
+  } return {};
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -37,6 +39,8 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+  const retorno = data.employees.push(employeeName);
+  return retorno
   // seu código aqui
 }
 
