@@ -72,9 +72,6 @@ function entryCalculator(entries) {
   const totalPrice = adultPrice + childPrice + seniorPrice
   return totalPrice;
 }
-console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
-console.log(entryCalculator({}));
-console.log(entryCalculator())
 
 function animalMap(options) {
   // seu código aqui
