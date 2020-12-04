@@ -20,8 +20,9 @@ function animalsByIds(...ids) {
   //  feito com dica do Lauro no plantão.
 }
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
+function animalsOlderThan(specie, age) {
+   return animals.filter(animal => animal.name === specie)
+   .every(animal => animal.residents.age > age);
 }
 
 function employeeByName(employeeName) {
