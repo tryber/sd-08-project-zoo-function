@@ -11,30 +11,36 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+//1
 function animalsByIds(...ids) {
   return ids ? ids.map((id) => data.animals.find((animal) => id === animal.id)) : [];
 }
 
+//2
 function animalsOlderThan(animal, age) {
   return data.animals
     .find((anim) => anim.name === animal)
     .residents.every((resident) => resident.age >= age);
 }
 
+//3
 function employeeByName(employeeName) {
   return employeeName ? data.employees
     .find(
       (employee) => employee.firstName === employeeName || employee.lastName === employeeName) : {};
 }
 
+//4
 function createEmployee(personalInfo, associatedWith) {
   return {...personalInfo, ...associatedWith};
 }
 
+//5
 function isManager(id) {
   return data.employees.some((employee) => employee.managers.includes(id));
 }
 
+//6
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   data.employees.push({
     id,
@@ -45,6 +51,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   });
 }
 
+//7
 function animalCount(species) {
   return species ? 
     data.animals.find((animal) => species === animal.name).residents.length :
@@ -55,6 +62,7 @@ function animalCount(species) {
       }, {});
 }
 
+//8
 function entryCalculator(entrants) {
   return entrants ?
     Object.keys(entrants).reduce(
@@ -62,10 +70,12 @@ function entryCalculator(entrants) {
     0;
 }
 
+//9
 function animalMap(options) {
   // seu código aqui
 }
 
+//10
 function schedule(dayName) {
   const timeArray = Object.keys(data.hours).map((day) => {
     const obj = {};
@@ -86,6 +96,7 @@ function schedule(dayName) {
     }, {});
 }
 
+//11
 function oldestFromFirstSpecies(id) {
   const speciesId = data.employees.find((employee) => employee.id === id).responsibleFor[0];
 
@@ -98,6 +109,7 @@ function oldestFromFirstSpecies(id) {
   return [name, sex, age];
 }
 
+//12
 function increasePrices(percentage) {
   const { Adult, Child, Senior } = data.prices;
 
@@ -108,8 +120,43 @@ function increasePrices(percentage) {
   }
 }
 
+//13
+function findEmployee(idOrName) {
+  return data.employees.find(
+    (employee) => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName
+  );
+}
+
+function getEmployeeAnimals(employee) {
+  const animalArray = animalsByIds(...employee.responsibleFor);
+
+  return animalArray.map((animal) => animal.name);
+}
+
+function createSingleEmployee(employee) {
+  const employeeAnimals = getEmployeeAnimals(employee);
+  const name = `${employee.firstName} ${employee.lastName}`;
+  const result = {};
+  result[name] = employeeAnimals;
+
+  return result;
+}
+
+function getAllEmployeesAnimals() {
+  const result = data.employees.reduce((acc, curr) => {
+    const employee = createSingleEmployee(curr);
+
+    return {...acc, ...employee};
+  }, {})
+
+  return result;
+}
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const employee = findEmployee(idOrName);
+  return employee ?
+    createSingleEmployee(employee) :
+    getAllEmployeesAnimals();
 }
 
 module.exports = {
