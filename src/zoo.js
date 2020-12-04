@@ -140,11 +140,11 @@ const animalMapBuilder = (options = {}) => {
     animals.forEach(a => {
       map[a.location].push(a.name);
     });
-    if (opt.sorted) {
-      Object.values(map).forEach(item => {
-        item.sort((ra, rb) => ra > rb);
-      });
-    }
+    // if (opt.sorted) {
+    //   Object.values(map).forEach(item => {
+    //     item.sort((ra, rb) => ra > rb);
+    //   });
+    // }
     return map;
   };
 
