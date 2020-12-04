@@ -27,12 +27,12 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   return employeeName ? data.employees
     .find(
-      (employee) => employee.firstName === employeeName || employee.lastName === employeeName) : {};
+      employee => employee.firstName === employeeName || employee.lastName === employeeName) : {};
 }
 
 // 4
 function createEmployee(personalInfo, associatedWith) {
-  return {...personalInfo, ...associatedWith};
+  return { ...personalInfo, ...associatedWith };
 }
 
 // 5
@@ -98,7 +98,7 @@ function sortArray(array, sorted) {
   if (sorted) {
     array.sort();
   }
-};
+}
 
 function animalsByRegionWithNames(sex, sorted) {
   const regions = ['NE', 'NW', 'SE', 'SW'];
@@ -107,10 +107,10 @@ function animalsByRegionWithNames(sex, sorted) {
     regionObj[nextRegion] = data.animals
       .filter(animal => animal.location === nextRegion)
       .map(animal => animal.name)
-      .map(animal => {
+      .map((animal) => {
         const objPerRegion = {};
         objPerRegion[animal] = getAnimalsFromSpecies(animal, sex);
-        sortArray(objPerRegion[animal], sorted)
+        sortArray(objPerRegion[animal], sorted);
 
         return objPerRegion;
       });
@@ -121,7 +121,7 @@ function animalsByRegionWithNames(sex, sorted) {
 
 function animalMap(options) {
   if (!options) {
-    return animalsByRegion()
+    return animalsByRegion();
   }
   const { includeNames = false, sorted = false, sex = false } = options;
   const animals = includeNames ? animalsByRegionWithNames(sex, sorted) : animalsByRegion();
@@ -145,9 +145,7 @@ function schedule(dayName) {
 
   return dayName ?
     timeArray.find(day => day[dayName]) :
-    timeArray.reduce((acc, curr) => {
-      return {...acc, ...curr}
-    }, {});
+    timeArray.reduce((acc, curr) => ({ ...acc, ...curr }), {});
 }
 
 // 11
@@ -157,7 +155,7 @@ function oldestFromFirstSpecies(id) {
   const animalsFromSpecies = data.animals.find(animal => animal.id === speciesId);
 
   const { name, sex, age } = animalsFromSpecies.residents.reduce(
-    (acc, curr) => (acc.age > curr.age) ? acc : curr
+    (acc, curr) => (acc.age > curr.age) ? acc : curr,
   );
 
   return [name, sex, age];
@@ -168,16 +166,18 @@ function increasePrices(percentage) {
   const { Adult, Child, Senior } = data.prices;
 
   data.prices = {
-    'Adult': (Math.ceil(((1 + (percentage/100)) * Adult)*100))/100,
-    'Child': (Math.ceil(((1 + (percentage/100)) * Child)*100))/100,
-    'Senior': (Math.ceil(((1 + (percentage/100)) * Senior)*100))/100,
-  }
+    Adult: (Math.ceil(((1 + (percentage / 100)) * Adult) * 100)) / 100,
+    Child: (Math.ceil(((1 + (percentage / 100)) * Child) * 100)) / 100,
+    Senior: (Math.ceil(((1 + (percentage / 100)) * Senior) * 100)) / 100,
+  };
 }
 
 // 13
 function findEmployee(idOrName) {
   return data.employees.find(
-    employee => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName
+    employee => employee.id === idOrName ||
+      employee.firstName === idOrName ||
+      employee.lastName === idOrName,
   );
 }
 
@@ -200,8 +200,8 @@ function getAllEmployeesAnimals() {
   const result = data.employees.reduce((acc, curr) => {
     const employee = createSingleEmployee(curr);
 
-    return {...acc, ...employee};
-  }, {})
+    return { ...acc, ...employee };
+  }, {});
 
   return result;
 }
