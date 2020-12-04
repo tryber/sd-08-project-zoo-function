@@ -33,7 +33,7 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  return data.employees.filter(function (employee) {
+  return data.employees.find(function (employee) {
     return employee.firstName === employeeName || employee.lastName === employeeName;
   });
 }
