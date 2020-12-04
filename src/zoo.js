@@ -59,7 +59,7 @@ function addEmployee(nId, nFirstName, nLastName, nManagers = [], nResponsibleFor
       lastName: nLastName,
       managers: nManagers,
       responsibleFor: nResponsibleFor,
-    }
+    },
   );
 }
 
