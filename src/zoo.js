@@ -18,8 +18,10 @@ function animalsByIds(...ids) {
 console.log(animalsByIds());
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return animals.find(animalCallBack => animalCallBack.name === animal)
+  .residents.every(resident => resident.age  > age);
 }
+console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
   // seu código aqui
