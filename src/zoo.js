@@ -19,7 +19,7 @@ function animalsByIds(...ids) {
 }
 
 const animalsOlderThan = (animal, age) => data.animals
-  .filter((species) => species.name === animal)
+  .filter(species => species.name === animal)
   .every((species, index) => species.residents[index].age >= age);
 
 // console.log(animalsOlderThan('otters', 30));
