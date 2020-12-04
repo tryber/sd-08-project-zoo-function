@@ -48,21 +48,23 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  const newManager = {
+  const manager = {
     id,
     firstName,
     lastName,
     managers: [],
     responsibleFor: [],
   };
-  const newEmployee = {
+  const employee = {
     id,
     firstName,
     lastName,
     managers,
     responsibleFor,
   };
-  (!managers || !responsibleFor) ? employees.push(newManager) : employees.push(newEmployee);
+  const novo = !managers || !responsibleFor ? employees.push(manager) : employees.push(employee);
+
+  return novo;
 }
 
 function animalCount(species) {
