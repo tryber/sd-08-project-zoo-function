@@ -8,16 +8,28 @@ eslint no-unused-vars: [
   }
 ]
 */
-
+const { animals } = require('./data.js')
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  const array = [];
+  if (ids === undefined) {
+    return array;
+  } ids.forEach(id => array.push(animals.find(elemento => elemento.id === id)));
+  return array;
 }
+
+// seu código aqui
+
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  const minimumAgeSpecies = animals.find(animals => animals.name === animal).residents
+    .every(ageAnimal => ageAnimal.age >= age)
+
+  return minimumAgeSpecies;
 }
+
 
 function employeeByName(employeeName) {
   // seu código aqui
