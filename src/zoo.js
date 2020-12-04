@@ -162,8 +162,12 @@ function employeeCoverage(idOrName) {
   });
   if (idOrName === undefined) return allEmployees;
 
-  const employee = employees.find(e => e.id === idOrName || 
-  	e.firstName === idOrName || e.lastName === idOrName);
+
+  if(idOrName.length > 20){
+  	const employee = employees.find(e => e.id === idOrName)
+  } else{
+  	const employee = employees.find(e => e.firstName === idOrName || e.lastName === idOrName);
+  }
 
   const { firstName, lastName } = employee;
   const key = `${firstName} ${lastName}`;
