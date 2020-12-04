@@ -150,9 +150,9 @@ function oldestFromFirstSpecies(ident) {
 function increasePrices(percentage) {
   const arrayPrices = Object.entries(prices);
   arrayPrices.forEach((Element) => {
-    const newValor = Element[1] + (percentage / 100 * Element[1]) + 0.005;
+    const newValor = Element[1] + (percentage * 0.01 * Element[1]) + 0.005;
     prices[Element[0]] = parseFloat(newValor.toFixed(2));
-    })
+  });
 }
 
 function employeeCoverage(idOrName) {
