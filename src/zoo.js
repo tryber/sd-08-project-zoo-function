@@ -134,10 +134,10 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(ident) {
   const employeeWithId = employees.find(({ id }) => id === ident);
   const animalId = employeeWithId.responsibleFor[0];
-  result = [];
+  const result = [];
   const animal = animals.find(elem => elem.id === animalId);
-  const animalSorted = animal.residents.sort((a ,b) => b.age - a.age);
-  const {name, sex, age} = animalSorted[0];
+  const animalSorted = animal.residents.sort((a, b) => b.age - a.age);
+  const { name, sex, age } = animalSorted[0];
   result.push(name, sex, age);
   return result;
 }
