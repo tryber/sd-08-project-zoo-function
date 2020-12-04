@@ -31,12 +31,12 @@ function employeeByName(eName = '') {
   if (eName.length === 0) {
     return employee;
   }
-  employee = employees.find(emp => emp.firstName === eName | emp.lastName === eName);
+  employee = employees.find(emp => emp.firstName === eName || emp.lastName === eName);
   return employee;
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  
 }
 
 function isManager(id) {
