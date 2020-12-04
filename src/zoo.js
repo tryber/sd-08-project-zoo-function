@@ -127,9 +127,9 @@ function schedule(dayName) {
   }
   return scheduleDay(dayName);
 }
-console.log(schedule('Tuesday'))
-console.log(schedule('Monday'));
-console.log(schedule())
+// console.log(schedule('Tuesday'))
+// console.log(schedule('Monday'));
+// console.log(schedule())
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
