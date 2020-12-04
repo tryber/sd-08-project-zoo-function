@@ -40,11 +40,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return (
-    employees.find(e => {
-      e.id === id;
-    }).managers.length === 0
-  );
+  return employees.find(e => e.id === id).managers.length === 0;
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -60,14 +56,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (species === undefined) {
     const answer = {};
-    animals.forEach(e => {
-      answer[e.name] = e.residents.length;
-    });
+    animals.forEach(e => (answer[e.name] = e.residents.length));
     return answer;
   }
-  return animals.find(e => {
-    e.name === species;
-  }).residents.length;
+  return animals.find(e => e.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
@@ -80,22 +72,10 @@ function entryCalculator(entrants) {
 }
 
 function animalsByRegionArray() {
-  const locations = [
-    ...new Set(
-      animals.map(e => {
-        e.location;
-      })
-    ),
-  ];
+  const locations = [...new Set(animals.map(e => e.location))];
   const animalsByLocation = {};
   locations.forEach(region => {
-    const animalsNames = animals
-      .filter(animal => {
-        animal.location === region;
-      })
-      .map(animal => {
-        animal.name;
-      });
+    const animalsNames = animals.filter(animal => animal.location === region).map(animal => animal.name);
     animalsByLocation[region] = animalsNames;
   });
   return animalsByLocation;
