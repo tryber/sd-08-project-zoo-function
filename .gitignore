@@ -1,12 +1,9 @@
 node_modules/
 instalar
-package.json
-package-lock.json
 .stylelintignore
 debug.js
 corrigir
 .prettierrc
+.eslintrc
 .prettierignore
 .eslintignore
-.editorconfig
-old

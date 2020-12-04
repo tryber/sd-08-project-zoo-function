@@ -3,32 +3,26 @@
   "version": "1.0.0",
   "description": "Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "jest"
-  },
+  "directories": {},
+  "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/betrybe/sd-03-block9-project-zoo-functions.git"
+    "url": "git+https: //github.com/betrybe/sd-03-block9-project-zoo-functions.git"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/betrybe/sd-03-block9-project-zoo-functions/issues"
-  },
+  "bugs": {},
   "homepage": "https://github.com/betrybe/sd-03-block9-project-zoo-functions#readme",
+  "dependencies": {},
   "devDependencies": {
     "eslint": "7.14.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-react": "7.21.5",
-    "jest": "^25.2.3",
+    "jest": "26.6.3",
     "prettier": "2.2.1",
     "stylelint": "13.8.0",
     "stylelint-config-standard": "20.0.0"
-  },
-  "dependencies": {}
+  }
 }
