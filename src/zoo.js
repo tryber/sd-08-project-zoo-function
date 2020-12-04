@@ -77,10 +77,9 @@ function entryCalculator(entrants = {}) {
   const price = Object.values(data.prices);
   const people = Object.entries(entrants);
   return people
-    .reduce((acc, element) => acc += (price[ageRange.indexOf(element[0])] * element[1]), 0);
+    .reduce((acc, element) => acc + (price[ageRange.indexOf(element[0])] * element[1]), 0);
 }
 
-console.log(data.prices)
 function animalMap(options) {
   // seu código aqui
 }
