@@ -11,56 +11,56 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+const animalsByIds = (ids) => {
+
 }
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
+const animalsOlderThan = (animal, age) => {
+
 }
 
-function employeeByName(employeeName) {
-  // seu código aqui
+const employeeByName = (employeeName) => {
+
 }
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+const createEmployee = (personalInfo, associatedWith) => {
+
 }
 
-function isManager(id) {
-  // seu código aqui
+const isManager = (id) => {
+
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+const addEmployee = (id, firstName, lastName, managers, responsibleFor) => {
+
 }
 
-function animalCount(species) {
-  // seu código aqui
+const animalCount = (species) => {
+
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
+const entryCalculator = (entrants) => {
+
 }
 
-function animalMap(options) {
-  // seu código aqui
+const animalMap = (options) => {
+
 }
 
-function schedule(dayName) {
-  // seu código aqui
+const schedule = (dayName) => {
+
 }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
+const oldestFromFirstSpecies = (id) => {
+
 }
 
-function increasePrices(percentage) {
-  // seu código aqui
+const increasePrices = (percentage) => {
+
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+const employeeCoverage = (idOrName) => {
+
 }
 
 module.exports = {
