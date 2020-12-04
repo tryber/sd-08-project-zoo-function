@@ -61,6 +61,14 @@ function addEmployee(
 
 function animalCount(species) {
   // seu código aqui
+  if (species === undefined) {
+    return data.animals.reduce((acc, value) => {
+      acc[value.name] = value.residents.length;
+      return acc;
+    }, {});
+  }
+  const animalSearch = data.animals.find(animal => animal.name === species);
+  return animalSearch.residents.length;
 }
 
 function entryCalculator(entrants) {
