@@ -71,10 +71,6 @@ O arquivo `src/zoo.js` conterá a implementação de uma função, `animalsByIds
 
 Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que não estão indicados nos requisitos não devem ser alterados, ou sua avaliação poderá ser comprometida.**
 
-### DATA DE ENTREGA
-
-  - O projeto tem até a seguinte data: `dd/mm/yyyy - 14:00h` para ter entregue a avaliação final.
-
 ---
 
 ## Instruções para entregar seu projeto
