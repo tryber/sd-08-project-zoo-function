@@ -24,9 +24,7 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return animals
-    .find(a => a.name === animal)
-    .residents.every(e => e.age > age);
+  return animals.find(a => a.name === animal).residents.every(e => e.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -118,16 +116,15 @@ const getResidentsNames = (residents = [], sorted = false, sex = '') => {
       res.push(r.name);
     }
   });
+
   if (sorted) {
-    res.sort((ra, rb) => ra > rb);
+    return res.sort((ra, rb) => ra.localeCompare(rb));
   }
   return res;
 };
 
-const mapNamed = (options = {}) => {
-  const opt = parseOptions(options);
+const mapNamed = (opt = {}) => {
   const map = mapFactory();
-
   animals.forEach(a => {
     const field = {};
     field[a.name] = getResidentsNames(a.residents, opt.sorted, opt.sex);
@@ -142,16 +139,15 @@ const mapSimple = () => {
   animals.forEach(a => {
     map[a.location].push(a.name);
   });
-
   return map;
 };
 
-function animalMap(options) {
+function animalMap(options = {}) {
   const opt = parseOptions(options);
   if (opt.includeNames) {
-    return mapNamed(options);
+    return mapNamed(opt);
   }
-  return mapSimple(options);
+  return mapSimple(opt);
 }
 
 // if (opt.sorted) {
