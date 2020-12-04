@@ -25,7 +25,7 @@ function animalsOlderThan(animal, age2) {
 
 
 function employeeByName(employeeName) {
-  let result = employees.find(({ firstName, lastName }) => 
+  let result = employees.find(({ firstName, lastName }) =>
   employeeName === firstName || employeeName === lastName);
   if (employeeName === undefined) {
     result = {};
@@ -53,9 +53,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 const animalsCount = () => {
   const result = {};
-  animals.forEach(({ name, residents }) => {result[name] = residents.length});
+  animals.forEach(({ name, residents }) => { result[name] = residents.length; });
   return result;
-}
+};
 
 function animalCount(species) {
   if (species === undefined) {
@@ -65,8 +65,8 @@ function animalCount(species) {
 }
 
 function entryCalculator(entries) {
-  if (typeof(entries) !== 'object') {return 0}
-  const { Adult = 0, Child = 0, Senior = 0 } = entries
+  if (typeof (entries) !== 'object') { return 0; }
+  const { Adult = 0, Child = 0, Senior = 0 } = entries;
   const adultPrice = prices.Adult * Adult;
   const childPrice = prices.Child * Child;
   const seniorPrice = prices.Senior * Senior;
