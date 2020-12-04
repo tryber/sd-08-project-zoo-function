@@ -1,27 +1,34 @@
 /*
 eslint no-unused-vars: [
-  "error",
+  'error',
   {
-    "args": "none",
-    "vars": "local",
-    "varsIgnorePattern": "data"
+    'args': 'none',
+    'vars': 'local',
+    'varsIgnorePattern': 'data'
   }
 ]
 */
 
-const data = require("./data");
+const data = require('./data');
+
 const { animals, employees } = data;
 
 function animalsByIds(...ids) {
-  return animals.filter((animal) => ids.includes(animal.id));
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.find((zooAnimal) => zooAnimal.name === animal).residents.every((resident) => resident.age > age);
+  return animals
+    .find(zooAnimal => zooAnimal.name === animal)
+    .residents.every(resident => resident.age > age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined) return {};
+  return employees.find(
+    employee =>
+      employee.firstName === employeeName || employee.lastName === employeeName,
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
