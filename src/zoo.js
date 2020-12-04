@@ -61,7 +61,7 @@ function animalCount(species) {
     fullName[e.name] = e.residents.length;
   });
   return fullName;
-  }
+}
 
 function entryCalculator(...entrants) {
 }
