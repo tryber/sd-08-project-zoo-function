@@ -91,8 +91,31 @@ function getAnimalsByLocation() {
   }, {});
 }
 
+function getAnimalNames(animalName, sort = false, sex) {
+  const { animals } = data;
+  const result = animals.find(animal => animal.name === animalName);
+  if (!result) return null;
+  let residents = result.residents;
+  if (sex && ['male', 'female'].includes(sex)) {
+    residents = residents.filter(current => current.sex === sex);
+  }
+  residents = residents.map(animal => animal.name);
+  if (sort) residents = residents.sort();
+  return {
+    [animalName]: residents,
+  };
+}
+
 function animalMap(options) {
-  return getAnimalsByLocation();
+  const { includeNames = false, sorted = false, sex } = (options || {});
+  let animalsByLocation = getAnimalsByLocation();
+  if (includeNames) {
+    animalsByLocation = Object.entries(animalsByLocation).reduce((acc, [key, val]) => {
+      acc[key] = Object.assign(val.map(current => getAnimalNames(current, sorted, sex)));
+      return acc;
+    }, {});
+  }
+  return animalsByLocation;
 }
 
 function schedule(dayName) {
