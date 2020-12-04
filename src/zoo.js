@@ -13,15 +13,15 @@ const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
+
   return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
 
-  return animals.filter(() =>)
 
 }
-animalsOlderThan()
+
 
 function employeeByName(employeeName) {
   // seu código aqui
