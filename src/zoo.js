@@ -19,10 +19,10 @@ function animalsByIds(...ids) {
 }
 
 const animalsOlderThan = (animal, age) => data.animals
-  .filter(species => species.name === animal)
-  .every((species, index) => species.residents[index].age >= age);
+  .find(species => species.name === animal)
+  .residents.every((resident) => resident.age >= age);
 
-// console.log(animalsOlderThan('otters', 30));
+// console.log(animalsOlderThan('otters', 40));
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
