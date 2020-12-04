@@ -68,7 +68,7 @@ function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) return needToBePayed;
 
   const keys = Object.keys(entrants);
-  keys.forEach(key => {
+  keys.forEach((key) => {
     if (key === 'Adult') {
       needToBePayed += parseFloat(entrants[key] * 49.99);
     }
@@ -78,7 +78,7 @@ function entryCalculator(entrants) {
     if (key === 'Senior') {
       needToBePayed += parseFloat(entrants[key] * 24.99);
     }
-  })
+  });
 
   return needToBePayed;
 }
