@@ -34,11 +34,11 @@ function employeeByName(employeeName) {
     .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
-function createEmployee(personalInfo, associatedWith) { 
+function createEmployee(personalInfo, associatedWith) {
   return {
-  ...personalInfo,
-  ...associatedWith
- };
+    ...personalInfo,
+    ...associatedWith,
+  };
 }
 
 function isManager(id) {
