@@ -131,18 +131,20 @@ function animalMap(options) {
 }
 
 // 10
+function createObjectSchedule(day) {
+  const obj = {};
+  let { open, close } = data.hours[day];
+
+  open = open > 12 ? `${open - 12}pm` : `${open}am`;
+  close = close > 12 ? `${close - 12}pm` : `${close}am`;
+
+  obj[day] = (open === close) ? 'CLOSED' : `Open from ${open} until ${close}`;
+
+  return obj;
+}
+
 function schedule(dayName) {
-  const timeArray = Object.keys(data.hours).map((day) => {
-    const obj = {};
-    let { open, close } = data.hours[day];
-
-    open = open > 12 ? `${open - 12}pm` : `${open}am`;
-    close = close > 12 ? `${close - 12}pm` : `${close}am`;
-
-    obj[day] = (open === close) ? 'CLOSED' : `Open from ${open} until ${close}`;
-
-    return obj;
-  });
+  const timeArray = Object.keys(data.hours).map(createObjectSchedule);
 
   return dayName ?
     timeArray.find(day => day[dayName]) :
