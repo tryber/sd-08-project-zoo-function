@@ -13,11 +13,13 @@ const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(ids) {
+  const find = [];
   if (!ids) {
     return undefined;
   }
   const found = animals.find(element => element.id === ids);
-  return found;
+  find.push(found);
+  return find;
 
   // seu código aqui
 }
