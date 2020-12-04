@@ -20,7 +20,9 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return data.animals.find((a) => a.name === animal).residents.every((e) => e.age >= age);
+  return data.animals
+    .find((a) => a.name === animal)
+    .residents.every((e) => e.age >= age);
 }
 
 function employeeByName(employeeName) {
@@ -132,8 +134,13 @@ function animalMap(options) {
   return animalMapBuilder(options);
 }
 
-const scheduleDay = (day = { open: 0, close: 0 }) => {
-  if ((day.open - day.close) === 0) {
+const scheduleDay = (
+  day = {
+    open: 0,
+    close: 0,
+  },
+) => {
+  if (day.open - day.close === 0) {
     return 'CLOSED';
   }
   return `Open from ${day.open}am until ${day.close - 12}pm`;
@@ -164,7 +171,9 @@ function increasePrices(percentage) {
   const priceList = {};
   Object.entries(data.prices).forEach((item) => {
     const [key, value] = item;
-    priceList[key] = parseFloat((value + (Math.round(value * percentage)) / 100).toFixed(2));
+    priceList[key] = parseFloat(
+      (value + Math.round(value * percentage) / 100).toFixed(2),
+    );
   });
   Object.assign(data.prices, priceList);
 }
@@ -174,12 +183,18 @@ function employeeCoverage(idOrName) {
   const res = {};
   if (!idOrName) {
     ed.forEach((e) => {
-      res[`${e.firstName} ${e.lastName}`] = e.responsibleFor.map((rf) => data.animals.find((a) => a.id === rf).name);
+      res[`${e.firstName} ${e.lastName}`] = e.responsibleFor.map(
+        (rf) => data.animals.find((a) => a.id === rf).name,
+      );
     });
   } else {
     const p = idOrName;
-    const emp = ed.find((e) => e.id === p || e.firstName === p || e.lastName === p);
-    res[`${emp.firstName} ${emp.lastName}`] = emp.responsibleFor.map((rf) => data.animals.find((a) => a.id === rf).name);
+    const emp = ed.find(
+      (e) => e.id === p || e.firstName === p || e.lastName === p,
+    );
+    res[`${emp.firstName} ${emp.lastName}`] = emp.responsibleFor.map(
+      (rf) => data.animals.find((a) => a.id === rf).name,
+    );
   }
   return res;
 }
