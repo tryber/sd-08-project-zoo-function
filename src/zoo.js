@@ -44,8 +44,17 @@ const createEmployee = (personalInfo, associatedWith) => {
 const isManager = (id) => employees.find(employee => employee.managers.find(manager => manager === id) ? true : false);
 
 const addEmployee = (id, firstName, lastName, managers, responsibleFor) => {
+  if (!managers) managers = [];
+  if (!responsibleFor) responsibleFor = [];
 
-}
+  return employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
+};
 
 const animalCount = (species) => {
 
