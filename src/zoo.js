@@ -36,8 +36,8 @@ function employeeByName(employeeName) {
 const createEmployee = (personalInfo, associatedWith) =>
   Object.assign({}, personalInfo, associatedWith);
 
-const isManager = id => data.employees
-  .some((person) => person.id === id && person.managers.length === 1);
+const isManager = id =>
+data.employees.some(person => person.id === id && person.managers.length === 1);
 
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
