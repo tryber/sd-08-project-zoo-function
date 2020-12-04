@@ -75,8 +75,10 @@ function animalsByRegionArray() {
   const locations = [...new Set(animals.map(e => e.location))];
   const animalsByLocation = {};
   locations.forEach(region => {
-    const animalsNames = animals.filter(animal => animal.location === region).map(animal => animal.name);
-    animalsByLocation[region] = animalsNames;
+    const animalsN = animals
+      .filter(animal => animal.location === region)
+      .map(animal => animal.name);
+    animalsByLocation[region] = animalsN;
   });
   return animalsByLocation;
 }
@@ -94,22 +96,24 @@ function grabAnimalsListName(animal, sex = '', sorted = false) {
 }
 
 function animalMap(options) {
-  if (options === undefined || !options.hasOwnProperty('includeNames')) return animalsByRegionArray();
+  const { includeNames = false } = options;
+  if (options === undefined || !includeNames) return animalsByRegionArray();
   const { sex = '', sorted = false } = options;
   const animalsByRegion = animalsByRegionArray();
-  for (const region in animalsByRegion) {
+
+  Object.keys(animalsByRegion).forEach(region => {
     const arrayAnimals = animalsByRegion[region].map(element => {
       const newObj = {};
       newObj[element] = grabAnimalsListName(element, sex, sorted);
       return newObj;
     });
     animalsByRegion[region] = arrayAnimals;
-  }
+  });
   return animalsByRegion;
 }
 
 function schedule(dayName) {
-  for (const day in hours) {
+  Object.keys(hours).forEach(day => {
     const { open, close } = hours[day];
     let string = '';
     if (open === 0) {
@@ -118,12 +122,14 @@ function schedule(dayName) {
       string = `Open from ${open}am until ${close - 12}pm`;
     }
     hours[day] = string;
-  }
+  });
   if (dayName === undefined) return hours;
   const newObj = {};
   newObj[dayName] = hours[dayName];
   return newObj;
 }
+
+console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   const employee = employees.find(element => element.id === id);
@@ -135,13 +141,12 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const apply = 1 + percentage / 100;
-  for (const key in prices) {
+  const apply = (1 + percentage) / 100;
+  Object.keys(prices).forEach(key => {
     let fare = prices[key];
     fare = Math.round(fare * apply * 100) / 100;
     prices[key] = fare;
-  }
-  return;
+  });
 }
 
 function getAnimalsFromIds(arrayOfIds) {
@@ -157,9 +162,9 @@ function employeeCoverage(idOrName) {
   });
   if (idOrName === undefined) return allEmployees;
 
-  const employee = employees.find(element => {
-    return element.id === idOrName || element.firstName === idOrName || element.lastName === idOrName;
-  });
+  const employee = employees.find(
+    e => e.id === idOrName || e.firstName === idOrName || e.lastName === idOrName
+  );
 
   const { firstName, lastName } = employee;
   const key = `${firstName} ${lastName}`;
