@@ -35,9 +35,15 @@ function animalsOlderThan(animal, age) {
   );
   return result;
 }
-animalsOlderThan('penguins', 10);
+
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined) {
+    return {};
+  }
+  return data.employees.find(
+    employee =>
+      employee.firstName === employeeName || employee.lastName === employeeName,
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
