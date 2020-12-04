@@ -54,7 +54,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   let result = false;
-  data.employees.forEach((employee) => {
+  data.employees.forEach(employee => {
     if (employee.managers.includes(id)) {
       result = true;
     }
@@ -80,8 +80,17 @@ function addEmployee(
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined) {
+    const returnObj = {};
+    data.animals.forEach(animal => {
+      returnObj[animal.name] = animal.residents.length;
+    });
+    return returnObj;
+  }
+  return data.animals.find(animal => animal.name === species).residents.length
 }
+
+console.log(animalCount());
 
 function entryCalculator(entrants) {
   // seu código aqui
