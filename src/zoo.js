@@ -47,6 +47,7 @@ function createEmployee({ id: nId, firstName: nFirstName, lastName: nLastName },
 
 function isManager(id) {
   // seu código aqui
+  return employees.some(employee => employee.id === id && employee.responsibleFor.length === 4);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
