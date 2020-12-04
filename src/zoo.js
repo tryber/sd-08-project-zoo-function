@@ -19,20 +19,12 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return animals
-    .find(e => {
-      e.name === animal;
-    })
-    .residents.every(e => {
-      e.age >= age;
-    });
+  return animals.find(e => e.name === animal).residents.every(e => e.age >= age);
 }
 
 function employeeByName(employeeName) {
   if (employeeName === undefined || employeeName.length === 0) return {};
-  return employees.find(e => {
-    e.firstName === employeeName || e.lastName === employeeName;
-  });
+  return employees.find(e => e.firstName === employeeName || e.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
