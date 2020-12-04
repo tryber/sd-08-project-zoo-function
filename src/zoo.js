@@ -27,10 +27,12 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return objectFuncionario;
   }
-  const getFuncionario = data.employee.find((nameOrLast) => {
-    return nameOrLast.firstName === employeeName || nameOrLast.lastName === employeeName;
-  });
-  return getFuncionario;
+  
+  const emplName = employeeName;
+  const emplData = data.employees;
+
+  const getObj = emplData.find(empl => empl.firstName === emplName || empl.lastName === emplName);
+  return getObj;
 }
 // 4
 function createEmployee(personalInfo, associatedWith) {
