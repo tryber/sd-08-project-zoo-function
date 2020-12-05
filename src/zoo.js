@@ -64,14 +64,12 @@ function animalCount(species) {
   return fullName;
 }
 
-function entryCalculator(entrants) {
-  
-  
-  if(entrants === undefined || Object.entries(entrants).length === 0 ) return 0
+function entryCalculator(entrants){
+  if (entrants === undefined || Object.entries(entrants).length === 0) return 0;
   let conta = 0;
-  if(entrants.Adult !== undefined) conta+= entrants.Adult * prices.Adult
-  if(entrants.Child !== undefined) conta+= entrants.Child * prices.Child
-  if(entrants.Senior!== undefined) conta+= entrants.Senior * prices.Senior
+  if (entrants.Adult !== undefined) conta += entrants.Adult * prices.Adult;
+  if (entrants.Child !== undefined) conta += entrants.Child * prices.Child;
+  if (entrants.Senior!== undefined) conta += entrants.Senior * prices.Senior;
 
   return conta
 }
