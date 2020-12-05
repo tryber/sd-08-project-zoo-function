@@ -96,9 +96,51 @@ function entryCalculator(entrants = {}) {
   return cTotal;
 }
 
-function animalMap(options) {
-  // seu código aqui
+function animalMap(options = { includeNames: false, sorted: false, sex: '' }) {
+  const { includeNames, sorted, sex } = options;
+  const aMap = {
+    NE: [],
+    NW: [],
+    SE: [],
+    SW: [],
+  }
+  // const aMapKeys = Object.keys(aMap);
+  animals.forEach((anim) => {
+    for (let index in aMap) {
+      if (anim.location === index) {
+        aMap[index].push(anim.name);
+      }
+    }
+  });
+  if (includeNames === true) {
+    for (let index in aMap) {
+
+      const anComNomes = aMap[index].map(element => {
+        const residentes = animals.find(anim => anim.name === element).residents;
+        let resName = [];
+        residentes.forEach(resid => {
+          if (sex !== undefined) {
+            if (resid.sex === sex)  {
+              resName.push(resid.name);
+            }
+          } else {
+            resName.push(resid.name);
+          }
+        });
+        if (sorted === true) {
+          return  { [element]: resName.sort() }
+        }
+        return  { [element]: resName }
+      });
+      aMap[index] = anComNomes;
+    }
+  }
+
+  //   sex: \'female\'` ou `sex: \'male\'
+  // sorted: true
+  return aMap;
 }
+console.log(animalMap({includeNames: true}));
 
 function schedule(dayName) {
   // seu código aqui
