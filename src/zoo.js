@@ -23,20 +23,14 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   const ops = animal;
-  const whatAnimal = animals.filter((animal) => animal.name === ops)
-  // const kombi = whatAnimal[0].residents;
-  // const tramela = kombi.map((oque) => oque.age)
-  const kombi = whatAnimal[0].residents.map((oque) => oque.age)
+  const whatAnimal = animals.filter((animales) => animales.name === ops);
+  const kombi = whatAnimal[0].residents.map((oque) => oque.age);
   let sum = 0;
-  kombi.forEach((item) => {
-    sum += item;
-  }
-  );
+  kombi.forEach((item) => sum += item);
   if (sum / kombi.length > age) {
     return true;
-  } else {
-    return false
-  }
+  } return false;
+
 }
 
 function employeeByName(employeeName) {
