@@ -12,6 +12,7 @@ eslint no-unused-vars: [
 const { animals } = require('./data');
 const { employees } = require('./data');
 const { prices } = require('./data');
+const { hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -92,12 +93,55 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  const list = {
+    NE: animals.filter(value => value.location === 'NE').map(animal => animal.name),
+    NW: animals.filter(value => value.location === 'NW').map(animal => animal.name),
+    SE: animals.filter(value => value.location === 'SE').map(animal => animal.name),
+    SW: animals.filter(value => value.location === 'SW').map(animal => animal.name),
+  };
+  return list;
+}
+// function oneDay(dayName) {
+//   let obj = {};
+//   Object.keys(hours).find((elem) => {
+//     if (dayName === 'Monday') {
+//       obj = { [elem]: 'CLOSED' };
+//     } else if (elem === dayName) {
+//       obj = { [elem]: `Open from ${hours[elem].open}am until ${hours[elem].close - 12}pm` };
+//     }
+//     return obj;
+//   });
+//   return obj;
+// }
+
+function open(elem) {
+  return { [elem]: `Open from ${hours[elem].open}am until ${hours[elem].close - 12}pm` };
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  let obj = {};
+  let obj2 = {};
+  Object.keys(hours).find((elem) => {
+    if (dayName === 'Monday') {
+      obj = { [dayName]: 'CLOSED' };
+    } else {
+      obj = open(elem);
+    }
+    return obj;
+  });
+  if (dayName === undefined) {
+    Object.keys(hours).forEach((elem) => {
+      if (elem === 'Monday') {
+        obj2 = { [elem]: 'CLOSED' };
+      } else {
+        obj2 = open(elem);
+      }
+      Object.assign(obj, obj2);
+    });
+  }
+  return obj;
 }
+console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
