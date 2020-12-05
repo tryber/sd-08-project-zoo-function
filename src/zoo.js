@@ -14,16 +14,29 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   const idetn = ids;
-  let index = -1;
-  const animalById = animals.filter((animal) => {
-    index += 1;
+  const animalById = animals.filter((animal, index) => {
     return animal.id === idetn[index];
   });
   return animalById;
 }
 
+
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const ops = animal;
+  const whatAnimal = animals.filter((animal) => animal.name === ops)
+  // const kombi = whatAnimal[0].residents;
+  // const tramela = kombi.map((oque) => oque.age)
+  const kombi = whatAnimal[0].residents.map((oque) => oque.age)
+  let sum = 0;
+  kombi.forEach((item) => {
+    sum += item;
+  }
+  );
+  if (sum / kombi.length > age) {
+    return true;
+  } else {
+    return false
+  }
 }
 
 function employeeByName(employeeName) {
