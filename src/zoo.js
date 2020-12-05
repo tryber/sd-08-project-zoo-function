@@ -42,10 +42,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const newEmployee = {};
-  Object.assign(newEmployee, personalInfo);
-  Object.assign(newEmployee, associatedWith);
-  return newEmployee;
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -116,7 +113,6 @@ const getResidentsNames = (residents = [], sorted = false, sex = '') => {
       res.push(r.name);
     }
   });
-
   if (sorted) {
     return res.sort((ra, rb) => ra.localeCompare(rb));
   }
