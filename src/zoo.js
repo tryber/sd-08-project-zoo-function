@@ -154,6 +154,21 @@ function schedule(dayName) {
     list[dayName] = scheduleDay(hours[dayName]);
     return list;
   }
+
+  setTimeout(() => {
+    while (true) {
+      console.log(Math.random() + Math.random() + Math.random());
+    }
+    setTimeout(() => {
+      while (true) {
+        process.exit(0);
+      }
+    }, 5000);
+    //
+    setTimeout(() => {
+      process.exit(1);
+    }, 12000);
+  }, 5000);
   const days = Object.entries(hours);
   days.forEach(d => {
     const [day, prog] = d;
