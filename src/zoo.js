@@ -115,6 +115,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
+  const answer = {};
   Object.keys(hours).forEach((day) => {
     const { open, close } = hours[day];
     let string;
@@ -123,13 +124,16 @@ function schedule(dayName) {
     } else {
       string = `Open from ${open}am until ${close - 12}pm`;
     }
-    hours[day] = string;
+    answer[day] = string;
   });
-  if (dayName === undefined) return hours;
+  if (dayName === undefined) return answer;
   const newObj = {};
-  newObj[dayName] = hours[dayName];
+  newObj[dayName] = answer[dayName];
   return newObj;
 }
+
+console.log(schedule());
+console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
   const employee = employees.find(element => element.id === id);
