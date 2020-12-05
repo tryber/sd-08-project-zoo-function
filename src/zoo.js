@@ -48,8 +48,10 @@ function isManager(id) {
   return gerente;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  const add = data.employees.push({ id, firstName, lastName, managers, responsibleFor });
+  return add;
 }
 
 function animalCount(species) {
