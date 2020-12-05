@@ -15,7 +15,7 @@ function animalsByIds(...animals) {
   const zooAnimals = data.animals;
   const checkId = animal => animals.includes(animal.id);
   const checkedAnimals = zooAnimals.filter(checkId);
-  return checkedAnimals
+  return checkedAnimals;
 }
 
 function animalsOlderThan(animal, age) {
