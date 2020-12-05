@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');  // object destructuring
+const { animals, employees, prices, hours } = require('./data');  // object destructuring
 // const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -78,8 +78,8 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   if (!entrants) return 0;
-  const valueEntrants = Object.keys(entrants);
-  const ticketSum = valueEntrants.reduce((sum, index) => {
+  const valueEntrance = Object.keys(entrants);
+  const ticketSum = valueEntrance.reduce((sum, index) => {
     sum += entrants[index] * prices[index];
     return sum;
   }, 0);
@@ -91,7 +91,23 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const weekDays = {
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+    Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
+    Monday: 'CLOSED',
+  };
+  const businessDay = {};
+  if (!dayName) return weekDays;
+  if (dayName === 'Monday') {
+    businessDay[dayName] = 'CLOSED';
+  } else {
+    businessDay[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
+  }
+  return businessDay;
 }
 
 function oldestFromFirstSpecies(id) {
