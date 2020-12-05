@@ -14,12 +14,11 @@ const data = require('./data');
 
 function animalsByIds(...ids) { 
   if (!ids) return [];
-  return animals.filter((actua)=> actua.id === ids[0] ||actua.id === ids[1])
-};
+  return animals.filter((actua)=> actua.id === ids[0] || actua.id === ids[1]) };
 
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+ 
 }
 
 function employeeByName(employeeName) {
