@@ -41,10 +41,7 @@ const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []
   return res;
 };
 
-const animalCount = species => {
-  if (!species) {
-  }
-};
+function animalCount(species) {}
 
 function entryCalculator(entrants) {
   // seu código aqui
