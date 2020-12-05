@@ -85,11 +85,11 @@ function schedule(dayName) {
   const result = {};
   itens.forEach((element) => {
     if (element[0] === 'Monday') {
-    result[element[0]] = 'CLOSED';
-  } else {
-    result[element[0]] = `Open from ${hours[element[0]].open }am until ${hours[element[0]].close -12 }pm`;}});
-    if (dayName !== undefined) return { [dayName]: result[dayName] };
-    return result;
+      result[element[0]] = 'CLOSED';
+    } else {
+      result[element[0]] = `Open from ${hours[element[0]].open}am until ${hours[element[0]].close -12}pm`;}});
+  if (dayName !== undefined) return { [dayName]: result[dayName] };
+  return result;
 }
 // console.log(schedule('Tuesday'))
 
