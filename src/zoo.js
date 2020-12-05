@@ -48,25 +48,15 @@ function animalCount(species) {
   return data.animals.find(animal => animal.name === species).residents.length;
 }
 
-
-
-
-
-
-
 function entryCalculator(entrants) {
-  const people = data.prices;
-  let cont = 0;
-  
-  // if (entrants === undefined || entrants === Object.length == 0) {
-  //   return 0;
-  // }
-
-  return Object.keys(people.Adult.value);
-  
+  const people = data.prices;   
+  if (entrants === undefined || entrants.length === 0) {
+    return 0;
+  }
+  return Object.entries(entrants).reduce((cont, [key, valor]) => cont + people[key] * valor, 0);  
 }
 
-console.log(entryCalculator({ 'Adult': 1 }))
+
 
 
 
@@ -78,6 +68,16 @@ console.log(entryCalculator({ 'Adult': 1 }))
 function animalMap(options) {
   // seu código aqui
 }
+
+
+
+
+
+
+
+
+
+
 
 function schedule(dayName) {
   // seu código aqui
@@ -100,6 +100,13 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
 }
+
+
+
+
+
+
+
 
 function employeeCoverage(idOrName) {
   // seu código aqui
