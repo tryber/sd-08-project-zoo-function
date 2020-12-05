@@ -143,10 +143,13 @@ function schedule(dayName) {
   const diaCorreto = days.find(element => element === dayName);
   if (diaCorreto === true) {
     const { open, close } = hours[dayName];
+    const horario = {};
     if (open > 0) {
-      return { [dayName]: `Open from ${open}am until ${close - 12}pm` };
+      horario = { [dayName]: `Open from ${open}am until ${close - 12}pm` };
+    } else {
+      horario ={ [dayName]: 'CLOSED' };
     }
-    return { [dayName]: 'CLOSED' };
+    return horario;
   }
   const horario = days.reduce((acc, cElement) => {
     const { open, close } = hours[cElement];
