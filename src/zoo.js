@@ -11,32 +11,59 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  return data.animals.filter(animalId => ids.find(id => animalId.id === id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return data.animals
+    .find(animalName => animalName.name === animal)
+    .residents.every(animalAge => animalAge.age >= age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  return employeeName === undefined
+    ? {}
+    : data.employees.find(
+        ({ firstName, lastName }) =>
+          firstName === employeeName || lastName === employeeName,
+      );
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return {
+    ...personalInfo,
+    ...associatedWith,
+  };
 }
 
 function isManager(id) {
-  // seu código aqui
+  return data.employees.some(manager => manager.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(
+  id,
+  firstName,
+  lastName,
+  managers = [],
+  responsibleFor = [],
+) {
+  return data.employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
 }
 
 function animalCount(species) {
-  // seu código aqui
+  return species
+    ? data.animals.find(animal => animal.name === species).residents.length
+    : data.animals.reduce((counter, obj) => {
+      counter[obj.name] = obj.residents.length;
+      return counter;
+    }, {});
 }
 
 function entryCalculator(entrants) {
