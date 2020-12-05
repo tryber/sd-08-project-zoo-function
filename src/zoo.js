@@ -47,40 +47,46 @@ function createEmployee(personalInfo, associatedWith) {
   };
   return createNewEmployee;
 }
-
+// 5
 function isManager(id) {
   // seu código aqui
-
+  const getManager = data.employees.some((manager) => {
+    return manager.managers.find((managerId) => {
+      return managerId === id;
+    })
+  })
+  return getManager;
 }
 
+// 6
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
-
+// 7
 function animalCount(species) {
   // seu código aqui
 }
-
+// 8
 function entryCalculator(entrants) {
   // seu código aqui
 }
-
+// 9
 function animalMap(options) {
   // seu código aqui
 }
-
+// 10
 function schedule(dayName) {
   // seu código aqui
 }
-
+// 11
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
-
+// 12
 function increasePrices(percentage) {
   // seu código aqui
 }
-
+// 13
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
