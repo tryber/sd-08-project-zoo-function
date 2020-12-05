@@ -35,7 +35,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return (employees.filter(employee => employee.managers.includes(id)).length > 0);
+  return employees.filter(employee => employee.managers.includes(id)).length > 0;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
