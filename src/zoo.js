@@ -32,7 +32,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return {...personalInfo, ...associatedWith};
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -40,10 +40,9 @@ function isManager(id) {
   return retorno;
 }
 
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor =[]) {
-  
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const retorno = data.employees
-  .push({id, firstName, lastName, managers, responsibleFor})
+    .push({ id, firstName, lastName, managers, responsibleFor });
   return retorno;
 }
 
