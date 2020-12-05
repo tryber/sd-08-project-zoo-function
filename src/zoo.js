@@ -30,10 +30,14 @@ function animalsOlderThan(animal, age) {
   return result;
 }
 
-console.log(animalsOlderThan('penguins', 10));
-
 function employeeByName(employeeName) {
   // seu código aqui
+  const { employees } = require('./data');
+  let result = {};
+  if (employeeName !== undefined) {
+    result = employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+  }
+  return result;
 }
 
 function createEmployee(personalInfo, associatedWith) {
