@@ -90,6 +90,17 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
+  // Verifica se uma pessoa colaboradora, a partir de seu id, ocupa cargo de gerência.
+  // Observações técnicas
+  // Deve retornar um valor booleano
+  // O que será avaliado
+  // Testa se o id passado é de um gerente
+  let isManager = false;
+  const result = data.employees.filter((employee) => employee.managers[0] === id || employee.managers[1] === id);
+  // data.employees.forEach((employee) => {console.log(employee.managers)});
+  if (result.length >= 1) { isManager = true; }
+  // console.log(` string de resultado   ${result} e tem como resoltado ${isManager}`);
+  return isManager
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
