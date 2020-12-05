@@ -62,43 +62,28 @@ function entryCalculator(entrants) {
 }
 
 function animalsByLocation() {
-  const mappedAnimals = animals.map(element => ({
+  return animals.map(element => ({
     [element.location]: element.name,
   }));
-  return mappedAnimals.reduce(((acc, obj) => {
-    const key = Object.keys(obj)[0];
-    if (key in acc) {
-      acc[key].push(obj[key]);
-    } else {
-      acc[key] = [obj[key]];
-    }
-    return acc;
-  }), {});
 }
 
 function animalNames() {
-  const mappedNames = animals.map(element => ({
+  return animals.map(element => ({
     [element.location]: { [element.name]: element.residents.map(being => being.name) },
   }));
-  return mappedNames.reduce(((acc, obj) => {
-    const key = Object.keys(obj)[0];
-    if (key in acc) {
-      acc[key].push(obj[key]);
-    } else {
-      acc[key] = [obj[key]];
-    }
-    return acc;
-  }), {});
 }
 
 function genderNames(sex) {
-  const mappedNames = animals.map(element => ({
+  return animals.map(element => ({
     [element.location]: {
       [element.name]: element.residents
         .filter(being => being.sex === sex)
         .map(being => being.name),
     },
   }));
+}
+
+function nameReducer(mappedNames) {
   return mappedNames.reduce(((acc, obj) => {
     const key = Object.keys(obj)[0];
     if (key in acc) {
@@ -121,24 +106,25 @@ function animalSort(nameList) {
 
 function animalMap(options) {
   const { includeNames = false, sorted = false, sex } = options || {};
+  let result = nameReducer(animalsByLocation());
 
   if (includeNames && !sorted && !sex) {
-    return animalNames();
+    result = nameReducer(animalNames());
   }
 
   if (includeNames && sorted && !sex) {
-    return animalSort(animalNames());
+    result = animalSort(nameReducer(animalNames()));
   }
 
   if (includeNames && !sorted && sex) {
-    return genderNames(sex);
+    result = nameReducer(genderNames(sex));
   }
 
   if (includeNames && sorted && sex) {
-    return animalSort(genderNames(sex));
+    result = animalSort(nameReducer(genderNames(sex)));
   }
 
-  return animalsByLocation();
+  return result;
 }
 
 function schedule(dayName) {
