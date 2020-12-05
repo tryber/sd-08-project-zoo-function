@@ -12,20 +12,26 @@ eslint no-unused-vars: [
 const data = require('./data');
 const { animals } = data;
 const { employees } = data;
+const { prices } = data;
 
 function animalsByIds(...ids) {
   return animals.filter((animalInfo) => ids.includes(animalInfo.id));
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.find((animalInfo) => animalInfo.name === animal)
-  .residents.every(resident => resident.age > age);
+  return animals
+    .find((animalInfo) => animalInfo.name === animal)
+    .residents.every((resident) => resident.age > age);
 }
 
 function employeeByName(employeeName) {
-  return employees.find((employeeInfo) =>
-  employeeInfo.firstName === employeeName ||
-  employeeInfo.lastName === employeeName) || {};
+  return (
+    employees.find(
+      (employeeInfo) =>
+        employeeInfo.firstName === employeeName ||
+        employeeInfo.lastName === employeeName
+    ) || {}
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -36,23 +42,45 @@ function isManager(id) {
   return employees.some((employeeInfo) => employeeInfo.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  employees.push(createEmployee({id, firstName, lastName}, {managers, responsibleFor}));
+function addEmployee(
+  id,
+  firstName,
+  lastName,
+  managers = [],
+  responsibleFor = []
+) {
+  employees.push(
+    createEmployee({ id, firstName, lastName }, { managers, responsibleFor })
+  );
 }
 
 function animalCount(species) {
-  const speciesCount = animals.find((animalInfo) => animalInfo.name === species);
+  const speciesCount = animals.find(
+    (animalInfo) => animalInfo.name === species
+  );
 
   const animalListCount = animals.reduce((accumulator, animalInfo) => {
     accumulator[animalInfo.name] = animalInfo.residents.length;
     return accumulator;
   }, {});
 
-  return species === undefined ? animalListCount : speciesCount.residents.length;
+  return species === undefined
+    ? animalListCount
+    : speciesCount.residents.length;
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(entrants = 0) {
+  let entrySum = 0;
+  Object.entries(entrants).forEach((entry) => {
+    if (entry[0] === 'Adult') {
+      entrySum += prices.Adult * entry[1];
+    } else if (entry[0] === 'Child') {
+      entrySum += prices.Child * entry[1];
+    } else {
+      entrySum += prices.Senior * entry[1];
+    }
+  });
+  return entrySum;
 }
 
 function animalMap(options) {
