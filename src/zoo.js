@@ -146,9 +146,8 @@ function schedule(dayName) {
     const { open, close } = hours[dayName];
     if (hours[dayName].open > 0) {
       return { [dayName]: `Open from ${open}am until ${close - 12}pm` };
-    } else {
-      return { [dayName]: 'CLOSED' };
     }
+    return { [dayName]: 'CLOSED' };
   }
   const horario = days.reduce((acc, cElement) => {
     const { open, close } = hours[cElement];
