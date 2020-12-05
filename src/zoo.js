@@ -9,25 +9,25 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require("./data");
+const data = require('./data');
 
 function animalsByIds(...ids) {
-  const retorno = data.animals.filter((elemento) => ids.includes(elemento.id));
+  const retorno = data.animals.filter(elemento => ids.includes(elemento.id));
 
   return retorno;
 }
 
 function animalsOlderThan(animal, age) {
   const animalBuscado = data.animals.find(
-    (elemento) => elemento.name === animal
+  elemento => elemento.name === animal
   );
-  return animalBuscado.residents.every((elemento) => elemento.age > age);
+  return animalBuscado.residents.every(elemento => elemento.age > age);
 }
 
 function employeeByName(employeeName) {
   const retorno = data.employees.find(
-    (element) =>
-      element.firstName === employeeName || element.lastName === employeeName
+    element =>
+    element.firstName === employeeName || element.lastName === employeeName
   );
 
   if (employeeName) {
@@ -52,8 +52,7 @@ function addEmployee(
   firstName,
   lastName,
   managers = [],
-  responsibleFor = []
-) {
+  responsibleFor = []) {
   const retorno = data.employees.push({
     id,
     firstName,
@@ -66,19 +65,18 @@ function addEmployee(
 
 function animalCount(species) {
   let animais = {};
-  data.animals.forEach((animal) => {
+  data.animals.forEach(animal => {
     if (!species) {
       animais[animal.name] = animal.residents.length;
     } else {
       const animalBuscado = data.animals.find(
-        (elemento) => elemento.name === species
-      );
+        elemento => elemento.name === species
+    );
       animais = animalBuscado.residents.length;
     }
   });
   return animais;
 }
-animalCount('lions');
 
 function entryCalculator(entrants) {
   // seu código aqui
