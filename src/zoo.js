@@ -131,6 +131,15 @@ function animalCount(species) {
   // O que será avaliado
   // Sem parâmetros, retorna animais e suas quantidades
   // Com o nome de uma espécie de animal, retorna somente a quantidade
+  if (typeof species === 'string') {
+    const theAnimal = animals.find(animal => animal.name === species);
+    return theAnimal.residents.length;
+  }
+  const numberOfAnimal = {};
+  animals.forEach((animal) => {
+    numberOfAnimal[animal.name] = animal.residents.length;
+  });
+  return numberOfAnimal;
 }
 
 function entryCalculator(entrants) {
