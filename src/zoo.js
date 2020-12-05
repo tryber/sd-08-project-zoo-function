@@ -88,11 +88,12 @@ function mapWithOutIncludeNames() {
   return output;
 }
 
-function sortAnimalsResidentsCallback(a, b) {
-  if (a.name > b.name) {
+function sortObjByPropertyCallback(a, b) {
+  const { property } = this;
+  if (a[property] > b[property]) {
     return 1;
   }
-  if (a.name < b.name) {
+  if (a[property] < b[property]) {
     return -1;
   }
   return 0;
@@ -100,7 +101,7 @@ function sortAnimalsResidentsCallback(a, b) {
 function goSortNameIfSorted(sorted, residents) {
   const sortingResidents = residents.slice();
   if (sorted === undefined) return residents;
-  const output = sortingResidents.sort(sortAnimalsResidentsCallback);
+  const output = sortingResidents.sort(sortObjByPropertyCallback.bind({ property: 'name' }));
   return output;
 }
 function filterSexAnimalResidents(sex, residents) {
@@ -155,7 +156,11 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const firstSpecies = employees.find(employee => employee.id === id).responsibleFor[0];
+  const animalsResponsibleFor = animalsByIds(firstSpecies)[0].residents.slice();
+  animalsResponsibleFor.sort(sortObjByPropertyCallback.bind({ property: 'age' }));
+  const { length } = animalsResponsibleFor;
+  return Object.values(animalsResponsibleFor[length - 1]);
 }
 
 function increasePrices(percentage) {
