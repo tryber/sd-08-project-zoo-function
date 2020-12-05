@@ -48,8 +48,15 @@ function isManager(id) {
   return employees.reduce((acc, curr) => acc.concat(curr.managers), []).includes(id);
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  return employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  })
 }
 
 function animalCount(species) {
