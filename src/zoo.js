@@ -117,8 +117,6 @@ function oldestFromFirstSpecies(id) {
   return Object.values(moreOld);
 }
 
-console.log(oldestFromFirstSpecies('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
-
 function increasePrices(percentage) {
   // seu código aqui
 }
