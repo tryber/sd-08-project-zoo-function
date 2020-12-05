@@ -121,7 +121,6 @@ const mapNamed = (opt = {}) => {
 };
 
 const mapSimple = () => {
-  // const opt = parseOptions(options);
   const map = mapFactory();
   animals.forEach(a => {
     map[a.location].push(a.name);
