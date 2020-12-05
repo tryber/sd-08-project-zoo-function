@@ -55,16 +55,16 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  if (!species) {
-    const newObj = {};
-    animals.forEach(number => {
-      newObj[number.name] = number.residents.length;
-    });
-    return newObj;
+  if (species) {
+    const animalSpecies = animals.find(animal => animal.name === species);
+    const numberOfAnimals = animalSpecies.residents.length;
+    return numberOfAnimals;
   }
-  return animals.find(animal => animal.name === species).residents.length;
+  return animals.reduce((acc, value) => {
+    acc[value.name] = value.residents.length;
+    return acc;
+  }, {});
 }
-animalCount()
 
 function entryCalculator(entrants) {
   // seu código aqui
