@@ -11,7 +11,9 @@ eslint no-unused-vars: [
 
 const { animals, employees } = require('./data');
 
-const animalsByIds = (...args) => animals.filter(({ id }) => args.some(value => value === id));
+const animalsByIds = (...args) => {
+  return animals.filter(({ id }) => args.some(value => value === id));
+};
 
 const animalsOlderThan = (animal, age) =>
   animals.some(e => e.residents.every(value => e.name === animal && value.age > age));
@@ -21,7 +23,7 @@ const employeeByName = employeeName => {
   return employees.find(v => v.firstName === employeeName || v.lastName === employeeName);
 };
 
-const createEmployee = (info, awith) => Object.assign({}, info, awith);
+const createEmployee = (info, awith) => ({ ...info, ...awith });
 
 const isManager = id =>
   employees.some(element => element.id === id && element.managers.length === 1);
@@ -35,9 +37,9 @@ const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []
     responsibleFor,
   });
 
-function animalCount(species) {
-  // seu código aqui
-}
+const animalCount = species => {
+  if (!species) {
+};
 
 function entryCalculator(entrants) {
   // seu código aqui
