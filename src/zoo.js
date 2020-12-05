@@ -105,16 +105,19 @@ function animalMap(options) {
   return popularObj(locations);
 }
 
-const options = { includeNames: true };
-console.log(animalMap(options));
-
 function schedule(dayName) {
   // seu código aqui
 }
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const colaboradorResponsable = employees.find(idU => idU.id === id).responsibleFor[0];
+  const animalResponsable = animals.find(ids => ids.id === colaboradorResponsable).residents;
+  const moreOld = animalResponsable.sort((a, b) => (b.age - a.age)).find(old => old);
+  return Object.values(moreOld);
 }
+
+console.log(oldestFromFirstSpecies('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function increasePrices(percentage) {
   // seu código aqui
