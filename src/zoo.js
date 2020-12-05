@@ -14,13 +14,13 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   if (!ids) return [];
-  return animals.filter( actua => actua.id === ids[0] || actua.id === ids[1]);
+  return animals.filter(actua => actua.id === ids[0] || actua.id === ids[1]);
 }
 
 
 function animalsOlderThan(...ids) {
-  return animals.find((tipobicho)=> tipobicho.name === ids[0])
-  .residents.every(tipobicho => tipobicho.age >= 7 );
+  return animals.find(tipobicho=> tipobicho.name === ids[0])
+  .residents.every(tipobicho => tipobicho.age >= 7);
 }
 
 function employeeByName(employeeName) {
