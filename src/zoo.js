@@ -57,7 +57,15 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  const ops = employees.find((gerente) => {
+    if (gerente.managers[0] === id) {
+      return true;
+    }
+  });
+  if (ops !== undefined) {
+    return true;
+  }
+  return false;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
