@@ -101,10 +101,9 @@ function schedule(dayName) {
   if (dayName === 'Monday') {
     answer[dayName] = 'CLOSED';
     return answer;
-  } else {
-    answer[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
-    return answer;
   }
+  answer[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
+  return answer;
 }
 
 function oldestFromFirstSpecies(id) {
