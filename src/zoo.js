@@ -50,10 +50,9 @@ function createEmployee(personalInfo, associatedWith) {
     firstName: personalInfo.firstName,
     lastName: personalInfo.lastName,
     managers:
-      associatedWith.managers
-    ,
+      associatedWith.managers,
     responsibleFor:
-      associatedWith.responsibleFor
+      associatedWith.responsibleFor,
   };
 }
 
