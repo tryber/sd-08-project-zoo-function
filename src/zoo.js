@@ -138,7 +138,6 @@ function animalMap(options = { includeNames: false, sorted: false, sex: '' }) {
   // sorted: true
   return aMap;
 }
-console.log(animalMap({ includeNames: true }))
 
 function schedule(dayName) {
   // seu código aqui
