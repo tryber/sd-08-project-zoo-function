@@ -12,12 +12,12 @@ const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  if (ids.length === 0){
+  if (ids.length === 0) {
     return [];
   }
-  const speciesFromId = animals.filter((species) => ids.includes(species.id)); 
+  const speciesFromId = animals.filter(species => ids.includes(species.id));
   return speciesFromId;
-};
+}
 console.log(animalsByIds());
 
 function animalsOlderThan(animal, age) {
