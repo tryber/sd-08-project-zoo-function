@@ -27,20 +27,39 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+ 
 }
 
-function isManager(id) {
-  // seu código aqui
+
+function isManager(id) { 
+
+
 }
+
+
+
+
+
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const objectAnimal = data.animals.reduce((cont, animal) => {cont[animal.name] = animal.residents.length;
+    return cont;
+  }, {});
+  if (species === undefined) {
+    return objectAnimal;
+  }
+  return data.animals.find(animal => animal.name === species).residents.length;
 }
+
+
+console.log(animalCount());
+
+
+
 
 function entryCalculator(entrants) {
   // seu código aqui
