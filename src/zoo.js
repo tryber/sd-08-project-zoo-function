@@ -92,17 +92,20 @@ function oldestFromFirstSpecies(id) {
   const firstResponsibleFor = employees.find(employee => employee.id === id)
     .responsibleFor[0];
   const caredAnimals = animals.find(
-    animal => animal.id === firstResponsibleFor
+    animal => animal.id === firstResponsibleFor,
   ).residents;
   const oldest = caredAnimals.sort(
-    (animal1, animal2) => animal2.age - animal1.age
+    (animal1, animal2) => animal2.age - animal1.age,
   )[0];
   const { name, sex, age } = oldest;
   return [name, sex, age];
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const pricesKeys = Object.keys(prices);
+  pricesKeys.forEach((price) => {
+    prices[price] = Math.round(prices[price] * (1 + (percentage / 100)) * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
