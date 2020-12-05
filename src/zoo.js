@@ -57,12 +57,10 @@ function addEmployee(
 
 function animalCount(species) {
   if (!species) {
-    return (
-      animals.reduce((acc, cur) => {
-        acc[cur.name] = cur.residents.length;
-        return acc;
-      }, {}) || {}
-    );
+    return animals.reduce((acc, cur) => {
+      acc[cur.name] = cur.residents.length;
+      return acc;
+    }, {});
   }
   return animals.find(a => a.name === species).residents.length;
 }
