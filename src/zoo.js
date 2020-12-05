@@ -52,8 +52,8 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
-  const personalInfo = {id, firstName, lastName};
-  const associatedWith = {managers, responsibleFor};
+  const personalInfo = { id, firstName, lastName };
+  const associatedWith = { managers, responsibleFor };
 
   data.employees.push(createEmployee(personalInfo, associatedWith));
 }
