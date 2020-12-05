@@ -43,19 +43,31 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const count = animals.reduce((cont, animal) => {
+    cont[animal.name] = animal.residents.length;
+    return cont;
+  }, {});
+  if (typeof species === 'string' && species.length !== 0) {
+    return count[species];
+  }
+  return count;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  // const entradas = {};
+  // if (entrants === '' || entrants === {}) {
+  //   return 0;
+  // } Object.entrants.reduce((cont, entradas => (
+  //   cont += entradas)
+  // ), 0);
 }
 
 function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
-  // seu código aqui
+function schedule(...dayName) {
+
 }
 
 function oldestFromFirstSpecies(id) {
