@@ -172,12 +172,9 @@ function increasePrices(percentage) {
   });
 }
 
-const responsibleForAnimals = (responsibleFor = []) => {
-  const res = responsibleFor.map(
-    rf => data.animals.find(a => a.id === rf).name,
-  );
-  return res || [];
-};
+const responsibleForAnimals = (responsibleFor = []) => (
+  responsibleFor.map(rf => data.animals.find(a => a.id === rf).name) || []
+);
 
 function employeeCoverage(idOrName) {
   const res = {};
