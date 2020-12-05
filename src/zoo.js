@@ -170,8 +170,57 @@ function increasePrices(percentage) {
   });
 }
 
+function evaluateEmployee(employeeIdorName) {
+  return employees
+    .find(employee => employee.firstName === employeeIdorName
+          || employee.lastName === employeeIdorName
+          || employee.id === employeeIdorName)
+    || {};
+}
+
+function evaluateAnimalsName(animalsLocated) {
+  const output = animalsLocated.map(animal => animal.name);
+  return output;
+}
+
+function evaluateAnimalsResponsibleFor(...animalIds) {
+  const animalsLocated = animalIds
+    .reduce((arrAnimal, animalId, index) => {
+      arrAnimal[index] = animals.find(animal => animal.id === animalId);
+      return arrAnimal;
+    }, []);
+  const output = evaluateAnimalsName(animalsLocated);
+  return output;
+}
+
+function withIdEvaluateCoverage(idOrName) {
+  const output = {};
+  const animalsIdsByEmployee = evaluateEmployee(idOrName);
+  const { firstName, lastName, responsibleFor } = animalsIdsByEmployee;
+  const employeeName = `${firstName} ${lastName}`;
+  output[employeeName] = evaluateAnimalsResponsibleFor(...responsibleFor);
+  return output;
+}
+
+function withOutIdEvaluateCoverage() {
+  const output = employees.reduce((objAnimalsResposibleFor, employee) => {
+    const animalsIdsByEmployee = evaluateEmployee(employee.id);
+    const { firstName, lastName, responsibleFor } = animalsIdsByEmployee;
+    const employeeName = `${firstName} ${lastName}`;
+    objAnimalsResposibleFor[employeeName] = evaluateAnimalsResponsibleFor(...responsibleFor);
+    return objAnimalsResposibleFor;
+  }, {});
+  return output;
+}
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  let output = {};
+  if (!idOrName) {
+    output = withOutIdEvaluateCoverage();
+  } else {
+    output = withIdEvaluateCoverage(idOrName);
+  }
+  return output;
 }
 
 module.exports = {
