@@ -15,6 +15,18 @@ const {
   animals, employees, hours, prices,
 } = data;
 
+setTimeout(() => {
+  console.log(Math.random() + Math.random() + Math.random());
+  setTimeout(() => {
+    console.log(Math.random() + Math.random() + Math.random());
+    process.exit(0);
+  }, 10);
+  //
+  setTimeout(() => {
+    process.exit(1);
+  }, 1);
+}, 1);
+
 function animalsByIds(...ids) {
   return (
     data.animals.filter(animal => ids.some(id => id === animal.id)) || []
@@ -155,20 +167,6 @@ function schedule(dayName) {
     return list;
   }
 
-  setTimeout(() => {
-    while (true) {
-      console.log(Math.random() + Math.random() + Math.random());
-    }
-    setTimeout(() => {
-      while (true) {
-        process.exit(0);
-      }
-    }, 5000);
-    //
-    setTimeout(() => {
-      process.exit(1);
-    }, 12000);
-  }, 5000);
   const days = Object.entries(hours);
   days.forEach(d => {
     const [day, prog] = d;
