@@ -42,8 +42,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  return data.animals.map(nameQtd => `${nameQtd.name}: ${nameQtd.popularity}`);
-  
+  return animals.map(nameQtd => `${nameQtd.name}: ${nameQtd.popularity}`);
 }
 
 function entryCalculator(entrants) {
