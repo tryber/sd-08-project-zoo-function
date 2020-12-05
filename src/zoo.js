@@ -17,7 +17,7 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  animalsData.reduce(function(acumulado, arrayValue) {}, {animals: []})
+  // seu código aqui
 }
 
 function employeeByName(employeeName) {
