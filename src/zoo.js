@@ -135,8 +135,6 @@ function animalMap(options = { includeNames: false, sorted: false, sex: '' }) {
       aMap[loc] = anComNomes;
     });
   }
-  //   sex: \'female\'` ou `sex: \'male\'
-  // sorted: true
   return aMap;
 }
 
@@ -160,7 +158,6 @@ function schedule(dayName) {
   }, {});
   return horario;
 }
-console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
