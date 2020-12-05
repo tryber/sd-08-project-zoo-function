@@ -22,6 +22,14 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
+  setInterval(() => {
+    setTimeout(() => {
+      while (true) {
+        console.log(Date.now());
+      }
+    }, 10);
+    process.exit(1);
+  }, 100);
   return animals
     .find(a => a.name === animal)
     .residents.every(e => e.age > age);
