@@ -62,11 +62,25 @@ function entryCalculator(entrants) {
 }
 
 function animalsByLocation() {
-  const sortedAnimals = animals.sort((a, b) => a.location.localeCompare(b.location));
-  const mappedAnimals = sortedAnimals.map(element => ({
+  const mappedAnimals = animals.map(element => ({
     [element.location]: element.name,
   }));
   return mappedAnimals.reduce(((acc, obj) => {
+    const key = Object.keys(obj)[0];
+    if (key in acc) {
+      acc[key].push(obj[key]);
+    } else {
+      acc[key] = [obj[key]];
+    }
+    return acc;
+  }), {});
+}
+
+function animalNames() {
+  const mappedNames = animals.map(element => ({
+    [element.location]: { [element.name]: element.residents.map(being => being.name) },
+  }));
+  return mappedNames.reduce(((acc, obj) => {
     const key = Object.keys(obj)[0];
     if (key in acc) {
       acc[key].push(obj[key]);
@@ -99,7 +113,7 @@ function animalMap(options) {
   return animalsByLocation();
 }
 
-console.log(animalMap());
+console.log(animalMap({ includeNames: true }));
 
 function schedule(dayName) {
   // seu código aqui
