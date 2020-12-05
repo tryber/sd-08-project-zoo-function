@@ -17,7 +17,7 @@ const animalsByIds = (...ids) => animals.filter(animal => ids.includes(animal.id
 const animalsOlderThan = (animal, age) => animals.find(specie => specie.name === animal)
   .residents.every((specie => specie.age >= age));
 
-const employeeByName = (employeeName) => employees.find(employee =>
+const employeeByName = employeeName => employees.find (employee =>
   employee.firstName === employeeName || employee.lastName === employeeName) || {};
 
 function createEmployee(personalInfo, associatedWith) {
