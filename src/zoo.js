@@ -36,8 +36,14 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  const managers = [];
+  data.employees.forEach(employee => employee.managers.forEach((manager) => {
+    managers.push(manager);
+  }));
+  return managers.some(manager => manager === id);
 }
+
+console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
