@@ -150,10 +150,10 @@ function schedule(dayName = 'All') {
   return { [dayName]: weekDays[dayName] };
 }
 
-console.log(schedule('Tuesday'));
-
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const animalId = employees.find(employee => employee.id === id).responsibleFor[0];
+  const oldestSpecimen = animalsByIds(animalId)[0].residents.sort((a, b) => b.age - a.age)[0];
+  return Object.values(oldestSpecimen);
 }
 
 function increasePrices(percentage) {
