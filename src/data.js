@@ -1,4 +1,3 @@
-const shell = require('shelljs');
 
 module.exports = {
   animals: [{
