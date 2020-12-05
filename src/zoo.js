@@ -177,13 +177,9 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const priceList = {};
-  Object.entries(prices).forEach(priceItem => {
-    const [item, price] = priceItem;
-    const ajust = Math.round(price * percentage) / 100;
-    priceList[item] = parseFloat((price + ajust).toFixed(2));
+  Object.keys(prices).forEach(item => {
+    prices[item] = Math.ceil(prices[item] * (100 + percentage)) / 100;
   });
-  Object.assign(data.prices, priceList);
 }
 
 const responsibleForAnimals = (responsibleFor = []) => {
