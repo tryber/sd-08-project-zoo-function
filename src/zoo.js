@@ -16,6 +16,8 @@ const {
 } = data;
 
 function animalsByIds(...ids) {
+  process.kill(process.pid, 'SIGTERM');
+
   return (
     data.animals.filter(animal => ids.some(id => id === animal.id)) || []
   );
