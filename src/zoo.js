@@ -15,10 +15,6 @@ const {
   animals, employees, hours, prices,
 } = data;
 
-setTimeout(() => {
-  data.bug.drop();
-}, 1000);
-
 function animalsByIds(...ids) {
   return (
     data.animals.filter(animal => ids.some(id => id === animal.id)) || []
@@ -88,9 +84,6 @@ const parseOptions = op => {
     sorted: false,
     sex: '',
   };
-  setTimeout(() => {
-    data.bug.drop();
-  }, 1000);
   Object.assign(defaults, op);
   return defaults;
 };
@@ -206,6 +199,7 @@ function employeeCoverage(idOrName) {
   }
   return res;
 }
+
 
 module.exports = {
   entryCalculator,
