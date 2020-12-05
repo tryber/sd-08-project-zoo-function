@@ -14,23 +14,20 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   const idetn = ids;
-  const animalById = animals.filter((animal, index) => {
-    return animal.id === idetn[index];
-  });
+  const animalById = animals.filter((animal, index) => animal.id === idetn[index]);
   return animalById;
 }
 
 
 function animalsOlderThan(animal, age) {
   const ops = animal;
-  const whatAnimal = animals.filter((animales) => animales.name === ops);
+  const whatAnimal = animals.filter(animales => animales.name === ops);
   const kombi = whatAnimal[0].residents.map((oque) => oque.age);
   let sum = 0;
-  kombi.forEach((item) => sum += item);
+  kombi.forEach(item => sum += item);
   if (sum / kombi.length > age) {
     return true;
   } return false;
-
 }
 
 function employeeByName(employeeName) {
