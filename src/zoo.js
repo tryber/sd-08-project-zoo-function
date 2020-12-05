@@ -43,8 +43,8 @@ function isManager(id) {
   return employees
   .some(person => person.managers
     .some(manager => manager === id));
-  }
-  /* console.log(`${person.managers[1]} === ${id}`);*/  
+}
+  /* console.log(`${person.managers[1]} === ${id}`);*/
     /* console.log(`${manager} === ${id}`);*/
 console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
