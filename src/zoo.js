@@ -95,6 +95,10 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  // const employee = data.employees.find(curr => curr.id === id);
+  // const responsibilities = employee.responsibleFor;
+  
+
 }
 
 function increasePrices(percentage) {
