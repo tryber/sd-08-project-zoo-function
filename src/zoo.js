@@ -36,9 +36,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return setInterval(() => {
-    process.exit(1);
-  }, 100);
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -154,7 +152,6 @@ function schedule(dayName) {
     list[dayName] = scheduleDay(hours[dayName]);
     return list;
   }
-
   const days = Object.entries(hours);
   days.forEach(d => {
     const [day, prog] = d;
