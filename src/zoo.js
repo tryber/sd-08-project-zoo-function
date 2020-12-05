@@ -72,7 +72,7 @@ const popularObj = (locations) => {
     .map(animal => animal.name);
   });
   return obj;
-}
+};
 
 const porpularObjIncludes = (locations, sorted, sex) => {
   const obj = {};
@@ -94,7 +94,7 @@ const porpularObjIncludes = (locations, sorted, sex) => {
     obj[lo] = name;
   });
   return obj;
-}
+};
 
 function animalMap(options) {
   // seu código aqui
