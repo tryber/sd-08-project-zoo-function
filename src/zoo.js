@@ -36,9 +36,10 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  const searchManager = employees.find(element => element.managers.includes(id));
+  if (searchManager === undefined) return false;
+  return true;
 }
-
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newEmployee = {};
@@ -140,8 +141,6 @@ function employeeCoverage(idOrName) {
   getAnimalsId(animalCoveredIds, animalCoveredNames);
   return { [employeeFullName]: animalCoveredNames };
 }
-
-console.log(employeeCoverage('Emery'));
 
 module.exports = {
   entryCalculator,
