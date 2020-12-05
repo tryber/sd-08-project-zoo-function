@@ -1,8 +1,8 @@
-version: "2"         # required to adjust maintainability checks
+version: "2" # required to adjust maintainability checks
 checks:
   argument-count:
     config:
-      threshold: 5
+      threshold: 10
   complex-logic:
     config:
       threshold: 4
@@ -11,19 +11,19 @@ checks:
       threshold: 250
   method-complexity:
     config:
-      threshold: 5
+      threshold: 100
   method-count:
     config:
-      threshold: 20
+      threshold: 200
   method-lines:
     config:
-      threshold: 25
+      threshold: 250
   nested-control-flow:
     config:
-      threshold: 4
+      threshold: 400
   return-statements:
     config:
-      threshold: 4
+      threshold: 400
   similar-code:
     config:
       threshold: # language-specific defaults. an override will affect all languages.
@@ -31,19 +31,19 @@ checks:
     config:
       threshold: # language-specific defaults. an override will affect all languages.
 exclude_patterns:
-- "test/"
-- "src/data.js"
-- "node_modules/"
+  - "test/"
+  - "src/data.js"
+  - "node_modules/"
 plugins:
   editorconfig:
-    enabled: true
+    enabled: false
   eslint:
-    enabled: true
+    enabled: false
   fixme:
-    enabled: true
+    enabled: false
   nodesecurity:
-    enabled: true
+    enabled: false
   shellcheck:
-    enabled: true
+    enabled: false
   stylelint:
-    enabled: true
+    enabled: false
