@@ -18,17 +18,18 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.find((animalInfo) => animalInfo.name === animal)
+  return animals.find((animalInfo) =>animalInfo.name === animal)
   .residents.every(resident => resident.age > age);
 }
 
 function employeeByName(employeeName) {
-  return employees.find((employeeInfo) => 
-  employeeInfo.firstName === employeeName || employeeInfo.lastName === employeeName) || {};
+  return employees.find((employeeInfo) =>
+  employeeInfo.firstName === employeeName ||
+  employeeInfo.lastName === employeeName) || {};
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return Object.assign(personalInfo, associatedWith);
 }
 
 function isManager(id) {
