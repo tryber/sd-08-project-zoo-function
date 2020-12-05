@@ -65,9 +65,48 @@ function entryCalculator(entrants) {
     (entrants[curr] * prices[curr]), 0);
 }
 
+const popularObj = (locations) => {
+  const obj = {};
+  locations.forEach((location) => {
+    obj[location] = animals.filter(lo => lo.location === location)
+    .map(animal => animal.name);
+  });
+  return obj;
+};
+
+const porpularObjIncludes = (locations, sorted, sex) => {
+  const obj = {};
+  locations.forEach((lo) => {
+    const name =
+      animals
+    .filter(local => local.location === lo)
+      .map((animal) => {
+        const imprimeChaveNome = animal.name;
+        const imprimeValorNome = animal.residents
+        .filter((residentFil) => {
+          const ambigousSex = sex;
+          return ambigousSex ? residentFil.sex === sex : 1;
+        })
+        .map(resident => resident.name);
+        if (sorted) imprimeValorNome.sort();
+        return { [imprimeChaveNome]: imprimeValorNome };
+      });
+    obj[lo] = name;
+  });
+  return obj;
+};
+
 function animalMap(options) {
   // seu código aqui
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return popularObj(locations);
+  const { includeNames, sorted, sex } = options;
+  if (includeNames === true) return porpularObjIncludes(locations, sorted, sex);
+  return popularObj(locations);
 }
+
+const options = { includeNames: true };
+console.log(animalMap(options));
 
 function schedule(dayName) {
   // seu código aqui
