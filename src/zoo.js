@@ -53,7 +53,7 @@ function animalCount(species) {
     return animals.reduce((accumulator, currentValue) => {
       accumulator[currentValue.name] = currentValue.residents.length;
       return accumulator;
-    });
+    }, {});
   }
   return animals.find(animal => animal.name === species).residents.length;
 }
