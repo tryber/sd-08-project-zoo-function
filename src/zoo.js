@@ -27,11 +27,12 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   // seu código aqui
-  return { ...personalInfo, ...associatedWith };
+  
 }
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
