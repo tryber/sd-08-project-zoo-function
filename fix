@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+clear
+
+#echo "Atenção! "
+#echo ""
+#echo "Feche seus arquivos que estão abertos e pressione [ENTER]"
+#read enter
+
+npx prettier --write ./debug.js
+npx eslint --fix ./debug.js
+npx stylelint --fix ./debug.js
