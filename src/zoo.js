@@ -58,8 +58,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   const ops = employees.find((gerente) => {
-    if (gerente.managers[0] === id)
-      return gerente;
+    if (gerente.managers[0] === id) return gerente;
   });
   if (ops !== undefined) {
     return true;
