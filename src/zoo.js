@@ -26,9 +26,9 @@ function employeeByName(employeeName) {
   if(!employeeName) return {};
   return employees.find(name => name.firstName === employeeName || name.lastName === employeeName);
 }
-console.log(employeeByName('Emery'))
+
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return { ...personalInfo, ...associatedWith }  
 }
 
 function isManager(id) {
