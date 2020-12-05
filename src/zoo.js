@@ -162,8 +162,8 @@ function increasePrices(percentage) {
   return data.prices;
 }
 
-function animalsIds(arrayOfIds) {
-  return arrayOfIds.map(element => animals.find(animal => animal.id === element).name);
+function animalsIds(array) {
+  return array.map(element => animals.find(animal => animal.id === element).name);
 }
 
 function employeeCoverage(idOrName) {
