@@ -14,17 +14,18 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.includes(animal.id));
-  // seu código aqui
 }
 
 function animalsOlderThan(animal, age) {
   return animals.find(element => element.name === animal)
   .residents.every(element => element.age > age);
-  // seu código aqui
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined) {
+    return {};
+  } 
+  return employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
