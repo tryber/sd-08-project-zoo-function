@@ -24,7 +24,7 @@ function animalsOlderThan(...args) {
 
 function employeeByName(args) {
   if (!args) return {};
-  return employees.find(name => name.firstName === args || name.lastName === args);
+  return employees.every(name => name.firstName === args || name.lastName === args);
 }
 
 function createEmployee(...args) {
@@ -32,7 +32,7 @@ function createEmployee(...args) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(manager => manager.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
