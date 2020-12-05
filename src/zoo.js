@@ -91,6 +91,27 @@ function animalNames() {
   }), {});
 }
 
+function genderNames(sex) {
+  const mappedNames = animals.map(element => ({
+    [element.location]: {
+      [element.name]: element.residents
+        .filter(being => being.sex === sex)
+        .map(being => being.name),
+    },
+  }));
+  return mappedNames.reduce(((acc, obj) => {
+    const key = Object.keys(obj)[0];
+    if (key in acc) {
+      acc[key].push(obj[key]);
+    } else {
+      acc[key] = [obj[key]];
+    }
+    return acc;
+  }), {});
+}
+
+console.log(animalMap({ includeNames: true, sex: 'female' }));
+
 function animalMap(options) {
   const { includeNames = false, sort = false, sex } = options || {};
 
@@ -103,7 +124,7 @@ function animalMap(options) {
   }
 
   if (includeNames && !sort && sex) {
-    return animalGenderNames();
+    return genderNames(sex);
   }
 
   if (includeNames && sort && sex) {
@@ -112,8 +133,6 @@ function animalMap(options) {
 
   return animalsByLocation();
 }
-
-console.log(animalMap({ includeNames: true }));
 
 function schedule(dayName) {
   // seu código aqui
