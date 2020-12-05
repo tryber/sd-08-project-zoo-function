@@ -19,7 +19,7 @@ function animalsByIds(...ids) {
 
 
 function animalsOlderThan(...ids) {
-  return animals.find(tipobicho=> tipobicho.name === ids[0])
+  return animals.find(tipobicho => tipobicho.name === ids[0])
   .residents.every(tipobicho => tipobicho.age >= 7);
 }
 
