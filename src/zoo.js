@@ -65,7 +65,7 @@ function entryCalculator(entrants) {
   }
   const entry = Object.keys(entrants);
   return entry.reduce(
-    (accumulator, individualValue) => accumulator + (entrants[individualValue] * prices[individualValue]), 0);
+    (acc, indValue) => acc + (entrants[indValue] * prices[indValue]), 0);
 }
 
 function animalMap(options) {
