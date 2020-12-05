@@ -32,8 +32,9 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const retorno = data.employees.map((elemento, associacao) => ({ elemento: personalInfo, associacao: associatedWith }))
-  return retorno
+  const retorno = data.employees
+  .map((elemento, associacao) => ({ elemento: personalInfo, associacao: associatedWith }));
+  return retorno;
 }
 
 function isManager(id) {
