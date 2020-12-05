@@ -40,18 +40,30 @@ function isManager(id) {
   return employees.some(e => e.managers.some(m => m === id));
 }
 
-function addEmployee(id, firstName, lastName, managers = [] , responsibleFor = []) {
+function addEmployee(
+  id,
+  firstName,
+  lastName,
+  managers = [],
+  responsibleFor = [],
+) {
   employees.push({
-    id, firstName, lastName, managers, responsibleFor });
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
 }
 
 function animalCount(species) {
   if (!species) {
-    const res = {};
-    animals.forEach(a => {
-      res[a.name] = a.residents.length;
-    });
-    return res;
+    return (
+      animals.reduce((acc, cur) => {
+        acc[cur.name] = cur.residents.length;
+        return acc;
+      }, {}) || {}
+    );
   }
   return animals.find(a => a.name === species).residents.length;
 }
