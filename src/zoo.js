@@ -41,6 +41,7 @@ function employeeByName(employeeName) {
     return ops;
   }
   if (ops2 !== undefined) return ops2;
+  return
 }
 
 function createEmployee(personalInfo, associatedWith) {
