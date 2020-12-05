@@ -9,8 +9,8 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals } = require("./data");
-const data = require("./data");
+const { animals } = require('./data');
+const data = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -27,7 +27,6 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   // seu código aqui
-  
 }
 
 function createEmployee(personalInfo, associatedWith) {
