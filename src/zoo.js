@@ -15,10 +15,13 @@ const data = require('./data');
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.find(id => id === animal.id));
 }
+console.log(animalsByIds());
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return animals.find(specie => specie.name)
+  .residents.every(resident => resident.age >= age);
 }
+console.log(animalsOlderThan('otters', 7));
 
 function employeeByName(employeeName) {
   // seu código aqui
