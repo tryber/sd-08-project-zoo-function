@@ -18,6 +18,13 @@ function animalsByIds(...ids) {
   return animalById;
 }
 
+const arrayAvrg = ((array) => {
+  let sum = 0;
+  array.forEach((item) => {
+    sum += item;
+  });
+  return sum;
+});
 function animalsOlderThan(animal, age) {
   const animalFound = animals.filter(eachAnimal => eachAnimal.name === animal);
   const arrayOfAge = animalFound[0].residents.map(resident => resident.age);
@@ -26,14 +33,6 @@ function animalsOlderThan(animal, age) {
     return true;
   } return false;
 }
-
-const arrayAvrg = ((array) => {
-  let sum = 0;
-  array.forEach((item) => {
-    sum += item;
-  });
-  return sum;
-});
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
@@ -61,8 +60,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const manager = employees.map(manager => manager.managers);
-  return manager.some((manageres, index) => manageres[index] === id)
+  const managerIds = employees.map(manager => manager.managers);
+  return managerIds.some((manageres, index) => manageres[index] === id);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
