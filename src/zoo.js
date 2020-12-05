@@ -10,28 +10,27 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+
 const { animals } = data;
 const { employees } = data;
 const { prices } = data;
 
 function animalsByIds(...ids) {
-  return animals.filter((animalInfo) => ids.includes(animalInfo.id));
+  return animals.filter(animalInfo => ids.includes(animalInfo.id));
 }
 
 function animalsOlderThan(animal, age) {
   return animals
-    .find((animalInfo) => animalInfo.name === animal)
-    .residents.every((resident) => resident.age > age);
+    .find(animalInfo => animalInfo.name === animal)
+    .residents.every(resident => resident.age > age);
 }
 
 function employeeByName(employeeName) {
   return (
     employees.find(
-      (employeeInfo) =>
+      employeeInfo =>
         employeeInfo.firstName === employeeName ||
-        employeeInfo.lastName === employeeName
-    ) || {}
-  );
+        employeeInfo.lastName === employeeName) || {});
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -39,7 +38,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.some((employeeInfo) => employeeInfo.managers.includes(id));
+  return employees.some(employeeInfo => employeeInfo.managers.includes(id));
 }
 
 function addEmployee(
@@ -47,17 +46,16 @@ function addEmployee(
   firstName,
   lastName,
   managers = [],
-  responsibleFor = []
+  responsibleFor = [],
 ) {
   employees.push(
-    createEmployee({ id, firstName, lastName }, { managers, responsibleFor })
+    createEmployee({ id, firstName, lastName, }, { managers, responsibleFor, })
   );
 }
 
 function animalCount(species) {
   const speciesCount = animals.find(
-    (animalInfo) => animalInfo.name === species
-  );
+    animalInfo => animalInfo.name === species);
 
   const animalListCount = animals.reduce((accumulator, animalInfo) => {
     accumulator[animalInfo.name] = animalInfo.residents.length;
