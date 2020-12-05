@@ -63,7 +63,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     firstName,
     lastName,
     managers,
-    responsibleFor
+    responsibleFor,
   };
   const employeeIncluded = data.employees.push(newEmployee);
   return employeeIncluded;
