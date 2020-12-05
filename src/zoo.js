@@ -27,8 +27,8 @@ function employeeByName(args) {
   return employees.find(name => name.firstName === args || name.lastName === args);
 }
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+function createEmployee(...args) {
+  return Object.assign(args[0], args[1]);
 }
 
 function isManager(id) {
