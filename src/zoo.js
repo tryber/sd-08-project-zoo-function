@@ -110,25 +110,32 @@ function genderNames(sex) {
   }), {});
 }
 
-console.log(animalMap({ includeNames: true, sex: 'female' }));
+function animalSort(nameList) {
+  const keys = Object.keys(nameList);
+  keys.forEach(key => (nameList[key]).forEach((obj) => {
+    const subKey = Object.keys(obj)[0];
+    obj[subKey].sort();
+  }));
+  return nameList;
+}
 
 function animalMap(options) {
-  const { includeNames = false, sort = false, sex } = options || {};
+  const { includeNames = false, sorted = false, sex } = options || {};
 
-  if (includeNames && !sort && !sex) {
+  if (includeNames && !sorted && !sex) {
     return animalNames();
   }
 
-  if (includeNames && sort && !sex) {
-    return animalSortedNames();
+  if (includeNames && sorted && !sex) {
+    return animalSort(animalNames());
   }
 
-  if (includeNames && !sort && sex) {
+  if (includeNames && !sorted && sex) {
     return genderNames(sex);
   }
 
-  if (includeNames && sort && sex) {
-    return animalGenderSortedNames();
+  if (includeNames && sorted && sex) {
+    return animalSort(genderNames(sex));
   }
 
   return animalsByLocation();
