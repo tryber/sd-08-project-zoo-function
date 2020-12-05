@@ -26,11 +26,14 @@ const createEmployee = (info, awith) => Object.assign({}, info, awith);
 const isManager = id =>
   employees.some(element => element.id === id && element.managers.length === 1);
 
-console.log(isManager('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
-
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-}
+const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) =>
+  employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
 
 function animalCount(species) {
   // seu código aqui
