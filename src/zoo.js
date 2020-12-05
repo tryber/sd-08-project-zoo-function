@@ -38,7 +38,7 @@ function isManager(id) {
   return employees.filter(employee => employee.managers.includes(id)).length > 0;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   return employees.push({
     id,
     firstName,
@@ -46,7 +46,6 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
     managers,
     responsibleFor,
   });
-}
 
 function animalCount(species) {
   // seu código aqui
