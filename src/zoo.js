@@ -153,6 +153,21 @@ function entryCalculator(entrants) {
   // Retorna 0 se nenhum argumento for passado
   // Retorna 0 se um objeto vazio for passado
   // Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
+  if (typeof entrants !== 'object') { return 0; }
+  if (entrants === {}) { return 0; }
+  let received = 0;
+  // const multipleEntries(a,b) => {
+  //   received += a * b;
+  //   console.log(`${received} =  ${a} x ${b}`);
+  // }
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  // const zooPrices = data.prices;
+  // const {priceAdult, priceChild, priceSenior} = zooPrices;
+  received += data.prices.Adult * Adult;
+  received += data.prices.Child * Child;
+  received += data.prices.Senior * Senior;
+  // multipleEntries(...entrants, ...data.prices);
+  return received;
 }
 
 function animalMap(options) {
