@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, hours, prices } = require('./data');
+const { animals } = require('./data');
 
 function animalsByIds(...ids) {
   if (!ids) return [];
