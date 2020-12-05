@@ -73,7 +73,7 @@ function entryCalculator(entrants) {
   if(entrants.Child !== undefined) conta+= entrants.Child * prices.Child
   if(entrants.Senior!== undefined) conta+= entrants.Senior * prices.Senior
 
-  return conta;
+  return conta
 }
 function animalMap(options) {
   // seu código aqui
