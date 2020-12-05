@@ -110,36 +110,36 @@ function increasePrices(percentage) {
 }
 
 const getAnimalsId = (animalCoveredIds, animalCoveredNames) => {
-  animalCoveredIds.forEach(animalId => {
-  let animalCoveredInfos = animals.find(animal => animal.id === animalId);
+  animalCoveredIds.forEach((animalId) => {
+    const animalCoveredInfos = animals.find(animal => animal.id === animalId);
     animalCoveredNames.push(animalCoveredInfos.name);
   });
-}
+};
 
 function employeeCoverage(idOrName) {
-    let employeeFullName = '';
-    let animalCoveredNames = [];
+  let employeeFullName = '';
+  let animalCoveredNames = [];
   if (idOrName === undefined) {
     const noParam = {};
-    employees.forEach(employee => {
+    employees.forEach((employee) => {
       animalCoveredNames = [];
       employeeFullName = `${employee.firstName} ${employee.lastName}`;
       const animalCoveredIds = employee.responsibleFor;
       animalCoveredIds.forEach((animalId) => {
-        let animalCoveredInfos = animals.find(animal => animal.id === animalId);
+        const animalCoveredInfos = animals.find(animal => animal.id === animalId);
         animalCoveredNames.push(animalCoveredInfos.name);
         noParam[employeeFullName] = animalCoveredNames;
-     });
+      });
     });
     return noParam;
   }
-  const employeeByIdOrName = employees.find(employee => employee.id === idOrName || 
+  const employeeByIdOrName = employees.find(employee => employee.id === idOrName ||
   employee.firstName === idOrName || employee.lastName === idOrName);
   employeeFullName = `${employeeByIdOrName.firstName} ${employeeByIdOrName.lastName}`;
   const animalCoveredIds = employeeByIdOrName.responsibleFor;
   getAnimalsId(animalCoveredIds, animalCoveredNames);
-  return {[employeeFullName]: animalCoveredNames};
-  }
+  return { [employeeFullName]: animalCoveredNames };
+}
 
 console.log(employeeCoverage('Emery'));
 
