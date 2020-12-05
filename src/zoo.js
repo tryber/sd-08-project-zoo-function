@@ -83,9 +83,30 @@ function animalMap(options = {}) {
   return animalsMapObj;
 }
 
-function schedule(dayName) {
-  // seu código aqui
+const ampm = (hour) => {
+  if (hour % 24 === 0) return '12am';
+  return (hour < 12 ? `${hour}am` : `${(12 * (hour === 12)) + (hour % 12)}pm`);
+};
+
+function schedule(dayName = 'everyday') {
+  const days = Object.keys(data.hours);
+
+  const scheduleFormated = days.map((day) => {
+    const { open, close } = data.hours[day];
+    if (open === close) return 'CLOSED';
+    return `Open from ${ampm(open)} until ${ampm(close)}`;
+  });
+
+  const scheduleObj = scheduleFormated.reduce((accumulator, scheduleDay, index) => {
+    if (dayName === days[index] || dayName === 'everyday') {
+      return { ...accumulator, [days[index]]: scheduleDay };
+    }
+    return accumulator;
+  }, {});
+
+  return scheduleObj;
 }
+
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
