@@ -54,7 +54,10 @@ const animalCount = species => {
 const entryCalculator = entrants => {
   if (!entrants || entrants === {}) return 0;
   const { Adult = 0, Senior = 0, Child = 0 } = entrants;
-  return prices.Adult * Adult + prices.Senior * Senior + prices.Child * Child;
+  const price1 = prices.Adult * Adult
+  const price2 =prices.Senior * Senior
+  const price3 =prices.Child * Child
+  return price1 + price2 + price3;
 };
 
 function animalMap(options) {
