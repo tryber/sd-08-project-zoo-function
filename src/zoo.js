@@ -80,11 +80,15 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   const arrayPreco = Object.values(data.prices);
-  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+
   let precoTotal = 0;
-  if (entrants === '' || entrants === {}) {
+
+  if (!entrants) {
     precoTotal = 0;
-  } precoTotal = (Adult * arrayPreco[0]) + (Child * arrayPreco[2]) + (Senior * arrayPreco[1]);
+    return precoTotal;
+  }
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  precoTotal = (Adult * arrayPreco[0]) + (Child * arrayPreco[2]) + (Senior * arrayPreco[1]);
 
   return precoTotal;
 }
