@@ -52,18 +52,22 @@ function schedule(dayName) {
   // seu código aqui
 }
 
-function oldestFromFirstSpecies(id) {
+const oldestFromFirstSpecies = id => {
   const animalId = employees.find(({ id: idKey }) => idKey === id).responsibleFor;
   const { residents } = animals.find(({ id: idKey }) => idKey === animalId[0]);
   const { name, sex, age } = residents.reduce((accAnimal, currAnimal) =>
     accAnimal.age > currAnimal.age ? accAnimal : currAnimal
   );
   return [name, sex, age];
-}
+};
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+const increasePrices = percentage => {
+  const discount = percentage / 100 + 1;
+  prices.Adult = Math.round(prices.Adult * 100 * discount) / 100;
+  prices.Child = Math.round(prices.Child * 100 * discount) / 100;
+  prices.Senior = Math.round(prices.Senior * 100 * discount) / 100;
+  return prices;
+};
 
 function employeeCoverage(idOrName) {
   // seu código aqui
