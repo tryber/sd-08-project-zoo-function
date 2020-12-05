@@ -65,20 +65,13 @@ function animalCount(species) {
   return animals.find(a => a.name === species).residents.length;
 }
 
-function entryCalculator(entrants) {
-  if (!entrants) {
-    return 0;
-  }
-  const list = Object.entries(entrants);
-  if (list.length === 0) {
-    return 0;
-  }
+function entryCalculator(entrants = {}) {
   let sum = 0;
-  list.forEach(e => {
+  Object.entries(entrants).forEach(e => {
     const [type, num] = e;
     sum += prices[type] * num;
   });
-  return sum;
+  return sum || 0;
 }
 
 const parseOptions = op => {
