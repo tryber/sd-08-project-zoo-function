@@ -8,7 +8,6 @@ eslint no-unused-vars: [
   }
 ]
 */
-
 const data = require('./data');
 
 const { animals, employees, prices } = data;
@@ -78,8 +77,7 @@ function entryCalculator(entrants) {
   }
   return total;
 }
-
-function defaultMap(options = { includeNames: false, sorted: false, sex: undefined }) {
+function mapWithOutIncludeNames() {
   const output = animals.reduce((objMapAnimals, { name, location }) => {
     if (objMapAnimals[location] === undefined) objMapAnimals[location] = [];
     objMapAnimals[location].push(name);
@@ -88,60 +86,49 @@ function defaultMap(options = { includeNames: false, sorted: false, sex: undefin
   return output;
 }
 
-function includeNamesMap(options = { includeNames: false, sorted: false, sex: undefined }) {
-  const output = animals.reduce((objMapAnimals, { name, location, residents }) => {
+function sortAnimalsResidentsCallback(a, b) {
+  if (a.name > b.name) {
+    return 1;
+  }
+  if (a.name < b.name) {
+    return -1;
+  }
+  return 0;
+}
+function goSortNameIfSorted(sorted, residents) {
+  const sortingResidents = residents.slice();
+  if (sorted === undefined) return residents;
+  const output = sortingResidents.sort(sortAnimalsResidentsCallback);
+  return output;
+}
+function filterSexAnimalResidents(sex, residents) {
+  let output = residents;
+  if (sex) output = residents.filter(resident => resident.sex === sex);
+  return output;
+}
+function goFilterSexIfFiltered(sex, name, residents) {
+  const output = {};
+  output[name] = filterSexAnimalResidents(sex, residents)
+    .map(resident => resident.name);
+  return output;
+}
+function mapWithIncludeNames({ sorted, sex }) {
+  const output = animals.reduce((objMapAnimals, { location, residents, name }) => {
     if (objMapAnimals[location] === undefined) objMapAnimals[location] = [];
-    const newAnimal = {};
-    newAnimal[name] = residents
-      .map(resident => resident.name);
-    objMapAnimals[location].push(newAnimal);
+    const animalsNameIfSorted = goSortNameIfSorted(sorted, residents);
+    const animalsNameIfFiltered = goFilterSexIfFiltered(sex, name, animalsNameIfSorted);
+    const animalsNameByLocationFinal = animalsNameIfFiltered;
+    objMapAnimals[location].push(animalsNameByLocationFinal);
     return objMapAnimals;
   }, {});
   return output;
 }
 
-function sortedTrueMap() {
-  const output = animals.reduce((objMapAnimals, { name, location, residents }) => {
-    if (objMapAnimals[location] === undefined) objMapAnimals[location] = [];
-    const newAnimal = {};
-    newAnimal[name] = residents
-      .map(resident => resident.name)
-      .sort();
-    objMapAnimals[location].push(newAnimal);
-    return objMapAnimals;
-  }, {});
-  return output;
+function animalMap(options = { includeNames: false, sorted: false, sex: '' }) {
+  const { includeNames, ...okInclude } = options;
+  if (includeNames) return mapWithIncludeNames(okInclude);
+  return mapWithOutIncludeNames();
 }
-
-function animalSexMap(options = { includeNames: false, sorted: false, sex: undefined }) {
-  const output = animals.reduce((objMapAnimals, { name, location, residents }) => {
-    if (objMapAnimals[location] === undefined) objMapAnimals[location] = [];
-    const newAnimal = {};
-    newAnimal[name] = residents
-      .filter(resident => resident.sex === options.sex)
-      .map(resident => resident.name);
-    objMapAnimals[location].push(newAnimal);
-    return objMapAnimals;
-  }, {});
-  return output;
-}
-
-function animalMap(options) {
-  const output = animals.reduce((objMapAnimals, { name, location, residents }) => {
-    if (objMapAnimals[location] === undefined) objMapAnimals[location] = [];
-    // seu código aqui
-    // includeNames -> includeNames: true
-    const newAnimal = {};
-    newAnimal[name] = residents
-      .filter(resident => resident.sex === options.sex) // -> sex: male || female
-      .map(resident => resident.name)
-      .sort(); // -> sorted: true
-    objMapAnimals[location].push(newAnimal);
-    return objMapAnimals;
-  }, {});
-  return output;
-}
-console.log(animalMap({sex: 'male'}));
 
 function schedule(dayName) {
   // seu código aqui
