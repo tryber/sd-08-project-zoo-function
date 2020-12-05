@@ -49,8 +49,7 @@ function addEmployee(
   responsibleFor = [],
 ) {
   employees.push(
-    createEmployee({ id, firstName, lastName, }, { managers, responsibleFor, })
-  );
+    createEmployee({ id, firstName, lastName }, { managers, responsibleFor }));
 }
 
 function animalCount(species) {
