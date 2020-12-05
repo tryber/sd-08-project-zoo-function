@@ -25,8 +25,7 @@ function animalsOlderThan(...ids) {
 
 function employeeByName(ids) {
   if (!ids) return {};
-  return employees.find(funcionario => {
-    funcionario.firstName === ids || funcionario.lastName === ids});
+  return employees.find(func => func.firstName === ids || func.lastName === ids);
 }
 
 function createEmployee(personalInfo, associatedWith) {
