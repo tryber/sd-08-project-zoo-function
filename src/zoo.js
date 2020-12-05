@@ -95,12 +95,15 @@ function isManager(id) {
   // Deve retornar um valor booleano
   // O que será avaliado
   // Testa se o id passado é de um gerente
-  let isManager = false;
-  const result = data.employees.filter((employee) => employee.managers[0] === id || employee.managers[1] === id);
+  let isManage = false;
+  const result = data.employees.filter((employee) => {
+    const results = employee.managers[0] === id || employee.managers[1] === id;
+    return results;
+  });
   // data.employees.forEach((employee) => {console.log(employee.managers)});
-  if (result.length >= 1) { isManager = true; }
+  if (result.length >= 1) { isManage = true; }
   // console.log(` string de resultado   ${result} e tem como resoltado ${isManager}`);
-  return isManager
+  return isManage;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
