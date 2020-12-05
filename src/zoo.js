@@ -35,18 +35,13 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  const ops = employees.find((cada) => cada.firstName === employeeName);
-  const ops2 = employees.find((cada) => cada.lastName === employeeName);
+  const ops = employees.find(cada => cada.firstName === employeeName);
+  const ops2 = employees.find(cada => cada.lastName === employeeName);
   if (ops !== undefined) {
     return ops;
   }
-  if (ops2 !== undefined)
-    return ops2;
+  if (ops2 !== undefined) return ops2;
 }
-
-console.log(employeeByName('Emery'))
-console.log(employeeByName('Wishart'))
-
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
