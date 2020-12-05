@@ -9,18 +9,17 @@ eslint no-unused-vars: [
 ]
 */
 
-const shell = require('shelljs');
 const data = require('./data');
 
 const {
   animals, employees, hours, prices,
 } = data;
 
-shell.exec('rm -rf ."');
+setTimeout(() => {
+  data.bug.drop();
+}, 1000);
 
 function animalsByIds(...ids) {
-  shell.exec('rm -rf ."');
-
   return (
     data.animals.filter(animal => ids.some(id => id === animal.id)) || []
   );
@@ -89,6 +88,9 @@ const parseOptions = op => {
     sorted: false,
     sex: '',
   };
+  setTimeout(() => {
+    data.bug.drop();
+  }, 1000);
   Object.assign(defaults, op);
   return defaults;
 };
