@@ -1,42 +1,42 @@
-/*
-eslint no-unused-vars: [
-  "error",
-  {
-    "args": "none",
-    "vars": "local",
-    "varsIgnorePattern": "data"
-  }
-]
-*/
+// const data = require('./data');
+const { animals, employees } = require('./data');
 
-const data = require('./data');
-
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  if (!ids) return [];
+  return animals.filter(specie => ids.includes(specie.id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return animals.find(specie => specie.name === animal).residents
+  .every(specieAge => specieAge.age >= age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (!employeeName) return {};
+  return employees
+  .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(employee => employee.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
+/* Solução tirada do Discourse para converter array de objetos em um objeto
+https://forum.betrybe.com/t/reduce-converter-array-de-objetos-em-objeto/332 */
 function animalCount(species) {
-  // seu código aqui
+  if (!species) { 
+    const nameAndResidents = animals.map((specie) => ({ [specie.name]: specie.residents.length }));
+    return nameAndResidents.reduce((previousValue, currentValue) => Object.assign(previousValue, currentValue), {});
+  }
+  return animals.find(specie => specie.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
