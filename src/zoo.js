@@ -103,24 +103,23 @@ function animalMap(options = { includeNames: false, sorted: false, sex: '' }) {
     NW: [],
     SE: [],
     SW: [],
-  }
-  // const aMapKeys = Object.keys(aMap);
+  };
+  const aMapKeys = Object.keys(aMap);
   animals.forEach((anim) => {
-    for (let index in aMap) {
-      if (anim.location === index) {
-        aMap[index].push(anim.name);
+    aMapKeys.forEach((loc) => {
+      if (anim.location === loc) {
+        aMap[loc].push(anim.name);
       }
-    }
+    });
   });
   if (includeNames === true) {
-    for (let index in aMap) {
-
-      const anComNomes = aMap[index].map(element => {
+    aMapKeys.forEach((loc) => {
+      const anComNomes = aMap[loc].map((element) => {
         const residentes = animals.find(anim => anim.name === element).residents;
-        let resName = [];
-        residentes.forEach(resid => {
+        const resName = [];
+        residentes.forEach((resid) => {
           if (sex !== undefined) {
-            if (resid.sex === sex)  {
+            if (resid.sex === sex) {
               resName.push(resid.name);
             }
           } else {
@@ -128,19 +127,18 @@ function animalMap(options = { includeNames: false, sorted: false, sex: '' }) {
           }
         });
         if (sorted === true) {
-          return  { [element]: resName.sort() }
+          return { [element]: resName.sort() };
         }
-        return  { [element]: resName }
+        return { [element]: resName };
       });
-      aMap[index] = anComNomes;
-    }
+      aMap[loc] = anComNomes;
+    });
   }
-
   //   sex: \'female\'` ou `sex: \'male\'
   // sorted: true
   return aMap;
 }
-console.log(animalMap({includeNames: true}));
+console.log(animalMap({ includeNames: true }))
 
 function schedule(dayName) {
   // seu código aqui
