@@ -14,26 +14,22 @@ const data = require('./data');
 const { animals, employees } = require('./data');
 
 function animalsByIds(...ids) {
-  // seu código aqui
   return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animalName, age) {
-  // seu código aqui
   return animals
     .find(animal => animal.name === animalName)
     .residents.every(animal => animal.age >= age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
   if (employeeName === undefined) return {};
   return employees
     .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
   return {
     ...personalInfo,
     ...associatedWith,
@@ -41,7 +37,6 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
   return employees.some(employee => employee.managers.includes(id));
 }
 
