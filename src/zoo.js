@@ -8,8 +8,6 @@ eslint no-unused-vars: [
   }
 ]
 */
-
-const { hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -97,7 +95,7 @@ function entryCalculator(entrants) {
   }
   return Object.keys(entrants).reduce(
     (previousValue, currentValue) =>
-      previousValue + data.prices[currentValue] * entrants[currentValue],
+      previousValue + (data.prices[currentValue] * entrants[currentValue]),
     0,
   );
 }
@@ -128,14 +126,14 @@ function closeAmPm(closeTime) {
 }
 
 function sayTheTimeOpen(day) {
-  let open = data.hours[day].open;
-  let close = data.hours[day].close;
+  const open = data.hours[day].open;
+  const close = data.hours[day].close;
   let timeOpen = '';
   if (isClosed(open, close)) {
     timeOpen = 'CLOSED';
   } else {
     timeOpen = `Open from ${openAmPm(open)} until `;
-    timeOpen = timeOpen + `${closeAmPm(close)}`;
+    timeOpen += `${closeAmPm(close)}`;
   }
   return timeOpen;
 }
@@ -144,7 +142,7 @@ function schedule(dayName) {
   // parte de retornar todos quando passa sem parametro está pronto praticamente
   const returnObj = {};
   if (dayName === undefined) {
-    Object.keys(data.hours).forEach(day => {
+    Object.keys(data.hours).forEach((day) => {
       const timeInString = sayTheTimeOpen(day);
       returnObj[day] = timeInString;
     });
