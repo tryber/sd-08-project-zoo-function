@@ -172,9 +172,9 @@ function increasePrices(percentage) {
 
 function employeeCoverageWithNoParameter() {
   const objReturn = {};
-  data.employees.forEach(employee => {
+  data.employees.forEach((employee) => {
     const fullNameEmployee = `${employee.firstName} ${employee.lastName}`;
-    const responsibleFor = employee.responsibleFor.map(animalId => {
+    const responsibleFor = employee.responsibleFor.map((animalId) => {
       const animalNameSelected = data.animals.find(
         animal => animal.id === animalId,
       ).name;
