@@ -28,8 +28,7 @@ const employeeByName = (employeeName) => {
 };
 
 
-const createEmployee = (personalInfo, associatedWith) => ({...personalInfo, ...associatedWith});
-
+const createEmployee = (personalInfo, associatedWith) => ( {...personalInfo, ...associatedWith });
 
 
 function isManager(id) {
