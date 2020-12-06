@@ -87,7 +87,34 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  //   A partir da quantidade de visitantes e a faixa etária de cada um, esta função é responsável por retornar o preço total a ser cobrado
+  const prices = data.prices;
+  let total;
+  let adults;
+  let children;
+  let seniors;
+  if (!entrants) {
+    total = 0
+  } else if (entrants) {
+    const {Adult, Child, Senior} = entrants;
+    if (!Adult) {
+      adults = 0
+    } else if (Adult) {
+      adults = Adult * prices.Adult
+    };
+    if (!Child) {
+      children = 0
+    } else if (Child) {
+      children = Child * prices.Child
+    };
+    if (!Senior) {
+      seniors = 0
+    } else if (Senior) {
+      seniors = Senior * prices.Senior
+    };
+    total = adults + children + seniors
+  };
+  return total;
 }
 
 function animalMap(options) {
