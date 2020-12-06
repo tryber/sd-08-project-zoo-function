@@ -9,7 +9,6 @@ eslint no-unused-vars: [
 ]
 */
 
-const { employees } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -94,7 +93,15 @@ function entryCalculator(entrants) {
   return precoTotal;
 }
 
-function animalMap() {
+function animalMap(options) {
+  data.animals.reduce((acc, animal) => {
+    const { name, location } = animal;
+    if (!acc[location]) {
+      acc[location] = [];
+    }
+    acc[location].push(name);
+    return acc;
+  }, {})
 }
 
 
@@ -128,18 +135,18 @@ function increasePrices(percentage) {
     (data.prices[key] = Math.round(data.prices[key] * (1 + (percentage / 100)) * 100) / 100));
 }
 
-function  employeeById(id){
+function employeeById(id) {
   return data.employees.find(employee => employee.id === id);
 }
 function employeeCoverage(idOrName) {
   const retorno = data.employees.reduce((acc, employee) => {
     const { firstName, lastName, responsibleFor } = employee;
     acc[`${firstName} ${lastName}`] = responsibleFor.map(
-      (id) => animalsByIds(id)[0].name
+      id => animalsByIds(id)[0].name,
     );
     return acc;
   }, {});
-  if (typeof idOrName === "string" && idOrName.length !== 0) {
+  if (typeof idOrName === 'string' && idOrName.length !== 0) {
     const empregado = employeeByName(idOrName) || employeeById(idOrName);
     const { firstName, lastName } = empregado;
     const name = `${firstName} ${lastName}`;
