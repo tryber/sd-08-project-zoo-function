@@ -96,14 +96,14 @@ function schedule(dayName) {
 // console.log(schedule('Tuesday'))
 
 function oldestFromFirstSpecies(id) {
-const recipient = [];
-const workers = employees.find(element => element.id === id).responsibleFor;
-const finder = animals.filter(element => element.id === workers[0]);
-const resi =  finder[0].residents;
-const ager = resi.sort((a,b) => b.age - a.age);
-const oldest = ager[0];
-recipient.push(oldest.name, oldest.sex, oldest.age);
-return recipient;
+  const recipient = [];
+  const workers = employees.find(element => element.id === id).responsibleFor;
+  const finder = animals.filter(element => element.id === workers[0]);
+  const resi = finder[0].residents;
+  const ager = resi.sort((a, b) => b.age - a.age);
+  const oldest = ager[0];
+  recipient.push(oldest.name, oldest.sex, oldest.age);
+  return recipient;
 }
 function increasePrices(percentage) {
   // seu código aqui
