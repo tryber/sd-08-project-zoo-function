@@ -220,7 +220,6 @@ function employeeCoverage(idOrName) {
   });
   return empCov;
 }
-// console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
 
 module.exports = {
   entryCalculator,
