@@ -66,8 +66,72 @@ function entryCalculator(entrants) {
   return entries.reduce((total, each) => total + (entrants[each] * prices[each]), 0);
 }
 
+function reduce(locations) {
+  const result = locations.reduce((acc, cur) => {
+    const key = Object.keys(cur);
+    if (!acc[key]) {
+      acc[key] = [cur[key]];
+    } else {
+      acc[key].push(cur[key]);
+    }
+    return acc;
+  }, {});
+  return result;
+}
+
+function animalsByLocation() {
+  const locations = animals.map(animal => ({
+    [animal.location]: animal.name,
+  }));
+  const result = reduce(locations);
+  return result;
+}
+
+function allAnimals() {
+  const locations = animals.map(animal => ({
+    [animal.location]: { [animal.name]: animal.residents.map(resident => resident.name) },
+  }));
+  const result = reduce(locations);
+  return result;
+}
+
+function sortNames(animalsList) {
+  const regions = Object.keys(animalsList);
+  regions.forEach(region => animalsList[region].forEach((species) => {
+    const type = Object.keys(species)[0];
+    species[type].sort();
+  }));
+  return animalsList;
+}
+
+function filterBySex(sex) {
+  const locations = animals.map(animal => ({
+    [animal.location]: {
+      [animal.name]: animal.residents
+        .filter(resident => resident.sex === sex)
+        .map(resident => resident.name),
+    },
+  }));
+  const result = reduce(locations);
+  return result;
+}
+
 function animalMap(options) {
-  // seu código aqui
+  const { includeNames = false, sorted = false, sex } = options || {};
+  let result = animalsByLocation();
+  if (includeNames && !sorted && !sex) {
+    result = allAnimals();
+  }
+  if (includeNames && sorted && !sex) {
+    result = 'a'/* sortNames(allAnimals()) */;
+  }
+  if (includeNames && !sorted && sex) {
+    result = filterBySex(sex);
+  }
+  if (includeNames && sorted && sex) {
+    result = sortNames(filterBySex(sex));
+  }
+  return result;
 }
 
 function schedule(dayName) {
@@ -107,7 +171,6 @@ function increasePrices(percentage) {
     prices[price] = Math.round(prices[price] * (1 + (percentage / 100)) * 100) / 100;
   });
 }
-
 
 function getAnimalsById(animalIds) {
   return animalIds.map(id => animals.find(animal => animal.id === id).name);
