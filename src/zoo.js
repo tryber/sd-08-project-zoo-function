@@ -57,7 +57,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  
 }
 
 function entryCalculator(entrants) {
