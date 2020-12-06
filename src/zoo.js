@@ -17,15 +17,13 @@ const animalsByIds = (...ids) => animals.filter(animal => ids.includes(animal.id
 const animalsOlderThan = (animal, age) => animals.find(specie => specie.name === animal)
   .residents.every((specie => specie.age >= age));
 
-const employeeByName = employeeName => employees.find(employee =>
+const employeeByName = employeeName => employees.some(employee =>
   employee.firstName === employeeName || employee.lastName === employeeName) || {};
 
 const createEmployee = (personalInfo, associatedWith) => Object
-  .assign(personalInfo, associatedWith);
+  .assign({}, personalInfo, associatedWith);
 
-function isManager(id) {
-  // seu código aqui
-}
+const isManager = id => employees.some(employee => employee.managers.includes(id));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
