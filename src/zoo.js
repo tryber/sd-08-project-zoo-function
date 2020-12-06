@@ -190,7 +190,7 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   const empCov = employees.reduce((acc, element) => {
     const empResp = element.responsibleFor;
-    const aniFind = empResp.map((elem) => animals.find(animal => animal.id === elem).name);
+    const aniFind = empResp.map(elem => animals.find(animal => animal.id === elem).name);
     acc[`${element.firstName} ${element.lastName}`] = aniFind;
     return acc;
   }, {});
