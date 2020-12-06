@@ -20,8 +20,8 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   // seu código aqui
   const idadeMinima = animals
-  .find(({ name }) => (name === animal))
-  .residents.every(animalAge => animalAge.age >= age);
+    .find(({ name }) => (name === animal))
+    .residents.every(animalAge => animalAge.age >= age);
 
   return idadeMinima;
 }
@@ -29,8 +29,8 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   // seu código aqui
   return !employeeName ? {} : employees
-  .filter(({ firstName, lastName }) =>
-  employeeName.includes(firstName) || employeeName.includes(lastName))[0];
+    .filter(({ firstName, lastName }) =>
+      employeeName.includes(firstName) || employeeName.includes(lastName))[0];
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -41,7 +41,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   // seu código aqui
   return employees.filter(idManager => idManager.managers[0] === id)
-  .some(isTrue => isTrue.managers);
+    .some(isTrue => isTrue.managers);
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -52,9 +52,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species = 'all') {
   // seu código aqui
   const countAll = Object.fromEntries(animals
-  .map(({ name, residents }) => [name, residents.length]));
+    .map(({ name, residents }) => [name, residents.length]));
   species = species === 'all' ? countAll :
-  animals.filter(especie => especie.name === species)[0].residents.length;
+    animals.filter(especie => especie.name === species)[0].residents.length;
   return species;
 }
 
@@ -62,14 +62,14 @@ function entryCalculator(entrants) {
   // seu código aqui
   return !entrants || Object.keys(entrants).length === 0 ? 0 : Object.keys(entrants)
     .reduce((acc, curr) => acc +
-    (entrants[curr] * prices[curr]), 0);
+      (entrants[curr] * prices[curr]), 0);
 }
 
 const popularObj = (locations) => {
   const obj = {};
   locations.forEach((location) => {
     obj[location] = animals.filter(lo => lo.location === location)
-    .map(animal => animal.name);
+      .map(animal => animal.name);
   });
   return obj;
 };
@@ -79,18 +79,18 @@ const porpularObjIncludes = (locations, sorted, sex) => {
   locations.forEach((lo) => {
     const name =
       animals
-    .filter(local => local.location === lo)
-      .map((animal) => {
-        const imprimeChaveNome = animal.name;
-        const imprimeValorNome = animal.residents
-        .filter((residentFil) => {
-          const ambigousSex = sex;
-          return ambigousSex ? residentFil.sex === sex : 1;
-        })
-        .map(resident => resident.name);
-        if (sorted) imprimeValorNome.sort();
-        return { [imprimeChaveNome]: imprimeValorNome };
-      });
+        .filter(local => local.location === lo)
+        .map((animal) => {
+          const imprimeChaveNome = animal.name;
+          const imprimeValorNome = animal.residents
+            .filter((residentFil) => {
+              const ambigousSex = sex;
+              return ambigousSex ? residentFil.sex === sex : 1;
+            })
+            .map(resident => resident.name);
+          if (sorted) imprimeValorNome.sort();
+          return { [imprimeChaveNome]: imprimeValorNome };
+        });
     obj[lo] = name;
   });
   return obj;
@@ -123,12 +123,28 @@ function increasePrices(percentage) {
     prices[nome] = Math.round((valor * ((percentage / 100) + 1)) * 100) / 100;
   });
 }
-
+const mapAnimal = nome => nome.responsibleFor.map(idA => animals.find(an => an.id === idA).name);
+const employeeCoverageOff = () => {
+  const obj = {};
+  employees.forEach((nome) => {
+    const fullName = `${nome.firstName} ${nome.lastName}`;
+    obj[fullName] = mapAnimal(nome);
+  });
+  return obj;
+};
 
 function employeeCoverage(idOrName) {
+  if (!idOrName) return employeeCoverageOff();
   // seu código aqui
-
+  const pessoaColab = employees
+  .find((colab) => {
+    const { id, firstName, lastName } = colab;
+    return (id === idOrName || firstName === idOrName || lastName === idOrName);
+  });
+  const nomeColab = `${pessoaColab.firstName} ${pessoaColab.lastName}`;
+  return { [nomeColab]: mapAnimal(pessoaColab) };
 }
+
 
 module.exports = {
   entryCalculator,
