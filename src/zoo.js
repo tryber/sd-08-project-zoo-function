@@ -60,11 +60,12 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
     managers,
     responsibleFor,
   };
-  const checkEmptyParams = () => {
-    !managers ? newEmployee.managers = [] : newEmployee.managers;
-    !responsibleFor ? newEmployee.responsibleFor = [] : newEmployee.responsibleFor;
+  if (!managers) {
+    newEmployee.managers = [];
+  }; 
+  if (!responsibleFor) {
+    newEmployee.responsibleFor = [];
   };
-  checkEmptyParams();
   zooEmployees.push(newEmployee);
 }
 
