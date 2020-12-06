@@ -101,10 +101,13 @@ function oldestFromFirstSpecies(id) {
   const { name, sex, age } = list[0];
   return [name, sex, age];
 }
-// ids.forEach(newId => emptArr.push(animals.find(animal => animal.id === newId)));
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const preco = data.prices;
+  const precoKey = Object.keys(preco);
+  precoKey.forEach((value) => {
+    preco[value] = Math.round((((preco[value] * (percentage / 100)) + preco[value]) * 100)) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
