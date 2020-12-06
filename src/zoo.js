@@ -17,7 +17,7 @@ function animalsByIds(...ids) {
   if (ids === undefined) {
     return [];
   }
-  return animals.filter(animal => animal.id === ids);
+  return animals.filter(elem => elem.id = ids);  
 }
 
 
