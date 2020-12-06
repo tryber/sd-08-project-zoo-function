@@ -93,8 +93,37 @@ function entryCalculator(entrants) {
   ), 0);
 }
 
-function animalMap(options) {
-  // seu código aqui
+function getResidentsNames(animalName, sorted, sex) {
+  let result = animals.find(animal => animal.name === animalName);
+  result = result.residents;
+  if (typeof sex === 'string') {
+    result = result.filter(animal => animal.sex === sex);
+  }
+  result = result.map(resident => resident.name);
+  if (sorted) result.sort();
+  return { [animalName]: result };
+}
+
+function animalMap(options = {}) {
+  const { includeNames = false, sorted = false, sex } = options;
+
+  let result = animals.reduce((acc, animal) => {
+    const { name, location } = animal;
+    if (!acc[location]) {
+      acc[location] = [];
+    }
+    acc[location].push(name);
+    return acc;
+  }, {});
+
+  if (includeNames) {
+    result = Object.entries(result).reduce((acc, [key, animalName]) => {
+      acc[key] = animalName.map(name => getResidentsNames(name, sorted, sex));
+      return acc;
+    }, {});
+  }
+
+  return result;
 }
 
 function schedule(dayName) {
@@ -145,8 +174,6 @@ function employeeCoverage(idOrName) {
   }
   return result;
 }
-
-console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
