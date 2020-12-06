@@ -94,7 +94,7 @@ function entryCalculator(entrants) {
   return precoTotal;
 }
 
-function animalMap(options = {}) {  
+function animalMap() {
 }
 
 
