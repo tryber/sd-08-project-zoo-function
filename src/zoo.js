@@ -32,9 +32,20 @@ function animalsByIds(...ids) {
   return returnArray;
 }
 
-
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  let retorno = true;
+  const passedAge = age;
+  animals.forEach((obj) => {
+    if (animal === obj.name) {
+      const entries = obj.residents;
+      entries.forEach((objEntries) => {
+        if (objEntries.age < passedAge) {
+          retorno = false;
+        }
+      });
+    }
+  });
+  return retorno;
 }
 
 function employeeByName(employeeName) {
