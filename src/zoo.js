@@ -23,9 +23,9 @@ const animalsOlderThan = (n, g) => animals.find(e => e.name === n).residents.eve
 const employeeByName = (employeeName) => {
   if (!employeeName) {
     return {};
-  };
+  }
   return employees.find(a => a.firstName === employeeName || a.lastName === employeeName);
-}
+};
 
 
 function createEmployee(personalInfo, associatedWith) {
