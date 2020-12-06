@@ -202,7 +202,7 @@ function employeeCoverage(idOrName) {
       }
     });
     const empCovId = {};
-    animalsEmpKeys.forEach(ele => ele === empIdFN ? empCovId[empIdFN] = empCov[ele]: false);
+    animalsEmpKeys.forEach(ele => ele === empIdFN ? empCovId[empIdFN] = empCov[ele]: ele = ele);
     return empCovId;
   }
   animalsEmpValues.forEach((element, index) => {
@@ -212,7 +212,7 @@ function employeeCoverage(idOrName) {
     }
   }); return empCov;
 }
-console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+
 module.exports = {
   entryCalculator,
   schedule,
