@@ -181,8 +181,8 @@ function increasePrices(percentage) {
   const pricesK = Object.keys(prices);
   const pricesV = Object.values(prices);
   pricesK.forEach((element, index) => {
-    const newPrice = (pricesV[index] * percentage / 100 + pricesV[index] + 0.005).toFixed(2);
-    prices[element] = Number(newPrice);
+    const newPrice = (((pricesV[index] * percentage) / 100) + pricesV[index] + 0.005);
+    prices[element] = Number(newPrice.toFixed(2));
   });
   return prices;
 }
