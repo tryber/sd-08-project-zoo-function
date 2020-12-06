@@ -13,19 +13,20 @@ const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  let retorno;
+  let retorno = [];
   console.log(ids);
   if (ids.length === 0) {
     return [];
   } else {
-    ids.forEach((element) => {
-      let retorno = animals.filter(({id}) => (element === id));
-      console.log(Object.values(retorno));
-      return retorno;
+    ids.forEach((element, index) => {
+      const filterAnimals = animals.filter(({id}) => (element === id));
+      retorno[index] = [...filterAnimals];
       });
+    console.log(Object.values(retorno));
+    return retorno;
   }
 }
-//animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46');
+animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46');
 
 function animalsOlderThan(animal, age) {
   let retorno;
