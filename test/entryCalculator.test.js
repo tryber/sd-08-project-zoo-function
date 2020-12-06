@@ -32,3 +32,7 @@ describe('Implemente a função entryCalculator', () => {
     assert.strictEqual(actual, 45.98);
   });
 });
+
+// O parâmetro entrants recebe um objeto que contém as chaves Adult, Child e Senior, com suas respectivas quantidades de pessoas
+
+// Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
