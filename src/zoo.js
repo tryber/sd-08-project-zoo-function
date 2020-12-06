@@ -74,10 +74,14 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants = {}) {
-  return Object.keys(entrants).reduce((a, c) => {
-    const sum = prices[c] * entrants[c];
-    return a + sum;
-  }, 0);
+  try {
+    return Object.keys(entrants).reduce((a, c) => {
+      const sum = prices[c] * entrants[c];
+      return a + sum;
+    }, 0);
+  } catch (error) {
+    return 0;
+  }
 }
 
 const parseOptions = op => {
