@@ -35,15 +35,15 @@ function isManager(id) {
   return data.employees.some(m => m.managers.includes(id));
 }
 
-function addEmployee( id, firstName, lastName, managers = [], responsibleFor = [] ) {
-  data.employees.push({id, firstName, lastName, managers, responsibleFor});
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
   const objectAnimal = data.animals.reduce((cont, a) => {
     cont[a.name] = a.residents.length;
     return cont;
-  } ,{});
+  }, {});
   if (species === undefined) {
     return objectAnimal;
   }
@@ -67,11 +67,11 @@ function schedule(dayName) {
   const resut = Object.entries(hours).reduce((cont, [key, value]) => {
     cont[key] = value.open === 0 && value.close === 0 ? 'CLOSED' : `Open from ${value.open}am until ${value.close - 12}pm`;
     return cont;
-  } ,{});
+  }, {});
   if (dayName === undefined) {
     return resut;
   }
-  return {[dayName] : resut[dayName]};
+  return { [dayName] : resut[ dayName ] };
 }
 
 function oldestFromFirstSpecies(id) {
