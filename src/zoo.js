@@ -20,11 +20,12 @@ function animalsByIds (...ids) {
   } else {
     ids.forEach(element => {
     resultado = animals.filter(({id}) => (element === id));
-    console.log(resultado);  
+    console.log(resultado); 
+    return resultado; 
     });
   }
 }
-animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46');
+// animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46');
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
