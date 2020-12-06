@@ -29,10 +29,15 @@ function employeeByName(employeeName) {
   // seu código aqui
   if (employeeName === undefined) return {};
   return employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+  // TODO verify what's wrong with function return (expected: object, return: undefined)
 }
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  return {
+    ...personalInfo,
+    ...associatedWith,
+  }
 }
 
 function isManager(id) {
