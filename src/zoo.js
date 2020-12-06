@@ -15,11 +15,11 @@ const data = require('./data');
 function animalsByIds(...ids) {
   let retorno;
   console.log(ids);
-  if (ids === undefined) {
-    retorno = [];
+  if (ids.length === 0) {
+    return [];
   } else {
     ids.forEach((element) => {
-      retorno = animals.filter(({id}) => (element === id));
+      let retorno = animals.filter(({id}) => (element === id));
       console.log(Object.values(retorno));
       return retorno;
       });
