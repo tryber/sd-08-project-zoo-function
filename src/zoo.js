@@ -28,8 +28,8 @@ function employeeByName(employeeName) {
   let findEmployee = data.employees.find(zooEmployee => zooEmployee.firstName === employeeName ||
     zooEmployee.lastName === employeeName);
   if (!employeeName) {
-      findEmployee = {};
-    }
+    findEmployee = {};
+  }
   return findEmployee;
 }
 
