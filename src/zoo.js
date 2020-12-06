@@ -58,19 +58,23 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   if (!species) {
-    return undefined;
+    return animals.reduce((acc, current) => {
+      acc[current.name] = current.residents.length;
+      return acc;
+    }, {})
   }
   return animals.filter(animal => animal.name === species)[0].residents.length;
 }
 
 function entryCalculator(entrants) {
-  if (!entrants || entrants === {}) {
+  if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
-  const {Adult, Child, Senior} = entrants;
-  return parseFloat(Adult * prices.Adult) + parseFloat(Child * prices.Child) + parseFloat(Senior * prices.Senior);
-}
-console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }))
+  for (key in entrants) {
+    key *= prices[key];
+  }
+  console.log(entrants);
+}  
 
 function animalMap(options) {
   // seu código aqui
