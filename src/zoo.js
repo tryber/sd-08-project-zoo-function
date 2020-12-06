@@ -62,10 +62,10 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   };
   if (!managers) {
     newEmployee.managers = [];
-  }; 
+  }
   if (!responsibleFor) {
     newEmployee.responsibleFor = [];
-  };
+  }
   zooEmployees.push(newEmployee);
 }
 
