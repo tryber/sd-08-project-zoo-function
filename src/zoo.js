@@ -28,13 +28,17 @@ function employeeByName(ids) {
   return employees.find(func => func.firstName === ids || func.lastName === ids);
 }
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
+function createEmployee(...ids) {
 
-function isManager(id) {
-  // seu código aqui
-}
+  return {
+    ...ids[0],
+    ...ids[1]
+  };
+};
+
+function isManager(ids) {
+ return employees.some(container =>  container.managers === ids);
+};
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
