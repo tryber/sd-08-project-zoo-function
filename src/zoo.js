@@ -25,7 +25,8 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  let findEmployee = data.employees.find(zooEmployee => zooEmployee.firstName === employeeName ||
+  let findEmployee = data.employees.find(zooEmployee => 
+    zooEmployee.firstName === employeeName ||
     zooEmployee.lastName === employeeName);
   if (!employeeName) {
     findEmployee = {};
@@ -47,7 +48,8 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   const zooEmployees = data.employees;
   const findEmployee = zooEmployees.find(employee => employee.id === id);
-  const managerStatus = zooEmployees.some(employee => employee.managers.includes(findEmployee.id));
+  const managerStatus = zooEmployees.some(employee => 
+    employee.managers.includes(findEmployee.id));
   return managerStatus;
 }
 
@@ -70,7 +72,18 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const zooAnimals = data.animals;
+  let count;
+  if (!species) {
+    count = zooAnimals.reduce((accum, curr) => {
+      accum[curr.name] = curr.residents.length;
+      return accum
+    }, {});
+  } else if (species) {
+  const findAnimal = zooAnimals.find(animal => animal.name === species);
+  count = findAnimal.residents.length;
+  }
+  return count
 }
 
 function entryCalculator(entrants) {
