@@ -31,7 +31,7 @@ const employeeByName = (employeeName) => {
 const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
 
 
-const isManager = (id) => employees.map(a => a.managers)
+const isManager = id => employees.map(a => a.managers)
 .reduce((a, b) => a.concat(b)).some(a => a === id);
 
 
