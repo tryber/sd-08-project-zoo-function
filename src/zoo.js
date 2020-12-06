@@ -70,10 +70,24 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
-  // seu código aqui
+function schedule(dayName = '') {
+  if (dayName === '') {
+    return {
+      Tuesday: 'Open from 8am until 6pm',
+      Wednesday: 'Open from 8am until 6pm',
+      Thursday: 'Open from 10am until 8pm',
+      Friday: 'Open from 10am until 8pm',
+      Saturday: 'Open from 8am until 10pm',
+      Sunday: 'Open from 8am until 8pm',
+      Monday: 'CLOSED',
+    };
+  }
+  const { open, close } = data.hours[dayName];
+  const event = (dayName !== 'Monday') ? {
+    [dayName]: `Open from ${open}am until ${close - 12}pm`,
+  } : { [dayName]: 'CLOSED' };
+  return event;
 }
-
 function oldestFromFirstSpecies(id) {
   const employerObject = data.employees.find(employer => employer.id === id);
   const specieId = employerObject.responsibleFor[0];
