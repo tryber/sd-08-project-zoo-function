@@ -195,14 +195,14 @@ function employeeCoverage(idOrName) {
   const animalsEmpValues = Object.values(empCov);
   if (idOrName !== undefined) {
     let empIdFN = '';
-    employees.forEach((element) => { 
+    employees.forEach((element) => {
       const { id, firstName, lastName } = element;
       if (id === idOrName || firstName === idOrName || lastName === idOrName) {
         empIdFN = `${firstName} ${lastName}`;
       }
     });
     const empCovId = {};
-    animalsEmpKeys.forEach((element) => element === empIdFN ? empCovId[empIdFN] = empCov[element]: false);
+    animalsEmpKeys.forEach(ele => ele === empIdFN ? empCovId[empIdFN] = empCov[ele]: false);
     return empCovId;
   }
   animalsEmpValues.forEach((element, index) => {
