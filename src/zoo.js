@@ -132,11 +132,13 @@ function entryCalculator(entrants) {
   }
   let price = 0;
   if (entrants.Adult !== undefined) {
-    price += prices.Adult;
-  } else if (entrants.Senior !== undefined) {
-    price += prices.Senior;
-  } else if (entrants.Child !== undefined) {
-    price += prices.Child;
+    price += prices.Adult * entrants.Adult;
+  }
+  if (entrants.Senior !== undefined) {
+    price += prices.Senior * entrants.Senior;
+  }
+  if (entrants.Child !== undefined) {
+    price += prices.Child * entrants.Child;
   }
   return price;
 }
