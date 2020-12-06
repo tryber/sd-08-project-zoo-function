@@ -45,7 +45,10 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  const zooEmployees = data.employees;
+  const findEmployee = zooEmployees.find(employee => employee.id === id);
+  const managerStatus = zooEmployees.some(employee => employee.managers.includes(findEmployee.id));
+  return managerStatus;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
