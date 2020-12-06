@@ -93,7 +93,6 @@ function entryCalculator(entrants) {
   return precoTotal;
 }
 
-//req 9
 function animalMap() {
 }
 
@@ -101,11 +100,11 @@ function animalMap() {
 function schedule(dayName) {
   const result = Object.entries(data.hours).reduce((acumulador, [key, val]) => {
     const { open, close } = val;
-    acumulador[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED'
+    acumulador[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
     return acumulador;
   }, {});
-  if (typeof dayName === 'string' && dayName.length !== 0)
-    return { [dayName]: result[dayName] };
+  if (typeof dayName === 'string' && dayName.length !== 0){
+    return { [dayName]: result[dayName] }};
   return result;
 }
 
@@ -114,13 +113,13 @@ function oldestFromFirstSpecies(id) {
   const primeiraEspecie = empregado.responsibleFor[0]
   const animal = animalsByIds(primeiraEspecie)[0];
   const { residents } = animal;
-  const maiorIdade = residents.reduce((maisVelho, atual) =>
-    atual.age > maisVelho.age ? atual : maisVelho)
+  const maiorIdade = residents.reduce((maisVelho, atual) => 
+  atual.age > maisVelho.age ? atual : maisVelho);
   return Object.values(maiorIdade);
 }
 
-function increasePrices(percentage) {   
-  Object.keys(data.prices).forEach(key => 
+function increasePrices(percentage) {
+  Object.keys(data.prices).forEach(key =>
     (data.prices[key] = Math.round(data.prices[key] * (1 + (percentage / 100)) * 100) / 100));
 }
 
