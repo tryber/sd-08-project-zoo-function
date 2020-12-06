@@ -105,11 +105,11 @@ function oldestFromFirstSpecies(id) {
   recipient.push(oldest.name, oldest.sex, oldest.age);
   return recipient;
 }
-function increasePrices(percentage) {
-  prices.Adult = Number(((prices.Adult + (Math.ceil(prices.Adult ) * (percentage / 100)))).toFixed(2));
-  prices.Child = Number(Math.round(prices.Child * (1 + (percentage/100)) * 100) / 100);
-  prices.Senior = Number(Math.round(prices.Senior * (1 + (percentage/100)) * 100) / 100);
-  return prices
+function increasePrices(p) {
+  prices.Adult = Number(((prices.Adult + (Math.ceil(prices.Adult) * (p / 100)))).toFixed(2));
+  prices.Child = Number(Math.round(prices.Child * (1 + (p / 100)) * 100) / 100);
+  prices.Senior = Number(Math.round(prices.Senior * (1 + (p / 100)) * (99 + 1)) / 100);
+  return prices;
 }
 function employeeCoverage(idOrName) {
   // seu código aqui
