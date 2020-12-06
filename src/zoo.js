@@ -35,7 +35,7 @@ const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []
   employees.push(createEmployee(personalInfo, associatedWith));
 };
 
-const animalCount = species => {
+const animalCount = (species) => {
   const specie = animals.reduce((acc, currentValue) => {
     acc[currentValue.name] = currentValue.residents.length;
     return acc;
@@ -43,10 +43,10 @@ const animalCount = species => {
 
   if (species === undefined) {
     return specie;
-  } else {
-    return specie[species];
   }
+  return specie[species];
 };
+
 
 function entryCalculator(entrants) {
   // seu código aqui
