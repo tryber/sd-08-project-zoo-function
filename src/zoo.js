@@ -29,19 +29,20 @@ function employeeByName(ids) {
 }
 
 function createEmployee(...ids) {
-
+ 
   return {
-    ...ids[0],
-    ...ids[1]
+  ...ids[0],
+  ...ids[1],
   };
-};
+}
 
 function isManager(ids) {
- return employees.some(container =>  container.managers === ids);
-};
+  return employees.some(container =>  container.managers === ids);
+}
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+
+  data.employees = Object.assign({}, id, firstName, lastName, managers, responsibleFor);
 }
 
 function animalCount(species) {
