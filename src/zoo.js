@@ -35,9 +35,18 @@ const isManager = id => employees.map(a => a.managers)
 .reduce((a, b) => a.concat(b)).some(a => a === id);
 
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-}
+function addEmployee(id = [], firstName = [], lastName = [], managers = [], responsibleFor = []) {
+  const people = {
+  id,
+  firstName,
+  lastName,
+  managers,
+  responsibleFor,
+  };
+  employees.push(people);
+  return employees
+};
+
 
 function animalCount(species) {
   // seu código aqui
