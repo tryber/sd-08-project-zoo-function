@@ -16,7 +16,8 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return anim = data.animals.find(a => a.name === animal).residents.every(a => a.age > age);
+  const anim = data.animals.find(a => a.name === animal).residents.every(a => a.age > age);
+  return anim;
 }
 
 function employeeByName(employeeName) {
@@ -34,14 +35,15 @@ function isManager(id) {
   return data.employees.some(m => m.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers=[], responsibleFor=[]) {
+function addEmployee( id, firstName, lastName, managers = [], responsibleFor = [] ) {
   data.employees.push({id, firstName, lastName, managers, responsibleFor});
 }
 
 function animalCount(species) {
-  const objectAnimal = data.animals.reduce((cont, animal) => {cont[animal.name] = animal.residents.length;
+  const objectAnimal = data.animals.reduce((cont, a) => {
+    cont[a.name] = a.residents.length;
     return cont;
-  },{});
+  } ,{});
   if (species === undefined) {
     return objectAnimal;
   }
@@ -53,7 +55,7 @@ function entryCalculator(entrants) {
   if (entrants === undefined || entrants.length === 0) {
     return 0;
   }
-  return Object.entries(entrants).reduce((cont, [key, valor]) => cont + people[key] * valor, 0);
+  return Object.entries(entrants).reduce((cont, [key, valor]) => cont + (people[key] * valor), 0);
 }
 
 function animalMap(options) {
@@ -63,13 +65,13 @@ function animalMap(options) {
 function schedule(dayName) {
   const { hours } = data;
   const resut = Object.entries(hours).reduce((cont, [key, value]) => {
-    cont[key] = value.open === 0 & value.close === 0 ? `CLOSED` : `Open from ${value.open}am until ${value.close - 12}pm`
+    cont[key] = value.open === 0 && value.close === 0 ? 'CLOSED' : `Open from ${value.open}am until ${value.close - 12}pm`;
     return cont;
-  },{});
+  } ,{});
   if (dayName === undefined) {
     return resut;
   }
-  return { [dayName] : resut[dayName] }
+  return {[dayName] : resut[dayName]};
 }
 
 function oldestFromFirstSpecies(id) {
@@ -81,7 +83,7 @@ function increasePrices(percentage) {
   return Object.entries(data.prices).reduce((cont, [key, value]) => {
     cont[key] = Math.round(value * porcentagem * 100) / 100;
     return cont;
-  },{});
+  }, {});
 }
 
 function employeeCoverage(idOrName) {
