@@ -23,7 +23,6 @@ const employeeByName = employeeName => employees
 .find(element => element.firstName === employeeName || element.lastName === employeeName) || {};
 
 const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
-// Object.assign({}, personalInfo, associatedWith);
 
 const isManager = id => employees
 .some(element => element.id === id && element.responsibleFor.length > 3);
@@ -41,8 +40,8 @@ const animalCount = (species) => {
   if (species !== undefined) {
     return animals.find(element => element.name === species).residents.length;
   }
-  return animals.reduce(((accumulator, current) => accumulator +
-  current.residents.length), {});
+  return animals.map(element => ({ [element.name]: element.residents.length }))
+  .reduce((acc, curr) => Object.assign(acc, curr), {});
 };
 
 console.log(animalCount());
