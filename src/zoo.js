@@ -42,7 +42,14 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const result = {};
+  if(!species) {
+    data.animals.forEach(item => {
+      result[item.name] = item.residents.length
+    })
+    return result;
+  }
+  return data.animals.find(item => item.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
@@ -59,15 +66,15 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  //prioridade 01
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  // seu código 
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  // prioridade 02
 }
 
 function employeeCoverage(idOrName) {
