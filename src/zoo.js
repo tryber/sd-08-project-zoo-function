@@ -61,16 +61,16 @@ function animalCount(species) {
   return species
     ? data.animals.find(animal => animal.name === species).residents.length
     : data.animals.reduce((counter, obj) => {
-        counter[obj.name] = obj.residents.length;
-        return counter;
-      }, {});
+      counter[obj.name] = obj.residents.length;
+      return counter;
+    }, {});
 }
 
 function entryCalculator(entrants) {
   return entrants
     ? Object.keys(entrants).reduce(
         (counter, current) =>
-          counter + data.prices[current] * entrants[current],
+          counter + (data.prices[current] * entrants[current]),
         0,
       )
     : 0;
@@ -91,7 +91,7 @@ function oldestFromFirstSpecies(id) {
     animal => animal.id === getFirstAnimalById,
   );
   const oldestAnimal = getOldestAnimalById.residents.reduce((acc, curr) =>
-    curr.age > acc.age ? curr : acc,
+    (curr.age > acc.age ? curr : acc),
   );
   return Object.values(oldestAnimal);
 }
