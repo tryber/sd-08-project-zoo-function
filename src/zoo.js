@@ -104,13 +104,19 @@ function schedule(dayName) {
     acumulador[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED'
     return acumulador;
   }, {});
-  if (typeof dayName === 'string' && dayName.length !== 0) 
-  return { [dayName]: result[dayName] };
-  return result 
-} 
+  if (typeof dayName === 'string' && dayName.length !== 0)
+    return { [dayName]: result[dayName] };
+  return result;
+}
 
 function oldestFromFirstSpecies(id) {
-
+  const empregado = data.employees.find(employee => employee.id === id);
+  const primeiraEspecie = empregado.responsibleFor[0]
+  const animal = animalsByIds(primeiraEspecie)[0];
+  const { residents } = animal;
+  const maiorIdade = residents.reduce((maisVelho, atual) =>
+    atual.age > maisVelho.age ? atual : maisVelho)
+  return Object.values(maiorIdade);
 }
 
 function increasePrices(percentage) {
