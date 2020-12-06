@@ -20,10 +20,10 @@ const animalsByIds = (...ids) => ids.map(id => animals.find(animal => animal.id 
 const animalsOlderThan = (n, g) => animals.find(e => e.name === n).residents.every(a => a.age >= g);
 
 
-const employeeByName = employeeName => {
-  if (!employeeName){
+const employeeByName = (employeeName) => {
+  if (!employeeName) {
     return {};
-  }
+  };
   return employees.find(a => a.firstName === employeeName || a.lastName === employeeName);
 }
 
