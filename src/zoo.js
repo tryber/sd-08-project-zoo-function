@@ -140,7 +140,7 @@ function animalMap(options = { includeNames: false, sorted: false, sex: '' }) {
 
 function schedule(dayName) {
   const days = Object.keys(hours);
-  const diaCorreto = days.find(element => element === dayName);
+  const diaCorreto = days.some(element => element === dayName);
   if (diaCorreto === true) {
     const { open, close } = hours[dayName];
     if (open > 0) {
@@ -148,15 +148,17 @@ function schedule(dayName) {
     }
     return { [dayName]: 'CLOSED' };
   }
-  const horario = days.reduce((acc, cElement) => {
-    const { open, close } = hours[cElement];
+  const horario = {};
+  Object.assign(horario, hours);
+  console.log(horario);
+  days.forEach((element) => {
+    const { open, close } = hours[element];
     if (open > 0) {
-      acc[cElement] = `Open from ${open}am until ${close - 12}pm`;
+      horario[element] = `Open from ${open}am until ${close - 12}pm`;
     } else {
-      acc[cElement] = 'CLOSED';
+      horario[element] = 'CLOSED';
     }
-    return acc;
-  }, {});
+  });
   return horario;
 }
 
