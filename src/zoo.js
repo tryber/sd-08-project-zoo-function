@@ -31,9 +31,8 @@ const employeeByName = (employeeName) => {
 const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
 
 
-function isManager(id) {
-  // seu código aqui
-}
+const isManager = (i) => employees.map(a => a.managers).reduce((a, b) => a.concat(b)).some(a => a === i);
+
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
