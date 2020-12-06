@@ -37,15 +37,15 @@ const isManager = id => employees.map(a => a.managers)
 
 function addEmployee(id = [], firstName = [], lastName = [], managers = [], responsibleFor = []) {
   const people = {
-  id,
-  firstName,
-  lastName,
-  managers,
-  responsibleFor,
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
   };
   employees.push(people);
-  return employees
-};
+  return employees;
+}
 
 
 function animalCount(species) {
