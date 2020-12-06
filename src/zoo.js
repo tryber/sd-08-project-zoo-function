@@ -48,8 +48,14 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return data.employees;
 }
 
-function animalCount(species) {
-  // seu código aqui
+function animalCount(species = '') {
+  const quantiForSpecieObject = data.animals.reduce((previousValue, currentValue) => {
+    previousValue[currentValue.name] = currentValue.residents.length;
+    return previousValue;
+  }, {});
+  const specieObject = data.animals.find(object => object.name === species);
+  const count = (species === '') ? quantiForSpecieObject : specieObject.residents.length;
+  return count;
 }
 
 function entryCalculator(entrants = '') {
@@ -57,7 +63,6 @@ function entryCalculator(entrants = '') {
   const { Adult, Senior, Child } = data.prices;
   const { Adult: entrantAdult = 0, Senior: entrantSenior = 0, Child: entrantChild = 0 }
   = entrants;
-
   return (Adult * entrantAdult) + (Senior * entrantSenior) + (Child * entrantChild);
 }
 
