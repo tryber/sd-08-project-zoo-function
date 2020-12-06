@@ -189,38 +189,30 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   const empCov = employees.reduce((acc, element) => {
-    acc[`${element.firstName} ${element.lastName}`] = element.responsibleFor;
-    return acc;
+    acc[`${element.firstName} ${element.lastName}`] = element.responsibleFor; return acc;
   }, {});
-  if (idOrName !== undefined) {
-    const empIdFN = employees.find(element => {
-      const { id, firstName, lastName } = element;
-      if (id === idOrName || firstName === idOrName || lastName === idOrName) {
-        return true;
-      }
-    });
-    const { id, firstName, lastName } = empIdFN;
-    const empFullName = `${firstName} ${lastName}`;
-    const empCovKeys = Object.keys(empCov);
-    const empCovId = {};
-    empCovKeys.forEach((element) => {
-      if (element === empFullName) {
-        empCovId[empFullName] = empCov[element];
-      }
-    });
-    return empCovId;
-  }
   const animalsEmpKeys = Object.keys(empCov);
   const animalsEmpValues = Object.values(empCov);
+  if (idOrName !== undefined) {
+    let empIdFN = '';
+    employees.forEach((element) => { const { id, firstName, lastName } = element;
+      if (id === idOrName || firstName === idOrName || lastName === idOrName) {
+        empIdFN = `${firstName} ${lastName}`;
+      }
+    });
+    const empCovId = {};
+    animalsEmpKeys.forEach((element) => { if (element === empIdFN) {
+      empCovId[empIdFN] = empCov[element]; }
+    }); return empCovId;
+  }
   animalsEmpValues.forEach((element, index) => {
     for (let ind = 0; ind < element.length; ind += 1) {
       const aniFind = animals.find(animal => animal.id === element[ind]);
       empCov[animalsEmpKeys[index]][ind] = aniFind.name;
     }
-  });
-  return empCov;
+  }); return empCov;
 }
-
+console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 module.exports = {
   entryCalculator,
   schedule,
