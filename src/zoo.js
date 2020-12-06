@@ -94,26 +94,14 @@ function entryCalculator(entrants) {
     let adults;
     let children;
     let seniors;
-    const {Adult, Child, Senior} = entrants;
-    if (!Adult) {
-      adults = 0
-    } else if (Adult) {
-      adults = Adult * data.prices.Adult
-    };
-    if (!Child) {
-      children = 0
-    } else if (Child) {
-      children = Child * data.prices.Child
-    };
-    if (!Senior) {
-      seniors = 0
-    } else if (Senior) {
-      seniors = Senior * data.prices.Senior
-    };
+    let { Adult, Child, Senior } = entrants;
+    !Adult ? adults = 0 : adults = Adult * data.prices.Adult;
+    !Child ? children = 0 : children = Child * data.prices.Child;
+    !Senior ? seniors = 0 : seniors = Senior * data.prices.Senior;
     total = adults + children + seniors
+    }
+    return total;
   };
-  return total;
-}
 
 function animalMap(options) {
   // seu código aqui
