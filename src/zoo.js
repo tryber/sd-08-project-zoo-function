@@ -105,7 +105,7 @@ function schedule(dayName) {
   }, {});
   if (typeof dayName === 'string' && dayName.length !== 0) {
     return {
-    [dayName]: result[dayName]
+      [dayName]: result[dayName],
     };
   }
   return result;
