@@ -60,13 +60,17 @@ function addEmployee(
 }
 
 function animalCount(species) {
-  if (!species) {
-    return animals.reduce((acc, cur) => {
-      acc[cur.name] = cur.residents.length;
-      return acc;
-    }, {});
+  try {
+    if (!species) {
+      return animals.reduce((acc, cur) => {
+        acc[cur.name] = cur.residents.length;
+        return acc;
+      }, {});
+    }
+    return animals.find(a => a.name === species).residents.length || 0;
+  } catch (error) {
+    return 0;
   }
-  return animals.find(a => a.name === species).residents.length;
 }
 
 function entryCalculator(entrants = {}) {
