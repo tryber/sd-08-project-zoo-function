@@ -24,8 +24,17 @@ function animalsByIds(...ids) {
 console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 
 function animalsOlderThan(animal, age) {
+  const found = animals
+  .some(element => element.name === animal && element.age > age);
+  return found;
+
+
+  // const vddOuFalso = filtrar.every(element => element.residents.age > age);
+  // return vddOuFalso;
   // seu código aqui
 }
+console.log(animalsOlderThan('giraffes', 4));
+console.log(animalsOlderThan('lions', 10));
 
 function employeeByName(employeeName) {
   if (!employeeName) {
@@ -58,13 +67,24 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   if (!species) {
-    return {};
+    const objeto = {};
+    objeto.lions = animals[0].residents.length;
+    objeto.tigers = animals[1].residents.length;
+    objeto.bears = animals[2].residents.length;
+    objeto.penguins = animals[3].residents.length;
+    objeto.otters = animals[4].residents.length;
+    objeto.frogs = animals[5].residents.length;
+    objeto.snakes = animals[6].residents.length;
+    objeto.elephants = animals[7].residents.length;
+    objeto.giraffes = animals[8].residents.length;
+    return objeto;
   }
   const number = animals.find(element => element.name === species);
   return number.residents.length;
 }
-console.log(animalCount('giraffes'));
 
+console.log(animalCount('giraffes'));
+console.log(animalCount());
 function entryCalculator(entrants) {
   // seu código aqui
 }
