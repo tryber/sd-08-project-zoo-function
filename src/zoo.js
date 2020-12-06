@@ -9,6 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
+const { hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -96,7 +97,7 @@ function entryCalculator(entrants) {
   }
   return Object.keys(entrants).reduce(
     (previousValue, currentValue) =>
-      previousValue + (data.prices[currentValue] * entrants[currentValue]),
+      previousValue + data.prices[currentValue] * entrants[currentValue],
     0,
   );
 }
@@ -105,9 +106,54 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
-  // seu código aqui
+function isClosed(openTime, closeTime) {
+  if (openTime === 0 && closeTime === 0) {
+    return true;
+  }
+  return false;
 }
+
+function openAmPm(openTime) {
+  if (openTime > 11) {
+    return `${openTime - 12}pm`;
+  }
+  return `${openTime}am`;
+}
+
+function closeAmPm(closeTime) {
+  if (closeTime > 11) {
+    return `${closeTime - 12}pm`;
+  }
+  return `${closeTime}am`;
+}
+
+function sayTheTimeOpen(day) {
+  let open = data.hours[day].open;
+  let close = data.hours[day].close;
+  let timeOpen = '';
+  if (isClosed(open, close)) {
+    timeOpen = 'CLOSED';
+  } else {
+    timeOpen = `Open from ${openAmPm(open)} until `;
+    timeOpen = timeOpen + `${closeAmPm(close)}`;
+  }
+  return timeOpen;
+}
+
+function schedule(dayName) {
+  // parte de retornar todos quando passa sem parametro está pronto praticamente
+  const returnObj = {};
+  if (dayName === undefined) {
+    Object.keys(data.hours).forEach(day => {
+      const timeInString = sayTheTimeOpen(day);
+      returnObj[day] = timeInString;
+    });
+    return returnObj;
+  }
+  return sayTheTimeOpen(dayName);
+}
+
+console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
