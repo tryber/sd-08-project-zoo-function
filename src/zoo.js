@@ -112,17 +112,11 @@ function isClosed(openTime, closeTime) {
 }
 
 function openAmPm(openTime) {
-  if (openTime > 11) {
-    return `${openTime - 12}pm`;
-  }
-  return `${openTime}am`;
+  return openTime > 11 ? `${openTime - 12}pm` : `${openTime}am`;
 }
 
 function closeAmPm(closeTime) {
-  if (closeTime > 11) {
-    return `${closeTime - 12}pm`;
-  }
-  return `${closeTime}am`;
+  return closeTime > 11 ? `${closeTime - 12}pm` : `${closeTime}am`;
 }
 
 function sayTheTimeOpen(day) {
@@ -139,7 +133,6 @@ function sayTheTimeOpen(day) {
 }
 
 function schedule(dayName) {
-  // parte de retornar todos quando passa sem parametro está pronto praticamente
   const returnObj = {};
   if (dayName === undefined) {
     Object.keys(data.hours).forEach((day) => {
@@ -148,7 +141,8 @@ function schedule(dayName) {
     });
     return returnObj;
   }
-  return sayTheTimeOpen(dayName);
+  returnObj[dayName] = sayTheTimeOpen(dayName);
+  return returnObj;
 }
 
 console.log(schedule('Monday'));
