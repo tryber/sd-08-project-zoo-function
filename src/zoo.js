@@ -59,12 +59,14 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
     lastName,
     managers,
     responsibleFor,
-    };
-  !managers ? newEmployee.managers = [] : newEmployee.managers;
-  !responsibleFor ? newEmployee.responsibleFor = [] : newEmployee.responsibleFor;
-  zooEmployees.push(newEmployee);
   };
-  
+  const checkEmptyParams = () => {
+    !managers ? newEmployee.managers = [] : newEmployee.managers;
+    !responsibleFor ? newEmployee.responsibleFor = [] : newEmployee.responsibleFor;
+  };
+  checkEmptyParams();
+  zooEmployees.push(newEmployee);
+}
 
 function animalCount(species) {
   // seu código aqui
