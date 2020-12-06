@@ -61,7 +61,7 @@ function animalCount(species) {
     return animals.reduce((acc, current) => {
       acc[current.name] = current.residents.length;
       return acc;
-    }, {})
+    }, {});
   }
   return animals.filter(animal => animal.name === species)[0].residents.length;
 }
@@ -70,11 +70,7 @@ function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
-  for (key in entrants) {
-    key *= prices[key];
-  }
-  console.log(entrants);
-}  
+}
 
 function animalMap(options) {
   // seu código aqui
