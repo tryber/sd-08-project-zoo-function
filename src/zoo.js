@@ -92,27 +92,68 @@ function entryCalculator(entrants) {
     (acc, value) => acc + (prices[value] * entrants[value]), 0);
 }
 
-function animalMap(options) {
+function groupBy(array, prop, sex, sorted) {
+  const value = array.reduce((total, item) => {
+    const key = prop;
+    total[key] = (total[key] || []).concat([]);
+    if (item.sex === sex || sex === '') {
+      total[key] = (total[key] || []).concat(item.name);
+    }
+    if (sorted === true) {
+      total[key].sort();
+    }
+    return total;
+  }, {});
+  return value;
+}
+
+function getKeys(obj) {
+  return Object.keys(obj).reduce((all, key) => {
+    all.push(key);
+    return all;
+  }, []);
+}
+
+function animalsRegions() {
+  const NE = animals.filter(value => value.location === 'NE').map(animal => animal.name);
+  const NW = animals.filter(value => value.location === 'NW').map(animal => animal.name);
+  const SE = animals.filter(value => value.location === 'SE').map(animal => animal.name);
+  const SW = animals.filter(value => value.location === 'SW').map(animal => animal.name);
   const list = {
-    NE: animals.filter(value => value.location === 'NE').map(animal => animal.name),
-    NW: animals.filter(value => value.location === 'NW').map(animal => animal.name),
-    SE: animals.filter(value => value.location === 'SE').map(animal => animal.name),
-    SW: animals.filter(value => value.location === 'SW').map(animal => animal.name),
+    NE,
+    NW,
+    SE,
+    SW,
   };
   return list;
 }
-// function oneDay(dayName) {
-//   let obj = {};
-//   Object.keys(hours).find((elem) => {
-//     if (dayName === 'Monday') {
-//       obj = { [elem]: 'CLOSED' };
-//     } else if (elem === dayName) {
-//       obj = { [elem]: `Open from ${hours[elem].open}am until ${hours[elem].close - 12}pm` };
-//     }
-//     return obj;
-//   });
-//   return obj;
-// }
+
+function animalMap(options) {
+  const { includeNames = false, sorted = false, sex = '' } = options || {};
+  const obj = {};
+  let objout = {};
+  let outPut = {};
+  const list = animalsRegions();
+  const regions = (getKeys(list));
+  regions.forEach((region) => {
+    const animalNames = [];
+    animals.forEach((elem1) => {
+      if (elem1.location === region) {
+        const { residents } = elem1;
+        animalNames.push(groupBy(residents, elem1.name, sex, sorted));
+      }
+      obj[region] = animalNames;
+    });
+    objout = Object.assign({}, obj);
+  });
+  if (includeNames === true) {
+    outPut = objout;
+  }
+  if (options === undefined || includeNames === false) {
+    outPut = list;
+  }
+  return outPut;
+}
 
 function open(elem) {
   return { [elem]: `Open from ${hours[elem].open}am until ${hours[elem].close - 12}pm` };
@@ -192,7 +233,6 @@ function employeeCoverage(idOrName) {
   }
   return obj;
 }
-console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
