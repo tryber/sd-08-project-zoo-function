@@ -80,7 +80,7 @@ const personalInfo = {
 
 const associatedWith = {
   managers: [
-    'c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1',
+    'd5b83cb3-a451-49e2-ac45-ff3f54fbe7e1',
     '9e7d4524-363c-416a-8759-8aa7e50c0992'],
   responsibleFor: [
     '0938aa23-f153-4937-9f88-4858b24d6bce',
@@ -91,7 +91,20 @@ createEmployee(personalInfo, associatedWith);
 
 
 function isManager(id) {
-  // seu código aqui
+  let cont = 0;
+  let retorno;
+  employees.forEach((obj) => {
+    const found = obj.managers.find(managerId => managerId === id);
+    if (found !== undefined) {
+      cont += 1;
+    }
+  });
+  if (cont > 0) {
+    retorno = true;
+  } else {
+    retorno = false;
+  }
+  return retorno;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
