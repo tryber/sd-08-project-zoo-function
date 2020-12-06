@@ -53,17 +53,20 @@ const entryCalculator = (entrants) => {
   return 0;
 };
 
-function animalMap(options) {
+function animalMap(options) { }
+
+function schedule(percentage) {
   // seu código aqui
 }
 
-function schedule(dayName) {
-  // seu código aqui
-}
+const oldestFromFirstSpecies = (id) => {
+  const animal = animals
+  .find(animalFind => animalFind.id === (employees
+  .find(emploee => emploee.id === id).responsibleFor[0]));
+  return Object.values(animal.residents.sort((a, b) => a.age - b.age)[animal.residents.length - 1]);
+};
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 function increasePrices(percentage) {
   // seu código aqui
