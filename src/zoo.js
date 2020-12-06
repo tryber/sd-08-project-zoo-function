@@ -94,23 +94,7 @@ function entryCalculator(entrants) {
   return precoTotal;
 }
 
-function animalMap(options = {}) {
-  const retorno = data.animals.reduce((acc, animal) => {
-    const { name, location } = animal;
-    if (!acc[location]) {
-      acc[location] = [];
-    }
-    acc[location].push(name);
-    return acc;
-  }, {});
-
-  if (includesNames) {
-    retorno = OBject.entries(retorno).reduce((acc, [key, val]) => {
-      acc[key] = val.map(getResidentsNames);
-      return acc;
-    }, {})
-  }
-  return retorno;
+function animalMap(options = {}) {  
 }
 
 
