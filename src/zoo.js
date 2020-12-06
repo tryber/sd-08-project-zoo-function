@@ -41,10 +41,11 @@ function employeeByName(employeeName) {
   return result;
 }
 
-console.log(employeeByName('Emery'));
-
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  let newEmployee = {};
+  Object.assign(newEmployee, personalInfo, associatedWith);
+  return newEmployee;
 }
 
 function isManager(id) {
