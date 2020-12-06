@@ -172,7 +172,7 @@ function oldestFromFirstSpecies(id) {
       maisVelho = index;
       test = element.age;
     }
-  })
+  });
   const animalOldest = Object.values(animalsId[maisVelho]);
   return animalOldest;
 }
