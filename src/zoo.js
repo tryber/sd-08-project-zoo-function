@@ -25,7 +25,7 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  let findEmployee = data.employees.find(zooEmployee => 
+  let findEmployee = data.employees.find(zooEmployee =>
     zooEmployee.firstName === employeeName ||
     zooEmployee.lastName === employeeName);
   if (!employeeName) {
@@ -48,7 +48,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   const zooEmployees = data.employees;
   const findEmployee = zooEmployees.find(employee => employee.id === id);
-  const managerStatus = zooEmployees.some(employee => 
+  const managerStatus = zooEmployees.some(employee =>
     employee.managers.includes(findEmployee.id));
   return managerStatus;
 }
@@ -77,13 +77,13 @@ function animalCount(species) {
   if (!species) {
     count = zooAnimals.reduce((accum, curr) => {
       accum[curr.name] = curr.residents.length;
-      return accum
+      return accum;
     }, {});
   } else if (species) {
-  const findAnimal = zooAnimals.find(animal => animal.name === species);
-  count = findAnimal.residents.length;
+    const findAnimal = zooAnimals.find(animal => animal.name === species);
+    count = findAnimal.residents.length;
   }
-  return count
+  return count;
 }
 
 function entryCalculator(entrants) {
