@@ -93,16 +93,24 @@ function entryCalculator(entrants) {
   return precoTotal;
 }
 
-function animalMap(options) {
-  // seu código aqui
+//req 9
+function animalMap() {
 }
+
 
 function schedule(dayName) {
-  // seu código aqui
-}
+  const result = Object.entries(data.hours).reduce((acumulador, [key, val]) => {
+    const { open, close } = val;
+    acumulador[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED'
+    return acumulador;
+  }, {});
+  if (typeof dayName === 'string' && dayName.length !== 0) 
+  return { [dayName]: result[dayName] };
+  return result 
+} 
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+
 }
 
 function increasePrices(percentage) {
