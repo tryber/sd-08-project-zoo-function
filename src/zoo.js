@@ -189,10 +189,14 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   const empCov = employees.reduce((acc, element) => {
-    acc[`${element.firstName} ${element.lastName}`] = element.responsibleFor; return acc;
+    const empResp = element.responsibleFor;
+    const aniFind = empResp.map((element) => {
+      return animals.find(animal => animal.id === element).name;
+    });
+    acc[`${element.firstName} ${element.lastName}`] = aniFind;
+    return acc;
   }, {});
   const animalsEmpKeys = Object.keys(empCov);
-  const animalsEmpValues = Object.values(empCov);
   if (idOrName !== undefined) {
     let empIdFN = '';
     employees.forEach((element) => {
@@ -202,15 +206,12 @@ function employeeCoverage(idOrName) {
       }
     });
     const empCovId = {};
-    animalsEmpKeys.forEach(ele => ele === empIdFN ? empCovId[empIdFN] = empCov[ele]: ele = ele);
-    return empCovId;
-  }
-  animalsEmpValues.forEach((element, index) => {
-    for (let ind = 0; ind < element.length; ind += 1) {
-      const aniFind = animals.find(animal => animal.id === element[ind]);
-      empCov[animalsEmpKeys[index]][ind] = aniFind.name;
-    }
-  }); return empCov;
+    animalsEmpKeys.forEach((element) => {
+      if (element === empIdFN) {
+        empCovId[empIdFN] = empCov[element];
+      }
+    }); return empCovId;
+  } return empCov;
 }
 
 module.exports = {
