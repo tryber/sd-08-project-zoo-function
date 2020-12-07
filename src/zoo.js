@@ -55,26 +55,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  if (options === undefined) {
-    const local = animals.map(animal => ({ [animal.location]: animal.name, }));
-    console.log(local)
-    const animalMap1 = local.reduce((acc, curr) => {
-      console.log(acc)
-      console.log(curr)
-      const chave = Object.keys(curr);
-      console.log(curr.name)
-      console.log(chave)
-      console.log(acc[chave])
-      if (acc[chave] === undefined) {
-        acc[chave] = curr.name
-      } else {
-        acc[chave].push(curr[chave]);
-      }
-      return acc;
-    }, {})
-    return animalMap1;
-  }
-};
+}
 
 function schedule(dayName) {
   const objHours = Object.entries(hours);
@@ -84,11 +65,10 @@ function schedule(dayName) {
     return acc;
   }, {});
   if (typeof dayName === 'string') {
-    return ({[dayName]: result[dayName]})
-  } else {
-    return result;
-  };
-};
+    return ({ [dayName]: result[dayName] });
+  }
+  return result;
+}
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
