@@ -25,7 +25,7 @@ function animalsOlderThan(animal, age) {
     const nameInList = animalInLIst.name === animal;
     return nameInList;
   });
-  const hasResidentsOldderThan = animalsFiltred.residents.some((resident) => {
+  const hasResidentsOldderThan = animalsFiltred.residents.every((resident) => {
     const validation = resident.age > age;
     return validation;
   });
