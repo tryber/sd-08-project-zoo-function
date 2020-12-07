@@ -94,7 +94,7 @@ function animalMap(options) {
 function schedule(dayName) {
   const businessDay = {};
   if (!dayName) {
-    Object.keys(hours).forEach(day => {
+    Object.keys(hours).forEach((day) => {
       const { open, close } = hours[day];
       if (open === 0) {
         businessDay[day] = 'CLOSED';
