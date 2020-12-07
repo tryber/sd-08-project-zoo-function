@@ -67,7 +67,7 @@ function schedule(dayName) {
     crono[dayName] = `Open from ${data.hours[dayName].open}am until ${data.hours[dayName].close - 12}pm`;
     if (dayName === 'Monday') {
       crono[dayName] = 'CLOSED';
-    }else {(!dayName) 
+    }else {(!dayName)
     Object.keys(data.hours).map((list) => {
       const arr = `Open from ${data.hours[list].open}am until ${data.hours[list].close - 12}pm`;
       crono[list] = arr;
