@@ -81,28 +81,30 @@ function entryCalculator(entrants = {}) {
 }
 
 const includeName = (obj) => {
-  data.animals.forEach(element => {
+  data.animals.forEach((element) => {
     const animal = {};
-    animal[element.name] = element.residents.map(element => element.name);
+    animal[element.name] = element.residents.map(element2 => element2.name);
     obj[element.location].push(animal);
   });
 };
 
 const sortNames = (obj, condition) => {
   if (condition) {
-    data.animals.forEach(element => {
-      obj[element.location]
-        .find(animal => Object.keys(animal).includes(element.name))[element.name]
-        .sort();
-    });
-  };
+    const keys = Object.keys(obj);
+    keys.forEach(location => {
+      obj[location].forEach(animal => {
+        const key = Object.keys(animal);
+        animal[key].sort();
+      })
+    })
+  }
 };
 
-const helpFunction = (resident) => resident.name;
+const helpFunction = resident => resident.name;
 
 const genderFilter = (obj, gender) => {
   if (gender !== undefined) {
-    data.animals.forEach(element => {
+    data.animals.forEach((element) => {
       obj[element.location]
         .find(animal => Object.keys(animal).includes(element.name))[element.name] =
           element.residents.filter(resident => resident.sex === gender)
@@ -111,9 +113,9 @@ const genderFilter = (obj, gender) => {
   }
 };
 
-function animalMap({includeNames, sorted, sex,} = {}) {
+function animalMap({ includeNames, sorted, sex } = {}) {
   // seu código aqui
-  let obj = {
+  const obj = {
     NE: [],
     NW: [],
     SE: [],
@@ -124,10 +126,10 @@ function animalMap({includeNames, sorted, sex,} = {}) {
     genderFilter(obj, sex);
     sortNames(obj, sorted);
   } else {
-    data.animals.forEach(element => {
+    data.animals.forEach((element) => {
       obj[element.location].push(element.name);
     });
-  };
+  }
   return obj;
 }
 
