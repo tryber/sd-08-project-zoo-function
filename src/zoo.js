@@ -106,18 +106,15 @@ function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
-  const entrantsKeys = Object.keys(entrants);
-  const show = entrantsKeys.map((eachKey) => {
+  const entrantsKeys = Object.keys(entrants).map((eachKey) => {
     return data.prices[eachKey];
   });
-  const entrantsValues = Object.values(entrants);
-  const total = entrantsValues.reduce((acc, curr, index) => {
-    return acc + (show[index] * curr);
+  const entrantsValues = Object.values(entrants).reduce((acc, curr, index) => {
+    return acc + (entrantsKeys[index] * curr);
   }, 0);
 
-  return total;
+  return entrantsValues;
 }
-
 
 function animalMap(options) {
   // seu código aqui
