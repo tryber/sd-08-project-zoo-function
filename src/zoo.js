@@ -41,8 +41,7 @@ function isManager(...ids) {
   if (arr.some(str => str === ids[0])) {
     return true;
   } 
-    return false;
-  
+  return false;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
