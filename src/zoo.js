@@ -60,7 +60,6 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  const allPrices = [prices['Child'], prices['Adult'], prices['Senior']];
   if (typeof entrants !== 'object' || Object.keys(entrants).length === 0) {
     return 0;
   }
@@ -89,7 +88,7 @@ function increasePrices(percentage) {
     prices[item] = Math.ceil(prices[item] * (100 + percentage)) / 100;
   });
 }
-console.log((100 + 50) / 100);
+
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
