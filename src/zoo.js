@@ -182,7 +182,7 @@ function animalsPerEmployee(emp, result) {
 }
 function findEmployee(iD) {
   const result = {};
-  const emp = employees.find(({ id, firstName, lastName }) => 
+  const emp = employees.find(({ id, firstName, lastName }) =>
   id === iD || firstName === iD || lastName === iD);
   result[`${emp.firstName} ${emp.lastName}`] = [];
   animalsPerEmployee(emp, result);
