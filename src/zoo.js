@@ -14,8 +14,8 @@ const { employees } = require('./data');
 const { prices } = require('./data');
 const data = require('./data');
 
-function animalsByIds(animalsId) {
-  return animalsId.map(id => animals.find(animal => animal.id === id).name);
+function animalsByIds(...ids) {
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
@@ -94,18 +94,18 @@ function employeeCoverage(idOrName) {
   employees.forEach((employee) => {
     const { firstName, lastName, responsibleFor } = employee;
     const fullName = `${firstName} ${lastName}`;
-    const responsible = getAnimalsById(responsibleFor);
+    const responsible = animalsById(responsibleFor);
     employeesList[fullName] = responsible;
   });
   if (idOrName === undefined) {
     return employeesList;
   }
   const coverage = {};
-  const names = employees.find(
+  const employeesNames = employees.find(
     employee =>
       idOrName === employee.firstName ||
       idOrName === employee.lastName ||
-      idOrName === employee.id
+      idOrName === employee.id,
   );
   const fullName = `${firstName} ${lastName}`;
   const responsible = employeesList[fullName];
