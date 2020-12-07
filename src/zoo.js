@@ -54,9 +54,9 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-    if (typeof entrants !== 'object' || Object.keys(entrants).length === 0) return 0;
-  
-    return Object.keys(entrants).reduce((cont, entradas) => (
+  if (typeof entrants !== 'object' || Object.keys(entrants).length === 0) return 0;
+
+  return Object.keys(entrants).reduce((cont, entradas) => (
     cont + (entrants[entradas] * prices[entradas])
   ), 0);
 }
@@ -70,8 +70,6 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const funcionario = employees.find((employee) => employee.id === id);
-  const especie = employee.responsibleFor[0];
 }
 
 
@@ -80,7 +78,7 @@ function increasePrices(percentage) {
 
   Object.keys(aumento).forEach(value => (
     prices[value] = Math.round(prices[value] * aumento * 100)
-  ))
+  ));
 }
 
 function employeeCoverage(idOrName) {
