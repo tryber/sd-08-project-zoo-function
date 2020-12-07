@@ -51,7 +51,7 @@ function animalCount(species) {
     const specificSpecies = animals.find(animal => animal.name === species);
     return specificSpecies.residents.length;
   }
-  
+
   const allSpecies = animals.reduce((acc, currentSpecies) => {
     acc[currentSpecies.name] = currentSpecies.residents.length;
     return acc;
