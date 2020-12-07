@@ -73,11 +73,11 @@ function entryCalculator(entrants) {
   let total = 0;
   const keys = Object.keys(entrants);
   const values = Object.values(entrants);
-  keys.forEach((person,index) => {
+  keys.forEach((person, index) => {
     if (prices[person]) {
-      total = total + (prices[person] * values[index]);
-    } 
-  })
+      total += (prices[person] * values[index]);
+    }
+  });
   return total;
 }
 
