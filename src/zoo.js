@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices, hours } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -82,19 +82,18 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  if (options === undefined) {
-    return animals.filter((animal) => animal.location = [animal.name])
-  }
-  return animals.filter(animal => animal.location = (
-    {
-      animal,
-    }
-  ))
+  // if (options === undefined) {
+  //   return animals.filter(animal => animal.location = [animal.name])
+  // }
+  // return animals.filter(animal => animal.location = (
+  //   {
+  //     animal,
+  //   }
+  // ))
   // seu código aqui
 }
 
 function schedule(dayName) {
-  // const days = Object.keys(hours);
   // seu código aqui
 }
 
@@ -116,10 +115,9 @@ function increasePrices(percentage) {
   // https://pt.stackoverflow.com/questions/29318/javascript-gerando-float-com-v%C3%A1rias-casas-decimais
   // seu código aqui
 }
-console.log(increasePrices(50))
+// console.log(increasePrices(50));
 
 function employeeCoverage(idOrName) {
-
   // seu código aqui
 }
 
