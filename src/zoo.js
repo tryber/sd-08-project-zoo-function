@@ -9,11 +9,10 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  // seu código aqui
   const array = [];
   const bringId = element => array.push(animals.filter(animalId => animalId.id === element)[0]);
   ids.forEach(bringId);
@@ -21,7 +20,6 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
   const findAnimal = animals.find(animalName => animalName.name === animal);
   const mapAge = findAnimal.residents.map(animalInfo => animalInfo.age);
   const checkAge = animalsAge => animalsAge.every(minAge => minAge > 7);
@@ -29,7 +27,6 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
   const firstName = employees.find(employeeInfo => employeeInfo.firstName === employeeName);
   const lastName = employees.find(employeeInfo => employeeInfo.lastName === employeeName);
   if (firstName !== undefined) {
@@ -41,14 +38,12 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
   const objeto = {};
   Object.assign(objeto, personalInfo, associatedWith);
   return objeto;
 }
 
 function isManager(id) {
-  // seu código aqui
   let Manager = false;
   const mapAge = employees.map(employeeId => employeeId.managers);
   mapAge.forEach((element) => {
@@ -60,7 +55,6 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  // seu código aqui
   const newEmployee = {
     id,
     firstName,
@@ -73,7 +67,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
   if (species === undefined) {
     const animais = animals.map(raca => raca.name);
     const animaisQtt = animals.map(qtt => qtt.residents.length);
@@ -90,7 +83,12 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  return Object.keys(entrants).reduce((accumulator, currentValue) => (
+    accumulator + (entrants[currentValue] * prices[currentValue])
+  ), 0);
 }
 
 function animalMap(options) {
