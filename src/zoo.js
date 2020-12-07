@@ -13,24 +13,27 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
-const { prices } = data;
+let { prices } = data;
 const { hours } = data;
 
 function animalsByIds(...ids) {
-  return animals.filter(animalInfo => ids.includes(animalInfo.id));
+  return animals.filter((animalInfo) => ids.includes(animalInfo.id));
 }
 
 function animalsOlderThan(animal, age) {
   return animals
-    .find(animalInfo => animalInfo.name === animal)
-    .residents.every(resident => resident.age > age);
+    .find((animalInfo) => animalInfo.name === animal)
+    .residents.every((resident) => resident.age > age);
 }
 
 function employeeByName(employeeName) {
   return (
-    employees.find( employeeInfo =>
+    employees.find(
+      (employeeInfo) =>
         employeeInfo.firstName === employeeName ||
-        employeeInfo.lastName === employeeName) || {});
+        employeeInfo.lastName === employeeName
+    ) || {}
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -38,7 +41,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.some(employeeInfo => employeeInfo.managers.includes(id));
+  return employees.some((employeeInfo) => employeeInfo.managers.includes(id));
 }
 
 function addEmployee(
@@ -46,14 +49,17 @@ function addEmployee(
   firstName,
   lastName,
   managers = [],
-  responsibleFor = []) {
+  responsibleFor = []
+) {
   employees.push(
-    createEmployee({ id, firstName, lastName }, { managers, responsibleFor }));
+    createEmployee({ id, firstName, lastName }, { managers, responsibleFor })
+  );
 }
 
 function animalCount(species) {
   const speciesCount = animals.find(
-    animalInfo => animalInfo.name === species);
+    (animalInfo) => animalInfo.name === species
+  );
 
   const animalListCount = animals.reduce((accumulator, animalInfo) => {
     accumulator[animalInfo.name] = animalInfo.residents.length;
@@ -80,8 +86,7 @@ function entryCalculator(entrants = 0) {
 }
 
 function animalsByLocation() {
-  return animals.map(animalInfo =>
-    animalInfo.location + animalInfo.name);
+  return animals.map((animalInfo) => animalInfo.location + animalInfo.name);
 }
 
 function residentsByName() {
@@ -102,38 +107,47 @@ function animalMap(options) {
 // console.log(animalMap(options));
 
 function schedule(dayName) {
-
-  const schedule = Object.entries(hours).reduce((accumulator,day) => {
-    accumulator[day[0]] = day[0] !== 'Monday' ? 
-    `Open from ${Object.values(day[1])[0]}am until ${Object.values(day[1])[1] -12}pm`
-    : 'CLOSED';
+  const schedule = Object.entries(hours).reduce((accumulator, day) => {
+    accumulator[day[0]] =
+      day[0] !== 'Monday'
+        ? `Open from ${Object.values(day[1])[0]}am until ${
+            Object.values(day[1])[1] - 12
+          }pm`
+        : 'CLOSED';
     return accumulator;
   }, {});
 
   if (dayName === undefined) return schedule;
 
   for (const key in schedule) {
-    if (dayName === key) return {[key]: schedule[key]};
+    if (dayName === key) return { [key]: schedule[key] };
   }
 }
 
 function oldestFromFirstSpecies(id) {
-  const firstId = employees.find(employeeInfo => employeeInfo.id === id).responsibleFor[0];
+  const firstId = employees.find((employeeInfo) => employeeInfo.id === id)
+    .responsibleFor[0];
   const residentsById = animalsByIds(firstId)[0].residents;
   let oldestAge = null;
-  
-  residentsById.forEach(resident => {
-    oldestAge < resident.age ? oldestAge = resident.age : oldestAge;
-  })
 
-  const oldestFromSpecies = residentsById.find(resident => resident.age === oldestAge);
+  residentsById.forEach((resident) => {
+    oldestAge < resident.age ? (oldestAge = resident.age) : oldestAge;
+  });
+
+  const oldestFromSpecies = residentsById.find(
+    (resident) => resident.age === oldestAge
+  );
   return Object.values(oldestFromSpecies);
 }
 
-console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
-
 function increasePrices(percentage) {
-  // seu código aqui
+    prices = Object.entries(prices).reduce((accumulator, priceInfo) => {
+    accumulator[priceInfo[0]] =
+      Math.ceil((priceInfo[1] + priceInfo[1] * (percentage / 100)) * 100) / 100;
+      data.prices = accumulator;
+      return accumulator;
+  }, {});
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
