@@ -31,12 +31,9 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-// const data = require('./data');
-
 function isManager(id) {
-  // return data.employees.forEach(funcionario => {
-  //   return funcionario.managers.some(ids => ids === id);
-  // });
+  const gerente = gerente => gerente === id;
+  return data.employees.some(emp => emp.managers.find(gerente));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
