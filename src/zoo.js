@@ -131,10 +131,24 @@ function animalMap(options = {}) {
   return animalsMaped;
 }
 
-function schedule(dayName) {
-  // seu código aqui
+function transformInPhrase({ open, close }) {
+  if (open === 0) return 'CLOSED';
+  return `Open from ${open}am until ${close - 12}pm`;
 }
 
+function schedule(dayName) {
+  const days = Object.keys(data.hours);
+  const openClose = Object.values(data.hours);
+  if (dayName !== undefined) {
+    const dayIndex = days.indexOf(dayName);
+    return { [dayName]: transformInPhrase(openClose[dayIndex]) };
+  }
+  return days.reduce((result, day, index) => {
+    result[day] = transformInPhrase(openClose[index]);
+    return result;
+  }, {});
+}
+console.log(schedule());
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
