@@ -77,7 +77,7 @@ Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que n
 
 ### ANTES DE COMEÇAR A DESENVOLVER
 
-1. Clone o repositório
+/1. Clone o repositório
   * `git clone https://github.com/tryber/sd-08-project-zoo-function.git`.
   * Entre na pasta do repositório que você acabou de clonar:
     * `cd sd-08-project-zoo-function`
