@@ -57,25 +57,28 @@ const entryCalculator = (entrants) => {
   return visits.reduce((sum, [type, value]) => sum + (prices[type] * value), 0);
 };
 
-function animalMap(options) {
+const animalMap = (options) => {
   // seu código aqui
-}
+};
 
-function schedule(dayName) {
-  // seu código aqui
-}
+const schedule = () => {
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+};
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+const oldestFromFirstSpecies = (identifier) => {
+  const employee = employees.find(({ id }) => id === identifier).responsibleFor[0];
+  const animal = animals.find(({ id }) => id === employee).residents;
+  const oldestOfTheSpecies = animal.reduce((old, { age }) => (old > age ? old : age));
+  return Object.values(animal.find(({ age }) => age === oldestOfTheSpecies));
+};
 
-function employeeCoverage(idOrName) {
+const increasePrices = (percentage) => {
   // seu código aqui
-}
+};
+
+const employeeCoverage = (idOrName) => {
+  // seu código aqui
+};
 
 module.exports = {
   entryCalculator,
