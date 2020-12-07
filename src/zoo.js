@@ -28,7 +28,8 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   // seu código aqui
   if (!employeeName) return {};
-  return employees.find(name => name.firstName === employeeName || name.lastName === employeeName )}
+  return employees.find(name => name.firstName === employeeName || name.lastName === employeeName)
+}
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
@@ -59,12 +60,12 @@ function addEmployee(
 
 function animalCount(species) {
   // seu código aqui
-  if (!species){
+  if (!species) {
     return animals.reduce((acc, animal) => {
-        acc[animal.name] = animal.residents.length;
-        return acc;
-      },
-    {});
+      acc[animal.name] = animal.residents.length;
+      return acc;
+    },
+      {});
   }
   return animals.find(animal => animal.name === species).residents.length;
 }
