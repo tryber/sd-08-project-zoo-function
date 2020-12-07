@@ -45,7 +45,7 @@ function isManager(id) {
   let checkManager = false;
   data.employees.find((element) => {
     if(element.managers.includes(id)) {
-      checkManager = true;
+      return checkManager = true;
     }
   });
   return checkManager;
