@@ -84,7 +84,7 @@ function entryCalculator(entrants) {
   const aux = Object.entries(entrants);
   const acumulator = 0;
   aux.foreach((value) =>{
-    price.foreach((priceV) =>{
+    price.foreach((priceV) => {
       acumulator += priceV[0] === value [0] ? priceV[1] * value[1] : 0; 
     });
   });
