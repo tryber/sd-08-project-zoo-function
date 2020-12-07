@@ -10,23 +10,24 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees } = require('./data');
+const { animals } = require('./data');
+const { employees } = require('./data');
 
-function animalsByIds(...ids) {
-  if (ids.length === 0) {
-    return [];
-  }
-  return animals.filter(especie => ids.includes(especie.id));
-}
+// function animalsByIds(...ids) {
+//   if (ids.length === 0) {
+//     return [];
+//   }
+//   return animals.filter(especie => ids.includes(especie.id));
+// }
 
-function animalsOlderThan(animal, age) {
-  const nomeAnimal = especie => especie.name === animal;
-  const idadeAnimal = especie => especie.age >= age;
-  return animals.find(nomeAnimal).residents.every(idadeAnimal);
-}
+// function animalsOlderThan(animal, age) {
+//   const nomeAnimal = especie => especie.name === animal;
+//   const idadeAnimal = especie => especie.age >= age;
+//   return animals.find(nomeAnimal).residents.every(idadeAnimal);
+// }
 
 function employeeByName(employeeName) {
-  if (employeeName.length === 0) {
+  if (employeeName === undefined) {
     return {};
   }
   return employees.find(emp => emp.firstName === employeeName || emp.lastName === employeeName);
