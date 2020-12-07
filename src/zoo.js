@@ -52,19 +52,19 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
       { firstName },
       { lastName },
       { managers: [] },
-      { responsibleFor: [] }
-    )
-    data.employees.push(container)
-  } else if (managers != undefined || responsibleFor != undefined) {
+      { responsibleFor: [] },
+    );
+    data.employees.push(container);
+  } else if (managers !== undefined || responsibleFor !== undefined) {
     const container = Object.assign(
       {},
       { id },
       { firstName },
       { lastName },
-      { managers: managers },
-      { responsibleFor: responsibleFor }
-    )
-    data.employees.push(container)
+      { managers },
+      { responsibleFor },
+    );
+    data.employees.push(container);
   }
 }
 
