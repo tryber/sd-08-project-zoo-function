@@ -169,9 +169,32 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const speciesByEmployee = {};
+  // Função para preencher speciesByEmployee com o funcionário e animais
+  const speciesOfEmployee = (firstName, lastName, responsibleFor) => {
+    const nameOfEmployee = `${firstName} ${lastName}`;
+    const nameOfSpecieById = responsibleFor.map(id =>
+      animals.find(specie => specie.id === id).name);
+    // 'Nigel Nelson': [ 'lions', 'tigers' ], ...
+    speciesByEmployee[nameOfEmployee] = nameOfSpecieById;
+  };
+  
+  if (!idOrName) {
+    // 'Sem parâmetros, retorna uma lista dos funcionários e os animais, pelo qual é responsável'
+    employees.forEach(({ firstName, lastName, responsibleFor }) => {
+      speciesOfEmployee(firstName, lastName, responsibleFor);
+    });
+  } else {
+    // 'Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável'
+    // 'Com o primeiro nome de um funcionário, retorna os animais por qual é responsável'
+    // 'Com o último nome de um funcionário, retorna os animais por qual é responsável'
+    const findEmployee = employees.find(employee => Object.values(employee).includes(idOrName));
+    const { firstName, lastName, responsibleFor } = findEmployee;
+    speciesOfEmployee(firstName, lastName, responsibleFor);
+  }
+  return speciesByEmployee;
 }
-
+console.log(employeeCoverage());
 module.exports = {
   entryCalculator,
   schedule,
