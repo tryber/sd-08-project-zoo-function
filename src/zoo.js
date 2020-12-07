@@ -36,13 +36,12 @@ function createEmployee(...ids) {
 }
 
 function isManager(...ids) {
-  let trazid = employees.find((employ) => employ.managers );
-  let arr = (trazid.managers);
-  if (arr.some((str) => str === ids[0])) {
+  const trazid = employees.find(employ => employ.managers);
+  const arr = (trazid.managers);
+  if (arr.some(str => str === ids[0])) {
     return true;
-  
   }  else {
-       return false;
+    return false;
   }
 }
 
