@@ -126,6 +126,13 @@ console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 // 12
 function increasePrices(percentage) {
   // seu código aqui
+  /*const keys = Object.keys(data.prices);
+  const values = Object.values(data.prices);*/
+  const aumento = (percentage / 100 + 1);
+  prices.Adult = Math.round(prices.Adult * 100 * aumento) / 100;
+  prices.Senior = Math.round(prices.Senior * 100 * aumento) / 100;
+  prices.Child = Math.round(prices.Child * 100 * aumento) / 100;
+  return prices;
 }
 // 13
 function employeeCoverage(idOrName) {
