@@ -36,8 +36,8 @@ function employeeByName(employeeName) {
   );
 }
 
-function createEmployee(personalInfo, associatedWith) {
 
+function createEmployee(personalInfo, associatedWith) {
   const obj = {};
   obj.id = personalInfo.id;
   obj.firstName = personalInfo.firstName;
@@ -45,10 +45,8 @@ function createEmployee(personalInfo, associatedWith) {
   obj.managers = associatedWith.managers;
   obj.responsibleFor = associatedWith.responsibleFor;
 
-
   employees.push(obj);
-  return employees.find(each => (each.lastName === personalInfo.lastName));
- 
+  return employees.find(each => each.lastName === personalInfo.lastName);
 }
 
 function isManager(id) {
