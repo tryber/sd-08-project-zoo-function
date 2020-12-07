@@ -212,7 +212,6 @@ function animalMap(options) {
   }
   return objToReturn;
 }
-console.log(animalMap());
 
 function schedule(dayName) {
   // seu código aqui
