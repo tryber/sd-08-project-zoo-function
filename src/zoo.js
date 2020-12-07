@@ -142,10 +142,77 @@ function entryCalculator(entrants) {
   }
   return price;
 }
+// Funções para solução do requisito 9 -------------------------------------->
+const locationObj = { NE: [], NW: [], SE: [], SW: [] };
+function makePerRegion() {
+  animals.forEach((objAnimals) => {
+    const { name, location } = objAnimals;
+    locationObj[location].push(name);
+  });
+  return locationObj;
+}
+
+function makeIncludeNames() {
+  animals.forEach((objAnimals) => {
+    const { name, location, residents } = objAnimals;
+    const object = {};
+    const arrayResidentsName = [];
+    residents.forEach((objResident) => {
+      arrayResidentsName.push(objResident.name);
+    });
+    object[name] = arrayResidentsName;
+    locationObj[location].push(object);
+  });
+  return locationObj;
+}
+
+function filterSex(sex) {
+  animals.forEach((objAnimals) => {
+    const { name, location, residents } = objAnimals;
+    const animalFilter = residents.filter(animal => animal.sex === sex);
+    const newObj = {};
+    const arrayAnimals = [];
+    animalFilter.forEach((obj) => { arrayAnimals.push(obj.name); });
+    newObj[name] = arrayAnimals;
+    locationObj[location].push(newObj);
+  });
+  return locationObj;
+}
+
+function sortedArrays(objToSort) {
+  const keys = Object.keys(objToSort);
+  keys.forEach((location) => {
+    objToSort[location].forEach((obj) => {
+      const values = Object.keys(obj);
+      obj[values].sort();
+    });
+  });
+  return objToSort;
+}
+
 
 function animalMap(options) {
-  // seu código aqui
+  let objToReturn;
+  let objToReturnSorted;
+  let objSex;
+  if (options === undefined) {
+    return makePerRegion();
+  }
+  const { includeNames, sex, sorted } = options;
+  if (includeNames === true && sex === undefined) {
+    objToReturn = makeIncludeNames();
+  }
+  if (sex !== undefined && includeNames === true) {
+    objSex = filterSex(sex);
+    objToReturn = objSex;
+  }
+  if (sorted === true && includeNames === true) {
+    objToReturnSorted = sortedArrays(objToReturn);
+    objToReturn = objToReturnSorted;
+  }
+  return objToReturn;
 }
+console.log(animalMap());
 
 function schedule(dayName) {
   // seu código aqui
