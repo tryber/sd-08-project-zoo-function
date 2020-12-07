@@ -46,9 +46,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
-  return data.employees.some(employee =>
-    employee.managers.some(employeeId => employeeId === id),
-  );
+  return data.employees.some(employee => employee.managers.includes(id));
 }
 
 function addEmployee(
@@ -76,6 +74,12 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
+  if (entrants === undefined || Object.entries(entrants).length === 0) return 0;
+  const { prices } = data;
+  return Object.keys(entrants).reduce(
+    (acc, key) => (acc += prices[key] * entrants[key]),
+    0,
+  );
 }
 
 function animalMap(options) {
