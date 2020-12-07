@@ -91,8 +91,8 @@ const includeName = (obj) => {
 const sortNames = (obj, condition) => {
   if (condition) {
     const keys = Object.keys(obj);
-    keys.forEach(location => {
-      obj[location].forEach(animal => {
+    keys.forEach((location) => {
+      obj[location].forEach((animal) => {
         const key = Object.keys(animal);
         animal[key].sort();
       });
