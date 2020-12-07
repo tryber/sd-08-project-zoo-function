@@ -40,7 +40,7 @@ function isManager(...ids) {
   const arr = (trazid.managers);
   if (arr.some(str => str === ids[0])) {
     return true;
-  } 
+  }
   return false;
 }
 
