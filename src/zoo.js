@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 const animalsByIds = (...ids) => animals.filter(animal => ids.includes(animal.id));
@@ -49,19 +49,22 @@ const entryCalculator = entrants => {
     (acc, value) => acc + (prices[value] * entrants[value]), 0);
 };
 
-const animalMap = options => {
+function animalMap(options) {
   
 }
 
 const schedule = (dayName) => {
-  const result = Object.entries(hours).reduce((acc, [key, val]) => {
-    const{ open, close } = val;
-    acc[key] = close - open > 0 ? `Open from ${val.open}am until ${val.close}pm` : 'CLOSED';
-    return acc;
-  }, {});
-  if (typeof dayName === 'string' && dayName.length !== 0)
-  return { [dayName]: result[dayName] };
-}
+  if (!dayName) {
+  return Object.entries(hours).reduce((acc, [key, value]) => {
+      acc[key] = value.open > 0 ? `Open from ${value.open}am until ${value.close - 12}pm` : 'CLOSED';
+      return acc;
+    }, {});
+  }
+  if (dayName === 'Monday') return { [dayName]: 'CLOSED' };
+  if (Object.keys(hours).includes(dayName)) 
+  return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
+  return 0;
+};
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
