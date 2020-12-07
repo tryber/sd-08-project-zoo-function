@@ -9,59 +9,105 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+const { employees } = require('./data');
+const { animals } = require('./data');
+const { prices } = require('./data');
+const { hours } = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
-}
+const animalsByIds = (...ids) => (animals.filter(animal => ids.find(id => (animal.id === id))));
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
-}
+const animalsOlderThan = (animal, ages) => {
+  const animalName = animals.find(({ name }) => (name === animal));
+  return animalName.residents.every(({ age }) => age >= ages);
+};
 
-function employeeByName(employeeName) {
-  // seu código aqui
-}
+const employeeByName = (employeeName) => {
+  if (!employeeName) return {};
+  return employees.find(({ firstName, lastName }) => (firstName === employeeName
+    || lastName === employeeName));
+};
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
+const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
 
-function isManager(id) {
-  // seu código aqui
-}
+const isManager = id => employees.some(({ managers }) =>
+managers.find(identifier => identifier === id));
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-}
+const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => {
+  const insertEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  employees.push(insertEmployee);
+};
 
-function animalCount(species) {
-  // seu código aqui
-}
+const animalCount = (species) => {
+  const sum = animals.reduce((acc, { name, residents }) => {
+    acc[name] = residents.length;
+    return acc;
+  }, {});
+  return (!species) ? sum : sum[species];
+};
 
-function entryCalculator(entrants) {
-  // seu código aqui
-}
+const entryCalculator = (entrants) => {
+  if (!entrants) return 0;
+  const visits = Object.entries(entrants);
+  return visits.reduce((sum, [type, value]) => sum + (prices[type] * value), 0);
+};
 
-function animalMap(options) {
+const animalMap = (options) => {
   // seu código aqui
-}
+};
 
-function schedule(dayName) {
-  // seu código aqui
-}
+const openDays = () => {
+  const hour = Object.entries(hours);
+  return hour.reduce((acc, [day, { open, close }]) => {
+    acc[day] = (open, close > 0) ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
+    return acc;
+  }, {});
+};
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+const schedule = (dayName) => {
+  const days = openDays();
+  return (!dayName) ? days : { [dayName]: days[dayName] };
+};
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+console.log(schedule('Tuesday'));
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+const oldestFromFirstSpecies = (identifier) => {
+  const employee = employees.find(({ id }) => id === identifier).responsibleFor[0];
+  const animal = animals.find(({ id }) => id === employee).residents;
+  const oldestOfTheSpecies = animal.reduce((old, { age }) => (old > age ? old : age));
+  return Object.values(animal.find(({ age }) => age === oldestOfTheSpecies));
+};
+
+const increasePrices = (percentage) => {
+  const price = Object.entries(prices);
+  price.forEach(([type, value]) => {
+    const perc = (percentage / 100) + 1;
+    prices[type] = Math.round(value * perc * 100) / 100;
+  });
+};
+
+const getEmployee = employee => employees.find(({ id, firstName, lastName }) =>
+(id === employee || firstName === employee || lastName === employee));
+
+const responsibleForTheAnimal = () => employees.reduce(
+  (acc, { firstName, lastName, responsibleFor }) => {
+    acc[`${firstName} ${lastName}`] = responsibleFor.map(animal => animals.find(({ id }) => id === animal).name);
+    return acc;
+  }, {});
+
+const employeeCoverage = (idOrName) => {
+  const responsible = responsibleForTheAnimal();
+  if (!idOrName) return responsible;
+  const employee = getEmployee(idOrName);
+  const { firstName, lastName } = employee;
+  const name = `${firstName} ${lastName}`;
+  return { [name]: responsible[name] };
+};
 
 module.exports = {
   entryCalculator,
