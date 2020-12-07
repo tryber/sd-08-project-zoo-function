@@ -43,8 +43,21 @@ function isManager(id) {
   return employees.some(managerTorF => managerTorF.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(
+  id,
+  firstName,
+  lastName,
+  managers = [],
+  responsibleFor = [],
+) {
   // seu código aqui
+  employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
 }
 
 function animalCount(species) {
@@ -91,6 +104,10 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+
+  return employees.find(employee => {
+    employee.id === idOrName;
+  });
 }
 
 module.exports = {
