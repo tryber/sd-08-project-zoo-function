@@ -110,7 +110,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  let availableHours = {};
+  const availableHours = {};
   if (!dayName) {
     const days = Object.keys(hours);
     days.forEach((day) => {
