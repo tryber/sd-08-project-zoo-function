@@ -15,11 +15,11 @@ const data = require('./data');
 
 const animalsByIds = (...ids) => animals.filter(animal => ids.includes(animal.id));
 
-const animalsOlderThan = (animalSpecie, animalAge) => animals.find(animal => animal.name === animalSpecie)
-  .residents.every(resident => resident.age >= animalAge);
+const findAnimal = (specie) => animals.find(e => e.name === specie);
 
-const employeeByName = (employeeName) => employees.find(employee =>
-  (employee.firstName === employeeName || employee.lastName === employeeName)) || {};
+const animalsOlderThan = (specie, age) => findAnimal(specie).residents.every(e => e.age >= age);
+
+const employeeByName = (n) => employees.find(e => (e.firstName === n || e.lastName === n)) || {};
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
