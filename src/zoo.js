@@ -50,7 +50,7 @@ function addEmployee(id = [], firstName = [], lastName = [], managers = [], resp
 
 const animalCount = (species) => {
   if (species) {
-    return animals.find(a => a.name === species).residents.length
+    return animals.find(a => a.name === species).residents.length;
   }
   return animals.reduce((acc, current) => {
     acc[current.name] = current.residents.length;
