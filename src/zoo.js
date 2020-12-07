@@ -80,8 +80,22 @@ const increasePrices = (percentage) => {
   });
 };
 
+const getEmployee = employee => employees.find(({ id, firstName, lastName }) =>
+(id === employee || firstName === employee || lastName === employee));
+
+const responsibleForTheAnimal = () => employees.reduce(
+  (acc, { firstName, lastName, responsibleFor }) => {
+    acc[`${firstName} ${lastName}`] = responsibleFor.map(animal => animals.find(({ id }) => id === animal).name);
+    return acc;
+  }, {});
+
 const employeeCoverage = (idOrName) => {
-  // seu código aqui
+  const responsible = responsibleForTheAnimal();
+  if (!idOrName) return responsible;
+  const employee = getEmployee(idOrName);
+  const { firstName, lastName } = employee;
+  const name = `${firstName} ${lastName}`;
+  return { [name]: responsible[name] };
 };
 
 module.exports = {
