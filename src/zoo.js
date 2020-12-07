@@ -104,7 +104,7 @@ function schedule(dayName) {
     return acc;
   }, {});
   if (dayName) {
-    return { [dayName]: week[dayName] }
+    return { [dayName]: week[dayName] };
   }
   return week;
   // seu código aqui
