@@ -47,8 +47,20 @@ function employeeByName(employeeName) {
 
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  if(!personalInfo || !associatedWith){
+    return {};
+  }
+  const employee = {
+    id: personalInfo.id,
+    firstName: personalInfo.firstName,
+    lastName: personalInfo.lastName,
+    managers: associatedWith.managers,
+    responsibleFor: associatedWith.responsibleFor
+  }
+
+  return employee;
 }
+
 
 function isManager(id) {
   let checkTrueOrFalse = false;
