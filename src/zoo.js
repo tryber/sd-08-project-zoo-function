@@ -67,29 +67,31 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // const zoneFilter = zone => data.animals.filter(animal => animal.location === zone);
-  // const mapAnimals = animalZone => animalZone.map(animal => animal.name);
-  // const zones = ['NE', 'NW', 'SE', 'SW'];
-  // const animalList = {
-  //   NE: mapAnimals(zoneFilter('NE')),
-  //   NW: mapAnimals(zoneFilter('NW')),
-  //   SE: mapAnimals(zoneFilter('SE')),
-  //   SW: mapAnimals(zoneFilter('SW')),
-  // };
-  // if (options.includeNames === true) {
-  //   for (let index = 0; index < zones.length; index += 1) {
-  //     animalList[zones[index]].forEach((animalName, indexAnimal) => {
-  //       const speciesName = data.animals.find(animal => animal.name === animalName).residents;
-  //       const animalsName = [];
-  //       speciesName.forEach((specieName) => {
-  //         animalsName.push(specieName.name);
-  //       });
-  //       const result = { [animalName]: animalsName };
-  //       animalList[zones[index]][indexAnimal] = result;
-  //     });
-  //   }
-  // }
-  // return animalList;
+  if (!options) options = {};
+  const zoneFilter = zone => data.animals.filter(animal => animal.location === zone);
+  const mapAnimals = animalZone => animalZone.map(animal => animal.name);
+  const zones = ['NE', 'NW', 'SE', 'SW'];
+  const animalList = {
+    NE: mapAnimals(zoneFilter('NE')),
+    NW: mapAnimals(zoneFilter('NW')),
+    SE: mapAnimals(zoneFilter('SE')),
+    SW: mapAnimals(zoneFilter('SW')),
+  };
+  if (options.includeNames === true) {
+    for (let index = 0; index < zones.length; index += 1) {
+      animalList[zones[index]].forEach((animalName, indexAnimal) => {
+        const speciesName = data.animals.find(animal => animal.name === animalName).residents;
+        const animalsName = [];
+        speciesName.forEach((specieName) => {
+          if (options.sex === specieName.sex) animalsName.push(specieName.name);
+          else if (!options.sex) animalsName.push(specieName.name);
+        });
+        if (options.sorted === true) { animalsName.sort(); }
+        const result = { [animalName]: animalsName };
+        animalList[zones[index]][indexAnimal] = result;
+      });
+    }
+  } return animalList;
 }
 
 function schedule(dayName) {
