@@ -46,7 +46,8 @@ function animalCount(species) {
   if (species === undefined) {
     return data.animals.reduce((acc, animal) => {
       acc[animal.name] = animal.residents.length;
-      return acc}, {});
+      return acc;
+    }, {});
   }
   return data.animals.find(animal => animal.name === species).residents.length;
 }
