@@ -86,7 +86,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   });
 
   return addNewEmployee;
-  
 }
 
 
