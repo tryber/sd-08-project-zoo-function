@@ -119,6 +119,7 @@ function increasePrices(percentage) {
     Senior: parseFloat((Math.round((prices.Senior += prices.Senior *= percentage /100) *100) /100).toFixed(2))
   }
 }
+console.log(increasePrices(50))
 
 
 function employeeCoverage(idOrName) {
