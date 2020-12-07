@@ -9,7 +9,6 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -98,14 +97,33 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  return Object.entries(prices).forEach(([keys, values]) => {
-    const priceWithPercentage = values * (percentage / 100 + 1);
-    prices[keys] = Math.round(priceWithPercentage * 100) / 100
+  return Object.entries(data.prices).forEach(([keys, values]) => {
+    const priceWithPercentage = values * ((percentage / 100) + 1);
+    data.prices[keys] = Math.round(priceWithPercentage * 100) / 100;
   });
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const result = {};
+  if (!idOrName) {
+    data.employees.forEach((e) => {
+      result[`${e.firstName} ${e.lastName}`] = e.responsibleFor.map(
+        animalId => animalsByIds(animalId)[0].name,
+      );
+    });
+  } else {
+    const getEmployee = data.employees.find(
+      employee =>
+        employee.id === idOrName ||
+        employee.firstName === idOrName ||
+        employee.lastName === idOrName,
+    );
+    const getAnimal = getEmployee.responsibleFor.map(
+      animalId => animalsByIds(animalId)[0].name,
+    );
+    result[`${getEmployee.firstName} ${getEmployee.lastName}`] = getAnimal;
+  }
+  return result;
 }
 
 module.exports = {
