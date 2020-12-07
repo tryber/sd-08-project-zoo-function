@@ -26,7 +26,7 @@ const employeeByName = employeeName => employees
 const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
 
 const isManager = id => employees
-.some(element => element.id === id && element.responsibleFor.length > 3);
+.some(element => element.managers.includes(id));
 
 const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => employees
 .push({
