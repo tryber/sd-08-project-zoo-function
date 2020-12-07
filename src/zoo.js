@@ -97,9 +97,10 @@ function employeeCoverage(idOrName) {
     }, {});
   }
   return data.employees.reduce((cont, nome) => {
-    nome = data.employees.find(x => x.id === idOrName || x.firstName === idOrName || x.lastName === idOrName);
+    nome = data.employees.find(x => x.id === idOrName || x.firstName === idOrName 
+      || x.lastName === idOrName);
     const { firstName, lastName, responsibleFor } = nome;
-    cont[`${firstName} ${lastName}`] = responsibleFor.map(x => data.animals.find(animal => animal.id === x).name);
+    cont[`${firstName} ${lastName}`] = responsibleFor.map(x => data.animals.find(a => a.id === x).name);
     return cont;
   }, {});
 }
