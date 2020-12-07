@@ -1,3 +1,4 @@
+const { animals } = require('./data');
 /*
 eslint no-unused-vars: [
   "error",
@@ -11,25 +12,30 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
-  
+function animalsByIds(...ids) {
+  //rest operator
+  //filter ids por parametro
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  //find retorna apenas 1
+  //every (todos os itens necessitam satisfazer a condicao)
+  //some (se ao menos um item retornar true)
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  // undefined: {}
+  //find //fisrt === employeeName OU lasr === employeeName
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  //spread operator (...)
 }
 
 function isManager(id) {
-  // seu código aqui
+  //some 
+  //find //includes (verificar se a pessoa possui pelo menos um id de manager)
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
