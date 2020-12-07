@@ -58,8 +58,8 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const objHours = Object.entries(hours);
-  const result = objHours.reduce((acc, [key, val]) => {
+  const arrayHours = Object.entries(hours);
+  const result = arrayHours.reduce((acc, [key, val]) => {
     const { open, close } = val;
     acc[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
     return acc;
@@ -71,7 +71,12 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const employee = employees.find((emp) => emp.id === id);
+  const firstId = employee.responsibleFor[0];
+  const animal = animalsByIds(firstId)[0];
+  const { residents } = animal;
+  const oldest = residents.reduce((maisVelho, atual) => atual.age > maisVelho.age ? atual : maisVelho);
+  return Object.values(oldest);
 }
 
 function increasePrices(percentage) {
