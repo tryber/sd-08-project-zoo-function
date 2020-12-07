@@ -80,8 +80,55 @@ function entryCalculator(entrants = {}) {
     .reduce((acc, element) => acc + (price[ageRange.indexOf(element[0])] * element[1]), 0);
 }
 
-function animalMap(options) {
+const includeName = (obj) => {
+  data.animals.forEach(element => {
+    const animal = {};
+    animal[element.name] = element.residents.map(element => element.name);
+    obj[element.location].push(animal);
+  });
+};
+
+const sortNames = (obj, condition) => {
+  if (condition) {
+    data.animals.forEach(element => {
+      obj[element.location]
+        .find(animal => Object.keys(animal).includes(element.name))[element.name]
+        .sort();
+    });
+  };
+};
+
+const helpFunction = (resident) => resident.name;
+
+const genderFilter = (obj, gender) => {
+  if (gender !== undefined) {
+    data.animals.forEach(element => {
+      obj[element.location]
+        .find(animal => Object.keys(animal).includes(element.name))[element.name] =
+          element.residents.filter(resident => resident.sex === gender)
+          .map(helpFunction);
+    });
+  }
+};
+
+function animalMap({includeNames, sorted, sex,} = {}) {
   // seu código aqui
+  let obj = {
+    NE: [],
+    NW: [],
+    SE: [],
+    SW: [],
+  };
+  if (includeNames) {
+    includeName(obj);
+    genderFilter(obj, sex);
+    sortNames(obj, sorted);
+  } else {
+    data.animals.forEach(element => {
+      obj[element.location].push(element.name);
+    });
+  };
+  return obj;
 }
 
 function schedule(dayName) {
