@@ -73,7 +73,11 @@ const oldestFromFirstSpecies = (identifier) => {
 };
 
 const increasePrices = (percentage) => {
-  // seu código aqui
+  const price = Object.entries(prices);
+  price.forEach(([type, value]) => {
+    const perc = (percentage / 100) + 1;
+    prices[type] = Math.round(value * perc * 100) / 100;
+  });
 };
 
 const employeeCoverage = (idOrName) => {
