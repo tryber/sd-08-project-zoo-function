@@ -92,19 +92,18 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   const countAnimal = {};
   if (!species) {
-    animals.forEach(animal => {
+    animals.forEach((animal) => {
       countAnimal[animal.name] = animal.popularity;
     });
     return countAnimal;
   }
   const findAnimal = animals.find(animal => animal.name === species);
   return findAnimal.popularity;
-  
 }
 
 
 function entryCalculator(entrants) {
-  if (!entrants || Object.keys(entrants).length === 0) { 
+  if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
   const entrantsKeys = Object.keys(entrants);
@@ -112,9 +111,9 @@ function entryCalculator(entrants) {
     return data.prices[eachKey];
   });
   const entrantsValues = Object.values(entrants);
-  const total = entrantsValues.reduce((acc, curr,index) => {
+  const total = entrantsValues.reduce((acc, curr, index) => {
     return acc + (show[index] * curr);
-  },0)
+  }, 0);
 
   return total;
 }
