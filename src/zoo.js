@@ -87,21 +87,23 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+
 }
 
+
 function schedule(dayName) {
-  const weekDays = {
-    Tuesday: 'Open from 8am until 6pm',
-    Wednesday: 'Open from 8am until 6pm',
-    Thursday: 'Open from 10am until 8pm',
-    Friday: 'Open from 10am until 8pm',
-    Saturday: 'Open from 8am until 10pm',
-    Sunday: 'Open from 8am until 8pm',
-    Monday: 'CLOSED',
-  };
   const businessDay = {};
-  if (!dayName) return weekDays;
+  if (!dayName) {
+    Object.keys(hours).forEach(day => {
+      const { open, close } = hours[day];
+      if (open === 0) {
+        businessDay[day] = 'CLOSED';
+      } else {
+        businessDay[day] = `Open from ${open}am until ${close - 12}pm`;
+  }
+});
+  return businessDay;
+}
   if (dayName === 'Monday') {
     businessDay[dayName] = 'CLOSED';
   } else {
@@ -109,6 +111,7 @@ function schedule(dayName) {
   }
   return businessDay;
 }
+
 
 function oldestFromFirstSpecies(id) {
   const responsible = employees.find(employee => employee.id === id).responsibleFor[0];
@@ -140,7 +143,7 @@ function employeeCoverage(idOrName) {
     .find(({ id, firstName, lastName }) =>
     idOrName === id || idOrName === firstName || idOrName === lastName);
     const nameEmployee = `${findEmployee.firstName} ${findEmployee.lastName}`;
-    list = { [nameEmployee]: zooAnimals[zooEmployees.indexOf(`${nameEmployee}`)] };
+    list = { [nameEmployee]: zooAnimals[zooEmployees.indexOf(nameEmployee)] };
   }
   return list;
 }
