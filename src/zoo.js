@@ -118,11 +118,8 @@ function entryCalculator(entrants) {
 
 
 function animalMap(...options) {
- 
+  // codigo
 }
-
-
-
 
 function schedule(dayName) {
   // seu código aqui
