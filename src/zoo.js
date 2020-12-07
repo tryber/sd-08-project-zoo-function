@@ -90,9 +90,10 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   if (idOrName === undefined) {
+    const dt = data.animals;
     return data.employees.reduce((cont, employee) => {
       const { firstName, lastName, responsibleFor } = employee;
-      cont[`${firstName} ${lastName}`] = responsibleFor.map(i => data.animals.find(animal => animal.id === i).name);
+      cont[`${firstName} ${lastName}`] = responsibleFor.map(i => dt.find(animal => animal.id === i).name);
       return cont;
     }, {});
   }
