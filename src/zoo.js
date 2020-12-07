@@ -100,10 +100,10 @@ function schedule(dayName) {
         businessDay[day] = 'CLOSED';
       } else {
         businessDay[day] = `Open from ${open}am until ${close - 12}pm`;
+      }
+    });
+    return businessDay;
   }
-});
-  return businessDay;
-}
   if (dayName === 'Monday') {
     businessDay[dayName] = 'CLOSED';
   } else {
