@@ -35,8 +35,15 @@ function createEmployee(...ids) {
   };
 }
 
-function isManager(ids) {
-  return employees.some(container => container.managers === ids);
+function isManager(...ids) {
+  let trazid = employees.find((employ) => employ.managers );
+  let arr = (trazid.managers);
+  if (arr.some((str) => str === ids[0])) {
+    return true;
+  
+  }  else {
+       return false;
+  }
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
