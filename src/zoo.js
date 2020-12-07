@@ -90,7 +90,7 @@ function entryCalculator(entrants) {
     return 0;
   }
   const { Adult: adultQt = 0, Senior: seniorQt = 0, Child: childQt = 0 } = entrants;
-  const { Adult, Senior, Child } = data.prices;
+  const { Adult, Senior, Child } = prices;
   const totalValue = (adultQt * Adult) + (seniorQt * Senior) + (childQt * Child);
   return totalValue;
 }
@@ -100,25 +100,17 @@ function animalMap(options) {
 }
 // 10
 function schedule(dayName) {
-  let obj = {};
   const hours = data.hours;
-  const week = Object.keys(hours);
-  if (dayName) {
-    obj = { ...obj, [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
-    if (dayName === 'Monday') {
-      obj = { ...obj, [dayName]: 'CLOSED' };
-    }
-  } else {
-    week.forEach((key) => {
-      obj = { ...obj, [key]: `Open from ${hours[key].open}am until ${hours[key].close - 12}pm` };
-      if (key === 'Monday') {
-        obj = { ...obj, [key]: 'CLOSED' };
+  let obj = {};
+  Object.keys(hours).forEach((element) => {
+      const keyWeek = dayName ? dayName : element;
+      obj = { ...obj, [keyWeek]: `Open from ${hours[keyWeek].open}am until ${hours[keyWeek].close - 12}pm` };
+      if (keyWeek === 'Monday') {
+        obj = { ...obj, [keyWeek]: 'CLOSED' };
       }
     });
-  }
   return obj;
 }
-
 // 11
 function oldestFromFirstSpecies(id) {
   // seu código aqui
