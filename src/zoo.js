@@ -61,14 +61,17 @@ const schedule = (dayName) => {
     }, {});
   }
   if (dayName === 'Monday') return { [dayName]: 'CLOSED' };
-  if (Object.keys(hours).includes(dayName)) 
   return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
-  return 0;
 };
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+const oldestFromFirstSpecies = id => {
+  const employeeID = employees.find(employee => employee.id === id);
+  const animalID = animals.find(animal => animal.id === employeeID.responsibleFor[0]).residents;
+  const arrAnimalOldest = animalID.reduce((acc, animal) => {
+    return acc.age > animal.age ? acc : animal;
+  });
+  return [arrAnimalOldest.name, arrAnimalOldest.sex, arrAnimalOldest.age];
+};
 
 function increasePrices(percentage) {
   // seu código aqui
