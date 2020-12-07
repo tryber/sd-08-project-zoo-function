@@ -66,8 +66,89 @@ function entryCalculator(entrants = '') {
   return (Adult * entrantAdult) + (Senior * entrantSenior) + (Child * entrantChild);
 }
 
-function animalMap(options) {
-  // seu código aqui
+const createSimpleContainer = (locationList, newObject) => {
+  for (let index = 0; index < locationList.length; index += 1) {
+    const speciesByRegion = data.animals.filter(object => object.location === locationList[index]);
+    const speciesList = speciesByRegion.map((objectFound) => {
+      const species = objectFound.name;
+      return species;
+    });
+    newObject[locationList[index]] = speciesList;
+  }
+};
+
+const createContainerIncludeNames = (locationList, newObject) => {
+  for (let index = 0; index < locationList.length; index += 1) {
+    const speciesByRegion = data.animals.filter(object => object.location === locationList[index]);
+    const speciesByRegionReduce = speciesByRegion.map((specie) => {
+      const specieKey = specie.name;
+      const animalList = specie.residents.map(resident => resident.name);
+      const container = {};
+      container[specieKey] = animalList;
+      return container;
+    });
+    newObject[locationList[index]] = speciesByRegionReduce;
+  }
+};
+const createContainerSorted = (locationList, newObject) => {
+  for (let index = 0; index < locationList.length; index += 1) {
+    const speciesByRegion = data.animals.filter(object => object.location === locationList[index]);
+    const speciesByRegionReduce = speciesByRegion.map((specie) => {
+      const specieKey = specie.name;
+      const animalList = specie.residents.map(resident => resident.name);
+      const animalListSorted = animalList.sort();
+      const container = {};
+      container[specieKey] = animalListSorted;
+      return container;
+    });
+    newObject[locationList[index]] = speciesByRegionReduce;
+  }
+};
+const createContainerIncludeNamesSex = (locationList, newObject, sexParam) => {
+  for (let index = 0; index < locationList.length; index += 1) {
+    const speciesByRegion = data.animals.filter(object => object.location === locationList[index]);
+    const speciesByRegionReduce = speciesByRegion.map((specie) => {
+      const specieKey = specie.name;
+      const animalList = specie.residents.filter(resident => resident.sex === sexParam);
+      const animalBySex = animalList.map(resident => resident.name);
+      const container = {};
+      container[specieKey] = animalBySex;
+      return container;
+    });
+    newObject[locationList[index]] = speciesByRegionReduce;
+  }
+};
+const createContainerIncludeNamesSexSorted = (locationList, newObject, sexParam) => {
+  for (let index = 0; index < locationList.length; index += 1) {
+    const speciesByRegion = data.animals.filter(object => object.location === locationList[index]);
+    const speciesByRegionReduce = speciesByRegion.map((specie) => {
+      const specieKey = specie.name;
+      const animalList = specie.residents.filter(resident => resident.sex === sexParam);
+      const animalBySex = animalList.map(resident => resident.name);
+      animalBySex.sort();
+      const container = {};
+      container[specieKey] = animalBySex;
+      return container;
+    });
+    newObject[locationList[index]] = speciesByRegionReduce;
+  }
+};
+function animalMap(options = '') {
+  const locationList = ['NE', 'NW', 'SE', 'SW'];
+  const newObject = {};
+  const { includeNames = false, sorted = false, sex = false } = options;
+  if (options === '' || includeNames === false) {
+    createSimpleContainer(locationList, newObject);
+  } else if (includeNames === true && sorted === false && sex === false) {
+    createContainerIncludeNames(locationList, newObject);
+  } else if (sorted === true && includeNames === true && sex === false) {
+    createContainerSorted(locationList, newObject);
+  } else if (sorted === false && includeNames === true && sex !== false) {
+    createContainerIncludeNamesSex(locationList, newObject, sex);
+  } else if (sorted === true && includeNames === true && sex !== false) {
+    createContainerIncludeNamesSexSorted(locationList, newObject, sex);
+  }
+  return newObject;
 }
 
 function schedule(dayName = '') {
