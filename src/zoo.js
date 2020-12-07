@@ -23,7 +23,13 @@ function animalsByIds(ids, ids2) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const arr3 = arr.filter(x => (x.name === animal));
+  const arr4 = arr3[0].residents;
+  const arr5 = arr4.filter(y => y.age > age);
+
+  if (arr5.length === arr4.length) { return true; }
+
+  return false;
 }
 
 function employeeByName(employeeName) {
