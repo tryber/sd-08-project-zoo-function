@@ -95,8 +95,8 @@ const sortNames = (obj, condition) => {
       obj[location].forEach(animal => {
         const key = Object.keys(animal);
         animal[key].sort();
-      })
-    })
+      });
+    });
   }
 };
 
