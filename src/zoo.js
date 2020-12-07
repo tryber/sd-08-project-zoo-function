@@ -59,7 +59,7 @@ function animalCount(species) {
   const a = data.animals.reduce((ac, value) => {
     ac[value.name] = value.residents.length;
     return ac;
-  }, { });
+  }, {});
   return a;
 }
 
@@ -79,8 +79,43 @@ function entryCalculator(entrants) {
   return tot;
 }
 
+const locations = () => data.animals.map(el => el.location)
+  .filter((el, index, arr) => arr.indexOf(el) === index);
+
+const isLocalName = locals => data.animals.filter(el => el.location === locals)
+  .map(el => el.name);
+
+const listNameAnimals = allLocals => allLocals.reduce((acumulator, value) => {
+  acumulator[value] = isLocalName(value);
+  return acumulator;
+}, {});
+
+const getNamesAnimalarr = classAnimal => classAnimal.map(animal => animal.name);
+const getNamesAnimalsex = (classAnimal, sex) => classAnimal.filter(animal => animal.sex === sex)
+  .map(animal => animal.name);
+
+const isSex = (residents, sex) => (
+sex !== undefined ? getNamesAnimalsex(residents, sex) : getNamesAnimalarr(residents));
+
+const getNameAnimals = (args) => {
+  const { sex, sorted } = args;
+  const result = data.animals.reduce((acumulador, animal) => {
+    if (!acumulador[animal.location]) acumulador[animal.location] = [];
+    const { name: key, residents } = animal;
+    const objNames = { };
+    const arr = isSex(residents, sex);
+    objNames[key] = sorted ? arr.sort() : arr;
+    acumulador[animal.location].push(objNames);
+    return acumulador;
+  }, {});
+  return result;
+};
+
 function animalMap(options) {
-  // seu código aqui
+  if (options === undefined) return listNameAnimals(locations());
+  const { includeNames } = options;
+  if (includeNames === true) return getNameAnimals(options);
+  return listNameAnimals(locations());
 }
 
 function schedule(dayName) {
