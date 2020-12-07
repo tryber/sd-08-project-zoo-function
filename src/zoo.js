@@ -21,16 +21,16 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.find((a) => a.name === animal).residents.every(resident => resident.age >= age);
+  return animals.find(a => a.name === animal).residents.every(resident => resident.age >= age);
 }
 
 function employeeByName(employeeName) {
-  if(!employeeName) return {};
+  if (!employeeName) return {};
   return employees.find(name => name.firstName === employeeName || name.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return { ...personalInfo, ...associatedWith }  
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -43,23 +43,23 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     firstName,
     lastName,
     managers,
-    responsibleFor
+    responsibleFor,
   });
 }
 
 function animalCount(species) {
-  if(!species) {
+  if (!species) {
     return animals.reduce((acc, animal) => {
       acc[animal.name] = animal.residents.length;
       return acc;
     }, {});
   }
-  return animals.find((animal) => animal.name === species).residents.length;
+  return animals.find(animal => animal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
   if (!entrants || Object.values(entrants).length === 0) return 0;
-  return Object.keys(entrants).reduce((acc, key) => acc + prices[key] * entrants[key], 0);
+  return Object.keys(entrants).reduce((acc, key) => acc + (prices[key] * entrants[key]), 0);
 }
 
 function animalMap(options) {
@@ -67,22 +67,24 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  if (!dayName) return Object.entries(hours).reduce((acc, [key, value]) => {
-    acc[key] = value.open > 0 ? `Open from ${value.open}am until ${value.close - 12}pm` : `CLOSED`;
-    return acc;
-  }, {});
-  if (dayName === 'Monday') return { [dayName]: 'CLOSED'};
+  if (!dayName) {
+    return Object.entries(hours).reduce((acc, [key, value]) => {
+      acc[key] = value.open > 0 ? `Open from ${value.open}am until ${value.close - 12}pm` : 'CLOSED';
+      return acc;
+    }, {});
+  }
+  if (dayName === 'Monday') return { [dayName]: 'CLOSED' };
   if (Object.keys(hours).includes(dayName)) return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
+  return 0;
 }
 
 function oldestFromFirstSpecies(id) {
-  const animalSpecie = animals.find(animal => {
-    return animal.id === employees.find(employee => employee.id === id).responsibleFor[0];
-  });
+  const employ = employees.find(employee => employee.id === id).responsibleFor[0];
+  const animalSpecie = animals.find(animal => animal.id === employ);
   let maior = animalSpecie.residents[0].age;
-  animalSpecie.residents.map(element => { if (element.age > maior) maior = element; });
-  ({ name, sex, age } = maior);
-  return [ name, sex, age ];
+  animalSpecie.residents.map((element) => { if (element.age > maior) maior = element; return 0; });
+  const { name, sex, age } = maior;
+  return [name, sex, age];
 }
 
 function increasePrices(percentage) {
