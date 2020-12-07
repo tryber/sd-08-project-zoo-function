@@ -102,6 +102,7 @@ function animalMap(options) {
 // console.log(animalMap(options));
 
 function schedule(dayName) {
+
   const schedule = Object.entries(hours).reduce((accumulator,day) => {
     accumulator[day[0]] = day[0] !== 'Monday' ? 
     `Open from ${Object.values(day[1])[0]}am until ${Object.values(day[1])[1] -12}pm`
@@ -115,11 +116,21 @@ function schedule(dayName) {
     if (dayName === key) return {[key]: schedule[key]};
   }
 }
-console.log(schedule())
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const firstId = employees.find(employeeInfo => employeeInfo.id === id).responsibleFor[0];
+  const residentsById = animalsByIds(firstId)[0].residents;
+  let oldestAge = null;
+  
+  residentsById.forEach(resident => {
+    oldestAge < resident.age ? oldestAge = resident.age : oldestAge;
+  })
+
+  const oldestFromSpecies = residentsById.find(resident => resident.age === oldestAge);
+  return Object.values(oldestFromSpecies);
 }
+
+console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
 
 function increasePrices(percentage) {
   // seu código aqui
