@@ -40,13 +40,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     id,
     firstName,
     lastName,
-  };
-  const objAssociate = {
     managers,
     responsibleFor,
   };
-  const result = Object.assign(person, objAssociate);
-  employees.push(result);
+  employees.push(person);
 }
 
 function animalCount(species) {
