@@ -10,28 +10,27 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const { animals, employees } = data;
 
 function animalsByIds(...ids) {
   if (ids.length === 0) {
-    return ids;
+    ids;
   }
-  return data.animals.filter(animal => ids.includes(animal.id));
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 // console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce',
 //  'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
 
 function animalsOlderThan(animal, age) {
-  return data.animals.find(item => item.name === animal).residents.every(item => item.age > age);
+  return animals.find(item => item.name === animal).residents.every(item => item.age >= age);
 }
 
 // console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(emp) {
-  if (emp === undefined) {
-    return {};
-  }
-  return data.employees
+  if (emp === undefined) { };
+  return employees
     .find(nome => nome.firstName === emp || nome.lastName === emp);
 }
 
@@ -62,14 +61,16 @@ function createEmployee(personalInfo, associatedWith) {
 // console.log(createEmployee(personalInfo, associatedWith));
 
 function isManager(id) {
-  return data.employees.some(nome => nome.managers.includes(id));
+  return employees.some(nome => nome.managers.includes(id));
 }
 
 // console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const personalInfo = { id, firstName, lastName };
+  const associatedWith = { managers, responsibleFor };
+  employees.push(createEmployee(personalInfo, associatedWith));
 }
 
 function animalCount(species) {
