@@ -38,24 +38,24 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  return data.employees.push({ id: id, firstName: firstName, lastName: lastName, managers: managers, responsibleFor: responsibleFor });
+  return data.employees.push({ id: id, firstName: firstName, lastName: lastName,
+    managers: managers, responsibleFor: responsibleFor });
 }
 
 function animalCount(species) {
   const result = {};
-  if(!species) {
-    data.animals.forEach(item => {
-      result[item.name] = item.residents.length
-    })
+  if (!species) {
+    data.animals.forEach((item) => {
+      result[item.name] = item.residents.length;
+    });
     return result;
   }
   return data.animals.find(item => item.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
-  if(entrants === undefined || Object.keys(entrants).length == 0) {return 0};
+  if (entrants === undefined || Object.keys(entrants).length === 0) { return 0 }
   const arrayEntrants = Object.entries(entrants);
-  const arrayPrices = Object.entries(data.prices);
   const result = [];
   arrayEntrants.forEach(item => result.push((item[1] * data.prices[item[0]])));
   return result.reduce((acc, curr) => acc + curr);
@@ -66,11 +66,11 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  //prioridade 01
+  // prioridade 01
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código 
+  // seu código aqui
 }
 
 function increasePrices(percentage) {
