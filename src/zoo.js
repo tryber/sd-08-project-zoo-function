@@ -41,8 +41,12 @@ const animalCount = (species) => {
   if (species !== undefined) {
     return animals.find(element => element.name === species).residents.length;
   }
-  return animals.map(element => ({ [element.name]: element.residents.length }))
-  .reduce((acc, curr) => Object.assign(acc, curr), {});
+  // return animals.map(element => ({ [element.name]: element.residents.length }))
+  // .reduce((acc, curr) => ({...acc, ...curr}));
+  return animals.reduce((acc, curr) => {
+    const { name, residents } = curr;
+    return { ...acc, [name]: residents.length };
+  }, {});
 };
 
 const entryCalculator = (entrants) => {
