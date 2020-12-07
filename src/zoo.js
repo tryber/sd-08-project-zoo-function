@@ -95,7 +95,19 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const { animals, employees } = data;
+  const employeeFromId = employees.find(employee => employee.id === id);
+  const { responsibleFor } = { ...employeeFromId };
+  const firstAnimalGroup = animals.find(animal => animal.id === responsibleFor[0]);
+  const result = [];
+  const ageOfOldest = firstAnimalGroup.residents.reduce((acc, curr) => {
+    if (curr.age > acc) acc = curr.age;
+    return acc;
+  }, 0);
+  firstAnimalGroup.residents.forEach((animal) => {
+    if (animal.age === ageOfOldest) result.push(animal.name, animal.sex, animal.age);
+  });
+  return result; 
 }
 
 function increasePrices(percentage) {
