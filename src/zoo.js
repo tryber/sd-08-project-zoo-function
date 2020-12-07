@@ -86,8 +86,12 @@ function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
   }
-  return Object.keys(entrants).reduce((accumulator, currentValue) => (
-    accumulator + (entrants[currentValue] * prices[currentValue])
+  const array = [];
+  Object.keys(entrants).forEach((element) => {
+    array.push(entrants[element] * prices[element]);
+  });
+  return array.reduce((accumulator, currentValue) => (
+    accumulator + currentValue
   ), 0);
 }
 
@@ -104,7 +108,12 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const multiplier = (100 + percentage) / 100;
+  Object.keys(prices).forEach((element) => {
+    const currentPrice = prices[element];
+    prices[element] = Math.round(currentPrice * multiplier * 100) / 100;
+  });
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
