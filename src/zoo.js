@@ -35,13 +35,13 @@ function animalsByIds(...ids) {
 //   return { ...personalInfo, ...associatedWith };
 // }
 
-const data = require('./data');
+// const data = require('./data');
 
-function isManager(id) {
-  return data.employees.forEach(funcionario => {
-    return funcionario.managers.some(ids => ids === id);
-  });
-}
+// function isManager(id) {
+//   return data.employees.forEach(funcionario => {
+//     return funcionario.managers.some(ids => ids === id);
+//   });
+// }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
