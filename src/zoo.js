@@ -189,20 +189,22 @@ const responsibleForAnimals = (responsibleFor = []) => {
 
 function employeeCoverage(idOrName) {
   const res = {};
+
   if (!idOrName) {
     employees.forEach(e => {
       res[`${e.firstName} ${e.lastName}`] = responsibleForAnimals(
         e.responsibleFor,
       );
     });
-  } else {
-    const employee = employees.find(
-      e => e.id === idOrName || e.firstName === idOrName || e.lastName === idOrName,
-    );
-    res[`${employee.firstName} ${employee.lastName}`] = responsibleForAnimals(
-      employee.responsibleFor,
-    );
+    return res;
   }
+
+  const employee = employees.find(
+    e => e.id === idOrName || e.firstName === idOrName || e.lastName === idOrName,
+  );
+  res[`${employee.firstName} ${employee.lastName}`] = responsibleForAnimals(
+    employee.responsibleFor,
+  );
   return res;
 }
 
