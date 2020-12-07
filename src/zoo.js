@@ -56,10 +56,27 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
+  if (managers === undefined) {
+    managers = [];
+  }
+  if (responsibleFor === undefined) {
+    responsibleFor = [];
+  }
+  const newEmployee = {
+    id, 
+    firstName, 
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  data.employees.push(newEmployee);
 }
 
 function animalCount(species) {
   // seu código aqui
+  animals.forEach(especie => {
+    
+  });
 }
 
 function entryCalculator(entrants) {
