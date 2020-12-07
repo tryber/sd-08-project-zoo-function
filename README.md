@@ -287,7 +287,7 @@ Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão
   
   - Analise o teste unitário para entender os retornos que são esperados para esta função
 
-  **O que será avaliado**
+  **O que será avaliado** 
 
   - Sem parâmetros, retorna um cronograma legível para humanos
   - Se um único dia for passado, retorna somente este dia em um formato legível para humanos
