@@ -36,7 +36,7 @@ const addEmployee = (id, firstName, lastName, managers, responsibleFor) => {
     managers: (managers || []),
     responsibleFor: (responsibleFor || []),
   });
-}
+};
 
 function animalCount(species) {
   // seu código aqui
