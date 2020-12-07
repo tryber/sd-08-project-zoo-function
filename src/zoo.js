@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -62,14 +62,34 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
+  if (species === undefined) {
+    return animals.reduce((acc, animal) => {
+      acc[animal.name] = animal.residents.length;
+      return acc;
+    }, {});
+  }
+  return animals.find(animal => animal.name === species).residents.length;
   // seu código aqui
 }
 
 function entryCalculator(entrants) {
+  if (entrants === undefined || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  const price = Object.keys(entrants);
+  return price.reduce((total, price) => total + (entrants[price] * prices[price]), 0);
   // seu código aqui
 }
 
 function animalMap(options) {
+  // if (options === undefined) {
+  //   return animals.filter((animal) => animal.location = [animal.name])
+  // }
+  // return animals.filter(animal => animal.location = (
+  //   {
+  //     animal,
+  //   }
+  // ))
   // seu código aqui
 }
 
@@ -82,6 +102,12 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
+  // return {
+  //   Adult: parseFloat(prices.Adult *= (1 + (percentage / 100))).toFixed(2),
+  //   Child: parseFloat(prices.Child *= (1 + (percentage / 100))).toFixed(2),
+  //   Senior: parseFloat(prices.Senior *= (1 + (percentage / 100))).toFixed(2),
+  // }
+  //https://pt.stackoverflow.com/questions/29318/javascript-gerando-float-com-v%C3%A1rias-casas-decimais
   // seu código aqui
 }
 
