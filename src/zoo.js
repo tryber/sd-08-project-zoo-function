@@ -41,8 +41,13 @@ function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
 
-function isManager(id) {
-  // seu código aqui
+function isManager(id) {  
+  let isManager = null;
+  data.employees.find((element) => 
+  (element.managers.includes(id)) ? isManager = true : isManager = false );
+
+  return isManager;
+
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
