@@ -83,8 +83,6 @@ function schedule(dayName) {
       acc[keyDay] = dayMsg(keyDay);
       return acc;
     }, {});
-
-
   }
 
   function oldestFromFirstSpecies(id) {
@@ -122,3 +120,4 @@ function schedule(dayName) {
     increasePrices,
     createEmployee,
   };
+}
