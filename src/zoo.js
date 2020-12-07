@@ -48,9 +48,9 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   if ((!managers) || (!responsibleFor)) {
     const container = Object.assign(
       {},
-      { id: id },
-      { firstName: firstName },
-      { lastName: lastName },
+      { id },
+      { firstName },
+      { lastName },
       { managers: [] },
       { responsibleFor: [] }
     )
@@ -58,9 +58,9 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   } else if (managers != undefined || responsibleFor != undefined) {
     const container = Object.assign(
       {},
-      { id: id },
-      { firstName: firstName },
-      { lastName: lastName },
+      { id },
+      { firstName },
+      { lastName },
       { managers: managers },
       { responsibleFor: responsibleFor }
     )
