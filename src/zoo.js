@@ -21,9 +21,7 @@ const animalsOlderThan = (specie, age) => findAnimal(specie).residents.every(e =
 
 const employeeByName = n => employees.find(e => (e.firstName === n || e.lastName === n)) || {};
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
+const createEmployee = (personalInfo, associatedWith) => {return {...personalInfo, ...associatedWith}};
 
 function isManager(id) {
   // seu código aqui
