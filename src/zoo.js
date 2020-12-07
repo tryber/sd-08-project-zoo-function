@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('../src/data');
 
-const { animals, employees, hours ,prices } = data;
+const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   return ids.map(idFind => animals.find(animal => animal.id === idFind));
@@ -131,7 +131,7 @@ function schedule(dayName) {
       }
     });
     return scheduleReadable;
-  }  
+  }
   // 'Se um único dia for passado, retorna somente este dia em um formato legível para humanos'
   if (dayName === 'Monday') {
     scheduleReadable[dayName] = 'CLOSED';
