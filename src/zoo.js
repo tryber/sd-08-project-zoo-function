@@ -42,7 +42,7 @@ function createEmployee(personalInfo, associatedWith) {
     managers,
     responsibleFor,
   };
-  return newPerson
+  return newPerson;
 }
 
 function isManager(id) {
