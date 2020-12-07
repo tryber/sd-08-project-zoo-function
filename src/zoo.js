@@ -90,12 +90,13 @@ function increasePrices(percentage) {
   const multiply = 1 + (percentage / 100);
   const ticketPrices = Object.keys(data.prices);
   ticketPrices.forEach(price => (
-    data.prices[price] = Math.round(data.prices[price] * multiply * 100) / 100)
+    data.prices[price] = Math.round(data.prices[price] * multiply * 100) / 100);
     );
 }
 
 function employeeCoverage(idOrName) {
-  // if (idOrName === data.employees.id || idOrName === data.employees.firstName || idOrName === data.employees.lastName)
+  // if (idOrName === data.employees.id ||
+  // idOrName === data.employees.firstName || idOrName === data.employees.lastName)
 }
 
 module.exports = {
