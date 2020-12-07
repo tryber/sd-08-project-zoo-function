@@ -80,9 +80,16 @@ const schedule = dayName => {
   });
   return objHours;
 };
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+const oldestFromFirstSpecies = id => {
+  const responsavel = employees.find(element => element.id === id);
+  const animais = animals.find(specie => specie.id === responsavel.responsibleFor[0]);
+  const reduz = animais.residents.reduce((acc, value) => {
+    if (acc.age > value.age) return acc;
+    return value;
+  });
+  return Object.values(reduz);
+};
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 function increasePrices(percentage) {
   // seu código aqui
