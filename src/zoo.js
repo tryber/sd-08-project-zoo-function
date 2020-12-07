@@ -63,8 +63,8 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
     responsibleFor = [];
   }
   const newEmployee = {
-    id, 
-    firstName, 
+    id,
+    firstName,
     lastName,
     managers,
     responsibleFor,
@@ -74,9 +74,6 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   // seu código aqui
-  animals.forEach(especie => {
-    
-  });
 }
 
 function entryCalculator(entrants) {
