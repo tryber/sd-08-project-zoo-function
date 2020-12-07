@@ -13,54 +13,55 @@ const { hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  if(ids.length === 0) return [];
- const filterId = data.animals.filter((objani => ids.includes(objani.id)));
- return filterId;
+  if (ids.length === 0) return [];
+  const filterId = data.animals.filter((objani => ids.includes(objani.id)));
+  return filterId;
 }
 
 function animalsOlderThan(animal, age) {
-  const filterEspecie = data.animals.find((especie => especie.name === animal))
-  const filterAge = filterEspecie.residents.every((especie) => especie.age >= age)
+  const filterEspecie = data.animals.find((especie => especie.name === animal));
+  const filterAge = filterEspecie.residents.every((especie => especie.age >= age));
   return filterAge;
 }
 
 function employeeByName(employeeName) {
   if(employeeName === undefined) return {};
   const findemployee = data.employees.find((employee => employeeName === employee.firstName
-    || employeeName === employee.lastName ))
+  || employeeName === employee.lastName ));
   return findemployee;
 }
 
 
 function createEmployee(personalInfo, associatedWith) {
-  return {...personalInfo, ...associatedWith}
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
-  const testIsmanager = data.employees.some((employee => employee.managers.includes(id)))
+  const testIsmanager = data.employees.some((employee => employee.managers.includes(id)));
   return testIsmanager;
 }
 
 
 function addEmployee(id, firstName, lastName, managers=[], responsibleFor=[]) {
-    data.employees.push({id, firstName, lastName, managers, responsibleFor})
+    data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
   if (species === undefined) {
     const speciesAnimal = {};
     data.animals.forEach((animal) => {
-      speciesAnimal[animal.name] = animal.residents.length;
+    speciesAnimal[animal.name] = animal.residents.length;S
     });
-    return speciesAnimal;    
+    return speciesAnimal;
   }
-    return data.animals.find((specie) => specie.name === species).residents.length
-} 
+    return data.animals.find((specie => specie.name === species)).residents.length;
+}
 
 function entryCalculator(entrants) {
-  if(entrants === undefined || Object.keys(entrants).length === 0) return 0;
-  const { Adult = 0, Child = 0, Senior = 0} = entrants; 
-  const priceAll = (data.prices.Adult * Adult + data.prices.Child * Child + data.prices.Senior * Senior)
+  if (entrants === undefined || Object.keys(entrants).length === 0) return 0;
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants; 
+  const priceAll = (data.prices.Adult * Adult + data.prices.Child 
+  * Child + data.prices.Senior * Senior);
   return priceAll;
 }
 
@@ -69,7 +70,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  if(dayName === undefined){
+  if (dayName === undefined){
     
   }
 }
