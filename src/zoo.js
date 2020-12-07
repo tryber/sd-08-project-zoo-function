@@ -121,7 +121,7 @@ function oldestFromFirstSpecies(id) {
   const achar = animals
   .find(element => element.id === animalSelecionado)
   .residents.sort((elementA, elementB) => elementB.age - elementA.age);
-  const div = achar[0]
+  const div = achar[0];
   const array = [div.name, div.sex, div.age];
   return array;// seu código aqui
 }
