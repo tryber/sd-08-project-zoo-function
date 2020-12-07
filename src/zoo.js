@@ -79,8 +79,8 @@ function schedule(dayName) {
 // console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
-  const employee = data.employees.find((person) => person.id === id);
-  const species = data.animals.find((animal) => employee.responsibleFor[0] === animal.id).residents;
+  const employee = data.employees.find(person => person.id === id);
+  const species = data.animals.find(animal => employee.responsibleFor[0] === animal.id).residents;
   const olderResidents = species.sort((pos1, pos2) => pos2.age - pos1.age);
   return [olderResidents[0].name, olderResidents[0].sex, olderResidents[0].age];
 }
