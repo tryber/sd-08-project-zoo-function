@@ -178,7 +178,6 @@ function employeeCoverage(idOrName) {
     // 'Nigel Nelson': [ 'lions', 'tigers' ], ...
     speciesByEmployee[nameOfEmployee] = nameOfSpecieById;
   };
-  
   if (!idOrName) {
     // 'Sem parâmetros, retorna uma lista dos funcionários e os animais, pelo qual é responsável'
     employees.forEach(({ firstName, lastName, responsibleFor }) => {
