@@ -100,8 +100,166 @@ function entryCalculator(entrants) {
   );
 }
 
+function animalMapNoParameter() {
+  const NE = data.animals
+    .filter(animalFilter => animalFilter.location === 'NE')
+    .map(animal => animal.name);
+  const NW = data.animals
+    .filter(animalFilter => animalFilter.location === 'NW')
+    .map(animal => animal.name);
+  const SE = data.animals
+    .filter(animalFilter => animalFilter.location === 'SE')
+    .map(animal => animal.name);
+  const SW = data.animals
+    .filter(animalFilter => animalFilter.location === 'SW')
+    .map(animal => animal.name);
+  return {
+    NE,
+    NW,
+    SE,
+    SW,
+  };
+}
+
+function animalsPerRegions(region) {
+  const animalsPerRegion = data.animals
+    .filter(animalFilter => animalFilter.location === region)
+    .map((animal) => {
+      const objNamesSpecie = {};
+      const names = animal.residents.map(
+        informationOfAnimal => informationOfAnimal.name,
+      );
+      objNamesSpecie[animal.name] = names;
+      return objNamesSpecie;
+    });
+  return animalsPerRegion;
+}
+
+function animalMapJustIncludeNames() {
+  const NE = animalsPerRegions('NE');
+  const NW = animalsPerRegions('NW');
+  const SE = animalsPerRegions('SE');
+  const SW = animalsPerRegions('SW');
+  return {
+    NE,
+    NW,
+    SE,
+    SW,
+  };
+}
+
+function ordRegion(regions) {
+  regions.forEach((region) => {
+    region[Object.keys(region)[0]].sort();
+  });
+  return regions;
+}
+
+function animalMapIncludesAndSort() {
+  const NE = ordRegion(animalsPerRegions('NE'));
+  const NW = ordRegion(animalsPerRegions('NW'));
+  const SE = ordRegion(animalsPerRegions('SE'));
+  const SW = ordRegion(animalsPerRegions('SW'));
+  return {
+    NE,
+    NW,
+    SE,
+    SW,
+  };
+}
+
+function animalsPerRegionsWithSex(regions, sex) {
+  if (sex === 'male') {
+    return regions.map((specie) => {
+      const objReturn = {};
+      objReturn[specie.name] = specie.residents
+        .filter(information => information.sex === 'male')
+        .map(allInfo => allInfo.name);
+      return objReturn;
+    });
+  }
+  return regions.map((specie) => {
+    const objReturn = {};
+    objReturn[specie.name] = specie.residents
+      .filter(information => information.sex === 'female')
+      .map(allInfo => allInfo.name);
+    return objReturn;
+  });
+}
+
+function animalMapIncludesAndSex(sex) {
+  const NE = data.animals.filter(
+    animalFilter => animalFilter.location === 'NE',
+  );
+  const NW = data.animals.filter(
+    animalFilter => animalFilter.location === 'NW',
+  );
+  const SE = data.animals.filter(
+    animalFilter => animalFilter.location === 'SE',
+  );
+  const SW = data.animals.filter(
+    animalFilter => animalFilter.location === 'SW',
+  );
+
+  return {
+    NE: animalsPerRegionsWithSex(NE, sex),
+    NW: animalsPerRegionsWithSex(NW, sex),
+    SE: animalsPerRegionsWithSex(SE, sex),
+    SW: animalsPerRegionsWithSex(SW, sex),
+  };
+}
+
+function orderNames(region) {
+  region.forEach((specie) => {
+    specie[Object.keys(specie)[0]].sort();
+  });
+  return region;
+}
+
+function animalMapIncludesAndSexSorted(objPerSex) {
+  const { NE, NW, SE, SW } = objPerSex;
+  return {
+    NE: orderNames(NE),
+    NW: orderNames(NW),
+    SE: orderNames(SE),
+    SW: orderNames(SW),
+  };
+}
+
+function returnNamesPerRegion(regions) {
+  return regions.map(specie => Object.keys(specie)[0]);
+}
+
+function justNames(objWithInformation) {
+  const { NE, NW, SE, SW } = objWithInformation;
+  return {
+    NE: returnNamesPerRegion(NE),
+    NW: returnNamesPerRegion(NW),
+    SE: returnNamesPerRegion(SE),
+    SW: returnNamesPerRegion(SW),
+  };
+}
+
 function animalMap(options) {
-  // seu código aqui
+  if (options === undefined) {
+    return animalMapNoParameter();
+  }
+  const { includeNames, sorted, sex } = options;
+  if (includeNames === true && sorted === undefined && sex === undefined) {
+    return animalMapJustIncludeNames();
+  } else if (includeNames === true && sorted === true && sex === undefined) {
+    return animalMapIncludesAndSort();
+  } else if (
+    includeNames === true &&
+    sorted === undefined &&
+    sex !== undefined
+  ) {
+    return animalMapIncludesAndSex(sex);
+  } else if (includeNames === true && sorted === true && sex !== undefined) {
+    return animalMapIncludesAndSexSorted(animalMapIncludesAndSex(sex));
+  } else {
+    return justNames(animalMapIncludesAndSort());
+  }
 }
 
 function isClosed(openTime, closeTime) {
