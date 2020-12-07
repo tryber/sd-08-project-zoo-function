@@ -47,7 +47,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
-  const verify = data.employees.foreach(name => name.managers);
+  const verify = data.employees.map(name => name.managers);
   const verifyManagement = verify.some(name => name.includes(id));
   return verifyManagement;
 }
