@@ -107,7 +107,7 @@ function oldestFromFirstSpecies(id) {
   firstAnimalGroup.residents.forEach((animal) => {
     if (animal.age === ageOfOldest) result.push(animal.name, animal.sex, animal.age);
   });
-  return result; 
+  return result;
 }
 
 function increasePrices(percentage) {
