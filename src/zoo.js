@@ -61,13 +61,23 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   // seu código aqui
   if (species === undefined) {
-    return data.animals.map(animal => `${animal.name}: ${animal.popularity}`);
+    /*  Seguido a lógica vista em vídeo do Simões,
+    consegui entender o processo feito por ele,
+    porém não havia pensado nesse raciocínio.*/
+    return data.animals.reduce((acc, curr) => Object.assign(acc, {
+      [curr.name]: curr.residents.length,
+    }), {});
   }
   return data.animals.find(animal => animal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
   // seu código aqui
+  if (entrants === undefined || entrants === {}) {
+    return 0;
+  }
+  return Object.entries(entrants)
+  .reduce((acc, curr) => acc + (curr[1] * data.prices[curr[0]]), 0);
 }
 
 function animalMap(options) {
