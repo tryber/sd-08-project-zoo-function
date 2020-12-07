@@ -65,16 +65,16 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 // console.log(employees);
 
 function animalCount(species) {
-  // return animals
-  // .find((animalSpecie) => {
-  //   console.log(`${animalSpecie.name}`);
-  //   species === animalSpecie.name}).residents.length
-  // .reduce((result, currentValue) => {
-  //   result + currentValue.popularity
-  // });
+  if (species === undefined) {
+      return animals.reduce((result, currentValue) => {
+        result[currentValue.name] = currentValue.residents.length;
+        return result;
+    }, {});
+  }
+    return animals.find(animalSpecie => species === animalSpecie.name).residents.length;
   // seu código aqui
 }
-// console.log(animalCount());
+console.log(animalCount('lions'));
 
 function entryCalculator(entrants) {
   // seu código aqui
