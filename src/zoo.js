@@ -77,6 +77,7 @@ function schedule(dayName) {
   }
   return crono;
 }
+}
 
 function oldestFromFirstSpecies(id) {
   return Object.values(data.animals.find(el => el.id === data.employees
