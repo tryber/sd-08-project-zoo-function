@@ -99,12 +99,11 @@ function returnToAnimalMapNoParameter(region) {
 }
 
 function animalMapNoParameter() {
-  const NE = returnToAnimalMapNoParameter('NE');
-  const NW = returnToAnimalMapNoParameter('NW');
-  const SE = returnToAnimalMapNoParameter('SE');
-  const SW = returnToAnimalMapNoParameter('SW');
   return {
-    NE,NW,SE,SW,
+    NE: returnToAnimalMapNoParameter('NE'),
+    NW: returnToAnimalMapNoParameter('NW'), 
+    SE: returnToAnimalMapNoParameter('SE'), 
+    SW: returnToAnimalMapNoParameter('SW'),
   };
 }
 
@@ -123,12 +122,11 @@ function animalsPerRegions(region) {
 }
 
 function animalMapJustIncludeNames() {
-  const NE = animalsPerRegions('NE');
-  const NW = animalsPerRegions('NW');
-  const SE = animalsPerRegions('SE');
-  const SW = animalsPerRegions('SW');
   return {
-    NE,NW,SE,SW,
+    NE: animalsPerRegions('NE'), 
+    NW: animalsPerRegions('NW'), 
+    SE: animalsPerRegions('SE'),
+    SW: animalsPerRegions('SW'),
   };
 }
 
@@ -140,12 +138,11 @@ function ordRegion(regions) {
 }
 
 function animalMapIncludesAndSort() {
-  const NE = ordRegion(animalsPerRegions('NE'));
-  const NW = ordRegion(animalsPerRegions('NW'));
-  const SE = ordRegion(animalsPerRegions('SE'));
-  const SW = ordRegion(animalsPerRegions('SW'));
   return {
-    NE,NW,SE,SW,
+    NE: ordRegion(animalsPerRegions('NE')),
+    NW: ordRegion(animalsPerRegions('NW')),
+    SE: ordRegion(animalsPerRegions('SE')),
+    SW: ordRegion(animalsPerRegions('SW')),
   };
 }
 
@@ -175,16 +172,11 @@ function returnToanimalMapIncludesAndSex(region){
 }
 
 function animalMapIncludesAndSex(sex) {
-  const NE = returnToanimalMapIncludesAndSex('NE');
-  const NW = returnToanimalMapIncludesAndSex('NW');
-  const SE = returnToanimalMapIncludesAndSex('SE');
-  const SW = returnToanimalMapIncludesAndSex('SW');
-
   return {
-    NE: animalsPerRegionsWithSex(NE, sex),
-    NW: animalsPerRegionsWithSex(NW, sex),
-    SE: animalsPerRegionsWithSex(SE, sex),
-    SW: animalsPerRegionsWithSex(SW, sex),
+    NE: animalsPerRegionsWithSex(returnToanimalMapIncludesAndSex('NE'), sex),
+    NW: animalsPerRegionsWithSex(returnToanimalMapIncludesAndSex('NW'), sex),
+    SE: animalsPerRegionsWithSex(returnToanimalMapIncludesAndSex('SE'), sex),
+    SW: animalsPerRegionsWithSex(returnToanimalMapIncludesAndSex('SW'), sex),
   };
 }
 
