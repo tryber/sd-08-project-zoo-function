@@ -106,7 +106,7 @@ function schedule(dayName) {
     const keyWeek = dayName ? dayName : element;
     obj = { ...obj, [keyWeek]: `Open from ${hours[keyWeek].open}am until ${hours[keyWeek].close - 12}pm` };
     if (keyWeek === 'Monday') {
-      obj = { ...obj, [keyWeek]: 'CLOSED' };
+      obj[keyWeek] = 'CLOSED';
     }
   });
   return obj;
