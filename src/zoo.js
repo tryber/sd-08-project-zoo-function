@@ -74,7 +74,7 @@ function schedule(dayName) {
   if (!dayName) {
     return hours;
   } else if (dayName === 'Monday') {
-    return { 'Monday': 'CLOSED' };
+    return { Monday: 'CLOSED' };
   }
   return hours[dayName];
 }
