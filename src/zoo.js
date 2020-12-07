@@ -94,7 +94,7 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  //seu código aqui
+  // seu código aqui
 }
 
 function increasePrices(percentage) {
