@@ -11,18 +11,21 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+const animals = data.animals;
+const employees = data.employees;
+
 function animalsByIds(...ids) {
-  return ids.map(id => data.animals.find(animals => animals.id === id));
+  return ids.map(id => animals.find(animalsGroup => animalsGroup.id === id));
 }
 
 function animalsOlderThan(animal, yearsOld) {
-  const pickAnimal = data.animals.find(({ name }) => name === animal);
+  const pickAnimal = animals.find(({ name }) => name === animal);
   return pickAnimal.residents.every(({ age }) => age >= yearsOld);
 }
 
 function employeeByName(employeeName) {
   if (typeof employeeName === 'undefined') return {};
-  return data.employees.find(({ firstName, lastName }) => {
+  return employees.find(({ firstName, lastName }) => {
     const verification = firstName === employeeName || lastName === employeeName;
     return verification;
   });
@@ -36,16 +39,15 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(employeeId) {
-  return data.employees.some(({ managers }) => managers.some(id => id === employeeId));
+  return employees.some(({ managers }) => managers.some(id => id === employeeId));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newEmployee = { id, firstName, lastName, managers, responsibleFor };
-  data.employees.push(newEmployee);
+  employees.push(newEmployee);
 }
 
 function animalCount(specie) {
-  const animals = data.animals;
   if (typeof specie === 'undefined') {
     return animals.reduce((result, { name, residents }) => {
       result[name] = residents.length;
@@ -66,8 +68,67 @@ function entryCalculator(visitants = {}) {
   }, 0);
 }
 
-function animalMap(options) {
-  // seu código aqui
+function pickName(...arrAndSex) {
+  return arrAndSex[0].map(({ name }) => name);
+}
+
+function pickResidents(...arrAndSex) {
+  const result = arrAndSex[0].map(({ name, residents }) => {
+    const mapReturn = { [name]: pickName(residents) };
+    return mapReturn;
+  });
+  return result;
+}
+
+function pickResidentsAndSort(...arrAndSex) {
+  const result = arrAndSex[0].map(({ name, residents }) => {
+    const mapReturn = { [name]: pickName(residents).sort() };
+    return mapReturn;
+  });
+  return result;
+}
+
+function pickResidentsBySex(...arrAndSex) {
+  const result = arrAndSex[0].map(({ name, residents }) => {
+    const mapReturn = { [name]: pickName(residents.filter(({ sex }) => sex === arrAndSex[1])) };
+    return mapReturn;
+  });
+  return result;
+}
+
+function pickResidentsBySexAndSort(...arrAndSex) {
+  const result = arrAndSex[0].map(({ name, residents }) => {
+    const mapReturn = { [name]: pickName(residents.filter(({ sex }) => sex === arrAndSex[1]))
+    .sort() };
+    return mapReturn;
+  });
+  return result;
+}
+
+function filterRegion(arr, region) {
+  return arr.filter(({ location }) => location === region);
+}
+
+function chooseFunctionByOptions(includeNames, sorted, animalSex) {
+  let chosen;
+  if (!includeNames) return pickName;
+  if (sorted && (animalSex !== undefined)) chosen = pickResidentsBySexAndSort;
+  else if (sorted) chosen = pickResidentsAndSort;
+  else if (animalSex !== undefined) chosen = pickResidentsBySex;
+  else chosen = pickResidents;
+  return chosen;
+}
+
+function animalMap(options = {}) {
+  const { includeNames, sorted, sex: animalSex } = options;
+  const regions = ['NE', 'NW', 'SE', 'SW'];
+  const animalsPerRegion = regions.map(region => filterRegion(animals, region));
+  const chosenFunction = chooseFunctionByOptions(includeNames, sorted, animalSex);
+  const animalsMaped = regions.reduce((result, region, index) => {
+    result[region] = chosenFunction(animalsPerRegion[index], animalSex);
+    return result;
+  }, {});
+  return animalsMaped;
 }
 
 function schedule(dayName) {
