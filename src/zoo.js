@@ -62,7 +62,20 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const crono = {};
+  if (dayName) {
+    crono[dayName] = `Open from ${data.hours[dayName].open}am until ${data.hours[dayName].close - 12}pm`;
+    if (dayName === 'Monday') {
+      crono[dayName] = 'CLOSED';
+    }else {(!dayName) 
+    Object.keys(data.hours).map((list) => {
+      const arr = `Open from ${data.hours[list].open}am until ${data.hours[list].close - 12}pm`;
+      crono[list] = arr;
+      if (list === 'Monday') crono[list] = 'CLOSED';
+      return crono;
+    });
+  }
+  return crono;
 }
 
 function oldestFromFirstSpecies(id) {
