@@ -45,7 +45,31 @@ function isManager(...ids) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  data.employees = Object.assign({}, id, firstName, lastName, managers, responsibleFor);
+  if ((!managers) || (!responsibleFor)) {
+    const container = Object.assign(
+      {},
+      { id: id },
+      { firstName: firstName },
+      { lastName: lastName },
+      { managers: [] },
+      { responsibleFor: [] }
+    )
+    data.employees.push(container)
+  } else if (managers != undefined || responsibleFor != undefined) {
+    const container = Object.assign(
+      {},
+      { id: id },
+      { firstName: firstName },
+      { lastName: lastName },
+      { managers: managers },
+      { responsibleFor: responsibleFor }
+    )
+    data.employees.push(container)
+
+
+
+  }
+  
 }
 
 function animalCount(species) {
