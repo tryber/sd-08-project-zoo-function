@@ -15,7 +15,7 @@ const { prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(animalsId) {
-  return animalsId.map(animalId => animals.find(animal => animal.id === id).name);
+  return animalsId.map(id => animals.find(animal => animal.id === id).name);
 }
 
 function animalsOlderThan(animal, age) {
@@ -101,7 +101,7 @@ function employeeCoverage(idOrName) {
     return employeesList;
   }
   const coverage = {};
-  const employeesNames = employees.find(
+  const names = employees.find(
     employee =>
       idOrName === employee.firstName ||
       idOrName === employee.lastName ||
