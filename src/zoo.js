@@ -46,7 +46,7 @@ console.log(employeeByName());
 console.log(employeeByName('Nigel'));
 
 function createEmployee(personalInfo, associatedWith) {
-
+  return Object.assign(personalInfo, associatedWith);
   // seu código aqui
 }
 
