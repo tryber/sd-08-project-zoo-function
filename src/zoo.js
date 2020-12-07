@@ -91,7 +91,7 @@ function schedule(dayName) {
     }, {});
   }
   if (dayName === 'Monday') {
-    return { Monday: 'CLOSED'};
+    return { Monday: 'CLOSED' };
   }
   const day = Object.entries(hours)
   .filter(element => element[0] === dayName)[0];
