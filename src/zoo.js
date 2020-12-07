@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('../src/data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, hours ,prices } = data;
 
 function animalsByIds(...ids) {
   return ids.map(idFind => animals.find(animal => animal.id === idFind));
@@ -118,7 +118,27 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const scheduleReadable = {};
+  // 'Sem parâmetros, retorna um cronograma legível para humanos'
+  if (!dayName) {
+    Object.keys(hours).forEach((dayOfWeek) => { // Array com os dias da semana
+      const { open, close } = hours[dayOfWeek]; // Destructuring
+      if (open === 0) {
+        scheduleReadable[dayOfWeek] = 'CLOSED';
+      } else {
+        const scheduleOfDay = `Open from ${open}am until ${close - 12}pm`;
+        scheduleReadable[dayOfWeek] = scheduleOfDay;
+      }
+    });
+    return scheduleReadable;
+  }  
+  // 'Se um único dia for passado, retorna somente este dia em um formato legível para humanos'
+  if (dayName === 'Monday') {
+    scheduleReadable[dayName] = 'CLOSED';
+    return scheduleReadable;
+  }
+  scheduleReadable[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
+  return scheduleReadable;
 }
 
 function oldestFromFirstSpecies(id) {
