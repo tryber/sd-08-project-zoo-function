@@ -58,21 +58,16 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   if (entrants === undefined) {
-    return 0
+    return 0;
   }
-
-
-
 }
 
 function animalMap(options) {
-  // seu código aqui
   if (options === undefined) {
     const filtro = data.animals.filter(animal1 => animal1.location === animal1.name)
     console.log(filtro)
     return filtro.map(animal => `${animal.location}:${filtro.name}`)
   }
-
 }
 
 function schedule(dayName) {
@@ -88,10 +83,7 @@ function oldestFromFirstSpecies(id) {
   const oldestAnimalObj = allFromFirst.sort((a, b) =>
     b.age - a.age)[0];
   const { name, sex, age } = oldestAnimalObj;
-
   return [name, sex, age];
-
-
 }
 
 function increasePrices(percentage) {
