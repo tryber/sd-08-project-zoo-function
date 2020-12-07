@@ -1,4 +1,4 @@
-const { animals, employees } = require("./data");
+const { animals, employees } = require('./data');
 /*
 eslint no-unused-vars: [
   "error",
@@ -56,7 +56,7 @@ function entryCalculator(entrants) {
   const { Adult, Child, Senior } = entrants;
   if (!entrants || entrants === {}) {
     return 0;
-} 
+  }
   return (Adult.value * 49.99) + (Child.value * 20.99) + (Senior.value * 24.99);
 }
 
