@@ -69,41 +69,44 @@ function entryCalculator(entrants) {
 function animalMap(options) {
   // const zoneFilter = zone => data.animals.filter(animal => animal.location === zone);
   // const mapAnimals = animalZone => animalZone.map(animal => animal.name);
+  // const zones = ['NE', 'NW', 'SE', 'SW'];
   // const animalList = {
   //   NE: mapAnimals(zoneFilter('NE')),
   //   NW: mapAnimals(zoneFilter('NW')),
   //   SE: mapAnimals(zoneFilter('SE')),
   //   SW: mapAnimals(zoneFilter('SW')),
   // };
-  // const lion = ['zoe', 'clo'];
   // if (options.includeNames === true) {
-  //   // como inserir objeto dentro de objeto
-  //   animalList.NE[0] = lion;
-  //   return animalList;
+  //   for (let index = 0; index < zones.length; index += 1) {
+  //     animalList[zones[index]].forEach((animalName, indexAnimal) => {
+  //       const speciesName = data.animals.find(animal => animal.name === animalName).residents;
+  //       const animalsName = [];
+  //       speciesName.forEach((specieName) => {
+  //         animalsName.push(specieName.name);
+  //       });
+  //       const result = { [animalName]: animalsName };
+  //       animalList[zones[index]][indexAnimal] = result;
+  //     });
+  //   }
   // }
-  // return animalList
+  // return animalList;
 }
-// console.log(animalMap({ includeNames: true }))
 
 function schedule(dayName) {
-  // const scheduleList = {
-  //   'Tuesday': `Open from ${data.hours.Tuesday.open}am until ${data.hours.Tuesday.close - 12}pm`,
-  //   'Wednesday': `Open from ${data.hours.Wednesday.open}am
-  // until ${data.hours.Wednesday.close - 12}pm`,
-  //   'Thursday': `Open from ${data.hours.Thursday.open}am
-  // until ${data.hours.Thursday.close - 12}pm`,
-  //   'Friday': `Open from ${data.hours.Friday.open}am until ${data.hours.Friday.close - 12}pm`,
-  //   'Saturday': `Open from ${data.hours.Saturday.open}am
-  // until ${data.hours.Saturday.close - 12}pm`,
-  //   'Sunday': `Open from ${data.hours.Sunday.open}am until ${data.hours.Sunday.close - 12}pm`,
-  //   'Monday': 'CLOSED'
-  // };
-  // if (typeof dayName === 'string') {
-  //   return `${dayName}: ${scheduleList[dayName]}`
-  // }
-  // return scheduleList;
+  const scheduleList = {
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+    Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
+    Monday: 'CLOSED',
+  };
+  if (typeof dayName === 'string') {
+    return { [dayName]: scheduleList[dayName] };
+  }
+  return scheduleList;
 }
-// console.log(schedule('Tuesday'))
 
 function oldestFromFirstSpecies(id) {
   const firstAnimalId = data.employees.find(ids => ids.id === id).responsibleFor[0];
