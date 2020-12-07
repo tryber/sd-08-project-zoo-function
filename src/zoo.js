@@ -62,18 +62,10 @@ function isManager(id) {
 }
 
 function addEmployee(
-  id,
-  firstName,
-  lastName,
-  managers = [],
-  responsibleFor = [],
+  id,firstName,lastName,managers = [],responsibleFor = [],
 ) {
   const employee = {
-    id,
-    firstName,
-    lastName,
-    managers,
-    responsibleFor,
+    id,firstName,lastName,managers,responsibleFor,
   };
   data.employees.push(employee);
 }
@@ -100,24 +92,19 @@ function entryCalculator(entrants) {
   );
 }
 
+function returnToAnimalMapNoParameter(region) {
+  return data.animals
+  .filter(animalFilter => animalFilter.location === region)
+  .map(animal => animal.name);
+}
+
 function animalMapNoParameter() {
-  const NE = data.animals
-    .filter(animalFilter => animalFilter.location === 'NE')
-    .map(animal => animal.name);
-  const NW = data.animals
-    .filter(animalFilter => animalFilter.location === 'NW')
-    .map(animal => animal.name);
-  const SE = data.animals
-    .filter(animalFilter => animalFilter.location === 'SE')
-    .map(animal => animal.name);
-  const SW = data.animals
-    .filter(animalFilter => animalFilter.location === 'SW')
-    .map(animal => animal.name);
+  const NE = returnToAnimalMapNoParameter('NE');
+  const NW = returnToAnimalMapNoParameter('NW');
+  const SE = returnToAnimalMapNoParameter('SE');
+  const SW = returnToAnimalMapNoParameter('SW');
   return {
-    NE,
-    NW,
-    SE,
-    SW,
+    NE,NW,SE,SW,
   };
 }
 
@@ -141,10 +128,7 @@ function animalMapJustIncludeNames() {
   const SE = animalsPerRegions('SE');
   const SW = animalsPerRegions('SW');
   return {
-    NE,
-    NW,
-    SE,
-    SW,
+    NE,NW,SE,SW,
   };
 }
 
@@ -161,10 +145,7 @@ function animalMapIncludesAndSort() {
   const SE = ordRegion(animalsPerRegions('SE'));
   const SW = ordRegion(animalsPerRegions('SW'));
   return {
-    NE,
-    NW,
-    SE,
-    SW,
+    NE,NW,SE,SW,
   };
 }
 
@@ -187,19 +168,17 @@ function animalsPerRegionsWithSex(regions, sex) {
   });
 }
 
+function returnToanimalMapIncludesAndSex(region){
+  return data.animals.filter(
+    animalFilter => animalFilter.location === region,
+  );
+}
+
 function animalMapIncludesAndSex(sex) {
-  const NE = data.animals.filter(
-    animalFilter => animalFilter.location === 'NE',
-  );
-  const NW = data.animals.filter(
-    animalFilter => animalFilter.location === 'NW',
-  );
-  const SE = data.animals.filter(
-    animalFilter => animalFilter.location === 'SE',
-  );
-  const SW = data.animals.filter(
-    animalFilter => animalFilter.location === 'SW',
-  );
+  const NE = returnToanimalMapIncludesAndSex('NE');
+  const NW = returnToanimalMapIncludesAndSex('NW');
+  const SE = returnToanimalMapIncludesAndSex('SE');
+  const SW = returnToanimalMapIncludesAndSex('SW');
 
   return {
     NE: animalsPerRegionsWithSex(NE, sex),
