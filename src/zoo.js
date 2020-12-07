@@ -106,10 +106,10 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  Object.entries(prices)
-  .forEach(element => ({
+  return Object.entries(prices)
+  .forEach(element => {
     data.prices[element[0]] = (Math.ceil(element[1] * (100 + percentage))) / 100;
-  }));
+  });
 }
 
 function employeeCoverage(idOrName) {
