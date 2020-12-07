@@ -30,11 +30,25 @@ function employeeByName(employeeName) {
     return (employeeName = {});
   }
 
-  return employees.find(eachName => eachName.firstName === employeeName || eachName.lastName === employeeName);
+  return employees.find(
+    eachName =>
+      eachName.firstName === employeeName || eachName.lastName === employeeName,
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+
+  const obj = {};
+  obj.id = personalInfo.id;
+  obj.firstName = personalInfo.firstName;
+  obj.lastName = personalInfo.lastName;
+  obj.managers = associatedWith.managers;
+  obj.responsibleFor = associatedWith.responsibleFor;
+
+
+  employees.push(obj);
+  return employees.find(each => (each.lastName === personalInfo.lastName));
+ 
 }
 
 function isManager(id) {
@@ -45,8 +59,7 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
 
-function animalCount(species) {
-}
+function animalCount(species) {}
 
 function entryCalculator(entrants) {
   // seu código aqui
