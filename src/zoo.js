@@ -54,12 +54,10 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
-  return 0;
+    return 0;
   }
   return Object.keys(entrants).reduce((acc, curr) => acc + (entrants[curr] * data.prices[curr]), 0);
 }
-
-console.log(entryCalculator({ 'Adult': 1}));
 
 function animalMap(options) {
   // seu código aqui
