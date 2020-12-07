@@ -77,7 +77,7 @@ function entryCalculator(entrants) {
     return 0;
   }
   const price = Object.keys(entrants);
-  return price.reduce((total, price) => total + (entrants[price] * prices[price]), 0);
+  return price.reduce((total, thisPrice) => total + (entrants[thisPrice] * prices[thisPrice]), 0);
   // seu código aqui
 }
 
@@ -107,7 +107,7 @@ function increasePrices(percentage) {
   //   Child: parseFloat(prices.Child *= (1 + (percentage / 100))).toFixed(2),
   //   Senior: parseFloat(prices.Senior *= (1 + (percentage / 100))).toFixed(2),
   // }
-  //https://pt.stackoverflow.com/questions/29318/javascript-gerando-float-com-v%C3%A1rias-casas-decimais
+  // https://pt.stackoverflow.com/questions/29318/javascript-gerando-float-com-v%C3%A1rias-casas-decimais
   // seu código aqui
 }
 
