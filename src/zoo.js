@@ -81,7 +81,7 @@ function entryCalculator(entrants) {
   // seu código aqui
   if (entrants === undefined) return 0;
   const price = Object.entries(data.prices);
-  const aux = Object.entries.(entrants);
+  const aux = Object.entries(entrants);
   const acumulator = 0;
   aux.foreach((value) =>{
     price.foreach((priceV) =>{
