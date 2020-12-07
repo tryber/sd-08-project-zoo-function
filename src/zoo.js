@@ -116,12 +116,12 @@ console.log(schedule('Tuesday'));
 console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
-  // const found = employees.find (element => element.id = id );
-  // const animalSelecionado = found.responsibleFor[0].find
-  // const achar = animals
-  // .find(element => element.id === animalSelecionado)
-  // .residents.sort((elementA, elementB) => elementB.age - elementA.age);
-  // return achar[0];// seu código aqui
+  const found = employees.find(element => element.id === id);
+  const animalSelecionado = found.responsibleFor[0];
+  const achar = animals
+  .find(element => element.id === animalSelecionado)
+  .residents.sort((elementA, elementB) => elementB.age - elementA.age);
+  return achar[0];// seu código aqui
 }
 
 console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
