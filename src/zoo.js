@@ -67,15 +67,49 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  // const zoneFilter = zone => data.animals.filter(animal => animal.location === zone);
+  // const mapAnimals = animalZone => animalZone.map(animal => animal.name);
+  // const animalList = {
+  //   NE: mapAnimals(zoneFilter('NE')),
+  //   NW: mapAnimals(zoneFilter('NW')),
+  //   SE: mapAnimals(zoneFilter('SE')),
+  //   SW: mapAnimals(zoneFilter('SW')),
+  // };
+  // const lion = ['zoe', 'clo'];
+  // if (options.includeNames === true) {
+  //   // como inserir objeto dentro de objeto
+  //   animalList.NE[0] = lion;
+  //   return animalList;
+  // }
+  // return animalList
 }
+// console.log(animalMap({ includeNames: true }))
 
 function schedule(dayName) {
-  // seu código aqui
+  // const scheduleList = {
+  //   'Tuesday': `Open from ${data.hours.Tuesday.open}am until ${data.hours.Tuesday.close - 12}pm`,
+  //   'Wednesday': `Open from ${data.hours.Wednesday.open}am
+  // until ${data.hours.Wednesday.close - 12}pm`,
+  //   'Thursday': `Open from ${data.hours.Thursday.open}am
+  // until ${data.hours.Thursday.close - 12}pm`,
+  //   'Friday': `Open from ${data.hours.Friday.open}am until ${data.hours.Friday.close - 12}pm`,
+  //   'Saturday': `Open from ${data.hours.Saturday.open}am
+  // until ${data.hours.Saturday.close - 12}pm`,
+  //   'Sunday': `Open from ${data.hours.Sunday.open}am until ${data.hours.Sunday.close - 12}pm`,
+  //   'Monday': 'CLOSED'
+  // };
+  // if (typeof dayName === 'string') {
+  //   return `${dayName}: ${scheduleList[dayName]}`
+  // }
+  // return scheduleList;
 }
+// console.log(schedule('Tuesday'))
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const firstAnimalId = data.employees.find(ids => ids.id === id).responsibleFor[0];
+  const residents = data.animals.find(animal => animal.id === firstAnimalId).residents;
+  const oldestAnimal = residents.sort((a, b) => b.age - a.age)[0];
+  return Object.values(oldestAnimal);
 }
 
 function increasePrices(percentage) {
