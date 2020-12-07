@@ -95,14 +95,14 @@ const getNamesAnimalsex = (classAnimal, sex) => classAnimal.filter(animal => ani
   .map(animal => animal.name);
 
 const isSex = (residents, sex) => (
-sex !== undefined ? getNamesAnimalsex(residents, sex) : getNamesAnimalarr(residents));
+  sex !== undefined ? getNamesAnimalsex(residents, sex) : getNamesAnimalarr(residents));
 
 const getNameAnimals = (args) => {
   const { sex, sorted } = args;
   const result = data.animals.reduce((acumulador, animal) => {
     if (!acumulador[animal.location]) acumulador[animal.location] = [];
     const { name: key, residents } = animal;
-    const objNames = { };
+    const objNames = {};
     const arr = isSex(residents, sex);
     objNames[key] = sorted ? arr.sort() : arr;
     acumulador[animal.location].push(objNames);
@@ -135,8 +135,19 @@ function schedule(dayName) {
   return result;
 }
 
+const idFirstAnimal = (employees, id) => employees.filter(el => el.id === id)
+  .map(el => el.responsibleFor.shift());
+
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const { employees, animals } = data;
+  const idFirst = idFirstAnimal(employees, id);
+  const idAnimal = animals.filter(animal => animal.id === idFirst[0]);
+  const { residents } = idAnimal[0];
+  const result = residents.reduce((ac, value) => {
+    ac = ac.age > value.age ? ac : value;
+    return ac;
+  });
+  return Object.values(result);
 }
 
 function increasePrices(percentage) {
