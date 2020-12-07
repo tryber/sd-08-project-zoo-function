@@ -32,7 +32,7 @@ function employeeByName(employeeName) {
   const trabalhadores = employees.find(elemento =>
     elemento.lastName === employeeName || elemento.firstName === employeeName);
   return trabalhadores;
-};
+}
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
