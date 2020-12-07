@@ -98,13 +98,6 @@ function schedule(dayName) {
   const result = {};
   result[dayName] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`;
   return result;
-// return Object.entries(hours)
-// .filter(element => element[0] === dayName)
-// .reduce((acc, curr) => {
-//   acc[curr[0]] = `Open from ${curr[1].open}am until ${curr[1].close - 12}pm`;
-//   return acc;
-//   }, {});
-// }
 }
 
 
@@ -113,11 +106,10 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  
-    data.prices.Adult = parseFloat(((Math.round(((prices.Adult += (prices.Adult *= percentage / 100)) * 100))) /100).toFixed(2)),
-    data.prices.Child = parseFloat(((Math.round(((prices.Child += (prices.Child *= percentage / 100)) * 100))) /100).toFixed(2)),
-    data.prices.Senior = parseFloat(((Math.round(((prices.Senior += (prices.Senior *= percentage /100)) * 100))) /100).toFixed(2))
-  return data.prices;
+   //   data.prices.Adult = parseFloat(((Math.round(((prices.Adult += (prices.Adult *= percentage / 100)) * 100))) /100).toFixed(2)),
+  //   data.prices.Child = parseFloat(((Math.round(((prices.Child += (prices.Child *= percentage / 100)) * 100))) /100).toFixed(2)),
+  //   data.prices.Senior = parseFloat(((Math.round(((prices.Senior += (prices.Senior *= percentage /100)) * 100))) /100).toFixed(2))
+  // return data.prices;
 }
 console.log(increasePrices(50));
 
