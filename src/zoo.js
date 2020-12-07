@@ -49,8 +49,27 @@ const animalCount = (specie) => {
 
 const entryCalculator = tckt => Object.keys(tckt).reduce((t, e) => t + (prices[e] * tckt[e]), 0);
 
-function animalMap(options) {
-  // seu código aqui
+const animalMap = (options = false) => {
+  const animalsMap = { NE: [], NW: [], SE: [], SW: [] };
+  Object.keys(animalsMap).map(locat => {
+    return animalsMap[locat] = animals.filter(specie => specie.locat === locat).map(currSpecie => {
+      if (options.includeNames) {
+        const actualSpecie = currSpecie.name;
+        let list = [];
+        if (options.sex === 'female') {
+          list = currSpecie.residents.filter(actual => actual.sex === 'female').map(e => e.name);
+        } else if (options.sex === 'male') {
+          list = currSpecie.residents.filter(actual => actual.sex === 'male').map(e => e.name);
+        } else {
+          list = currSpecie.residents.map(actual => actual.name);
+        }
+        return (options.sorted) ? { [actualSpecie]: list.sort() } : { [actualSpecie]: list };
+      } else {
+        return currSpecie.name
+      }
+    });
+  })
+  return animalsMap;
 }
 
 function schedule(dayName) {
