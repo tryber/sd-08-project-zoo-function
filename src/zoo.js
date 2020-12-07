@@ -142,7 +142,21 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  let idSpecie;
+  employees.filter(employee => employee.id === id)
+    .forEach(({ responsibleFor }) => {
+      idSpecie = `${responsibleFor[0]}`;
+      return idSpecie;
+    });
+
+  const objectOfSpecie = animals.find(specie => specie.id === idSpecie);
+  const arrayOfAnimals = objectOfSpecie.residents;
+  let arrayOrderAgeAnimals = [];
+  arrayOfAnimals.forEach(animal => arrayOrderAgeAnimals.push(animal.age));
+  arrayOrderAgeAnimals = arrayOrderAgeAnimals.sort((age1, age2) => age2 - age1);
+  const ageOfOlderAnimal = arrayOrderAgeAnimals[0];
+  const olderAnimal = arrayOfAnimals.find(animal => animal.age === ageOfOlderAnimal);
+  return [olderAnimal.name, olderAnimal.sex, olderAnimal.age];
 }
 
 function increasePrices(percentage) {
