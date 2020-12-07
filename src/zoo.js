@@ -125,10 +125,16 @@ function schedule(dayName) {
   }
   return availableHours;
 }
-console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const personByID = employees.find(person => person.id === id);
+  const firstSpecie = personByID.responsibleFor[0];
+  const specieFound = animals.find(animal => animal.id === firstSpecie);
+  const oldestFromSpecie = specieFound.residents.reduce((acc,actual) => {
+    if (actual.age > acc.age) acc = actual;
+    return acc;
+  },{age: 0});
+  return Object.values(oldestFromSpecie);
 }
 
 function increasePrices(percentage) {
