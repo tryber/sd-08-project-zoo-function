@@ -103,7 +103,7 @@ function schedule(dayName) {
   const hours = data.hours;
   let obj = {};
   Object.keys(hours).forEach((element) => {
-    const keyWeek = dayName ? dayName : element;
+    const keyWeek = dayName || element;
     obj = { ...obj, [keyWeek]: `Open from ${hours[keyWeek].open}am until ${hours[keyWeek].close - 12}pm` };
     if (keyWeek === 'Monday') {
       obj[keyWeek] = 'CLOSED';
@@ -116,11 +116,8 @@ function oldestFromFirstSpecies(id) {
   const animalIds = data.employees.find(employeeId => employeeId.id === id).responsibleFor;
   const animals = data.animals.find(animalId => animalId.id === animalIds[0]);
   const getOlderAnimal = animals.residents.reduce((animalA, animalB) => {
-    if (animalA.age > animalB.age) {
-      return animalA;
-    } else {
-      return animalB;
-    }
+    if (animalA.age > animalB.age) return animalA;
+    return animalB;
   });
   const arrayAnimal = Object.values(getOlderAnimal);
   return arrayAnimal;
