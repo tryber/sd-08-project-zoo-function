@@ -40,8 +40,14 @@ function isManager(id) {
   return data.employees.some(register => register.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return data.employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
 }
 
 function animalCount(species) {
