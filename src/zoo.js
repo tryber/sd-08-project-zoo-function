@@ -31,30 +31,36 @@ const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []
   employees.push(createEmployee(personalInfo, associatedWith));
 };
 
-const animalCount = species => {
-  if(!species) {
+const animalCount = (species) => {
+  if (!species) {
     return animals.reduce((acc, curr) => {
       acc[curr.name] = curr.residents.length;
       return acc;
     }, {});
   }
   return animals.find(animal => animal.name === species).residents.length;
-}
+};
 
 const entryCalculator = entrants => {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
-  }
+  };
   return Object.keys(entrants).reduce(
     (acc, value) => acc + (prices[value] * entrants[value]), 0);
+};
+
+const animalMap = options => {
+  
 }
 
-function animalMap(options) {
-  // seu código aqui
-}
-
-function schedule(dayName) {
-  // seu código aqui
+const schedule = (dayName) => {
+  const result = Object.entries(hours).reduce((acc, [key, val]) => {
+    const{ open, close } = val;
+    acc[key] = close - open > 0 ? `Open from ${val.open}am until ${val.close}pm` : 'CLOSED';
+    return acc;
+  }, {});
+  if (typeof dayName === 'string' && dayName.length !== 0)
+  return { [dayName]: result[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
