@@ -67,16 +67,6 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  /* 
-    const animalsporregiao = data.animals.filter(element => element.location === element.name)
-    console.log(animalsporregiao)
-  
-   */
-
-  /* const residenname = data.animals.residents.reduce((acc, current) => [acc.name + current.name])
-  console.log(residenname)
-  const animals = data.animals.map(element => `{${animals.name}:${residenname}}`)
- */
 
 }
 
