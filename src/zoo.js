@@ -70,7 +70,7 @@ function animalCount(species) {
   const animals = data.animals.reduce((name, value) => {
     name[value.name] = value.residents.length;
     return animals;
-  },{});
+  }, {});
   return animals;
 }
 
