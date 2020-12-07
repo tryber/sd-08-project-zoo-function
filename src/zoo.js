@@ -42,11 +42,11 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const checkManager =  data.employees.find((element) => element.managers.includes(id));
-  if(checkManager !== undefined) {
-    return true;
-  } else {
+  const checkManager = data.employees.find(element => element.managers.includes(id));
+  if (checkManager === undefined) {
     return false;
+  } else {
+    return true;
   }
 }
 
