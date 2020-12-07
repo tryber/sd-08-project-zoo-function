@@ -25,16 +25,13 @@ console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 
 function animalsOlderThan(animal, age) {
   const found = animals
-  .some(element => element.name === animal && element.age > age);
+  .find(element => element.name === animal)
+  .residents.every(element => element.age > age);
   return found;
-
-
-  // const vddOuFalso = filtrar.every(element => element.residents.age > age);
-  // return vddOuFalso;
-  // seu código aqui
 }
-console.log(animalsOlderThan('giraffes', 4));
-console.log(animalsOlderThan('lions', 10));
+
+console.log(animalsOlderThan('otters', 7));
+console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
   if (!employeeName) {
