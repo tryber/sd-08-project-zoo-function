@@ -109,7 +109,7 @@ function employeeCoverage(idOrName) {
     employee =>
       idOrName === employee.firstName ||
       idOrName === employee.lastName ||
-      idOrName === employee.id
+      idOrName === employee.id,
     );
   const fullName = `${employeesNames.firstName} ${employeesNames.lastName}`;
   const responsible = employeesList[fullName];
