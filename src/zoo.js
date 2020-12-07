@@ -29,7 +29,7 @@ function employeeByName(...employeeName) {
   if (employeeName.length === 0) {
     return {};
   }
-  return employees.find(funcionario => funcionario.firstName === employeeName || funcionario.lastName === employeeName);
+  return employees.find(emp => emp.firstName === employeeName || emp.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
