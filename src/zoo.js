@@ -47,7 +47,7 @@ function employeeByName(employeeName) {
 
 
 function createEmployee(personalInfo, associatedWith) {
-  if(!personalInfo || !associatedWith){
+  if (!personalInfo || !associatedWith) {
     return {};
   }
   const employee = {
@@ -55,8 +55,8 @@ function createEmployee(personalInfo, associatedWith) {
     firstName: personalInfo.firstName,
     lastName: personalInfo.lastName,
     managers: associatedWith.managers,
-    responsibleFor: associatedWith.responsibleFor
-  }
+    responsibleFor: associatedWith.responsibleFor,
+  };
 
   return employee;
 }
