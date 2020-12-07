@@ -42,7 +42,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  return animals.map(nameQtd => `${nameQtd.name}: ${nameQtd.popularity}`);
+  if (species !== undefined) {
+    return data.animals.find(specific => specific.name === species).residents.length;
+  }
+  const noParam = {};
+  data.animals.forEach((all) => { noParam[all.name] = all.residents.length; });
+  return noParam;
 }
 
 function entryCalculator(entrants) {
