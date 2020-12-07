@@ -60,16 +60,31 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+//   if (options === undefined) {
+//     return data.animals.reduce((acc, animal) => {
+//       acc[animal.location] = data.animals.name;
+//     }, {});
+//   }
 }
+// console.log(animalMap());
 
 function schedule(dayName) {
-  // seu código aqui
+  // if (dayName === undefined) {
+  //   return data.hours.reduce((acc, hour) =>
+  //   acc[Object.keys(hour)] = `Open from ${hour.open}am to ${hour.close}pm`, {}
+  //   );
+  // }
 }
 
+// console.log(schedule());
+
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const employee = data.employees.find((person) => person.id === id);
+  const species = data.animals.find((animal) => employee.responsibleFor[0] === animal.id).residents;
+  const olderResidents = species.sort((pos1, pos2) => pos2.age - pos1.age);
+  return [olderResidents[0].name, olderResidents[0].sex, olderResidents[0].age];
 }
+
 
 function increasePrices(percentage) {
   // seu código aqui
