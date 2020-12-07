@@ -12,7 +12,6 @@ eslint no-unused-vars: [
 const { animals } = require('./data');
 const { employees } = require('./data');
 const { prices } = require('./data');
-const data = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.includes(animal.id));
@@ -68,11 +67,11 @@ function entryCalculator(entrants) {
     (acc, indValue) => acc + (entrants[indValue] * prices[indValue]), 0);
 }
 
-function animalMap(options) {
+function animalMap() {
   // seu código aqui
 }
 
-function schedule(dayName) {
+function schedule() {
   // seu código aqui
 }
 
@@ -89,7 +88,7 @@ function increasePrices(percentage) {
   firstPrices.forEach(price => (prices[price] = Math.round(prices[price] * increment * 100) / 100));
 }
 
-function getAnimals (animalsId) {
+function getAnimals(animalsId) {
   return animalsId.map(id => animals.find(animal => animal.id === id).name);
 }
 
@@ -104,14 +103,15 @@ function employeeCoverage(idOrName) {
   if (idOrName === undefined) {
     return employeesList;
   }
+
   const coverage = {};
   const employeesNames = employees.find(
     employee =>
       idOrName === employee.firstName ||
       idOrName === employee.lastName ||
-      idOrName === employee.id,
-  );
-  const fullName = `${firstName} ${lastName}`;
+      idOrName === employee.id
+    );
+  const fullName = `${employeesNames.firstName} ${employeesNames.lastName}`;
   const responsible = employeesList[fullName];
   coverage[fullName] = responsible;
   return coverage;
