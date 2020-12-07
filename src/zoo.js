@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 
@@ -105,10 +105,35 @@ function animalMap(options) {
   return popularObj(locations);
 }
 
+const semDia = () => {
+  const obj = {};
+  const newHours = Object.entries(hours);
+  newHours.forEach((dia) => {
+    const { open, close } = dia[1];
+    const hoursFormat = (close % 12);
+    let onOff = `Open from ${open}am until ${hoursFormat}pm`;
+    if (close - open <= 0) onOff = 'CLOSED';
+    obj[dia[0]] = onOff;
+  });
+  return obj;
+};
+
 function schedule(dayName) {
   // seu código aqui
+  const obj = {};
+  if (!dayName) return semDia();
+  const newHours = Object.entries(hours);
+  const dia = newHours.find(verDia => verDia[0] === dayName);
+  // console.log(dia[0]);
+  const { open, close } = dia[1];
+  const hoursFormat = (close % 12);
+  let onOff = `Open from ${open}am until ${hoursFormat}pm`;
+  if (close - open <= 0) onOff = 'CLOSED';
+  obj[dia[0]] = onOff;
+  return obj;
 }
 
+// console.log(schedule('Tuesday'));
 function oldestFromFirstSpecies(id) {
   // seu código aqui
   const colaboradorResponsable = employees.find(idU => idU.id === id).responsibleFor[0];
@@ -137,10 +162,10 @@ function employeeCoverage(idOrName) {
   if (!idOrName) return employeeCoverageOff();
   // seu código aqui
   const pessoaColab = employees
-  .find((colab) => {
-    const { id, firstName, lastName } = colab;
-    return (id === idOrName || firstName === idOrName || lastName === idOrName);
-  });
+    .find((colab) => {
+      const { id, firstName, lastName } = colab;
+      return (id === idOrName || firstName === idOrName || lastName === idOrName);
+    });
   const nomeColab = `${pessoaColab.firstName} ${pessoaColab.lastName}`;
   return { [nomeColab]: mapAnimal(pessoaColab) };
 }
