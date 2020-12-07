@@ -80,9 +80,17 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
- // seu código aqui 
+if(!dayName)
+ return Object.entries(hours).reduce((acc, curr) => {
+  if(curr[0] === 'Monday') {
+    acc[curr[0]] = 'CLOSED';
+    return acc;
+  }
+    acc[curr[0]] = `Open from ${curr[1].open}am to ${curr[1].close}pm`;
+    return acc;
+ },{});
 }
-
+console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
