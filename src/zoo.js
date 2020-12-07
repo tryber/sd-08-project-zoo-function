@@ -133,23 +133,48 @@ const createContainerIncludeNamesSexSorted = (locationList, newObject, sexParam)
     newObject[locationList[index]] = speciesByRegionReduce;
   }
 };
+const isSortedTrue = (includeNames, sex, locationList, newObject) => {
+  if (includeNames === true && sex === false) {
+    createContainerSorted(locationList, newObject);
+  } else if (includeNames === true && sex !== false) {
+    createContainerIncludeNamesSexSorted(locationList, newObject, sex);
+  }
+};
+
+const isSortedFalse = (includeNames, sex, locationList, newObject) => {
+  if (includeNames === true && sex !== false) {
+    createContainerIncludeNamesSex(locationList, newObject, sex);
+  } else if (includeNames === true && sex === false) {
+    createContainerIncludeNames(locationList, newObject);
+  }
+};
+
 function animalMap(options = '') {
   const locationList = ['NE', 'NW', 'SE', 'SW'];
   const newObject = {};
   const { includeNames = false, sorted = false, sex = false } = options;
   if (options === '' || includeNames === false) {
     createSimpleContainer(locationList, newObject);
-  } else if (includeNames === true && sorted === false && sex === false) {
-    createContainerIncludeNames(locationList, newObject);
-  } else if (sorted === true && includeNames === true && sex === false) {
-    createContainerSorted(locationList, newObject);
-  } else if (sorted === false && includeNames === true && sex !== false) {
-    createContainerIncludeNamesSex(locationList, newObject, sex);
-  } else if (sorted === true && includeNames === true && sex !== false) {
-    createContainerIncludeNamesSexSorted(locationList, newObject, sex);
+  } else if (sorted === true) {
+    isSortedTrue(includeNames, sex, locationList, newObject);
+  } else if (sorted === false) {
+    isSortedFalse(includeNames, sex, locationList, newObject);
   }
   return newObject;
 }
+//   if (options === '' || includeNames === false) {
+//     createSimpleContainer(locationList, newObject);
+//   } else if (includeNames === true && sorted === false && sex === false) {
+//     createContainerIncludeNames(locationList, newObject);
+//   } else if (sorted === true && includeNames === true && sex === false) {
+//     createContainerSorted(locationList, newObject);
+//   } else if (sorted === false && includeNames === true && sex !== false) {
+//     createContainerIncludeNamesSex(locationList, newObject, sex);
+//   } else if (sorted === true && includeNames === true && sex !== false) {
+//     createContainerIncludeNamesSexSorted(locationList, newObject, sex);
+//   }
+//   return newObject;
+// }
 
 function schedule(dayName = '') {
   if (dayName === '') {
