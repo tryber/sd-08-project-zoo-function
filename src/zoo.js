@@ -73,8 +73,11 @@ const oldestFromFirstSpecies = (id) => {
   return [arrAnimalOldest.name, arrAnimalOldest.sex, arrAnimalOldest.age];
 };
 
-function increasePrices(percentage) {
-  // seu código aqui
+const increasePrices = (percentage) => {
+  const increasePrices = 1 + (percentage / 100);
+  Object.keys(prices).forEach(key => (
+    prices[key] = Math.round(prices[key] * increasePrices * 100) / 100
+  ));
 }
 
 function employeeCoverage(idOrName) {
