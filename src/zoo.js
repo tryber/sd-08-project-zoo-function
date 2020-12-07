@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { hours } = require('./data');
+// const { hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -25,9 +25,9 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  if(employeeName === undefined) return {};
+  if (employeeName === undefined) return {};
   const findemployee = data.employees.find((employee => employeeName === employee.firstName
-  || employeeName === employee.lastName ));
+  || employeeName === employee.lastName));
   return findemployee;
 }
 
@@ -42,15 +42,15 @@ function isManager(id) {
 }
 
 
-function addEmployee(id, firstName, lastName, managers=[], responsibleFor=[]) {
-    data.employees.push({ id, firstName, lastName, managers, responsibleFor });
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  data.employees.push({ id, firstName, lastName, managers, responsibleFor }); 
 }
 
 function animalCount(species) {
   if (species === undefined) {
     const speciesAnimal = {};
     data.animals.forEach((animal) => {
-    speciesAnimal[animal.name] = animal.residents.length;S
+    speciesAnimal[animal.name] = animal.residents.length;
     });
     return speciesAnimal;
   }
@@ -59,9 +59,9 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) return 0;
-  const { Adult = 0, Child = 0, Senior = 0 } = entrants; 
-  const priceAll = (data.prices.Adult * Adult + data.prices.Child 
-  * Child + data.prices.Senior * Senior);
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  const priceAll = ((data.prices.Adult * Adult) + (data.prices.Child
+  * Child) + (data.prices.Senior * Senior));
   return priceAll;
 }
 
@@ -70,9 +70,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  if (dayName === undefined){
-    
-  }
+  //if (dayName === undefined){}
 }
 
 function oldestFromFirstSpecies(id) {
