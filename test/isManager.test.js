@@ -12,3 +12,4 @@ describe('Implemente a função isManager', () => {
     assert.deepStrictEqual(actual, expected);
   });
 });
+
