@@ -25,6 +25,7 @@ const arrayAvrg = ((array) => {
   });
   return sum;
 });
+
 function animalsOlderThan(animal, age) {
   const animalFound = animals.filter(eachAnimal => eachAnimal.name === animal);
   const arrayOfAge = animalFound[0].residents.map(resident => resident.age);
@@ -69,8 +70,20 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  // seu código aqui
-}
+  if (species === undefined) {
+    const animalNames = animals.map((animal) => animal.name);
+    const quantityOfAnimais = animals.map((animal) => animal.residents.length);
+    const ops = animalNames.reduce((acc, currvalue, index) => {
+      acc[currvalue] = quantityOfAnimais[index];
+      return acc;
+    }, {});
+    return ops;
+  };
+  const quantityOfSpecie = animals.find((animal) => {
+    return animal.name === species;
+  });
+  return quantityOfSpecie.residents.length;
+};
 
 function entryCalculator(entrants) {
   // seu código aqui
