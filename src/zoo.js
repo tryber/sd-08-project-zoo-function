@@ -61,15 +61,12 @@ const animalCount = (species) => {
 
 function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length == 0) {
-    return 0
-  };
-  const adult = Object.keys(entrants).some(a => a == 'Adult') ? entrants.Adult * 49.99 : 0;
-  const child = Object.keys(entrants).some(a => a == 'Child') ? entrants.Child * 20.99 : 0;
-  const senior = Object.keys(entrants).some(a => a == 'Senior') ? entrants.Senior * 24.99 : 0;
-  const total = adult+child+senior;
-  return total;
+    return 0;
+  }
+  return Object.entries(entrants).reduce((acc, [key, val]) => (
+    acc + (prices[key] * val)
+  ), 0);
 }
-
 
 function animalMap(options) {
   // seu código aqui
