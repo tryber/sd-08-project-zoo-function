@@ -82,16 +82,16 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  let map = {
+  const map = {
     NE: [],
     NW: [],
     SE: [],
     SW: [],
-  }
+  };
   if (!options || options.includeNames !== true) {
     animals.forEach((animal) => {
-    map[animal.location].push(animal.name);
-    })
+      map[animal.location].push(animal.name);
+    });
   } else if (options.includeNames === true) {
     animals.forEach((animal) => {
       let sexAnimals = animal.residents;
@@ -102,8 +102,8 @@ function animalMap(options) {
       if (options.sorted === true) {
         residentsNames.sort();
       }
-      map[animal.location].push({[animal.name]: residentsNames});
-      })
+      map[animal.location].push({ [animal.name]: residentsNames });
+    });
   }
   return map;
 }
