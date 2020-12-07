@@ -89,13 +89,12 @@ if(!dayName)
     acc[curr[0]] = `Open from ${curr[1].open}am until ${curr[1].close - 12}pm`;
     return acc;
   },{});
+  if (dayName === 'Monday') {
+    return { 'Monday': 'CLOSED'};
+  }
   return Object.entries(hours)
   .filter(element => element[0] === dayName)
   .reduce((acc, curr) => {
-    if(curr[0] === 'Monday') {
-      acc[curr[0]] = 'CLOSED';
-      return acc;
-    }
       acc[curr[0]] = `Open from ${curr[1].open}am until ${curr[1].close - 12}pm`;
       return acc;
     },{});
