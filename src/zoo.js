@@ -49,6 +49,7 @@ console.log(employeeByName());
 console.log(employeeByName('Nigel'));
 
 function createEmployee(personalInfo, associatedWith) {
+
   // seu código aqui
 }
 
@@ -94,8 +95,24 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
+  const objeto = {
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+    Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
+    Monday: 'CLOSED',
+  };
+  if (!dayName) {
+    return objeto;
+  }
+  return objeto[dayName];
+
   // seu código aqui
 }
+console.log(schedule());
+console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
