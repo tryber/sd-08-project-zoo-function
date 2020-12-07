@@ -102,12 +102,12 @@ function employeeCoverage(idOrName) {
     const responsible = responsibleFor.map(id => animalsByIds(id)[0].name);
     acc[`${firstName} ${lastName}`] = responsible;
     return acc;
-  }, {})
+  }, {});
   if (typeof idOrName === 'string' && idOrName.length !== 0) {
     const employee = employeeByName(idOrName) || employeeById(idOrName);
     const { firstName, lastName } = employee;
     const name = `${firstName} ${lastName}`;
-    return { [name]: result[name] }
+    return { [name]: result[name] };
   }
   return result;
 }
