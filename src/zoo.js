@@ -156,8 +156,8 @@ function increasePrices(percentage) {
 }
 
 function animalsFilter(respF, Object) {
-  animals.filter(({ id, name }) => {
-    respF.forEach(Element => {
+  respF.forEach((Element) => {
+    animals.forEach(({ id, name }) => {
       if (Element === id){
         Object.push(name)
       }
@@ -196,6 +196,7 @@ function employeeCoverage(idOrName) {
   }
   return findEmployee(idOrName)
 }
+console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
