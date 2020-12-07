@@ -14,7 +14,7 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   let retorno = [];
-  console.log(ids);
+//  console.log(ids);
   if (ids.length === 0) {
     return [];
   } else {
@@ -22,21 +22,24 @@ function animalsByIds(...ids) {
       const filterAnimals = animals.filter(({id}) => (element === id));
       retorno[index] = [...filterAnimals];
       });
-    console.log(Object.values(retorno));
+    console.log(Object.values(retorno[1]));
     return retorno;
   }
 }
-animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46');
+//animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46');
 
 function animalsOlderThan(animal, age) {
   let retorno;
   let filterName = animals.filter(({name}) => (name === animal));
-  console.log(Object.values(filterName));
-  retorno = filterName.every(({residents}) => residents.age > age);
+  console.log(filterName);
+     let teste = animals.every(({residents}) => (residents.age >= age));
+  console.log(teste);
+
+  retorno = filterName.every(({residents}) => residents.age >= age);
   console.log(retorno);
   return retorno;
 }
-//animalsOlderThan('otters', 7);
+animalsOlderThan('otters', 7);
 
 function employeeByName(employeeName) {
   // seu código aqui
