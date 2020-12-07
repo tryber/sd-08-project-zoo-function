@@ -37,11 +37,11 @@ function createEmployee(personalInfo, associatedWith) {
     ...associatedWith,
   };
 }
-console.log(createEmployee(personalInfo, associatedWith));
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some((employee, index) => employee.managers[index] === id);
 }
+console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
