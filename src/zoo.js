@@ -16,7 +16,7 @@ function animalsByIds(...ids) {
   if (ids.length === 0) {
     return [];
   }
-  return animals.filter((especie) => ids.includes(especie.id));
+  return animals.filter(especie => ids.includes(especie.id));
 }
 
 function animalsOlderThan(animal, age) {
