@@ -43,18 +43,18 @@ function isManager(id) {
 
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  data.employees.push({ id, firstName, lastName, managers, responsibleFor }); 
+  data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
   if (species === undefined) {
     const speciesAnimal = {};
     data.animals.forEach((animal) => {
-    speciesAnimal[animal.name] = animal.residents.length;
+      speciesAnimal[animal.name] = animal.residents.length;
     });
     return speciesAnimal;
   }
-    return data.animals.find((specie => specie.name === species)).residents.length;
+  return data.animals.find((specie => specie.name === species)).residents.length;
 }
 
 function entryCalculator(entrants) {
@@ -70,7 +70,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  //if (dayName === undefined){}
+ 
 }
 
 function oldestFromFirstSpecies(id) {
