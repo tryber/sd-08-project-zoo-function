@@ -23,7 +23,13 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const animals = data.animals;
+  const animalObj = animals.find(animalGroup => animalGroup.name.match(animal));
+  const ages = [];
+  animalObj.residents.forEach(prop => ages.push(prop.age));
+  const minAge = Math.min(...ages);
+  if (minAge >= age) return true;
+  return false;
 }
 
 function employeeByName(employeeName) {
