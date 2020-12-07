@@ -89,12 +89,16 @@ function increasePrices(percentage) {
   firstPrices.forEach(price => (prices[price] = Math.round(prices[price] * increment * 100) / 100));
 }
 
+function getAnimals (animalsId) {
+  return animalsId.map(id => animals.find(animal => animal.id === id).name);
+}
+
 function employeeCoverage(idOrName) {
   const employeesList = {};
   employees.forEach((employee) => {
     const { firstName, lastName, responsibleFor } = employee;
     const fullName = `${firstName} ${lastName}`;
-    const responsible = animalsById(responsibleFor);
+    const responsible = getAnimals(responsibleFor);
     employeesList[fullName] = responsible;
   });
   if (idOrName === undefined) {
