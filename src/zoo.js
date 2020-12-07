@@ -22,7 +22,7 @@ const animalsOlderThan = (specie, age) => findAnimal(specie).residents.every(e =
 const employeeByName = n => employees.find(e => (e.firstName === n || e.lastName === n)) || {};
 
 const createEmployee = (empInfo, associatedWith) => {
-  const newEmployee = {...empInfo, ...associatedWith};
+  const newEmployee = { ...empInfo, ...associatedWith };
   return newEmployee;
 };
 
