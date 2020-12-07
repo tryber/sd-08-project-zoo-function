@@ -53,7 +53,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  if (entrants === undefined || Object.keys(entrants).length === 0) { return 0 }
+  if (entrants === undefined || Object.keys(entrants).length === 0) { return 0; }
   const arrayEntrants = Object.entries(entrants);
   const result = [];
   arrayEntrants.forEach(item => result.push((item[1] * data.prices[item[0]])));
