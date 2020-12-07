@@ -29,9 +29,7 @@ function employeeByName(...employeeName) {
   if (employeeName.length === 0) {
     return {};
   }
-  const nome = funcionario => funcionario.firstName === employeeName;
-  const sobrenome = funcionario => funcionario.lastName === employeeName;
-  return employees.find(nome || sobrenome);
+  return employees.find(funcionario => funcionario.firstName === employeeName || funcionario.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
