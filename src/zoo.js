@@ -9,7 +9,6 @@ eslint no-unused-vars: [
 ]
 */
 const data = require('./data');
-
 function animalsByIds(...ids) {
   if (ids === undefined) {
     return [];
@@ -18,7 +17,6 @@ function animalsByIds(...ids) {
   }
   return ids.map(id => data.animals.find(animal => animal.id === id));
 }
-
 function animalsOlderThan(animal, age) {
   const selectedAnimal = data.animals.find(
     animalName => animalName.name === animal,
@@ -34,7 +32,6 @@ function animalsOlderThan(animal, age) {
   );
   return result;
 }
-
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
@@ -44,13 +41,11 @@ function employeeByName(employeeName) {
       employee.firstName === employeeName || employee.lastName === employeeName,
   );
 }
-
 function createEmployee(personalInfo, associatedWith) {
   const result = {};
   Object.assign(result, personalInfo, associatedWith);
   return result;
 }
-
 function isManager(id) {
   let result = false;
   data.employees.forEach((employee) => {
@@ -60,7 +55,6 @@ function isManager(id) {
   });
   return result;
 }
-
 function addEmployee(
   id,firstName,lastName,managers = [],responsibleFor = [],
 ) {
@@ -69,7 +63,6 @@ function addEmployee(
   };
   data.employees.push(employee);
 }
-
 function animalCount(species) {
   if (species === undefined) {
     const returnObj = {};
@@ -80,7 +73,6 @@ function animalCount(species) {
   }
   return data.animals.find(animal => animal.name === species).residents.length;
 }
-
 function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
@@ -91,13 +83,11 @@ function entryCalculator(entrants) {
     0,
   );
 }
-
 function returnToAnimalMapNoParameter(region) {
   return data.animals
   .filter(animalFilter => animalFilter.location === region)
   .map(animal => animal.name);
 }
-
 function animalMapNoParameter() {
   return {
     NE: returnToAnimalMapNoParameter('NE'),
@@ -106,7 +96,6 @@ function animalMapNoParameter() {
     SW: returnToAnimalMapNoParameter('SW'),
   };
 }
-
 function animalsPerRegions(region) {
   const animalsPerRegion = data.animals
     .filter(animalFilter => animalFilter.location === region)
@@ -120,7 +109,6 @@ function animalsPerRegions(region) {
     });
   return animalsPerRegion;
 }
-
 function animalMapJustIncludeNames() {
   return {
     NE: animalsPerRegions('NE'), 
@@ -129,14 +117,12 @@ function animalMapJustIncludeNames() {
     SW: animalsPerRegions('SW'),
   };
 }
-
 function ordRegion(regions) {
   regions.forEach((region) => {
     region[Object.keys(region)[0]].sort();
   });
   return regions;
 }
-
 function animalMapIncludesAndSort() {
   return {
     NE: ordRegion(animalsPerRegions('NE')),
@@ -145,7 +131,6 @@ function animalMapIncludesAndSort() {
     SW: ordRegion(animalsPerRegions('SW')),
   };
 }
-
 function animalsPerRegionsWithSex(regions, sex) {
   if (sex === 'male') {
     return regions.map((specie) => {
@@ -164,13 +149,11 @@ function animalsPerRegionsWithSex(regions, sex) {
     return objReturn;
   });
 }
-
 function returnToanimalMapIncludesAndSex(region){
   return data.animals.filter(
     animalFilter => animalFilter.location === region,
   );
 }
-
 function animalMapIncludesAndSex(sex) {
   return {
     NE: animalsPerRegionsWithSex(returnToanimalMapIncludesAndSex('NE'), sex),
@@ -179,14 +162,12 @@ function animalMapIncludesAndSex(sex) {
     SW: animalsPerRegionsWithSex(returnToanimalMapIncludesAndSex('SW'), sex),
   };
 }
-
 function orderNames(region) {
   region.forEach((specie) => {
     specie[Object.keys(specie)[0]].sort();
   });
   return region;
 }
-
 function animalMapIncludesAndSexSorted(objPerSex) {
   const { NE, NW, SE, SW } = objPerSex;
   return {
@@ -196,11 +177,9 @@ function animalMapIncludesAndSexSorted(objPerSex) {
     SW: orderNames(SW),
   };
 }
-
 function returnNamesPerRegion(regions) {
   return regions.map(specie => Object.keys(specie)[0]);
 }
-
 function justNames(objWithInformation) {
   const { NE, NW, SE, SW } = objWithInformation;
   return {
@@ -210,7 +189,6 @@ function justNames(objWithInformation) {
     SW: returnNamesPerRegion(SW),
   };
 }
-
 function animalMap(options) {
   if (options === undefined) {
     return animalMapNoParameter();
@@ -232,22 +210,18 @@ function animalMap(options) {
     return justNames(animalMapIncludesAndSort());
   }
 }
-
 function isClosed(openTime, closeTime) {
   if (openTime === 0 && closeTime === 0) {
     return true;
   }
   return false;
 }
-
 function openAmPm(openTime) {
   return openTime > 11 ? `${openTime - 12}pm` : `${openTime}am`;
 }
-
 function closeAmPm(closeTime) {
   return closeTime > 11 ? `${closeTime - 12}pm` : `${closeTime}am`;
 }
-
 function sayTheTimeOpen(day) {
   const open = data.hours[day].open;
   const close = data.hours[day].close;
@@ -260,7 +234,6 @@ function sayTheTimeOpen(day) {
   }
   return timeOpen;
 }
-
 function schedule(dayName) {
   const returnObj = {};
   if (dayName === undefined) {
@@ -273,7 +246,6 @@ function schedule(dayName) {
   returnObj[dayName] = sayTheTimeOpen(dayName);
   return returnObj;
 }
-
 function oldestFromFirstSpecies(id) {
   const idFirsSpecies = data.employees.find(employee => employee.id === id)
     .responsibleFor[0];
@@ -288,7 +260,6 @@ function oldestFromFirstSpecies(id) {
     }),
   );
 }
-
 function increasePrices(percentage) {
   const kindOfClient = Object.keys(data.prices);
   const pricesPerClient = Object.values(data.prices);
@@ -298,7 +269,6 @@ function increasePrices(percentage) {
     data.prices[client] = newValue;
   });
 }
-
 function employeeCoverageWithNoParameter() {
   const objReturn = {};
   data.employees.forEach((employee) => {
@@ -313,7 +283,6 @@ function employeeCoverageWithNoParameter() {
   });
   return objReturn;
 }
-
 function employeeCoverage(idOrName) {
   const objReturn = {};
   if (idOrName === undefined) {
@@ -332,7 +301,6 @@ function employeeCoverage(idOrName) {
   objReturn[fullNameEmployee] = responsibleFor;
   return objReturn;
 }
-
 module.exports = {
   entryCalculator,
   schedule,
