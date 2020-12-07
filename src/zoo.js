@@ -9,6 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
+const { prices } = require('./data');
 const data = require('./data');
 // 1
 function animalsByIds(...ids) {
@@ -85,6 +86,13 @@ function animalCount(species) {
 // 8
 function entryCalculator(entrants) {
   // seu código aqui
+  if (entrants === undefined || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  const { Adult: adultQt = 0, Senior: seniorQt = 0, Child: childQt = 0 } = entrants;
+  const { Adult, Senior, Child } = data.prices;
+  const totalValue = (adultQt * Adult) + (seniorQt * Senior) + (childQt * Child);
+  return totalValue;
 }
 // 9
 function animalMap(options) {
@@ -92,23 +100,23 @@ function animalMap(options) {
 }
 // 10
 function schedule(dayName) {
-let obj = {};
-const hours = data.hours;
-const week = Object.keys(hours);
-if (dayName) {
-  obj = { ...obj, [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
-  if (dayName === 'Monday') {
-    obj = { ...obj, [dayName]: 'CLOSED' }; 
-  }
-} else {
-  week.forEach((key) => {
-    obj = { ...obj, [key]: `Open from ${hours[key].open}am until ${hours[key].close - 12}pm` };
-    if (key === 'Monday') {
-      obj = { ...obj, [key]: 'CLOSED' }; 
+  let obj = {};
+  const hours = data.hours;
+  const week = Object.keys(hours);
+  if (dayName) {
+    obj = { ...obj, [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
+    if (dayName === 'Monday') {
+      obj = { ...obj, [dayName]: 'CLOSED' };
     }
-  })
-}
-return obj;
+  } else {
+    week.forEach((key) => {
+      obj = { ...obj, [key]: `Open from ${hours[key].open}am until ${hours[key].close - 12}pm` };
+      if (key === 'Monday') {
+        obj = { ...obj, [key]: 'CLOSED' };
+      }
+    });
+  }
+  return obj;
 }
 
 // 11
