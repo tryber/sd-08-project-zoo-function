@@ -90,8 +90,18 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 
 function animalCount(species) {
-  // seu código aqui
+  const countAnimal = {};
+  if (!species) {
+    animals.forEach(animal => {
+      countAnimal[animal.name] = animal.popularity;
+    });
+    return countAnimal;
+  }
+  const findAnimal = animals.find(animal => animal.name === species);
+  return findAnimal.popularity;
+  
 }
+
 
 function entryCalculator(entrants) {
   // seu código aqui
