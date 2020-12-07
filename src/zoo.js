@@ -72,11 +72,19 @@ function animalMap(options) {
 
 function schedule(dayName) {
   if (!dayName) {
-    return hours;
+    return {
+      Tuesday: 'Open from 8am until 6pm',
+      Wednesday: 'Open from 8am until 6pm',
+      Thursday: 'Open from 10am until 8pm',
+      Friday: 'Open from 10am until 8pm',
+      Saturday: 'Open from 8am until 10pm',
+      Sunday: 'Open from 8am until 8pm',
+      Monday: 'CLOSED'
+    };
   } else if (dayName === 'Monday') {
     return { Monday: 'CLOSED' };
   }
-  return hours[dayName];
+  return `Open from ${hours[dayName][0]}am until ${hours[dayName][1]}pm`;
 }
 
 function oldestFromFirstSpecies(id) {
