@@ -66,7 +66,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
-  if (species === undefined) {
+  if (species !== undefined) {
     const retorno = data.animals.find(name => name.name === species);
     return retorno.residents.length;
   }
