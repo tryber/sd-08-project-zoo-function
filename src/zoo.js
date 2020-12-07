@@ -48,13 +48,33 @@ function isManager(id) {
     /* console.log(`${manager} === ${id}`);*/
 console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  data.employees
+  .push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
   // seu código aqui
 }
+// console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'));
+// console.log(employees.length);
+// console.log(employees[8]);
+// console.log(employees);
 
 function animalCount(species) {
+  // return animals
+  // .find((animalSpecie) => {
+  //   console.log(`${animalSpecie.name}`);
+  //   species === animalSpecie.name}).residents.length
+  // .reduce((result, currentValue) => {
+  //   result + currentValue.popularity
+  // });
   // seu código aqui
 }
+// console.log(animalCount());
 
 function entryCalculator(entrants) {
   // seu código aqui
