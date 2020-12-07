@@ -10,12 +10,11 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+
 const { animals, employees } = data;
 
 function animalsByIds(...ids) {
-  if (ids.length === 0) {
-    ids;
-  }
+  if (ids.length === 0) return ids;
   return animals.filter(animal => ids.includes(animal.id));
 }
 
@@ -23,15 +22,18 @@ function animalsByIds(...ids) {
 //  'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
 
 function animalsOlderThan(animal, age) {
-  return animals.find(item => item.name === animal).residents.every(item => item.age >= age);
+  return animals
+    .find(item => item.name === animal)
+    .residents.every(item => item.age >= age);
 }
 
 // console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(emp) {
-  if (emp === undefined) { };
-  return employees
-    .find(nome => nome.firstName === emp || nome.lastName === emp);
+  if (emp === undefined) return {};
+  return employees.find(
+    nome => nome.firstName === emp || nome.lastName === emp,
+  );
 }
 
 // console.log(employeeByName('Wishart'));
@@ -66,8 +68,13 @@ function isManager(id) {
 
 // console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
-
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+function addEmployee(
+  id,
+  firstName,
+  lastName,
+  managers = [],
+  responsibleFor = [],
+) {
   const personalInfo = { id, firstName, lastName };
   const associatedWith = { managers, responsibleFor };
   employees.push(createEmployee(personalInfo, associatedWith));
