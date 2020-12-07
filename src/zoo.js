@@ -1,4 +1,4 @@
-const { animals } = require('./data');
+const { animals, employees } = require("./data");
 /*
 eslint no-unused-vars: [
   "error",
@@ -10,24 +10,29 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+const data = require("./data");
 
 function animalsByIds(...ids) {
   // seu código aqui
-  if (ids === undefined) {
+  if (!ids) {
     return [];
   }
-  return animals.filter(elem => elem.id = ids);  
+  return animals.filter(elem => elem.id === ids);
 }
-
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  return animals.find(elem => elem.name === animal).residents.every(elem => elem.age >= age);
+  return animals
+    .find((elem) => elem.name === animal)
+    .residents.every((elem) => elem.age >= age);
 }
 
 function employeeByName(employeeName) {
   // seu código aqui
+  if (!employeeName) {
+    return {};
+  }
+  return employees.find(elem => elem.firstName === employeeName || elem.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
