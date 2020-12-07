@@ -13,8 +13,8 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   if (ids === undefined) return [];
-  const xablau = ids.map(elemnt => (data.animals.find(elem2 => elem2.id.includes(elemnt))));
-  return xablau;
+  const id = ids.map(animals => (data.animals.find(animal => animal.id.includes(animals))));
+  return id;
 }
 
 function animalsOlderThan(animal, age) {
@@ -25,7 +25,11 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   // seu código aqui
+  if (employeeName === undefined) return '{}'
+  const funcionarios = data.employees.find(name => (name.firstName === employeeName || name.lastName === employeeName));
+  return funcionarios;
 }
+console.log(employeeByName())
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
