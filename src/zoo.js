@@ -66,11 +66,14 @@ const oldestFromFirstSpecies = (id) => {
   return Object.values(animal.residents.sort((a, b) => a.age - b.age)[animal.residents.length - 1]);
 };
 
-console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
+const roundUp = (num, decimal) => parseFloat((num + (4 / ((10 ** (decimal + 1)))))
+.toFixed(decimal));
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+const increasePrices = percentage => Object.defineProperties(prices, {
+  Adult: { value: roundUp((prices.Adult * (1 + (percentage / 100))), 2) },
+  Senior: { value: roundUp((prices.Senior * (1 + (percentage / 100))), 2) },
+  Child: { value: roundUp((prices.Child * (1 + (percentage / 100))), 2) },
+});
 
 function employeeCoverage(idOrName) {
   // seu código aqui
