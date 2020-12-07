@@ -53,7 +53,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  const { Adult = 0, Child = 0, Senior =0 } = entrants;
+  const { Adult, Child, Senior } = entrants;
   if (!entrants || entrants === {}) {
     return 0;
   }
