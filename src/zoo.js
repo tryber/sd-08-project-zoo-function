@@ -108,12 +108,10 @@ function animalCount(species) {
   return result;
 }
 
-// console.log(animalCount('snakes'));
+// console.log(animalCount('lions'));
 
 function entryCalculator(entrants) {
-  if (entrants === undefined || Object.entries(entrants).length === 0) return 0;
-  const entrantsArray = Object.keys(entrants);
-  return entrantsArray.reduce((acc, curr) => acc + (entrants[curr] * prices[curr]), 0);
+  // seu código aqui
 }
 
 function animalMap(options) {
