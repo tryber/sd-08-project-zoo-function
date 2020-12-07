@@ -103,18 +103,29 @@ function schedule(dayName) {
   const hours = data.hours;
   let obj = {};
   Object.keys(hours).forEach((element) => {
-      const keyWeek = dayName ? dayName : element;
-      obj = { ...obj, [keyWeek]: `Open from ${hours[keyWeek].open}am until ${hours[keyWeek].close - 12}pm` };
-      if (keyWeek === 'Monday') {
-        obj = { ...obj, [keyWeek]: 'CLOSED' };
-      }
-    });
+    const keyWeek = dayName ? dayName : element;
+    obj = { ...obj, [keyWeek]: `Open from ${hours[keyWeek].open}am until ${hours[keyWeek].close - 12}pm` };
+    if (keyWeek === 'Monday') {
+      obj = { ...obj, [keyWeek]: 'CLOSED' };
+    }
+  });
   return obj;
 }
 // 11
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const animalIds = data.employees.find(employeeId => employeeId.id === id).responsibleFor;
+  const animals = data.animals.find(animalId => animalId.id === animalIds[0]);
+  const getOlderAnimal = animals.residents.reduce((animalA, animalB) => {
+    if (animalA.age > animalB.age) {
+      return animalA;
+    } else {
+      return animalB;
+    }
+  });
+  const arrayAnimal = Object.values(getOlderAnimal);
+  return arrayAnimal;
 }
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 // 12
 function increasePrices(percentage) {
   // seu código aqui
