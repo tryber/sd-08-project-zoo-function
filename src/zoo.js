@@ -32,7 +32,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const gerente = gerente => gerente === id;
+  const manager = gerente => gerente === id;
   return data.employees.some(emp => emp.managers.find(gerente));
 }
 
