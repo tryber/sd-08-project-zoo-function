@@ -130,10 +130,10 @@ function oldestFromFirstSpecies(id) {
   const personByID = employees.find(person => person.id === id);
   const firstSpecie = personByID.responsibleFor[0];
   const specieFound = animals.find(animal => animal.id === firstSpecie);
-  const oldestFromSpecie = specieFound.residents.reduce((acc,actual) => {
+  const oldestFromSpecie = specieFound.residents.reduce((acc, actual) => {
     if (actual.age > acc.age) acc = actual;
     return acc;
-  },{age: 0});
+  }, { age: 0 });
   return Object.values(oldestFromSpecie);
 }
 
