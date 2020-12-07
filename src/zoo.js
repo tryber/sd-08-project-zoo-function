@@ -101,8 +101,21 @@ function increasePrices(percentage) {
     });
 }
 
+function especiesManager(employee) {
+  return employee.responsibleFor
+    .map(id => data.animals.find(animal => id === animal.id).name);
+}
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const employeeData = employeeByName(idOrName) ||
+    data.employees.find(employee => employee.id === idOrName);
+  return idOrName ? {
+    [`${employeeData.firstName} ${employeeData.lastName}`]: especiesManager(employeeData),
+  }
+    : data.employees.reduce((acc, employee) => {
+      acc[`${employee.firstName} ${employee.lastName}`] = especiesManager(employee);
+      return acc;
+    }, {});
 }
 
 module.exports = {
