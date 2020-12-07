@@ -85,7 +85,7 @@ function entryCalculator(entrants) {
   const acumulator = 0;
   aux.foreach((value) => {
     price.foreach((priceV) => {
-      acumulator += priceV[0] === value [0] ? priceV[1] * value[1] : 0; 
+      acumulator += priceV[0] === value[0] ? priceV[1] * value[1] : 0; 
     });
   });
   return acumulator;
