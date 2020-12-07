@@ -30,7 +30,7 @@ function employeeByName(employeeName) {
     return (employeeName = {});
   }
 
-  return employees.find(eachName => eachName.name === employeeName);
+  return employees.find(eachName => eachName.firstName === employeeName || eachName.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
