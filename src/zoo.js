@@ -77,26 +77,40 @@ function entryCalculator(entries) {
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }))
 // console.log(entryCalculator({}))
 
-
-// const noParameter = () => {
-//   const result = {}
-//   animals.forEach(({ location = '', name }) => {
-//     if (result[location] === undefined) {
-//       result[location] = [];
-//       result[location] = [ name ];
-//     }
-//     else {
-//       const resLocation = result[location]
-//       resLocation.push(name)
-//     }
-//   })
-//   return result;
-// }
-
-function animalMap(obj) {
-  // seu código aqui
+//------------------------------------------------------------------
+function getResidentsNames(animalName, sorted, sex) {
+  let result = animals.find(animal => animal.name === animalName);
+  result = result.residents;
+  if (typeof sex === 'string') {
+    result = result.filter(animal => animal.sex === sex);
+  }
+  result = result.map(resident => resident.name);
+  if (sorted) result.sort();
+  return { [animalName]: result };
 }
 
+function animalMap(options = {}) {
+  const { includeNames = false, sorted = false, sex } = options;
+
+  let result = animals.reduce((acc, animal) => {
+    const { name, location } = animal;
+    if (!acc[location]) {
+      acc[location] = [];
+    }
+    acc[location].push(name);
+    return acc;
+  }, {});
+
+  if (includeNames) {
+    result = Object.entries(result).reduce((acc, [key, animalName]) => {
+      acc[key] = animalName.map(name => getResidentsNames(name, sorted, sex));
+      return acc;
+    }, {});
+  }
+
+  return result;
+}
+// -----------------------------------------------------------------
 function scheduleNoParam() {
   const result = {};
   const arrayHours = Object.entries(hours);
