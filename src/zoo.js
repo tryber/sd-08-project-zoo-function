@@ -72,52 +72,41 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
-  const { hours } = data
-  const crono = Object.entries(hours)
-  const dayMsg = (dayOfWeek) => {
-    if (dayOfWeek === 'Monday') return 'CLOSED';
-    return `Open from ${hours[dayOfWeek].open}am until ${hours[dayOfWeek].close - 12}pm`;
-  };
-  const cronograma = () => {
-    const mensagem = crono.reduce((acc, [keyDay, value]) => {
-      acc[keyDay] = dayMsg(keyDay);
-      return acc;
-    }, {});
-  }
+}
 
-  function oldestFromFirstSpecies(id) {
-    // seu código aqui
-    const func1 = data.employees.find(func => func.id === id);
-    const primeiradalista = func1.responsibleFor[0];
-    const allFromFirst = animals.find(animal =>
-      primeiradalista.includes(animal.id)).residents;
-    const oldestAnimalObj = allFromFirst.sort((a, b) =>
-      b.age - a.age)[0];
-    const { name, sex, age } = oldestAnimalObj;
-    return [name, sex, age];
-  }
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+  const func1 = data.employees.find(func => func.id === id);
+  const primeiradalista = func1.responsibleFor[0];
+  const allFromFirst = animals.find(animal =>
+    primeiradalista.includes(animal.id)).residents;
+  const oldestAnimalObj = allFromFirst.sort((a, b) =>
+    b.age - a.age)[0];
+  const { name, sex, age } = oldestAnimalObj;
+  return [name, sex, age];
+}
 
-  function increasePrices(percentage) {
-    // seu código aqui
-  }
+function increasePrices(percentage) {
+  // seu código aqui
+}
 
-  function employeeCoverage(idOrName) {
-    // seu código aqui
-  }
+function employeeCoverage(idOrName) {
+  // seu código aqui
+}
 
-  module.exports = {
-    entryCalculator,
-    schedule,
-    animalCount,
-    animalMap,
-    animalsByIds,
-    employeeByName,
-    employeeCoverage,
-    addEmployee,
-    isManager,
-    animalsOlderThan,
-    oldestFromFirstSpecies,
-    increasePrices,
-    createEmployee,
-  };
+module.exports = {
+  entryCalculator,
+  schedule,
+  animalCount,
+  animalMap,
+  animalsByIds,
+  employeeByName,
+  employeeCoverage,
+  addEmployee,
+  isManager,
+  animalsOlderThan,
+  oldestFromFirstSpecies,
+  increasePrices,
+  createEmployee,
+};
 }
