@@ -71,19 +71,17 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   if (species === undefined) {
-    const animalNames = animals.map((animal) => animal.name);
-    const quantityOfAnimais = animals.map((animal) => animal.residents.length);
+    const animalNames = animals.map(animal => animal.name);
+    const quantityOfAnimais = animals.map(animal => animal.residents.length);
     const ops = animalNames.reduce((acc, currvalue, index) => {
       acc[currvalue] = quantityOfAnimais[index];
       return acc;
     }, {});
     return ops;
-  };
-  const quantityOfSpecie = animals.find((animal) => {
-    return animal.name === species;
-  });
+  }
+  const quantityOfSpecie = animals.find(animal => animal.name === species);
   return quantityOfSpecie.residents.length;
-};
+}
 
 function entryCalculator(entrants) {
   // seu código aqui
