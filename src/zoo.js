@@ -158,45 +158,44 @@ function increasePrices(percentage) {
 function animalsFilter(respF, Object) {
   respF.forEach((Element) => {
     animals.forEach(({ id, name }) => {
-      if (Element === id){
-        Object.push(name)
+      if (Element === id) {
+        Object.push(name);
       }
-    })
-  })
+    });
+  });
 }
 function employeeNoParameter() {
   const result = {};
-  employees.forEach(({ firstName, lastName, responsibleFor}) => {
-    result[`${firstName} ${lastName}`] = []
-    animalsFilter(responsibleFor, result[`${firstName} ${lastName}`])
-  })
+  employees.forEach(({ firstName, lastName, responsibleFor }) => {
+    result[`${firstName} ${lastName}`] = [];
+    animalsFilter(responsibleFor, result[`${firstName} ${lastName}`]);
+  });
   return result;
 }
 
-function animalsPerEmployee (emp, result) {
-  emp.responsibleFor.forEach((elem) => animals.forEach(({ id , name }) => {
+function animalsPerEmployee(emp, result) {
+  emp.responsibleFor.forEach(elem => animals.forEach(({ id, name }) => {
     if (elem === id) {
-      result[`${emp.firstName} ${emp.lastName}`].push(name)
+      result[`${emp.firstName} ${emp.lastName}`].push(name);
     }
-  }))
+  }));
 }
-function findEmployee (iD) {
-  const result = {}
-  const emp = employees.find(({id, firstName, lastName}) => id === iD || firstName === iD || lastName === iD )
-  result[`${emp.firstName} ${emp.lastName}`] = []
-  animalsPerEmployee (emp, result)
-  
+function findEmployee(iD) {
+  const result = {};
+  const emp = employees.find(({ id, firstName, lastName }) => 
+  id === iD || firstName === iD || lastName === iD);
+  result[`${emp.firstName} ${emp.lastName}`] = [];
+  animalsPerEmployee(emp, result);
   return result;
 }
 
 
 function employeeCoverage(idOrName) {
   if (idOrName === undefined) {
-    return employeeNoParameter()
+    return employeeNoParameter();
   }
-  return findEmployee(idOrName)
+  return findEmployee(idOrName);
 }
-console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
