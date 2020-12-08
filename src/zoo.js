@@ -56,10 +56,24 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
+  const { animals } = data;
+  const result = animals.reduce((acc, animal) => {
+    acc[animal.name] = animal.residents.length;
+    return acc;
+  }, {});
+  if (typeof species === 'string' && species.length !== 0) {
+    return result[species];
+  }
+  return result;
 }
 
 function entryCalculator(entrants) {
   // seu código aqui
+  const { prices } = data;
+  if (typeof entrants === 'undefined') return 0;
+  return Object.entries(entrants).reduce((acc, [key, val]) => (
+    acc + (prices[key] * val)
+  ), 0);
 }
 
 function animalMap(options) {
