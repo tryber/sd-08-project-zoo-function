@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -74,27 +74,64 @@ function animalCount(species) {
   return animals.find(animalSpecie => species === animalSpecie.name).residents.length;
   // seu código aqui
 }
-console.log(animalCount('lions'));
+// console.log(animalCount('lions'));
 
 function entryCalculator(entrants) {
+  if (entrants === undefined || Object.keys(entrants).length === 0)
+  return 0;
+  const arrayEntrants = Object.keys(entrants);
+  // console.log(arrayEntrants);
+  arrayEntrants.reduce((result, currentValue) => {
+    console.log((result));
+    console.log(`${entrants[currentValue]} ${prices[currentValue]}`);
+    return result + (prices[currentValue] * entrants[currentValue]);
+  }, 0);
+
   // seu código aqui
 }
+// console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 function animalMap(options) {
   // seu código aqui
 }
 
 function schedule(dayName) {
+  // const arrayDay = Object.keys(data.hours)
+  
+  // const objDay = {};
+  // if (dayName === 'Monday') {
+  //   return objDay[dayName] = "CLOSED";
+  // }
+  // if (dayName !== undefined) {
+  //   return objDay[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
+  // }
+
+  // const returnUndefined = arrayDay.reduce((result, currentValue) => {
+  //   result[currentValue] = `Open from ${hours[currentValue].open}am until ${hours[currentValue].close - 12}pm`;
+  //   return result;
+  // }, {});
+  // console.log(arrayDay);
+  
+  // return returnUndefined;
   // seu código aqui
 }
+// console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
 
 function increasePrices(percentage) {
+  const priceKeys = Object.keys(prices);
+  // console.log(priceKeys);
+  priceKeys.forEach((addPrice) => {
+    // console.log(`${addPrice} ${prices[addPrice]} * ${(1 + percentage / 100)}`);
+    prices[addPrice] = Math.round(prices[addPrice] * (1 + percentage / 100) * 100) / 100;
+    // console.log(data.prices);
+  });
   // seu código aqui
 }
+// console.log(increasePrices(50));
 
 function employeeCoverage(idOrName) {
   // seu código aqui
