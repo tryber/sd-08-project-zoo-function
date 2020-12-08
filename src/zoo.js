@@ -75,9 +75,64 @@ function entryCalculator(...visitors) {
   return adultValue + childValue + seniorValue;
 }
 
-function animalMap(options) {
-  // seu código aqui
+const specieByLocation = () => {
+
 }
+
+const animalBySex = (sex) => {
+  return animals.map(animal => {
+    animal.residents = animal.residents.filter(resident => resident.sex === sex)
+    return animal;
+  });
+}
+
+function animalMap(options) {
+  let mappedAnimals = [...animals];
+  const emptyAnimalMap = {
+    NE: [],
+    NW: [],
+    SE: [],
+    SW: []
+  };
+
+  if (options === undefined || options.includeNames !== true) {
+    return animals.reduce((acc, animal) => {
+      acc[animal.location].push(animal.name);
+      return acc;
+    }, emptyAnimalMap);
+  }
+
+  const {includeNames, sorted, sex} = options;
+
+  if (typeof sex === 'string' && includeNames) {
+    mappedAnimals = animalBySex(sex);
+  }
+
+  if (includeNames) {
+    mappedAnimals = mappedAnimals.reduce((acc, { name, location, residents }) => {
+      const newObject = {};
+      newObject[name] = residents.reduce((animalVector, resident) => {
+        animalVector = [...animalVector, resident.name];
+        return animalVector;
+      }, []);
+      acc[location].push(newObject);
+      return acc;
+    }, emptyAnimalMap);
+  }
+
+  if (sorted && includeNames) {
+    const keysMappedAnimals = Object.keys(mappedAnimals);
+    keysMappedAnimals.forEach(location => {
+      mappedAnimals[location].forEach(species => {
+        const speciesKey = Object.keys(species)[0];
+        species[speciesKey].sort();
+      });
+    });
+  }
+  return mappedAnimals;
+}
+console.log('*** SAIDA ***')
+console.log(animalMap({ includeNames: true, sorted: true }));
 
 function schedule(dayName) {
   // seu código aqui
