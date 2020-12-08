@@ -31,8 +31,12 @@ function employeeByName(employeeName) {
   return newObj;
 }
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+function createEmployee({ ...personalInfo }, { managers, responsibleFor }) {
+  return {
+    ...personalInfo,
+    managers,
+    responsibleFor,
+  };
 }
 
 function isManager(id) {
