@@ -82,10 +82,10 @@ const entryCalculator = (entrants) => {
     accumulator + (entrants[currentValue] * prices[currentValue]), 0));
 };
 
-const animalsFilteredBySex = (animals, sex) => {
-  if (!sex) return animals;
+const animalsFilteredBySex = (species, sex) => {
+  if (!sex) return species;
 
-  return animals.filter(({ sex: animal }) => sex === animal);
+  return species.filter(({ sex: animal }) => sex === animal);
 };
 
 const sortedAnimalNames = (names, sorted) => {
@@ -104,7 +104,7 @@ const animalMap = (options = {}) => {
       accumulator[animal.location] = [...location, animal.name];
 
       return accumulator;
-    };
+    }
 
     let residents = animal.residents;
     residents = animalsFilteredBySex(residents, sex);
@@ -140,14 +140,16 @@ const oldestFromFirstSpecies = (id) => {
   const { residents } = animals.find(
     animal => animal.id === employees.find(employee => employee.id === id).responsibleFor[0]);
 
-  const animal = residents.reduce((accumulator, currentValue) => (accumulator.age > currentValue.age ? accumulator : currentValue));
+  const animal = residents.reduce((accumulator, currentValue) =>
+    (accumulator.age > currentValue.age ? accumulator : currentValue));
 
   return [animal.name, animal.sex, animal.age];
 };
 
 const increasePrices = (percentage) => {
   Object.keys(prices).map(
-    category => prices[category] = Math.round(prices[category] * ((percentage / 100) + 1) * 100) / 100);
+    category => (prices[category] =
+      Math.round(prices[category] * ((percentage / 100) + 1) * 100) / 100));
 };
 
 const employeeCoverage = (idOrName) => {
@@ -159,7 +161,7 @@ const employeeCoverage = (idOrName) => {
   });
 
   const employeeByNameOrId = (condition) => {
-    const employee = employees.find(employee =>
+    employee = employees.find(employee =>
       employee.firstName === condition ||
       employee.lastName === condition ||
       employee.id === condition);
