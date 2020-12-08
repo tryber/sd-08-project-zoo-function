@@ -128,9 +128,9 @@ const addToList = (list, emp) => {
 
 function employeeCoverage(idOrName = false) {
   const list = {};
-  const selecteEmployee = employees.find(e => e.id === idOrName ||
-    e.firstName === idOrName || e.lastName === idOrName);
   if (idOrName) {
+    const selecteEmployee = employees.find(e => e.id === idOrName ||
+      e.firstName === idOrName || e.lastName === idOrName);
     addToList(list, selecteEmployee);
     return list;
   }
@@ -140,7 +140,7 @@ function employeeCoverage(idOrName = false) {
   return list;
 }
 
-console.log(employeeCoverage());
+console.log(employeeCoverage('Nigel'));
 
 module.exports = {
   entryCalculator,
