@@ -88,19 +88,14 @@ function schedule(dayName) {
   // seu código aqui
 
   // if (dayName !== undefined) {
-  //   return Object.entries(data.hours).filter((chave, [key,value]) => {
-  //     chave === dayName
-  //     return `${chave}: Open from ${value.open} until ${value.close}`
-  //   })
   // }
   // return Object.entries(data.hours).reduce((objeto,[key, value]) => {
   //   objeto[key] =
-  // value.close - value.open > 0 ?`Open from ${value.open}
-  // am until ${value.close % 12}pm`: 'CLOSED';
-  // //   return objeto
-  // // }, {});
+  // value.close - value.open > 0 ?`Open from ${value.open}am until ${value.close % 12}pm`: 'CLOSED';
+  //   return objeto
+  // }, {});
 }
-
+console.log(schedule(''))
 function oldestFromFirstSpecies(id) {
   // seu código aqui
   const funcionario = data.employees.find(employee => employee.id === id);
