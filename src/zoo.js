@@ -100,8 +100,8 @@ function addEmployee(
 // );
 
 function animalCount(species) {
-  const result = animals.reduce((total, curr) => {
-    total[curr.name] = curr.residents.length;
+  const result = animals.reduce((total, atual) => {
+    total[atual.name] = atual.residents.length;
     return total;
   }, {});
   if (species) return result[species];
@@ -114,7 +114,7 @@ function entryCalculator(entrants) {
   if (entrants === undefined || Object.entries(entrants).length === 0) return 0;
   const entrantsArray = Object.keys(entrants);
   return entrantsArray
-    .reduce((total, curr) => total + (entrants[curr] * prices[curr]), 0);
+    .reduce((total, atual) => total + (entrants[atual] * prices[atual]), 0);
 }
 
 // const entrants = { Child: 1, Senior: 1 };
@@ -137,7 +137,7 @@ function schedule(dayName) {
     return soma;
   }, {});
   if (typeof dayName === 'string') {
-    return ({ [dayName]: result[dayName] });
+    return { [dayName]: result[dayName] };
   }
   return result;
 }
@@ -145,18 +145,20 @@ function schedule(dayName) {
 // console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(id) {
-  const employee = employees.find(emp => emp.id === id);
-  const firstId = employee.responsibleFor[0];
-  const animal = animalsByIds(firstId)[0];
-  const { residents } = animal;
-  const oldest = residents.reduce((maisVelho, atual) => {
+  const array = employees.find(emp => emp.id === id);
+  const speciesId = array.responsibleFor[0];
+  const animalId = animalsByIds(speciesId)[0];
+  const { residents } = animalId;
+  const valores = residents.reduce((maisVelho, atual) => {
     if (atual.age > maisVelho.age) {
       return atual;
     }
     return maisVelho;
   });
-  return Object.values(oldest);
+  return Object.values(valores);
 }
+
+console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 function increasePrices(percentage) {
   // seu código aqui
