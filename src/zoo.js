@@ -108,20 +108,35 @@ const oldestFromFirstSpecies = (id) => {
   const { residents } = animals.find(
     animal => animal.id === employees.find(employee => employee.id === id).responsibleFor[0]);
 
-  const animal = residents.reduce((accumulator, currentValue) =>
-    (accumulator.age > currentValue.age ? accumulator : currentValue));
+  const animal = residents.reduce((accumulator, currentValue) => (accumulator.age > currentValue.age ? accumulator : currentValue));
 
   return [animal.name, animal.sex, animal.age];
 };
 
 const increasePrices = (percentage) => {
   Object.keys(prices).map(
-    category => (prices[category] =
-      Math.round(prices[category] * ((percentage / 100) + 1) * 100) / 100));
+    category => prices[category] = Math.round(prices[category] * ((percentage / 100) + 1) * 100) / 100);
 };
 
 const employeeCoverage = (idOrName) => {
+  const managers = {};
 
+  employees.forEach((employee) => {
+    managers[`${employee.firstName} ${employee.lastName}`] =
+      employee.responsibleFor.map(id => animals.find(animal => animal.id === id).name);
+  })
+
+  const searchEmployee = (condition) => {
+    const employee = employees.find(employee => employee.firstName === condition
+      || employee.lastName === condition
+      || employee.id === condition);
+
+    return `${employee.firstName} ${employee.lastName}`;
+  }
+
+  if (!idOrName) return managers;
+
+  return { [searchEmployee(idOrName)]: managers[searchEmployee(idOrName)] };
 };
 
 module.exports = {
