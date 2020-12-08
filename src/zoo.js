@@ -117,10 +117,14 @@ function employeeCoverage(idOrName) {
   // seu código aqui
 
   return employees.find(employee => {
-    employee.id === idOrName;
-  });
+    return (
+      employee.id === idOrName ||
+      employee.firstName === idOrName ||
+      employee.lastName === idOrName
+    );
+  }).responsibleFor;
 }
-
+console.log(employeeCoverage('Nigel'));
 module.exports = {
   entryCalculator,
   schedule,
