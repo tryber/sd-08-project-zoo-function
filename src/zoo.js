@@ -8,42 +8,45 @@ eslint no-unused-vars: [
   }
 ]
 */
-const { animals } = require('./data.js');
+const { animals, employees } = require('./data.js');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  const array = [];
-  if (ids === undefined) {
-    return array;
-  } ids.forEach(id => array.push(animals.find(elemento => elemento.id === id)));
-  return array;
+  return animals.filter(animal => ids.find(id => animal.id === id));
 }
 
-// seu código aqui
+
 
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
-  const minimumAgeSpecies = animals.find(bug => bug.name === animal).residents
+  return animals.find(animaLs => animaLs.name === animal).residents
     .every(ageAnimal => ageAnimal.age >= age);
-  return minimumAgeSpecies;
 }
 
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined) {
+    return {};
+  }
+  return data.employees.find(nome => nome.firstName === employeeName || nome.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return { ...personalInfo, ...associatedWith, }
 }
 
 function isManager(id) {
-  // seu código aqui
+  return data.employees.some(employeeS => employeeS.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return data.employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
 }
 
 function animalCount(species) {
