@@ -56,8 +56,8 @@ const returnAnimalsList = (options, specie) => {
   return specie.residents.map(actual => actual.name);
 };
 
-const getAnimals = (options, place) => {
-  return animals.filter(specie => specie.location === place).map((specie) => {
+const getAnimals = (options, place) =>
+  animals.filter(specie => specie.location === place).map((specie) => {
     if (options.includeNames) {
       const actualSpecie = specie.name;
       const list = returnAnimalsList(options, specie);
@@ -65,11 +65,10 @@ const getAnimals = (options, place) => {
     }
     return specie.name;
   });
-};
 
 const animalMap = (options = false) => {
   const animalsMap = { NE: [], NW: [], SE: [], SW: [] };
-  Object.keys(animalsMap).forEach(place => {
+  Object.keys(animalsMap).forEach((place) => {
     animalsMap[place] = getAnimals(options, place);
     return true;
   });
