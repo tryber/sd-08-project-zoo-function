@@ -87,19 +87,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  const optionsList = { ...options };
-  const { includeNames, sex, sorted } = optionsList;
-  let result = {};
-  if (options === undefined || !includeNames) {
-    return returnDefault();
-  }
-  if (includeNames && sex !== undefined) result = returnBySex(sex);
-  else result = returnByNames();
-  if (sorted) {
-    Object.keys(result).forEach(key =>
-      result[key].forEach(value => value[Object.keys(value)].sort()),
-    );
-  }
+  
 }
 
 function schedule(dayName) {
