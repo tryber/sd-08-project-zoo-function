@@ -103,6 +103,9 @@ function entryCalculator(entrants) {
 console.log(entryCalculator());
 console.log(entryCalculator({}));
 console.log(entryCalculator({ Adult: 2, Child: 3, Senior: 1 }));
+console.log(entryCalculator({ Adult: 1 }));
+console.log(entryCalculator({ Senior: 1 }));
+
 function animalMap(options) {
   // seu código aqui
 }
