@@ -92,8 +92,75 @@ function entryCalculator(entrants) {
   return output;
 }
 
+
+const getSpecies = (regions) => {
+  const output = [];
+
+  animals.forEach((anim) => {
+    if (anim.location === regions) {
+      output.push(anim.name);
+    }
+  });
+
+  return output;
+};
+
+const getRegionsAndSpecies = () => animals.reduce((acc, anim) => {
+  const name = getSpecies(anim.location);
+  return Object.assign(acc, { [anim.location]: name });
+}, {});
+
+const sortBySex = (sex, currAnimal) => {
+  let output;
+
+  if (sex !== '') {
+    output = currAnimal.filter(elem => elem.sex === sex);
+  } else {
+    output = currAnimal;
+  }
+
+  return output;
+};
+
+const getResidentsNames = ({ region, sex = '', sorted = false }) => {
+  const output = [];
+  const animal = getSpecies(region);
+
+  for (let x = 0; x < animal.length; x += 1) {
+    const currAnimal = animals.find(anim => (anim.name === animal[x])).residents;
+    const names = [];
+    const currAnimalBySex = sortBySex(sex, currAnimal);
+
+    currAnimalBySex.forEach((elem) => {
+      names.push(elem.name);
+    });
+
+    if (sorted) {
+      names.sort();
+    }
+
+    output.push({ [animal[x]]: names });
+  }
+
+  return output;
+};
+
 function animalMap(options) {
-  // seu código aqui
+  if (options === undefined) {
+    options = { includeNames: false, sex: '', sorted: false };
+  }
+
+  const output = getRegionsAndSpecies();
+  const regions = Object.keys(output);
+
+  if (options.includeNames === true) {
+    const { sex, sorted } = options;
+    regions.forEach((region) => {
+      output[region] = getResidentsNames({ region, sex, sorted });
+    });
+  }
+
+  return output;
 }
 
 function schedule(dayName) {
