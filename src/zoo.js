@@ -9,20 +9,20 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals } = require('./data');
+// const { animals } = require('./data');
 const data = require('./data');
 
 const animalsByIds = (...ids) => {
   const listId = [...ids];
   const listAnimalsById = [];
   listId.forEach((id) => {
-    listAnimalsById.push({ animals }.find(animal => animal.id === id));
+    listAnimalsById.push(data.animals.find(animal => animal.id === id));
   });
   return listAnimalsById.reduce((acc, curr) => acc.concat(curr), []);
 };
 
 const animalsOlderThan = (species, age) => {
-  const animalsSearch = { animals }.find(animal => animal.name === species);
+  const animalsSearch = data.animals.find(animal => animal.name === species);
   const animalsResidents = Object.values(animalsSearch.residents);
   return ((animalsResidents.filter(animal => animal.age < age)).length === 0);
 };
@@ -67,12 +67,12 @@ const animalCount = (species) => {
   data.animals.forEach(animal => listSpecies.push(animal.name));
 
   if (listSpecies.includes(species)) {
-    return ({ animals }.find(animal => animal.name === species)).residents.length;
+    return (data.animals.find(animal => animal.name === species)).residents.length;
   }
   const allCounted = {};
   listSpecies.forEach((animalSpecies) => {
     (allCounted[animalSpecies]) =
-      ({ animals }.find(animal => animal.name === animalSpecies)).residents.length;
+      (data.animals.find(animal => animal.name === animalSpecies)).residents.length;
   });
   return allCounted;
 };
