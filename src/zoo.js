@@ -211,7 +211,8 @@ function animalMap(options) {
   }
   return objToReturn;
 }
-console.log(animalMap({includeNames: true}))
+console.log(animalMap({ includeNames: true }));
+
 function schedule(dayName) {
   const objReturn = {};
   const entries = Object.entries(hours);
