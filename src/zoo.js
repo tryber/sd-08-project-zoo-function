@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices, hours } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -77,13 +77,14 @@ function animalCount(species) {
 // console.log(animalCount('lions'));
 
 function entryCalculator(entrants) {
-  if (entrants === undefined || Object.keys(entrants).length === 0)
-  return 0;
+  if (entrants === undefined || Object.keys(entrants).length === 0) {
+    return 0;
+  }
   const arrayEntrants = Object.keys(entrants);
   // console.log(arrayEntrants);
-  arrayEntrants.reduce((result, currentValue) => {
-    console.log((result));
-    console.log(`${entrants[currentValue]} ${prices[currentValue]}`);
+  return arrayEntrants.reduce((result, currentValue) => {
+    // console.log((result));
+    // console.log(`${entrants[currentValue]} ${prices[currentValue]}`);
     return result + (prices[currentValue] * entrants[currentValue]);
   }, 0);
 
@@ -96,23 +97,6 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // const arrayDay = Object.keys(data.hours)
-  
-  // const objDay = {};
-  // if (dayName === 'Monday') {
-  //   return objDay[dayName] = "CLOSED";
-  // }
-  // if (dayName !== undefined) {
-  //   return objDay[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
-  // }
-
-  // const returnUndefined = arrayDay.reduce((result, currentValue) => {
-  //   result[currentValue] = `Open from ${hours[currentValue].open}am until ${hours[currentValue].close - 12}pm`;
-  //   return result;
-  // }, {});
-  // console.log(arrayDay);
-  
-  // return returnUndefined;
   // seu código aqui
 }
 // console.log(schedule());
@@ -126,7 +110,7 @@ function increasePrices(percentage) {
   // console.log(priceKeys);
   priceKeys.forEach((addPrice) => {
     // console.log(`${addPrice} ${prices[addPrice]} * ${(1 + percentage / 100)}`);
-    prices[addPrice] = Math.round(prices[addPrice] * (1 + percentage / 100) * 100) / 100;
+    prices[addPrice] = Math.round(prices[addPrice] * (1 + (percentage / 100)) * 100) / 100;
     // console.log(data.prices);
   });
   // seu código aqui
