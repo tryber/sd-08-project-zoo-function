@@ -86,8 +86,8 @@ function entryCalculator(entrants) {
   return ticketSum;
 }
 
-function animalMap(options) {
-
+function animalMap(options ) {
+  
 }
 
 
