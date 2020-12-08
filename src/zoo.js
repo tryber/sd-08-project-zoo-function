@@ -118,7 +118,8 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   if(!idOrName) {
   const employeesAndAnimals = employees.reduce((acc, currEmp) => {
-      acc[`${currEmp.firstName} ${currEmp.lastName}`] = currEmp.responsibleFor;
+      acc[`${currEmp.firstName} ${currEmp.lastName}`] = currEmp.responsibleFor
+      .map(id => animals.find(animal => animal.id === id));
       //  = [currEmp.responsibleFor.forEach((id) => animals.find((animal) => (animal.id === id))];
       return acc;
     }, {})
