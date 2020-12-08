@@ -80,13 +80,11 @@ function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
 
-const p = (value, percentage) => value * percentage / 99.99;
-const num = (value, percentage) => parseFloat((value + p(value, percentage)).toFixed(2));
-
-const increasePrices = percentage => {
+const increasePrices = (percentage) => {
+  const p = (value, percentage) => value * percentage;
+  const num = (value, percentage) => parseFloat((value + p(value, percentage) / 99.99).toFixed(2));
   Object.entries(prices).forEach(([key, value]) => prices[key] = num(value, percentage));
-};
-
+}
 
 function employeeCoverage(idOrName) {
   // seu código aqui
