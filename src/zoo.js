@@ -106,9 +106,10 @@ console.log(entryCalculator({ Adult: 2, Child: 3, Senior: 1 }));
 console.log(entryCalculator({ Adult: 1 }));
 console.log(entryCalculator({ Senior: 1 }));
 
-function animalMap(options) {
-  // seu código aqui
+function animalMap(options) {  
+// seu código aqui
 }
+
 
 function schedule(dayName) {
   const objeto = {
@@ -147,13 +148,13 @@ function oldestFromFirstSpecies(id) {
 
 console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 function increasePrices(percentage) {
-  const keys = Object.keys(prices);
-  const aumento = (1 + (percentage / 100));
+  // const keys = Object.keys(prices);
+  // const aumento = (1 + (percentage / 100));
 
-  keys.forEach((element) => {
-    prices[element] = Math.round(prices[element] * (aumento) * 100) / 100;
-  });
-  return prices;
+  // keys.forEach((element) => {
+  //   prices[element] = Math.round(prices[element] * (aumento) * 100) / 100;
+  // });
+  // return prices;
   // seu código aqui
 }
 console.log(increasePrices(50));
