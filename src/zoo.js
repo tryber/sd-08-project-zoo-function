@@ -14,7 +14,7 @@ const { animals, employees } = require('./data');
 function animalsByIds(...ids) {
   if (!ids) {
     return [];
-  };
+  }
   return animals.filter(animal => ids.includes(animal.id));
 }
 
@@ -28,18 +28,20 @@ function animalsOlderThan(animalName, age) {
 function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
-  };
-  let result = employees.find(name => employeeName.includes(name.lastName) || employeeName.includes(name.firstName) );
+  }
+  const result = employees.find(name => {
+    employeeName.includes(name.lastName) || employeeName.includes(name.firstName)
+  });
   return result;
-};
+}
 
 function createEmployee(personalInfo, associatedWith) {
-  result = {
+  const result = {
     ...personalInfo,
     ...associatedWith,
   };
   return result;
-};
+}
 
 function isManager(id) {
   // seu código aqui
