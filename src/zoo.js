@@ -102,9 +102,10 @@ function schedule(dayName) {
 
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+ const firstAnimalID = employees.find(employee => employee.id === id).responsibleFor[0];
+ console.log(firstAnimalID);
 }
-
+oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992')
 function increasePrices(percentage) {
   return Object.entries(prices)
   .forEach((element) => {
