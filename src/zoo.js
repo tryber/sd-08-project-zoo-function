@@ -109,7 +109,8 @@ function oldestFromFirstSpecies(id) {
     }
     return maxAgeAnimal;
   }, {});
-  return animalResindet;
+  const animalResindetConvert = Object.keys(animalResindet).map(key => animalResindet[key]);
+  return animalResindetConvert;
 }
 
 function increasePrices(percentage) {
