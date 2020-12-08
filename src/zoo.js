@@ -120,9 +120,12 @@ function includeNamesTrue(newLocation, result, options) {
 
 function animalMap(options) {
   const result = {};
-  animals.forEach(animal => result[animal.location] = []);
+  animals.forEach(animal => {
+    result[animal.location] = [];
+    return result;
+  });
   animals.forEach(animal => result[animal.location].push(animal.name));
-  if (options === undefined) return result
+  if (options === undefined) return result;
 
   const newLocation = [];
   Object.keys(options).forEach((key) => {
