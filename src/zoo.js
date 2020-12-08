@@ -105,15 +105,14 @@ function oldestFromFirstSpecies(id) {
   const residentsById = animalsByIds(firstId)[0].residents;
 
   let oldestAge = null;
-  residentsById.forEach(resident => {
-    if (oldestAge < resident.age) oldestAge = resident.age
-    });
+  residentsById.forEach((resident) => {
+    if (oldestAge < resident.age) oldestAge = resident.age;
+  });
 
   const oldestFromSpecies = residentsById.find(
     resident => resident.age === oldestAge);
   return Object.values(oldestFromSpecies);
 }
-console.log(oldestFromFirstSpecies('fdb2543b-5662-46a7-badc-93d960fdc0a8'))
 
 function increasePrices(percentage) {
   prices = Object.entries(prices).reduce((accumulator, priceInfo) => {
