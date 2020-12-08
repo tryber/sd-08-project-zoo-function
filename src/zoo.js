@@ -144,17 +144,13 @@ function oldestFromFirstSpecies(id) {
 
 console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 function increasePrices(percentage) {
-  const valorFinal = (1 + (percentage / 100));
-  const adulto = valorFinal * prices.Adult;
-  const Senior = valorFinal * prices.Senior;
-  const Child = valorFinal * prices.Child;
-  const aumento = {
-    Adult: adulto.toFixed(2),
-    Senior: Senior.toFixed(2),
-    Child: Child.toFixed(2),
-  };
-  return aumento;
+  const keys = Object.keys(prices);
+  const aumento = (1 + (percentage / 100));
 
+  keys.forEach((element) => {
+    prices[element] = Math.round(prices[element] * (aumento) * 100) / 100;
+  });
+  return prices;
   // seu código aqui
 }
 console.log(increasePrices(30));
