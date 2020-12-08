@@ -33,9 +33,14 @@ function createEmployee(personalInfo, associatedWith) {
   return {...personalInfo, ...associatedWith};
 }
 
-function isManager(id) {
-  // seu código aqui
+function isManager(idFind) {
+  let retorno;
+  retorno = employees.find(({managers}) => idFind === managers.id);
+  console.log(retorno);
+  return retorno;
 }
+
+isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1');
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
