@@ -47,7 +47,18 @@ function createEmployee({ id, firstName, lastName }, { managers = [], responsibl
 }
 
 function isManager(id) {
-  // seu código aqui
+  let output = false;
+
+  employees.forEach((elem) => {
+    elem.managers.some((el) => {
+      if (el === id) {
+        output = true;
+      }
+      return output;
+    });
+  });
+
+  return output;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
