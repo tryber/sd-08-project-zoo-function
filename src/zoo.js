@@ -83,7 +83,7 @@ function schedule(dayName) {
         ? `Open from ${value.open}am until ${value.close - 12}pm`
         : 'CLOSED';
       return acc;
-    }, {})
+    }, {});
   }
   if (dayName === 'Monday') return { [dayName]: 'CLOSED' };
   return {
