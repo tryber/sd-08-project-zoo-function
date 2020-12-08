@@ -163,9 +163,24 @@ const animalMap = (options) => {
   return result;
 };
 
-function schedule(dayName) {
-  // seu código aqui
-}
+const schedule = (dayName) => {
+  const result = {};
+  const dayFinder = day => data.hours[day];
+  const hoursKeys = Object.keys(data.hours);
+  if (hoursKeys.includes(dayName) === true && dayName !== 'Monday') {
+    Object.assign(result, ({ [dayName]: `Open from ${Object.values(dayFinder(dayName))[0]}am until ${Object.values(dayFinder(dayName))[1] - 12}pm` }));
+    return result;
+  }
+  if (dayName === 'Monday') {
+    Object.assign(result, ({ Monday: 'CLOSED' }));
+  } else {
+    for (let index = 0; index < hoursKeys.length; index += 1) {
+      Object.assign(result, ({ [hoursKeys[index]]: `Open from ${Object.values(dayFinder(hoursKeys[index]))[0]}am until ${Object.values(dayFinder(hoursKeys[index]))[1] - 12}pm` }));
+      Object.assign(result, ({ Monday: 'CLOSED' }));
+    }
+  }
+  return result;
+};
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
