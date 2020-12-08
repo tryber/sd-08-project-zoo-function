@@ -9,12 +9,12 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals } = require('./data');
+const { animals, employees } = require('./data');
 
 function animalsByIds(...ids) {
   if (!ids) {
     return [];
-  }
+  };
   return animals.filter(animal => ids.includes(animal.id));
 }
 
@@ -30,8 +30,12 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
+  result = {
+    ...personalInfo,
+    ...associatedWith,
+  };
+  return result;
+};
 
 function isManager(id) {
   // seu código aqui
