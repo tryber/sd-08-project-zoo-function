@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -94,6 +94,23 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
+const arrayDay = Object.keys(data.hours)
+const objDay = {};
+if (dayName === 'Monday') {
+  objDay[dayName] = "CLOSED";
+  return objDay;
+}
+if (dayName !== undefined) {
+  objDay[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
+	return objDay;
+}
+const returnUndefined = arrayDay.reduce((result, currentValue) => {
+	result[currentValue] = `Open from ${hours[currentValue].open}am until ${hours[currentValue].close - 12}pm`;
+  return result;
+}, {});
+returnUndefined['Monday'] = "CLOSED";
+// console.log(arrayDay);
+return returnUndefined;
   // seu código aqui
 }
 // console.log(schedule());
@@ -115,8 +132,17 @@ function increasePrices(percentage) {
 // console.log(increasePrices(50));
 
 function employeeCoverage(idOrName) {
+  // if (idOrName === undefined) {
+
+  // }
+  // const search = data.employees.find((employee) => {
+  //   console.log(`${employee.lastName}`);
+  //   return employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName
+  // });
+  // console.log(search);
   // seu código aqui
 }
+console.log(employeeCoverage('Azevado'));
 
 module.exports = {
   entryCalculator,
