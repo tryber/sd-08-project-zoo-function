@@ -102,10 +102,14 @@ function schedule(dayName) {
 
 
 function oldestFromFirstSpecies(id) {
- const firstAnimalID = employees.find(employee => employee.id === id).responsibleFor[0];
- console.log(firstAnimalID);
+  const firstAnimalId = employees.find(employee => employee.id === id).responsibleFor[0];
+  const animalFound = animals.find(anim => anim.id === firstAnimalId).residents;
+  const oldest = animalFound.reduce((acc, curr) =>  acc.age > curr.age ? acc : curr);
+  return [oldest.name, oldest.sex, oldest.age];
 }
-oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992')
+
+oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992');
+
 function increasePrices(percentage) {
   return Object.entries(prices)
   .forEach((element) => {
