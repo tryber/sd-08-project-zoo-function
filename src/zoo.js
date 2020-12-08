@@ -45,8 +45,8 @@ function isManager(id) {
   .find(manager => manager === id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  data.employees = data.employees.concat({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
