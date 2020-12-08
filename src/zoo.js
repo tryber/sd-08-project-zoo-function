@@ -156,8 +156,8 @@ function increasePrices(percentage) {
   return prices;
   // seu código aqui
 }
-console.log(increasePrices(30));
 console.log(increasePrices(50));
+console.log(increasePrices(30));
 function employeeCoverage(idOrName) {
 // seu código aqui
 
