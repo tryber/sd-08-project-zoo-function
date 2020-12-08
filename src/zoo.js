@@ -9,59 +9,170 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+// map()
+// reduce()
+// filter()
+// find()
+// sort()
 
-function animalsByIds(ids) {
-  // seu código aqui
-}
+const { animals, employees, hours, prices } = require('./data');
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
-}
+const animalsByIds = (...ids) => ids.map(id => animals.find(animal => animal.id === id));
 
-function employeeByName(employeeName) {
-  // seu código aqui
-}
+const animalsOlderThan = (animal, age) => animals.find(specie => specie.name === animal)
+  .residents.every(specie => specie.age >= age);
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
+const employeeByName = (employeeName) => {
+  if (!employeeName) return {};
 
-function isManager(id) {
-  // seu código aqui
-}
+  return employees.find(employee => employee.firstName === employeeName ||
+    employee.lastName === employeeName);
+};
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-}
+const createEmployee = (personalInfo, associatedWith) => {
+  const employee = {
+    id: personalInfo.id,
+    firstName: personalInfo.firstName,
+    lastName: personalInfo.lastName,
+    managers: [...associatedWith.managers],
+    responsibleFor: [...associatedWith.responsibleFor],
+  };
 
-function animalCount(species) {
-  // seu código aqui
-}
+  return employee;
+};
 
-function entryCalculator(entrants) {
-  // seu código aqui
-}
+const isManager = (id) => {
+  if (employees.find(employee => employee.managers
+    .find(manager => manager === id))) return true;
 
-function animalMap(options) {
-  // seu código aqui
-}
+  return false;
+};
 
-function schedule(dayName) {
-  // seu código aqui
-}
+const addEmployee = (id, firstName, lastName, managers, responsibleFor) => {
+  if (!managers) managers = [];
+  if (!responsibleFor) responsibleFor = [];
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+  return employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
+};
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+const animalCount = (species) => {
+  if (!species) {
+    const list = animals.reduce((accumulator, currentValue) => {
+      accumulator[currentValue.name] = currentValue.residents.length;
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+      return accumulator;
+    }, {});
+
+    return list;
+  }
+
+  return animals.find(animal => animal.name === species).residents.length;
+};
+
+const entryCalculator = (entrants) => {
+  if (!entrants) return 0;
+
+  return (Object.keys(entrants).reduce((accumulator, currentValue) =>
+    accumulator + (entrants[currentValue] * prices[currentValue]), 0));
+};
+
+const animalsFilteredBySex = (species, sex) => {
+  if (!sex) return species;
+
+  return species.filter(({ sex: animal }) => sex === animal);
+};
+
+const sortedAnimalNames = (names, sorted) => {
+  if (!sorted) return names;
+
+  return names.sort();
+};
+
+const animalMap = (options = {}) => {
+  const { includeNames, sex, sorted } = options;
+
+  return animals.reduce((accumulator, animal) => {
+    const location = accumulator[animal.location] || [];
+
+    if (!includeNames) {
+      accumulator[animal.location] = [...location, animal.name];
+
+      return accumulator;
+    }
+
+    let residents = animal.residents;
+    residents = animalsFilteredBySex(residents, sex);
+
+    let names = residents.map(({ name }) => name);
+    names = sortedAnimalNames(names, sorted);
+
+    accumulator[animal.location] = [...location, { [animal.name]: names }];
+
+    return accumulator;
+  }, {});
+};
+
+const schedule = (dayName) => {
+  const specificSchedule = {};
+
+  Object.keys(hours).forEach((day) => {
+    if (hours[day].open === hours[day].close) {
+      specificSchedule[day] = 'CLOSED';
+    } else {
+      specificSchedule[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    }
+  });
+
+  if (dayName !== undefined) {
+    return { [dayName]: specificSchedule[dayName] };
+  }
+
+  return specificSchedule;
+};
+
+const oldestFromFirstSpecies = (id) => {
+  const { residents } = animals.find(
+    animal => animal.id === employees.find(employee => employee.id === id).responsibleFor[0]);
+
+  const animal = residents.reduce((accumulator, currentValue) =>
+    (accumulator.age > currentValue.age ? accumulator : currentValue));
+
+  return [animal.name, animal.sex, animal.age];
+};
+
+const increasePrices = (percentage) => {
+  Object.keys(prices).map(
+    category => (prices[category] =
+      Math.round(prices[category] * ((percentage / 100) + 1) * 100) / 100));
+};
+
+const employeeCoverage = (idOrName) => {
+  const managers = {};
+
+  employees.forEach((employee) => {
+    managers[`${employee.firstName} ${employee.lastName}`] =
+      employee.responsibleFor.map(id => animals.find(animal => animal.id === id).name);
+  });
+
+  const employeeByNameOrId = (condition) => {
+    const manager = employees.find(employee =>
+      employee.firstName === condition ||
+      employee.lastName === condition ||
+      employee.id === condition);
+
+    return `${manager.firstName} ${manager.lastName}`;
+  };
+
+  if (!idOrName) return managers;
+
+  return { [employeeByNameOrId(idOrName)]: managers[employeeByNameOrId(idOrName)] };
+};
 
 module.exports = {
   entryCalculator,
