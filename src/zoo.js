@@ -9,19 +9,20 @@ eslint no-unused-vars: [
 ]
 */
 
+const { animals } = require('./data');
 const data = require('./data');
 
 const animalsByIds = (...ids) => {
   const listId = [...ids];
   const listAnimalsById = [];
   listId.forEach((id) => {
-    listAnimalsById.push(data.animals.find(animal => animal.id === id));
+    listAnimalsById.push({ animals }.find(animal => animal.id === id));
   });
   return listAnimalsById.reduce((acc, curr) => acc.concat(curr), []);
 };
 
 const animalsOlderThan = (species, age) => {
-  const animalsSearch = data.animals.find(animal => animal.name === species);
+  const animalsSearch = { animals }.find(animal => animal.name === species);
   const animalsResidents = Object.values(animalsSearch.residents);
   return ((animalsResidents.filter(animal => animal.age < age)).length === 0);
 };
@@ -66,12 +67,12 @@ const animalCount = (species) => {
   data.animals.forEach(animal => listSpecies.push(animal.name));
 
   if (listSpecies.includes(species)) {
-    return (data.animals.find(animal => animal.name === species)).residents.length;
+    return ({ animals }.find(animal => animal.name === species)).residents.length;
   }
   const allCounted = {};
   listSpecies.forEach((animalSpecies) => {
     (allCounted[animalSpecies]) =
-      (data.animals.find(animal => animal.name === animalSpecies)).residents.length;
+      ({ animals }.find(animal => animal.name === animalSpecies)).residents.length;
   });
   return allCounted;
 };
@@ -90,9 +91,77 @@ const entryCalculator = (entrants) => {
   return 0;
 };
 
-function animalMap(options) {
-  // seu código aqui
-}
+const regions = ['NE', 'NW', 'SE', 'SW'];
+
+const filterByRegion = () => {
+  const filtred = {};
+  regions.map(region => (
+  Object.assign(filtred, ({
+    [region]: data.animals.filter(animalReg =>
+      animalReg.location === region).map(animal => animal.name),
+  }
+  ))));
+  return filtred;
+};
+
+const objListBySex = (sex, sort) => {
+  const filtredSex = {};
+  if (sort === true) {
+    regions.map(region => (
+    Object.assign(filtredSex, ({
+      [region]: data.animals.filter(animalReg =>
+        animalReg.location === region).map(animal =>
+          ({ [animal.name]: (animal.residents.filter(sexResident =>
+            sexResident.sex === sex)).map(resident => resident.name).sort() })),
+    }))));
+  } else {
+    regions.map(region => (
+    Object.assign(filtredSex, ({
+      [region]: data.animals.filter(animalReg =>
+        animalReg.location === region).map(animal =>
+          ({ [animal.name]: (animal.residents.filter(sexResident =>
+            sexResident.sex === sex)).map(resident => resident.name) })),
+    }))));
+  }
+  return filtredSex;
+};
+
+const objListWithAnimalsNames = (sex, sort) => {
+  const filtredName = {};
+  if (sort === true) {
+    regions.map(region => (
+    Object.assign(filtredName, ({
+      [region]: data.animals.filter(animalReg =>
+        animalReg.location === region).map(animal =>
+            ({ [animal.name]: animal.residents.map(resident => resident.name).sort() })),
+    }))));
+  } else {
+    regions.map(region => (
+      Object.assign(filtredName, ({
+        [region]: data.animals.filter(animalReg =>
+          animalReg.location === region).map(animal =>
+              ({ [animal.name]: animal.residents.map(resident => resident.name) })),
+      }))));
+  }
+  if (sex !== null) {
+    return objListBySex(sex, sort);
+  }
+
+  return filtredName;
+};
+
+const animalMap = (options) => {
+  let result = filterByRegion();
+  const defaultOptions = { includeNames: false, sorted: false, sex: null };
+  if (typeof options === 'object' && options !== {}) {
+    Object.assign(defaultOptions, options);
+    if (defaultOptions.includeNames === true) {
+      result = objListWithAnimalsNames(defaultOptions.sex, defaultOptions.sorted);
+    }
+    return result;
+  }
+  return result;
+};
 
 function schedule(dayName) {
   // seu código aqui
