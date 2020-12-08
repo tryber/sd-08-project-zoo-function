@@ -317,7 +317,7 @@ Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão
 
 ### 13. IMPLEMENTE A FUNÇÃO employeeCoverage
 
-  A função é responsável por consultar as espécies pela qual a pessoa colaborada, recebida no parâmetro através de seu `id`, `firstName` ou `lastName`, é responsável
+  A função é responsável por consultar as espécies pela qual a pessoa colaboradora, recebida no parâmetro através de seu `id`, `firstName` ou `lastName`, é responsável
 
   **Observações técnicas**
   

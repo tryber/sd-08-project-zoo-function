@@ -98,9 +98,29 @@ function increasePrices(percentage) {
   return prices;
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+// Desafio 13
+
+// procura o nome os animais de acordo com o id dos funcionarios responsaveis
+const animaisCuidados = element => element.map(id => animals.find(animal => animal.id === id).name);
+
+const employeeCoverage = idOrName => {
+  let array = {};
+  employees.forEach(element => {
+    array = {
+      ...array,
+      [`${element.firstName} ${element.lastName}`]: animaisCuidados(element.responsibleFor),
+    };
+  });
+  if (!idOrName) return array;
+  const funcionario = employees.find(
+    empregado => empregado.id === idOrName
+        || empregado.firstName === idOrName
+        || empregado.lastName === idOrName,
+  );
+  const nomeEmpregado = `${funcionario.firstName} ${funcionario.lastName}`;
+  return { [nomeEmpregado]: array[nomeEmpregado] };
+};
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
