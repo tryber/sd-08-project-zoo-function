@@ -100,7 +100,6 @@ function schedule(dayName) {
   return result;
 }
 
-
 function oldestFromFirstSpecies(id) {
   const firstAnimalId = employees.find(employee => employee.id === id).responsibleFor[0];
   const animalFound = animals.find(anim => anim.id === firstAnimalId).residents;
@@ -122,11 +121,25 @@ function employeeCoverage(idOrName) {
       .map(id => (animals.find(animal => animal.id === id).name));    
       return acc;
     }, {})
-  }  
+  }
+  const foundEmployee = [employees
+  .find(emp => emp.firstName === idOrName || emp.lastName === idOrName || emp.id === idOrName)]
+  .reduce((obj, Emp) => {
+    obj[`${Emp.firstName} ${Emp.lastName}`] = Emp.responsibleFor
+    .map(id => (animals.find(animal => animal.id === id).name));    
+    return obj;
+  }, {})
+  
+
+  // const result = {
+  //   `${foundEmployee.firstName} ${foundEmployee.lastName}` : foundEmployee.responsibleFor
+  //   .map(id => (animals.find(animal => animal.id === id).name))
+  
+  return foundEmployee;
 }
 
 //(id) => animals.find((animal) => (animal.id === id).name)
-console.log(employeeCoverage())
+console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
 module.exports = {
   entryCalculator,
   schedule,
