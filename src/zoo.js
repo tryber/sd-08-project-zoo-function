@@ -102,43 +102,36 @@ function includeNamesTrue(newLocation, result, options) {
         if (key === 'sex' && options[key] === 'male') {
           residentsNames = [];
           const filtered = animalFilter[0].residents.filter(element => element.sex === 'male');
-          filtered.forEach(element => residentsNames.push(element.name))
+          filtered.forEach(element => residentsNames.push(element.name));
         }
         if (key === 'sex' && options[key] === 'female') {
           residentsNames = [];
           const filtered = animalFilter[0].residents.filter(element => element.sex === 'female');
-          filtered.forEach(element => residentsNames.push(element.name))
+          filtered.forEach(element => residentsNames.push(element.name));
         }
-      });   
+      });
       sortedTrue(options, residentsNames);
       newObj[animal] = residentsNames;
       newLocation.push(newObj);
     });
     result[location] = newLocation;
-  });  
+  });
 }
 
 function animalMap(options) {
   const result = {};
   animals.forEach(animal => result[animal.location] = []);
   animals.forEach(animal => result[animal.location].push(animal.name));
-  if (options === undefined ) return result
+  if (options === undefined) return result
 
-  let newLocation = [];
-  Object.keys(options).forEach(key => {
+  const newLocation = [];
+  Object.keys(options).forEach((key) => {
     if (key === 'includeNames' && options[key] === true) {
       includeNamesTrue(newLocation, result, options);
-    };
+    }
   });
   return result;
 }
-
-//console.log(animalMap({ includeNames: true, sex: 'female', sorted: true }));
-console.log(animalMap({ includeNames: true, sex: 'male', sorted: true }));
-//console.log(animalMap({ includeNames: true, sex: 'female' }));
-//console.log(animalMap({ includeNames: true, sex: 'male' }));
-//console.log(animalMap({ includeNames: true, sorted: true }));
-//console.log(animalMap({ includeNames: true }));
 
 function schedule(dayName) {
   const answer = {};
