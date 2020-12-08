@@ -152,7 +152,7 @@ function listAllEmployees() {
   employees.forEach((person) => {
     const animalsCovered = [];
     person.responsibleFor.forEach((animal) => {
-      const findAnimal = animals.find(specie => specie.id === animal);
+      const findAnimal = animals.find(specie => animal === specie.id);
       animalsCovered.push(findAnimal.name);
     });
     employeeList[`${person.firstName} ${person.lastName}`] = animalsCovered;
@@ -165,8 +165,8 @@ function employeeCoverage(idOrName) {
   if (!idOrName) {
     return listAllEmployees();
   }
-  const employee = employees.find((person) => person.id === idOrName 
-  || person.firstName === idOrName 
+  const employee = employees.find(person => person.id === idOrName
+  || person.firstName === idOrName
   || person.lastName === idOrName);
   const animalsCovered = [];
   employee.responsibleFor.forEach((animal) => {
