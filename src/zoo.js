@@ -95,8 +95,6 @@ const schedule = (dayName = false) => {
   }, {});
 };
 
-console.log(schedule());
-
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
