@@ -122,24 +122,15 @@ function employeeCoverage(idOrName) {
       return acc;
     }, {})
   }
-  const foundEmployee = [employees
+  return [employees
   .find(emp => emp.firstName === idOrName || emp.lastName === idOrName || emp.id === idOrName)]
   .reduce((obj, Emp) => {
     obj[`${Emp.firstName} ${Emp.lastName}`] = Emp.responsibleFor
     .map(id => (animals.find(animal => animal.id === id).name));    
     return obj;
-  }, {})
-  
-
-  // const result = {
-  //   `${foundEmployee.firstName} ${foundEmployee.lastName}` : foundEmployee.responsibleFor
-  //   .map(id => (animals.find(animal => animal.id === id).name))
-  
-  return foundEmployee;
+  }, {})  
 }
 
-//(id) => animals.find((animal) => (animal.id === id).name)
-console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
 module.exports = {
   entryCalculator,
   schedule,
