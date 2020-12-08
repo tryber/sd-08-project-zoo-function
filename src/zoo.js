@@ -15,7 +15,7 @@ eslint no-unused-vars: [
 // find()
 // sort()
 
-const { andataimals, employees, hours, prices } = require('./data');
+const { animals, employees, hours, prices } = require('./data');
 
 const animalsByIds = (...ids) => ids.map(id => animals.find(animal => animal.id === id));
 
@@ -108,14 +108,16 @@ const oldestFromFirstSpecies = (id) => {
   const { residents } = animals.find(
     animal => animal.id === employees.find(employee => employee.id === id).responsibleFor[0]);
 
-  const animal = residents.reduce((accumulator, currentValue) => (accumulator.age > currentValue.age ? accumulator : currentValue));
+  const animal = residents.reduce((accumulator, currentValue) =>
+    (accumulator.age > currentValue.age ? accumulator : currentValue));
 
   return [animal.name, animal.sex, animal.age];
 };
 
 const increasePrices = (percentage) => {
   Object.keys(prices).map(
-    category => prices[category] = Math.round(prices[category] * ((percentage / 100) + 1) * 100) / 100);
+    category => (prices[category] =
+      Math.round(prices[category] * ((percentage / 100) + 1) * 100) / 100));
 };
 
 const employeeCoverage = (idOrName) => {
