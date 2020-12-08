@@ -145,7 +145,7 @@ function schedule(dayName) {
   });
   const objArray = Object.keys(obj);
   if (objArray.includes(dayName)) {
-    obj = { [dayName]: obj[dayName] }
+    obj = { [dayName]: obj[dayName] };
   }
   return obj;
 }
