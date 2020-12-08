@@ -129,7 +129,11 @@ function schedule(dayName) {
   const arrayHours = Object.entries(hours);
   const result = arrayHours.reduce((soma, [key, val]) => {
     const { open, close } = val;
-    soma[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
+    if (close - open > 0) {
+      soma[key] = `Open from ${open}am until ${close % 12}pm`;
+    } else {
+      soma[key] = 'CLOSED';
+    }
     return soma;
   }, {});
   if (typeof dayName === 'string') {
@@ -141,7 +145,17 @@ function schedule(dayName) {
 // console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const employee = employees.find(emp => emp.id === id);
+  const firstId = employee.responsibleFor[0];
+  const animal = animalsByIds(firstId)[0];
+  const { residents } = animal;
+  const oldest = residents.reduce((maisVelho, atual) => {
+    if (atual.age > maisVelho.age) {
+      return atual;
+    }
+    return maisVelho;
+  });
+  return Object.values(oldest);
 }
 
 function increasePrices(percentage) {
