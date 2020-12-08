@@ -114,21 +114,20 @@ function increasePrices(percentage) {
   });
 }
 
+const generateEmployee = (array) => array
+.reduce((obj, Emp) => {
+  obj[`${Emp.firstName} ${Emp.lastName}`] = Emp.responsibleFor
+  .map(id => (animals.find(animal => animal.id === id).name));
+  return obj;
+}, {});
+
 function employeeCoverage(idOrName) {
   if (!idOrName) {
-    return employees.reduce((acc, currEmp) => {
-      acc[`${currEmp.firstName} ${currEmp.lastName}`] = currEmp.responsibleFor
-      .map(id => (animals.find(animal => animal.id === id).name));
-      return acc;
-    }, {});
+    return generateEmployee(employees);
   }
-  return [employees
+  const foundEmployee = [employees
   .find(emp => emp.firstName === idOrName || emp.lastName === idOrName || emp.id === idOrName)]
-  .reduce((obj, Emp) => {
-    obj[`${Emp.firstName} ${Emp.lastName}`] = Emp.responsibleFor
-    .map(id => (animals.find(animal => animal.id === id).name));
-    return obj;
-  }, {});
+  return generateEmployee(foundEmployee);
 }
 
 module.exports = {
