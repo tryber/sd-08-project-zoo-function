@@ -147,13 +147,13 @@ function increasePrices(percentage) {
   return prices;
 }
 
-function listAllEmployees () {
+function listAllEmployees() {
   const employeeList = {};
   employees.forEach((person) => {
     const animalsCovered = [];
     person.responsibleFor.forEach((animal) => {
-      const filter = animals.find(element => element.id === animal);
-      animalsCovered.push(filter.name);
+      const findAnimal = animals.find(specie => specie.id === animal);
+      animalsCovered.push(findAnimal.name);
     });
     employeeList[`${person.firstName} ${person.lastName}`] = animalsCovered;
   });
@@ -161,13 +161,13 @@ function listAllEmployees () {
 }
 
 function employeeCoverage(idOrName) {
-  let employeeList = {};
+  const employeeList = {};
   if (!idOrName) {
     return listAllEmployees();
   }
-  const employee = employees.find((person) => {
-    return person.id === idOrName || person.firstName === idOrName || person.lastName === idOrName
-  });
+  const employee = employees.find((person) => person.id === idOrName 
+  || person.firstName === idOrName 
+  || person.lastName === idOrName);
   const animalsCovered = [];
   employee.responsibleFor.forEach((animal) => {
     const filter = animals.find(element => element.id === animal);
@@ -176,7 +176,7 @@ function employeeCoverage(idOrName) {
   employeeList[`${employee.firstName} ${employee.lastName}`] = animalsCovered;
   return employeeList;
 }
-console.log (employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+console.log(employeeCoverage('Stephanie'));
 
 module.exports = {
   entryCalculator,
