@@ -18,6 +18,5 @@ PASS test/animalCount.test.js
 PASS test/entryCalculator.test.js
 PASS test/animalMap.test.js
 schedule
-
-
+oldestFromFirstSpecies
 
