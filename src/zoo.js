@@ -29,8 +29,8 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  const result = employees.find(name => {
-    employeeName.includes(name.lastName) || employeeName.includes(name.firstName)
+  const result = employees.find((name) => {
+    employeeName.includes(name.lastName) || employeeName.includes(name.firstName);
   });
   return result;
 }
