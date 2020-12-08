@@ -162,8 +162,8 @@ function increasePrices(percentage) {
   // seu código aqui
   const price = Object.entries(data.prices);
   price.forEach((element) => {
-    const priceIncreased = (element[1] + (element[1] * (percentage/100)));
-    data.prices[element[0]] = Math.round(priceIncreased * 100)/100;
+    const priceIncreased = (element[1] + (element[1] * (percentage / 100)));
+    data.prices[element[0]] = Math.round(priceIncreased * 100) / 100;
 // source: https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
   });
 }
