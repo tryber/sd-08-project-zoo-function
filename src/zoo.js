@@ -43,21 +43,19 @@ function isManager(id) {
   return getManager;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newEmployees = { id, firstName, lastName, managers, responsibleFor };
-  data.employees.push(newEmployees);
+  employees.push(newEmployees);
 }
 
 function animalCount(species) {
-  if (species) {
-    const count = data.animals.find(unidade => unidade.nome === species);
-    return count.residents.length;
+  if (!species) {
+    return animals.reduce((accObj, animal) => {
+      accObj[animal.name] = animal.residents.length;
+      return accObj;
+    }, {});
   }
-  const todos = data.animals.reduce((acc,curr) => {
-    acc[curr.name] = curr.residents.length;
-    return acc;
-  }, { })
-  return todos;
+  return animals.find(animal => animal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
