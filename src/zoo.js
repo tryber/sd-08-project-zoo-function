@@ -28,10 +28,9 @@ function employeeByName(...employeeName) {
   if (employeeName.length === 0) return {};
   return employees.find(({firstName, lastName}) => firstName === employeeName[0] || lastName === employeeName[0]);
 }
-employeeByName('Emery');
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return {...personalInfo, ...associatedWith};
 }
 
 function isManager(id) {
