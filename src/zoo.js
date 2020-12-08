@@ -99,14 +99,15 @@ function includeNamesTrue(newLocation, result, options) {
       const animalFilter = animals.filter(element => element.name === animal);
       animalFilter[0].residents.forEach(element => residentsNames.push(element.name));
       Object.keys(options).forEach((key) => {
-        if (key === 'sex' && options[key] === 'male') {
+        if (key === 'sex'){
           residentsNames = [];
-          const filtered = animalFilter[0].residents.filter(element => element.sex === 'male');
-          filtered.forEach(element => residentsNames.push(element.name));
-        }
-        if (key === 'sex' && options[key] === 'female') {
-          residentsNames = [];
-          const filtered = animalFilter[0].residents.filter(element => element.sex === 'female');
+          let filtered;
+          if (options[key] === 'male') {
+            filtered = animalFilter[0].residents.filter(element => element.sex === 'male');
+          }
+          if (options[key] === 'female') {
+            filtered = animalFilter[0].residents.filter(element => element.sex === 'female');            
+          }
           filtered.forEach(element => residentsNames.push(element.name));
         }
       });
@@ -120,7 +121,7 @@ function includeNamesTrue(newLocation, result, options) {
 
 function animalMap(options) {
   const result = {};
-  animals.forEach(animal => {
+  animals.forEach((animal) => {
     result[animal.location] = [];
     return result;
   });
