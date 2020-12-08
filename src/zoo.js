@@ -91,12 +91,14 @@ const schedule = (dayName) => {
   const specificSchedule = {};
 
   Object.keys(hours).forEach((day) => {
-    if (hours[day].close - hours[day].open === 0) return specificSchedule[day] = 'CLOSED';
-
-    return specificSchedule[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    if (hours[day].open === hours[day].close) {
+      specificSchedule[day] = 'CLOSED';
+    } else {
+      specificSchedule[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    }
   });
 
-  if (dayName !== undefined) {
+  if (!dayName) {
     return { [dayName]: specificSchedule[dayName] };
   }
 
