@@ -59,7 +59,14 @@ function isManager(id) {
 console.log(isManager('b0dc644a-5335-489b-8a2c-4e086c7819a2'));
 console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
   // seu código aqui
 }
 
@@ -153,7 +160,8 @@ function increasePrices(percentage) {
 console.log(increasePrices(30));
 console.log(increasePrices(50));
 function employeeCoverage(idOrName) {
-  // seu código aqui
+// seu código aqui
+
 }
 
 module.exports = {
