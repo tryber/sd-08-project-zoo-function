@@ -64,14 +64,15 @@ const getAnimals = (options, place) => {
       return (options.sorted) ? { [actualSpecie]: list.sort() } : { [actualSpecie]: list };
     }
     return specie.name;
-  })
+  });
 };
 
 const animalMap = (options = false) => {
   const animalsMap = { NE: [], NW: [], SE: [], SW: [] };
-  Object.keys(animalsMap).forEach(place =>
-    animalsMap[place] = getAnimals(options, place)
-  );
+  Object.keys(animalsMap).forEach(place => {
+    animalsMap[place] = getAnimals(options, place);
+    return true;
+  });
   return animalsMap;
 };
 
