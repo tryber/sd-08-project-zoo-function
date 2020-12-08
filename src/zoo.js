@@ -91,6 +91,7 @@ function especiesManager(employee) {
 }
 
 function employeeCoverage(idOrName) {
+  // seu código aqui
   const employeeData = employeeByName(idOrName) ||
     data.employees.find(employee => employee.id === idOrName);
   return idOrName ? {
