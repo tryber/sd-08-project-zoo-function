@@ -86,25 +86,26 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   if (entrants === undefined) return 0;
   if (Object.keys(entrants).length === 0) return 0;
-  const eentry = (entrants) => Object.keys(entrants);
+  const eentry = entrants => Object.keys(entrants);
   const faixasEntrada = eentry(entrants);
-  const kombi = (prices) => Object.keys(prices);
+  const kombi = prices => Object.keys(prices);
   const faixasTabela = kombi(prices);
   const arrayOfEntrants = compareEntrantsAndPrices(faixasEntrada, faixasTabela);
   let total = 0;
   arrayOfEntrants.forEach((person) => {
-    if (person) { total = total + (entrants[person] * prices[person]); }
+    if (person) { total += (entrants[person] * prices[person]); }
   });
-  return total
+  return total;
 }
 
 const compareEntrantsAndPrices = (faixasEntrada, faixasTabela) => {
   const arrayOfEntrants = faixasTabela.map(faixa => {
     const isEntrant = faixasEntrada.includes(faixa);
     if (isEntrant === true) return faixa;
+    return false;
   });
   return arrayOfEntrants;
-}
+};
 
 function animalMap(options) {
   // seu código aqui
