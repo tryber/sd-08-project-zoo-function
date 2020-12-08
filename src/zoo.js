@@ -194,11 +194,11 @@ function animalMap(options) {
   let objToReturn;
   let objToReturnSorted;
   let objSex;
-  if (options === undefined) {
+  if (!options) {
     return makePerRegion();
   }
   const { includeNames, sex, sorted } = options;
-  if (includeNames === true && sex === undefined) {
+  if (includeNames === true && !sex) {
     objToReturn = makeIncludeNames();
   }
   if (sex !== undefined && includeNames === true) {
@@ -211,7 +211,7 @@ function animalMap(options) {
   }
   return objToReturn;
 }
-
+console.log(animalMap({includeNames: true}))
 function schedule(dayName) {
   const objReturn = {};
   const entries = Object.entries(hours);
