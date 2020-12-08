@@ -133,28 +133,20 @@ function animalMap({ includeNames, sorted, sex } = {}) {
   return obj;
 }
 
-const specificHour = (dayWanted,days,time, obj) => {
-  days.forEach((element, index) => {
-    if (element === dayWanted) {
-      (element !== 'Monday')
-        ? obj[element] = `Open from ${time[index].open}am until ${time[index].close - 12}pm`
-        : obj[element] = `CLOSED`;
-    }
-  });
-};
-
 function schedule(dayName) {
   // seu código aqui
   const days = Object.keys(data.hours);
   const time = Object.values(data.hours);
-  const obj = {};
-  (dayName !== undefined)
-  ? specificHour(dayName, days, time, obj)
-  : days.forEach((element, index) => {
-      (element !== 'Monday')
-        ? obj[element] = `Open from ${time[index].open}am until ${time[index].close - 12}pm`
-        : obj[element] = `CLOSED`;
+  let obj = {};
+  days.forEach((element, index) => {
+    obj[element] = (element !== 'Monday')
+        ? `Open from ${time[index].open}am until ${time[index].close - 12}pm`
+        : 'CLOSED';
   });
+  const objArray = Object.keys(obj);
+  if (objArray.includes(dayName)) {
+    obj = { [dayName]: obj[dayName] }
+  }
   return obj;
 }
 
