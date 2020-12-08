@@ -11,27 +11,26 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const {animals, employees} = data;
+const { animals, employees } = data;
 
 function animalsByIds(...ids) {
- return animals.filter((animal) => ids.includes(animal.id))
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
   return (
-    animals.find((animalDoZoo) => animalDoZoo.name === animal)
-    .residents.every((habitante) => habitante.age > age)
+    animals.find(animalDoZoo => animalDoZoo.name === animal)
+    .residents.every(habitante => habitante.age > age)
   );
 }
 
 function employeeByName(employeeName) {
   const semParametros = (employeeName === undefined);
-  if(semParametros){return {}}
+  if (semParametros){ return { } };
   return employees.find((employee) => {
-   const resultado = employee.firstName === employeeName || employee.lastName === employeeName
-  return resultado;
-  })
-
+    const resultado = employee.firstName === employeeName || employee.lastName === employeeName
+    return resultado;
+  });
 }
 
 function createEmployee(personalInfo, associatedWith) {
