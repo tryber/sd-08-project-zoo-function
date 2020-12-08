@@ -96,24 +96,25 @@ function animalMap(options) {
 function schedule(dayName) {
   const arrayDay = Object.keys(data.hours);
   const objDay = {};
-  if (dayName !== undefined) {
-    objDay[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
-    return objDay;
-  }
   if (dayName === 'Monday') {
     objDay[dayName] = 'CLOSED';
     return objDay;
   }
+  if (dayName !== undefined) {
+    objDay[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
+    return objDay;
+  }
   const returnUndefined = arrayDay.reduce((result, currentValue) => {
-    result[currentValue] = `Open from ${hours[currentValue].open}am until ${hours[currentValue].close - 12}pm`;
+    result[currentValue] = currentValue === 'Monday' ? 'CLOSED' :
+    `Open from ${hours[currentValue].open}am until ${hours[currentValue].close - 12}pm`;
     return result;
   }, {});
-  returnUndefined.Monday = 'CLOSED';
+  // returnUndefined.Monday = 'CLOSED';
 // console.log(arrayDay);
   return returnUndefined;
   // seu código aqui
 }
-// console.log(schedule('Monday'));
+// console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -142,9 +143,15 @@ function employeeCoverage(idOrName) {
   //   employee.lastName === idOrName
   // });
   // console.log(search);
+  // const animalName = search.responsibleFor.map((animalId) => animals
+  // .find((animal) => animal.id === animalId).name)
+  //   console.log(animalName);
+  //   let objSearch = {};
+  //   objSearch[`${search.firstName} ${search.lastName}`] = animalName;
+  //   return objSearch;
   // seu código aqui
 }
-console.log(employeeCoverage('Azevado'));
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
