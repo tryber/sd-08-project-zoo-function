@@ -85,10 +85,33 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+
 }
 
 function schedule(dayName) {
   // seu código aqui
+  if (!dayName) {
+    return Object.keys(data.hours).reduce((acc, weekDay) => {
+      if (weekDay === 'Monday') {
+        acc[weekDay] = 'CLOSED';
+        return acc;
+      }
+      acc[weekDay] =
+      `Open from ${Object.values(data.hours[weekDay])[0]}am until ${
+        Object.values(data.hours[weekDay])[1] - 12}pm`;
+      return acc;
+    }, {})
+  }
+  return Object.keys(data.hours).reduce((acc, weekDay) => {
+    if (dayName === 'Monday') {
+      acc[dayName] = 'CLOSED';
+      return acc;
+    }
+    acc[dayName] =
+    `Open from ${Object.values(data.hours[dayName])[0]}am until ${
+      Object.values(data.hours[dayName])[1] - 12}pm`;
+      return acc;
+  }, {})
 }
 
 function oldestFromFirstSpecies(id) {
