@@ -16,12 +16,12 @@ const data2 = require('./data');
 
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
-  return animals.filter(({id}) => ids[0] === id || ids[1] === id);
+  return animals.filter(({ id }) => ids[0] === id || ids[1] === id);
 }
 
 function animalsOlderThan(animalType, ageTest) {
-  let find = animals.find(({name}) => name === animalType);
-  return find.residents.every(({age}) => age >= ageTest);
+  const find = animals.find(({ name }) => name === animalType);
+  return find.residents.every(({ age }) => age >= ageTest);
 }
 
 function employeeByName(...employeeName) {
@@ -36,7 +36,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   let retorno = false;
   employees.forEach((element, index, array) => {
-    let test = array.some(el => id === el.managers[index]);
+    const test = array.some(el => id === el.managers[index]);
     if (test === true) retorno = true;
   });
   return retorno;
@@ -50,21 +50,19 @@ function animalCount(species) {
   let retorno;
   let AnimalObject = {};
   if (species === undefined) {
-      for(index = 0; index < animals.length; index += 1) {
-        let animalName = `${animals[index].name}`;
-        let AnimalNumber = `${animals[index].residents.length}`;
-        AnimalObject[animalName] = Number(AnimalNumber);
-        console.log(AnimalObject);
+    for(let index = 0; index < animals.length; index += 1) {
+      let animalName = `${animals[index].name}`;
+      let AnimalNumber = `${animals[index].residents.length}`;
+      AnimalObject[animalName] = Number(AnimalNumber);
+      console.log(AnimalObject);
     }
     return AnimalObject;
   }
-  const find = animals.find(({name}) => species === name);
+  const find = animals.find(({ name }) => species === name);
   retorno = find.residents.length;
   console.log(retorno);
   return retorno;
 }
-
-animalCount();
 
 function entryCalculator(entrants) {
   // seu código aqui
