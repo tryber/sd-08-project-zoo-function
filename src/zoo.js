@@ -117,15 +117,18 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   if(!idOrName) {
-  return  employees.reduce((acc, currEmp) => {
-      acc[currEmp.name] = [currEmp.responsibleFor.forEach((id) => animals.find((animal) => (animal.id === id).name))];
+  const employeesAndAnimals = employees.reduce((acc, currEmp) => {
+      acc[`${currEmp.firstName} ${currEmp.lastName}`] = currEmp.responsibleFor;
+      //  = [currEmp.responsibleFor.forEach((id) => animals.find((animal) => (animal.id === id))];
       return acc;
     }, {})
+    return console.log(employeesAndAnimals)
   }
+  
 }
 
 //(id) => animals.find((animal) => (animal.id === id).name)
-employeeCoverage()
+console.log(employeeCoverage())
 module.exports = {
   entryCalculator,
   schedule,
