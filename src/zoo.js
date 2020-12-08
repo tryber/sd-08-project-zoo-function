@@ -139,37 +139,44 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const person = Object.keys(prices);
-  const multiplier = 1 + percentage / 99.99;
+  const multiplier = 1 + (percentage / 99.99);
   person.forEach((entry) => {
-    let num = parseFloat((prices[entry] * multiplier).toFixed(2));
+    const num = parseFloat((prices[entry] * multiplier).toFixed(2));
     prices[entry] = num;
   });
   return prices;
 }
 
-function employeeCoverage(idOrName) {
+function listAllEmployees () {
   const employeeList = {};
-  if (!idOrName) {
-    employees.forEach((person) => {
-      const animalsCovered = [];
-      person.responsibleFor.forEach((animal) => {
-        const filter = animals.find (element => element.id === animal);
-        animalsCovered.push(filter.name);
-      })
-      employeeList[`${person.firstName} ${person.lastName}`] = animalsCovered;
+  employees.forEach((person) => {
+    const animalsCovered = [];
+    person.responsibleFor.forEach((animal) => {
+      const filter = animals.find(element => element.id === animal);
+      animalsCovered.push(filter.name);
     });
-    return employeeList;
-  }
-  const person = employees
-    .find(person => person.id === idOrName || person.firstName === idOrName || person.lastName === idOrName);
-  const animalsCovered = [];
-  person.responsibleFor.forEach((animal) => {
-    const filter = animals.find (element => element.id === animal);
-    animalsCovered.push(filter.name);
-  })
-  employeeList[`${person.firstName} ${person.lastName}`] = animalsCovered;
+    employeeList[`${person.firstName} ${person.lastName}`] = animalsCovered;
+  });
   return employeeList;
 }
+
+function employeeCoverage(idOrName) {
+  let employeeList = {};
+  if (!idOrName) {
+    return listAllEmployees();
+  }
+  const employee = employees.find((person) => {
+    return person.id === idOrName || person.firstName === idOrName || person.lastName === idOrName
+  });
+  const animalsCovered = [];
+  employee.responsibleFor.forEach((animal) => {
+    const filter = animals.find(element => element.id === animal);
+    animalsCovered.push(filter.name);
+  });
+  employeeList[`${employee.firstName} ${employee.lastName}`] = animalsCovered;
+  return employeeList;
+}
+console.log (employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
