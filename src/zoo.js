@@ -48,26 +48,15 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   let retorno;
-  let arrayAnimals = [];
+  let AnimalObject = {};
   if (species === undefined) {
-    animals.forEach((element, index, array) => {
-      let animal = `${animals[index].name}: ${animals[index].residents.length}`;
-      console.log(animal);
-      
-      //arrayAnimals[index] = [...animal];
-      //Object.assign({arrayAnimals},animal);
-      //console.log(arrayAnimals);
-    })
-
-    console.log(`retorno array ${arrayAnimals}`);
-    //retorno = Object.assign({},)
-    
-    
-    // let teste = animals[1].residents.length;
-    // console.log(teste);
-    // retorno = animals.map(({name}) => {`${name}: ${animals[1].residents.length}`});
-    //console.log(retorno);
-  return retorno;
+      for(index = 0; index < animals.length; index += 1) {
+        let animalName = `${animals[index].name}`;
+        let AnimalNumber = `${animals[index].residents.length}`;
+        AnimalObject[animalName] = Number(AnimalNumber);
+        console.log(AnimalObject);
+    }
+    return AnimalObject;
   }
   const find = animals.find(({name}) => species === name);
   retorno = find.residents.length;
