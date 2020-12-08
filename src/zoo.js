@@ -54,12 +54,6 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  const { Adult, Child, Senior } = entrants;
-  if (!entrants || entrants === {}) {
-    return 0;
-  }
-  return 
-  
 }
 
 function animalMap(options) {
