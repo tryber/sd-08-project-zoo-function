@@ -101,13 +101,7 @@ function includeNamesTrue(newLocation, result, options) {
       Object.keys(options).forEach((key) => {
         if (key === 'sex'){
           residentsNames = [];
-          let filtered;
-          if (options[key] === 'male') {
-            filtered = animalFilter[0].residents.filter(element => element.sex === 'male');
-          }
-          if (options[key] === 'female') {
-            filtered = animalFilter[0].residents.filter(element => element.sex === 'female');            
-          }
+          const filtered = animalFilter[0].residents.filter(element => element.sex === options[key]);
           filtered.forEach(element => residentsNames.push(element.name));
         }
       });
