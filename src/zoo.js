@@ -69,17 +69,15 @@ function animalCount(species) {
   // seu código aqui
   let count = {};
   if (species === undefined) {
-    animals.forEach(specie => {
+    animals.forEach((specie) => {
       count[specie.name] = specie.residents.length;
     });
-    return count;
   } else {
     count = animals.find(specie => specie.name === species);
-    return count.residents.length;
+    count = count.residents.length;
   }
+  return count;
 }
-
-console.log(animalCount('lions'));
 
 function entryCalculator(entrants) {
   // seu código aqui
