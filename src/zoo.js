@@ -98,15 +98,11 @@ function entryCalculator(entrants) {
     entrants.Adult = (typeof entrants.Adult !== 'undefined') ? entrants.Adult : 0;
     entrants.Child = (typeof entrants.Child !== 'undefined') ? entrants.Child : 0;
     entrants.Senior = (typeof entrants.Senior !== 'undefined') ? entrants.Senior : 0;
-    total = (entrants.Adult * Adult) + (entrants.Child * Child) + (entrants.Senior * Senior)
+    total = (entrants.Adult * Adult) + (entrants.Child * Child) + (entrants.Senior * Senior);
   }
   return total;
 }
   
-// adults = !Adult ? 0 : Adult * data.prices.Adult;
-    // childen = !Child ? 0 : Child * data.prices.Child;
-    // seniors = !Senior ? 0 : Senior * data.prices.Senior;
-    // total = adults + children + seniors;
 
 function animalMap(options) {
   // seu código aqui
