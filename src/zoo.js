@@ -113,18 +113,40 @@ function increasePrices(percentage) {
   });
 }
 
+const responsibleForAnimals = (responsibleFor = []) => {
+  const res =
+    responsibleFor.map(rf => data.animals.find(a => a.id === rf).name) || [];
+  return res;
+}; // função copiada do projeto de Viviane Florido;
 function employeeCoverage(idOrName) {
   // seu código aqui
+  let result = {};
 
-  return employees.find(employee => {
+  if (!idOrName) {
+    employees.forEach(
+      employee =>
+        (result[
+          `${employee.firstName} ${employee.lastName}`
+        ] = responsibleForAnimals(employee.responsibleFor))
+    );
+    return result;
+  }
+
+  const foundEmployee = employees.find(employee => {
     return (
       employee.id === idOrName ||
       employee.firstName === idOrName ||
       employee.lastName === idOrName
     );
-  }).responsibleFor;
+  });
+  result[
+    `${foundEmployee.firstName} ${foundEmployee.lastName}`
+  ] = responsibleForAnimals(foundEmployee.responsibleFor);
+  return result;
 }
-console.log(employeeCoverage('Nigel'));
+
+console.log(employeeCoverage());
+//console.log(employeeCoverage());
 module.exports = {
   entryCalculator,
   schedule,
