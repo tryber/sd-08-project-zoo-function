@@ -43,8 +43,9 @@ function isManager(id) {
   // seu código aqui
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
@@ -57,7 +58,8 @@ function entryCalculator(entrants) {
   if (!entrants || entrants === {}) {
     return 0;
   }
-  return (Adult.value * 49.99) + (Child.value * 20.99) + (Senior.value * 24.99);
+  return 
+  
 }
 
 function animalMap(options) {
