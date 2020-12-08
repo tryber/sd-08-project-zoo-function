@@ -141,9 +141,9 @@ function animalMap(options) {
 
 const convertHours = (hour) => {
   if (hour > 12) {
-    return hour - 12 + 'pm';
+    return `${hour - 12}pm`;
   }
-  return hour + 'am';
+  return `${hour}am`;
 };
 
 const humanReadbleSchedule = (open, close) => {
