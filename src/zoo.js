@@ -161,12 +161,12 @@ const employeeCoverage = (idOrName) => {
   });
 
   const employeeByNameOrId = (condition) => {
-    employee = employees.find(employee =>
+    const manager = employees.find(employee =>
       employee.firstName === condition ||
       employee.lastName === condition ||
       employee.id === condition);
 
-    return `${employee.firstName} ${employee.lastName}`;
+    return `${manager.firstName} ${manager.lastName}`;
   };
 
   if (!idOrName) return managers;
