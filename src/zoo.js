@@ -108,8 +108,6 @@ function oldestFromFirstSpecies(id) {
   return [oldest.name, oldest.sex, oldest.age];
 }
 
-oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992');
-
 function increasePrices(percentage) {
   return Object.entries(prices)
   .forEach((element) => {
@@ -118,9 +116,16 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if(!idOrName) {
+  return  employees.reduce((acc, currEmp) => {
+      acc[currEmp.name] = [currEmp.responsibleFor.forEach((id) => animals.find((animal) => (animal.id === id).name))];
+      return acc;
+    }, {})
+  }
 }
 
+//(id) => animals.find((animal) => (animal.id === id).name)
+employeeCoverage()
 module.exports = {
   entryCalculator,
   schedule,
