@@ -79,9 +79,8 @@ function entryCalculator(entrants) {
   if (!entrants || entrants === {}) {
     return 0;
   }
-  return Object.keys(entrants).reduce((acc, key) => {
-    return acc + data.prices[key] * entrants[key];
-  }, 0);
+  return Object.keys(entrants).reduce((acc, key) =>
+  acc + (data.prices[key] * entrants[key]), 0);
 }
 
 function animalMap(options) {
