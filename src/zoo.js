@@ -27,7 +27,7 @@ function animalsOlderThan(animalType, ageTest) {
 function employeeByName(...employeeName) {
   if (employeeName.length === 0) return {};
   return employees.find(({ firstName, lastName }) =>
-    {firstName === employeeName[0] || lastName === employeeName[0]});
+    { return firstName === employeeName[0] || lastName === employeeName[0] });
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -48,7 +48,7 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  let AnimalObject = {};
+  const AnimalObject = {};
   if (species === undefined) {
     for (let index = 0; index < animals.length; index += 1) {
       const animalName = `${animals[index].name}`;
@@ -60,7 +60,7 @@ function animalCount(species) {
   }
   const find = animals.find(({ name }) => species === name);
   return find.residents.length;
- }
+}
 
 function entryCalculator(entrants) {
   // seu código aqui
