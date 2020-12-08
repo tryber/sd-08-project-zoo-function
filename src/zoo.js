@@ -80,9 +80,32 @@ const increasePrices = (percentage) => {
   return prices;
 };
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+function coverage(idOrName) {
+  const animalManager = employees.find(({ id, firstName, lastName }) =>
+  id === idOrName
+  || firstName === idOrName
+  || lastName === idOrName);
+
+  const residents = animalManager
+  .responsibleFor.map(animalsMannered => animals
+    .find(({ id }) => animalsMannered === id));
+
+  return {
+    [`${animalManager.firstName} ${animalManager.lastName}`]: residents.map(animalsMannered => animalsMannered.name) };
 }
+
+const employeeCoverage = (idOrName) => {
+  if (idOrName) {
+    return coverage(idOrName);
+  }
+
+  let employeesCoverage = {};
+  const employeesId = employees.map(({ id }) => id);
+  employeesId.forEach((id) => {
+    employeesCoverage = { ...employeesCoverage, ...coverage(id) };
+  });
+  return employeesCoverage;
+};
 
 module.exports = {
   entryCalculator,
