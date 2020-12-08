@@ -58,7 +58,7 @@ function animalCount(species) {
   return result;
 }
 
-function entryCalculator(entrants) {  
+function entryCalculator(entrants) {
   return Object.entries(entrants).reduce((acc, [person, amount]) => {
     acc += data.prices[person] * amount;
     return acc;
