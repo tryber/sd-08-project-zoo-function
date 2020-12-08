@@ -13,22 +13,11 @@ const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  //let retorno = [];
-  // console.log(ids);
   if (ids.length === 0) {
     return [];
-  } else {
-    // ids.forEach((element, index) => {
-    //   const filterAnimals = animals.filter(({id}) => (element === id));
-    //   retorno[index] = {...filterAnimals};
-    //   });
-    //retorno = animals.filter(actua => actua.id === ids[0] || actua.id === ids[1]);
-    retorno = animals.filter(({id}) => ids[0] === id || ids[1] === id);
-    console.log(Object.values(retorno));
-    return retorno;
   }
+    return animals.filter(({id}) => ids[0] === id || ids[1] === id);
 }
-animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46');
 
 function animalsOlderThan(animal, age) {
   let retorno;
