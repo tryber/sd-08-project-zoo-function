@@ -82,10 +82,9 @@ function entryCalculator(entrants) {
   }
   const arrayEntrants = Object.keys(entrants);
   // console.log(arrayEntrants);
-  return arrayEntrants.reduce((result, currentValue) => 
+  return arrayEntrants.reduce((result, value) => result + (prices[value] * entrants[value]), 0);
     // console.log((result));
     // console.log(`${entrants[currentValue]} ${prices[currentValue]}`);
-    result + (prices[currentValue] * entrants[currentValue]), 0);
   // seu código aqui
 }
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
