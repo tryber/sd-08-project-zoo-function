@@ -137,8 +137,8 @@ function employeeCoverage(idOrName) {
   // }
   // const search = data.employees.find((employee) => {
   //   console.log(`${employee.lastName}`);
-  //   return employee.id === idOrName || 
-  //   employee.firstName === idOrName || 
+  //   return employee.id === idOrName ||
+  //   employee.firstName === idOrName ||
   //   employee.lastName === idOrName
   // });
   // console.log(search);
