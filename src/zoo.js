@@ -89,7 +89,7 @@ const showAnimalNames = (mappedAnimals, emptyAnimalMap) => {
   return mapWithAnimalsNames;
 };
 
-const animalBySex = (sex) => animals.map((animal) => {
+const animalBySex = sex => animals.map((animal) => {
   animal.residents = animal.residents.filter(resident => resident.sex === sex);
   return animal;
 });
@@ -105,7 +105,7 @@ const sortAnimals = (mappedAnimals) => {
   return mappedAnimals;
 };
 
-const defaultAnimalMap = (emptyAnimalMap) => animals.reduce((acc, animal) => {
+const defaultAnimalMap = emptyAnimalMap => animals.reduce((acc, animal) => {
   acc[animal.location].push(animal.name);
   return acc;
 }, emptyAnimalMap);
