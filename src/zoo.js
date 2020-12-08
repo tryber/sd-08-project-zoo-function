@@ -94,7 +94,22 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const employeeResult = data.employees.find((employee) => {
+    const validate = employee.id === id;
+    return validate;
+  });
+  const employeeFirstResponsibleFor = employeeResult.responsibleFor[0];
+  const animalResult = data.animals.find((animal) => {
+    const validateAnimal = animal.id === employeeFirstResponsibleFor;
+    return validateAnimal;
+  });
+  const animalResindet = animalResult.residents.reduce((maxAgeAnimal, currentAnimal) => {
+    if (currentAnimal.age > (maxAgeAnimal.age || 0)) {
+      return currentAnimal;
+    }
+    return maxAgeAnimal;
+  }, {});
+  return animalResindet;
 }
 
 function increasePrices(percentage) {
