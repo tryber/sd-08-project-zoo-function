@@ -75,16 +75,40 @@ function entryCalculator(...visitors) {
   return adultValue + childValue + seniorValue;
 }
 
-const specieByLocation = () => {
+const showAnimalNames = (mappedAnimals, emptyAnimalMap) => {
+  const mapWithAnimalsNames = mappedAnimals.reduce((acc, { name, location, residents }) => {
+    const newObject = {};
+    newObject[name] = residents.reduce((animalVector, resident) => {
+      animalVector = [...animalVector, resident.name];
+      return animalVector;
+    }, []);
+    acc[location].push(newObject);
+    return acc;
+  }, emptyAnimalMap);
 
-}
+  return mapWithAnimalsNames;
+};
 
-const animalBySex = (sex) => {
-  return animals.map(animal => {
-    animal.residents = animal.residents.filter(resident => resident.sex === sex)
-    return animal;
+const animalBySex = (sex) => animals.map((animal) => {
+  animal.residents = animal.residents.filter(resident => resident.sex === sex);
+  return animal;
+});
+
+const sortAnimals = (mappedAnimals) => {
+  const keysMappedAnimals = Object.keys(mappedAnimals);
+  keysMappedAnimals.forEach((location) => {
+    mappedAnimals[location].forEach((species) => {
+      const speciesKey = Object.keys(species)[0];
+      species[speciesKey].sort();
+    });
   });
-}
+  return mappedAnimals;
+};
+
+const defaultAnimalMap = (emptyAnimalMap) => animals.reduce((acc, animal) => {
+  acc[animal.location].push(animal.name);
+  return acc;
+}, emptyAnimalMap);
 
 function animalMap(options) {
   let mappedAnimals = [...animals];
@@ -92,47 +116,28 @@ function animalMap(options) {
     NE: [],
     NW: [],
     SE: [],
-    SW: []
+    SW: [],
   };
 
   if (options === undefined || options.includeNames !== true) {
-    return animals.reduce((acc, animal) => {
-      acc[animal.location].push(animal.name);
-      return acc;
-    }, emptyAnimalMap);
+    return defaultAnimalMap(emptyAnimalMap);
   }
 
-  const {includeNames, sorted, sex} = options;
-
+  const { includeNames, sorted, sex } = options;
   if (typeof sex === 'string' && includeNames) {
     mappedAnimals = animalBySex(sex);
   }
 
   if (includeNames) {
-    mappedAnimals = mappedAnimals.reduce((acc, { name, location, residents }) => {
-      const newObject = {};
-      newObject[name] = residents.reduce((animalVector, resident) => {
-        animalVector = [...animalVector, resident.name];
-        return animalVector;
-      }, []);
-      acc[location].push(newObject);
-      return acc;
-    }, emptyAnimalMap);
+    mappedAnimals = showAnimalNames(mappedAnimals, emptyAnimalMap);
   }
 
   if (sorted && includeNames) {
-    const keysMappedAnimals = Object.keys(mappedAnimals);
-    keysMappedAnimals.forEach(location => {
-      mappedAnimals[location].forEach(species => {
-        const speciesKey = Object.keys(species)[0];
-        species[speciesKey].sort();
-      });
-    });
+    mappedAnimals = sortAnimals(mappedAnimals);
   }
+
   return mappedAnimals;
 }
-console.log('*** SAIDA ***')
-console.log(animalMap({ includeNames: true, sorted: true }));
 
 function schedule(dayName) {
   // seu código aqui
