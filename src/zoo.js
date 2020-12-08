@@ -49,28 +49,33 @@ const animalCount = (specie) => {
 
 const entryCalculator = tckt => Object.keys(tckt).reduce((t, e) => t + (prices[e] * tckt[e]), 0);
 
+const returnAnimalsList = (options, specie) => {
+  if (options.sex === 'female') {
+    return list = specie.residents.filter(actual => actual.sex === 'female').map(e => e.name);
+  } else if (options.sex === 'male') {
+    return list = specie.residents.filter(actual => actual.sex === 'male').map(e => e.name);
+  }
+  return list = specie.residents.map(actual => actual.name);
+}
+
 const animalMap = (options = false) => {
   const animalsMap = { NE: [], NW: [], SE: [], SW: [] };
-  Object.keys(animalsMap).map(locat => {
-    return animalsMap[locat] = animals.filter(specie => specie.locat === locat).map(currSpecie => {
+  Object.keys(animalsMap).map(place =>
+    animalsMap[place] = animals.filter((specie) => specie.location === place).map(specie => {
       if (options.includeNames) {
-        const actualSpecie = currSpecie.name;
-        let list = [];
-        if (options.sex === 'female') {
-          list = currSpecie.residents.filter(actual => actual.sex === 'female').map(e => e.name);
-        } else if (options.sex === 'male') {
-          list = currSpecie.residents.filter(actual => actual.sex === 'male').map(e => e.name);
-        } else {
-          list = currSpecie.residents.map(actual => actual.name);
-        }
+        const actualSpecie = specie.name;
+        const list = returnAnimalsList(options, specie);
         return (options.sorted) ? { [actualSpecie]: list.sort() } : { [actualSpecie]: list };
       } else {
-        return currSpecie.name
+        return specie.name;
       }
-    });
-  })
+    })
+  );
   return animalsMap;
-}
+};
+
+const options = { includeNames: true, sex: 'female' }
+console.log(animalMap());
 
 function schedule(dayName) {
   // seu código aqui
