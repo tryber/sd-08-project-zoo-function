@@ -111,7 +111,19 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const { hours } = data;
+  const result = Object.entries(hours).reduce((acumulador, [key, value]) => {
+    const [am, pm] = Object.values(value);
+    acumulador[key] = key === 'Monday' ? 'CLOSED' : `Open from ${am}am until ${pm % 12}pm`;
+    return acumulador;
+  }, {});
+  if (dayName) {
+    const day = result[dayName];
+    return {
+      [dayName]: day,
+    };
+  }
+  return result;
 }
 
 function oldestFromFirstSpecies(id) {
