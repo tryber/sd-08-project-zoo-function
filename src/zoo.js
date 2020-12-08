@@ -99,19 +99,21 @@ function schedule(dayName) {
   return weekSchedule;
 }
 
-console.log(schedule());
-
 function oldestFromFirstSpecies(id) {
   const firstId = employees.find(employeeInfo => employeeInfo.id === id)
     .responsibleFor[0];
   const residentsById = animalsByIds(firstId)[0].residents;
-  let oldestAge = null;
 
-  residentsById.forEach(resident => oldestAge < resident.age ? (oldestAge = resident.age) : oldestAge);
+  let oldestAge = null;
+  residentsById.forEach(resident => {
+    if (oldestAge < resident.age) oldestAge = resident.age
+    });
+
   const oldestFromSpecies = residentsById.find(
     resident => resident.age === oldestAge);
   return Object.values(oldestFromSpecies);
 }
+console.log(oldestFromFirstSpecies('fdb2543b-5662-46a7-badc-93d960fdc0a8'))
 
 function increasePrices(percentage) {
   prices = Object.entries(prices).reduce((accumulator, priceInfo) => {
@@ -133,12 +135,12 @@ function employeeCoverage(idOrName) {
     accumulator[`${employeeInfo.firstName} ${employeeInfo.lastName}`] =
     animalsByIdsName(...employeeInfo.responsibleFor);
     return accumulator;
-    }, {});
+  }, {});
   if (idOrName === undefined) return allEmployeesResponsibility;
   const employeeResponsibility = employees.find(employeeInfo =>
     idOrName === employeeInfo.firstName || idOrName === employeeInfo.lastName
     || idOrName === employeeInfo.id);
-    return { [`${employeeResponsibility.firstName} ${employeeResponsibility.lastName}`]: animalsByIdsName(...employeeResponsibility.responsibleFor) };
+  return { [`${employeeResponsibility.firstName} ${employeeResponsibility.lastName}`]: animalsByIdsName(...employeeResponsibility.responsibleFor) };
 }
 
 module.exports = {
