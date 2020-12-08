@@ -45,9 +45,12 @@ function createEmployee({ id, firstName, lastName }, { managers = [], responsibl
 }
 
 function isManager(id) {
-  // seu código aqui
+  const arr7 = employee.filter(x => (x.managers.find(y => (y === id))));
+  if (arr7.length > 0) {
+    return true;
+  }
+  return false;
 }
-
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
