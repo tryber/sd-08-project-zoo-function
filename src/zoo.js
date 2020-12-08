@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -66,10 +66,21 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-
+  const funcionamento = Object.entries.apply(hours).reduce((acc, [chave, valor]) => {
+    const { open, close } = valor;
+    acc[chave] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
+    return acc;
+  }, {});
+  if (typeof dayName === 'string' && dayName.length !== 0) return { [dayName]: funcionamento[dayName] };
+  return funcionamento;
 }
 
 function oldestFromFirstSpecies(id) {
+  const employeeById = employees.find(employee => employee.id === id);
+  const animalById = animals.find(animal => animal.id === employeeById.responsibleFor[0]).residents;
+  const arrOldestAnimal = animalById.reduce((acc, animal) => (acc.age > animal.age ? acc : animal),
+  );
+  return [arrOldestAnimal.name, arrOldestAnimal.sex, arrOldestAnimal.age];
 }
 
 
@@ -82,7 +93,12 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
+  // if(!idOrName) return
+  // Object.entries(employees).reduce((acc, [key, value]) => {
+  // acc[key['${firstName}, ${lastName}']] = value.responsibleFor.map(
+  //   return acc),0);
 }
+
 
 module.exports = {
   entryCalculator,
