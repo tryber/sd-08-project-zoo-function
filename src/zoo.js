@@ -50,25 +50,27 @@ const animalCount = (specie) => {
 const entryCalculator = tckt => Object.keys(tckt).reduce((t, e) => t + (prices[e] * tckt[e]), 0);
 
 const returnAnimalsList = (options, specie) => {
-  if (options.sex === 'female') {
-    return specie.residents.filter(actual => actual.sex === 'female').map(e => e.name);
-  } else if (options.sex === 'male') {
-    return specie.residents.filter(actual => actual.sex === 'male').map(e => e.name);
+  if (options.sex) {
+    return specie.residents.filter(actual => actual.sex === options.sex).map(e => e.name);
   }
   return specie.residents.map(actual => actual.name);
 };
 
+const getAnimals = (options, place) => {
+  return animals.filter(specie => specie.location === place).map((specie) => {
+    if (options.includeNames) {
+      const actualSpecie = specie.name;
+      const list = returnAnimalsList(options, specie);
+      return (options.sorted) ? { [actualSpecie]: list.sort() } : { [actualSpecie]: list };
+    }
+    return specie.name;
+  })
+};
+
 const animalMap = (options = false) => {
   const animalsMap = { NE: [], NW: [], SE: [], SW: [] };
-  Object.keys(animalsMap).map(place =>
-    animalsMap[place] = animals.filter(specie => specie.location === place).map(specie => {
-      if (options.includeNames) {
-        const actualSpecie = specie.name;
-        const list = returnAnimalsList(options, specie);
-        return (options.sorted) ? { [actualSpecie]: list.sort() } : { [actualSpecie]: list };
-      }
-      return specie.name;
-    })
+  Object.keys(animalsMap).forEach(place =>
+    animalsMap[place] = getAnimals(options, place)
   );
   return animalsMap;
 };
