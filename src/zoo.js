@@ -82,8 +82,40 @@ const entryCalculator = (entrants) => {
     accumulator + (entrants[currentValue] * prices[currentValue]), 0));
 };
 
-const animalMap = (options) => {
+const animalsFilteredBySex = (animals, sex) => {
+  if (!sex) return animals;
 
+  return animals.filter(({ sex: animal }) => sex === animal);
+};
+
+const sortedAnimalNames = (names, sorted) => {
+  if (!sorted) return names;
+
+  return names.sort();
+};
+
+const animalMap = (options = {}) => {
+  const { includeNames, sex, sorted } = options;
+
+  return animals.reduce((accumulator, animal) => {
+    const location = accumulator[animal.location] || [];
+
+    if (!includeNames) {
+      accumulator[animal.location] = [...location, animal.name];
+
+      return accumulator;
+    };
+
+    let residents = animal.residents;
+    residents = animalsFilteredBySex(residents, sex);
+
+    let names = residents.map(({ name }) => name);
+    names = sortedAnimalNames(names, sorted);
+
+    accumulator[animal.location] = [...location, { [animal.name]: names }];
+
+    return accumulator;
+  }, {});
 };
 
 const schedule = (dayName) => {
@@ -124,19 +156,20 @@ const employeeCoverage = (idOrName) => {
   employees.forEach((employee) => {
     managers[`${employee.firstName} ${employee.lastName}`] =
       employee.responsibleFor.map(id => animals.find(animal => animal.id === id).name);
-  })
+  });
 
-  const searchEmployee = (condition) => {
-    const employee = employees.find(employee => employee.firstName === condition
-      || employee.lastName === condition
-      || employee.id === condition);
+  const employeeByNameOrId = (condition) => {
+    const employee = employees.find(employee =>
+      employee.firstName === condition ||
+      employee.lastName === condition ||
+      employee.id === condition);
 
     return `${employee.firstName} ${employee.lastName}`;
-  }
+  };
 
   if (!idOrName) return managers;
 
-  return { [searchEmployee(idOrName)]: managers[searchEmployee(idOrName)] };
+  return { [employeeByNameOrId(idOrName)]: managers[employeeByNameOrId(idOrName)] };
 };
 
 module.exports = {
