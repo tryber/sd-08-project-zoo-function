@@ -87,34 +87,22 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  let total;
+  const prices = data.prices;
+  const { Adult, Child, Senior } = prices;
+  let total = 0;
   if (!entrants) {
     total = 0;
+  } else if (Object.keys(entrants).length === 0) {
+    total = 0;
   } else if (entrants) {
-    const { Adult, Child, Senior } = entrants;
-    let adults;
-    let children;
-    let seniors;
-    if (!Adult) {
-      adults = 0;
-    } else {
-      adults = Adult * data.prices.Adult;
-    };
-    if (!Child) {
-      children = 0;
-    } else {
-      children = Child * data.prices.Child
-    };
-    if (!Senior) {
-      seniors = 0
-    } else {
-      seniors = Senior * data.prices.Senior
-    }
-    total = seniors + adults + children
+    entrants.Adult = (typeof entrants.Adult !== 'undefined') ? entrants.Adult : 0;
+    entrants.Child = (typeof entrants.Child !== 'undefined') ? entrants.Child : 0;
+    entrants.Senior = (typeof entrants.Senior !== 'undefined') ? entrants.Senior : 0;
+    total = (entrants.Adult * Adult) + (entrants.Child * Child) + (entrants.Senior * Senior)
   }
   return total;
 }
-
+  
 // adults = !Adult ? 0 : Adult * data.prices.Adult;
     // childen = !Child ? 0 : Child * data.prices.Child;
     // seniors = !Senior ? 0 : Senior * data.prices.Senior;
