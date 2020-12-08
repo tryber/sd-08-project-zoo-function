@@ -12,6 +12,7 @@ eslint no-unused-vars: [
 const { animals } = require('./data');
 const { employees } = require('./data');
 const { prices } = require('./data');
+const { hours } = require('./data');
 const data = require('./data');
 
 const animalsByIds = (...ids) => animals.filter((element, index) => element.id === ids[index]);
@@ -59,9 +60,14 @@ const entryCalculator = (entrants) => {
 
 function animalMap(options) { }
 
-function schedule(percentage) {
-  // seu código aqui
-}
+const schedule = (dayName) => {
+  if (dayName !== undefined) {
+    return { [`${dayName}`]: hours[dayName].open !== 0 && hours[dayName].close !== 0 ? `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` : 'CLOSED' };
+  }
+  return Object.entries(hours)
+  .reduce((acc, curr) => ({ ...acc, [curr[0]]: curr[1].open !== 0 && curr[1].close !== 0 ? `Open from ${curr[1].open}am until ${curr[1].close - 12}pm` : 'CLOSED' }), {});
+};
+console.log(schedule());
 
 const oldestFromFirstSpecies = (id) => {
   const animal = animals
@@ -94,8 +100,6 @@ const employeeCoverage = (idOrName) => {
   || element.lastName === idOrName);
   return animalsPerEmployees(filteredEmployee);
 };
-
-console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
