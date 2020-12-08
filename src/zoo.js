@@ -22,6 +22,7 @@ function animalsOlderThan(animal, age) {
   //find retorna apenas 1
   //every (todos os itens necessitam satisfazer a condicao)
   //some (se ao menos um item retornar true)
+  return animals.find(specie => specie.name === animal).residents.every(olderThan => olderThan.age >= age);
 }
 
 function employeeByName(employeeName) {
