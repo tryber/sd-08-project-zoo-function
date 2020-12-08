@@ -71,29 +71,6 @@ function entryCalculator(entrants) {
   return entrant;
 }
 
-function animalMap(options) {
-  if (!options) return listNameAnimals(locations());
-  const { includeNames } = options;
-  if (includeNames) return getNameAnimals(options);
-  return listNameAnimals(locations());
-}
-
-function schedule(dayName) {
-  // seu código aqui
-}
-
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
-
-function increasePrices(percentage) {
-  // seu código aqui
-}
-
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
-
 const locations = () => data.animals.map(el => el.location)
   .filter((el, index, arr) => arr.indexOf(el) === index);
 
@@ -125,6 +102,29 @@ const getNameAnimals = (args) => {
   }, {});
   return result;
 };
+
+function animalMap(options) {
+  if (!options) return listNameAnimals(locations());
+  const { includeNames } = options;
+  if (includeNames) return getNameAnimals(options);
+  return listNameAnimals(locations());
+}
+
+function schedule(dayName) {
+  // seu código aqui
+}
+
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+}
+
+function increasePrices(percentage) {
+  // seu código aqui
+}
+
+function employeeCoverage(idOrName) {
+  // seu código aqui
+}
 
 module.exports = {
   entryCalculator,
