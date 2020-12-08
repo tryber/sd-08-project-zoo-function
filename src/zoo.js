@@ -44,19 +44,20 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  const newEmployee = {
-    id,
-    firstName,
-    lastName,
-    managers,
-    responsibleFor,
-  };
-  const employeeIncluded = data.employees.push(newEmployee);
-  return employeeIncluded;
+  const newEmployees = { id, firstName, lastName, managers, responsibleFor };
+  data.employees.push(newEmployees);
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (species) {
+    const count = data.animals.find(unidade => unidade.nome === species);
+    return count.residents.length;
+  }
+  const todos = data.animals.reduce((acc,curr) => {
+    acc[curr.name] = curr.residents.length;
+    return acc;
+  }, { })
+  return todos;
 }
 
 function entryCalculator(entrants) {
