@@ -19,18 +19,30 @@ function animalsByIds(...ids) {
     return animals.filter(({id}) => ids[0] === id || ids[1] === id);
 }
 
-function animalsOlderThan(animal, age) {
+function animalsOlderThan(animalType, ageTest) {
   let retorno;
-  let filterName = animals.filter(({name}) => (name === animal));
-  console.log(filterName);
-  //    let teste = animals.every(({residents}) => (residents.age >= age));
+  let find = animals.find(({name}) => name === animalType);
+  console.log(find);
+  retorno = find.residents.every(({age}) => age >= ageTest);
+   
+  // let result = animals.find(animal => animal.name === animalType);
+  // console.log(result);
+  // if (result) result = result.residents.every(animal => animal.age >= age);
+  // retorno = result;
+  
+  console.log(retorno);
+  // retorno = find.every(({resident}) => resident.age >= age);
+  //código antigo:
+  // let filterName = animals.filter(({name}) => (name === animal));
+  // console.log(filterName);
+  // //    let teste = animals.every(({residents}) => (residents.age >= age));
   // console.log(teste);
 
-  retorno = filterName.every(({residents}) => residents.age >= age);
+  // retorno = filterName.every(({residents}) => residents.age >= age);
   console.log(retorno);
   return retorno;
 }
-//animalsOlderThan('otters', 7);
+animalsOlderThan('otters', 7);
 
 function employeeByName(employeeName) {
   // seu código aqui
