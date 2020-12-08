@@ -61,8 +61,8 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
     id,
     firstName,
     lastName,
-    managers,
-    responsibleFor,
+    managers: managers || [],
+    responsibleFor: responsibleFor || [],
   };
   data.employees.push(employee);
 }
