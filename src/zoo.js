@@ -1,4 +1,4 @@
-const { animals } = require('./data');
+const { animals, employees } = require('./data');
 /*
 eslint no-unused-vars: [
   "error",
@@ -27,7 +27,11 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   // undefined: {}
-  //find //fisrt === employeeName OU lasr === employeeName
+  //find //fisrt === employeeName OU last === employeeName
+  if (employeeName === undefined) {
+    return {};
+  }
+  return employees.find(name => name.firstName === employeeName || name.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
