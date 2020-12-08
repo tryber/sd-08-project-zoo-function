@@ -77,7 +77,7 @@ function entryCalculator(entrants) {
     return 0;
   }
   return Object.entries(entrants)
-  .reduce((acc, curr) => acc + (curr[1] * data.prices[curr[0]]), 0);
+  .reduce((Total, valor) => Total + (valor[1] * data.prices[valor[0]]), 0);
 }
 
 function animalMap(options) {
@@ -86,14 +86,41 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
+
+  // if (dayName !== undefined) {
+  //   return Object.entries(data.hours).filter((chave, [key,value]) => {
+  //     chave === dayName
+  //     return `${chave}: Open from ${value.open} until ${value.close}`
+  //   })
+  // }
+  // return Object.entries(data.hours).reduce((objeto,[key, value]) => {
+  //   objeto[key] =
+  // value.close - value.open > 0 ?`Open from ${value.open}
+  // am until ${value.close % 12}pm`: 'CLOSED';
+  // //   return objeto
+  // // }, {});
 }
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const funcionario = data.employees.find(employee => employee.id === id);
+  const animalId = data.employees
+  .find(funcio => funcio === funcionario).responsibleFor[0];
+  const animalResidents = data.animals.find(aniId => aniId.id === animalId).residents;
+  const maisVelho = animalResidents.reduce((velho, atual) =>
+  (atual.age > velho.age ? atual : velho));
+  return Object.values(maisVelho);
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const increase = 1 + (percentage / 100);
+  Object.keys(data.prices).forEach(key => (
+    data.prices[key] = Math.round(data.prices[key] * increase * 100) / 100
+  ));
+  // return Object.entries(data.prices).reduce((object, [key, value]) =>{
+  //   object[key] = value * ( 1 + percentage / 100)
+  //   return object
+  // },{})
 }
 
 function employeeCoverage(idOrName) {
