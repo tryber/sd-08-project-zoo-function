@@ -29,7 +29,7 @@ function employeeByName(employeeName) {
   if (!employeeName) return {};
   return employees.find(
     employee =>
-      employeeName === employee.firstName || employeeName === employee.lastName,
+      employeeName === employee.firstName || employeeName === employee.lastName
   );
 }
 
@@ -48,7 +48,7 @@ function addEmployee(
   firstName,
   lastName,
   managers = [],
-  responsibleFor = [],
+  responsibleFor = []
 ) {
   // seu código aqui
   employees.push({
@@ -79,7 +79,7 @@ function entryCalculator(entrants) {
   return Object.keys(entrants).reduce(
     (accumulator, currentValue) =>
       accumulator + entrants[currentValue] * prices[currentValue],
-    0,
+    0
   );
 }
 
@@ -93,6 +93,17 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const employee = employees.find(employee => employee.id === id);
+  const responsible = employee.responsibleFor.map(responsability =>
+    animals.find(animal => animal.id === responsability)
+  );
+  const oldest = responsible[0].residents.reduce((first, second) => {
+    if (first.age > second.age) {
+      return first;
+    }
+    return second;
+  });
+  return Object.values(oldest);
 }
 
 function increasePrices(percentage) {
