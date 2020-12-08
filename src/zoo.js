@@ -81,18 +81,15 @@ const animalMap = (options = false) => {
 };
 
 const schedule = (dayName = false) => {
-  return Object.keys(hours).reduce((curr, acc) => {
-    const time = hours[acc].close - 12;
-    const message = `Open from ${hours[acc].open}am until ${time}pm`;
-    if (dayName === 'Monday') return { [acc]: 'CLOSED' };
-    if (acc === dayName) return { [acc]: message };
-    if (!dayName) {
-      curr = { ...curr, [acc]: message };
-      if (acc === 'Monday') curr[acc] = 'CLOSED';
-      return curr;
-    }
+  const allDays = Object.keys(hours).reduce((curr, day) => {
+    curr = { ...curr, [day]: `Open from ${hours[day].open}am until ${hours[day].close - 12}pm` };
+    if (hours[day].open === hours[day].close) curr[day] = 'CLOSED';
     return curr;
   }, {});
+  if (dayName) {
+    return { [dayName]: allDays[dayName] };
+  }
+  return allDays;
 };
 
 function oldestFromFirstSpecies(id) {
