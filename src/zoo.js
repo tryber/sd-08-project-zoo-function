@@ -95,14 +95,12 @@ function schedule(dayName) {
         : 'CLOSED';
     return accumulator;
   }, {});
-  if (dayName !== undefined){
+  if (dayName !== undefined) {
     const daySchedule = Object.entries(weekSchedule).find(week => week[0] === dayName);
     return { [daySchedule[0]]: daySchedule[1] };
   }
   return weekSchedule;
 }
-
-console.log(schedule('Tuesday'))
 
 function oldestFromFirstSpecies(id) {
   const firstId = employees.find(employeeInfo => employeeInfo.id === id)
