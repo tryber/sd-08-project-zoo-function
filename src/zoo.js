@@ -47,7 +47,14 @@ const animalCount = (specie) => {
   }, {});
 };
 
-const entryCalculator = tckt => Object.keys(tckt).reduce((t, e) => t + (prices[e] * tckt[e]), 0);
+const entryCalculator = (tckt = false) => {
+  if (tckt) {
+    return Object.keys(tckt).reduce((t, e) => t + (prices[e] * tckt[e]), 0);
+  }
+  return 0;
+};
+
+console.log(entryCalculator());
 
 const returnAnimalsList = (options, specie) => {
   if (options.sex) {
