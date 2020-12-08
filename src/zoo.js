@@ -98,7 +98,7 @@ const schedule = (dayName) => {
     }
   });
 
-  if (!!dayName) {
+  if (dayName !== undefined) {
     return { [dayName]: specificSchedule[dayName] };
   }
 
