@@ -34,22 +34,34 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  let retorno;
-  retorno = employees.find(({managers}) => id === managers);
-  //retorno = employees.some(({firstName}) => 'Nigel' === firstName);
-  console.log(retorno);
+  let retorno = false;
+  employees.forEach((element, index, array) => {
+    let test = array.some(el => id === el.managers[index]);
+    if (test === true) retorno = true;
+  });
   return retorno;
 }
-
-isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83');
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
 
 function animalCount(species) {
-  // seu código aqui
+  let retorno;
+  if (species === undefined) {
+    let teste = animals[1].residents.length;
+    console.log(teste);
+    retorno = animals.map(({name}) => {`${name}: ${animals[1].residents.length}`});
+    console.log(retorno);
+  return retorno;
+  }
+  const find = animals.find(({name}) => species === name);
+  retorno = find.residents.length;
+  console.log(retorno);
+  return retorno;
 }
+
+animalCount();
 
 function entryCalculator(entrants) {
   // seu código aqui
