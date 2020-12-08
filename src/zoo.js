@@ -54,7 +54,43 @@ function entryCalculator(entrants) {
   return entrantsArray.reduce((acc, curr) => acc + (entrants[curr] * prices[curr]), 0);
 }
 
-function animalMap(options) {
+// Sem parâmetros, retorna animais categorizados por localização
+// Com a opção includeNames: true especificada, retorna nomes de animais
+// Com a opção sorted: true especificada, retorna nomes de animais ordenados
+// Com a opção sex: 'female' ou sex: 'male' especificada, retorna somente nomes
+// de animais macho/fêmea
+// Com a opção sex: 'female' ou sex: 'male' especificada e a opção sort: true especificada,
+// retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
+// Só retorna informações ordenadas e com sexo se a opção includeNames: true for especificada
+
+function getResidentsNames(animalName, sorted, sex) {
+  let result = animals.find(animal => animal.name === animalName);
+  result = result.residents;
+  if (typeof sex === 'string') {
+    result = result.filter(animal => animal.sex === sex);
+  }
+  result = result.map(resident => resident.name);
+  if (sorted) result.sort();
+  return { [animalName]: result };
+}
+
+function animalMap(options = {}) {
+  const { includeNames = false, sorted = false, sex } = options;
+  let result = animals.reduce((acc, curr) => {
+    const { name, location } = curr;
+    if (!acc[location]) {
+      acc[location] = [];
+    }
+    acc[location].push(name);
+    return acc;
+  }, {});
+  if (includeNames) {
+    result = Object.entries(result).reduce((acc, [key, animalName]) => {
+      acc[key] = animalName.map(name => getResidentsNames(name, sorted, sex));
+      return acc;
+    }, {});
+  }
+  return result;
 }
 
 function schedule(dayName) {
