@@ -108,7 +108,7 @@ function schedule(dayName) {
     result[currentValue] = `Open from ${hours[currentValue].open}am until ${hours[currentValue].close - 12}pm`;
     return result;
   }, {});
-  returnUndefined["Monday"] = 'CLOSED';
+  returnUndefined.Monday = 'CLOSED';
 // console.log(arrayDay);
   return returnUndefined;
   // seu código aqui
