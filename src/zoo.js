@@ -66,7 +66,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const funcionamento = Object.entries.apply(hours).reduce((acc, [chave, valor]) => {
+  const funcionamento = Object.entries(hours).reduce((acc, [chave, valor]) => {
     const { open, close } = valor;
     acc[chave] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
     return acc;
