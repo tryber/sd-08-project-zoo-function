@@ -54,14 +54,7 @@ function isManager(id) {
   return result;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-  if (managers === undefined) {
-    managers = [];
-  }
-  if (responsibleFor === undefined) {
-    responsibleFor = [];
-  }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newEmployee = {
     id,
     firstName,
@@ -74,7 +67,19 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   // seu código aqui
+  let count = {};
+  if (species === undefined) {
+    animals.forEach(specie => {
+      count[specie.name] = specie.residents.length;
+    });
+    return count;
+  } else {
+    count = animals.find(specie => specie.name === species);
+    return count.residents.length;
+  }
 }
+
+console.log(animalCount('lions'));
 
 function entryCalculator(entrants) {
   // seu código aqui
