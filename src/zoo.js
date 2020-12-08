@@ -79,9 +79,23 @@ const increasePrices = percentage => Object.defineProperties(prices, {
   Child: { value: roundUp((prices.Child * (1 + (percentage / 100))), 2) },
 });
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+const animalsPerEmployees = employe => employe.reduce((acc, curr) => {
+  const { firstName, lastName, responsibleFor } = curr;
+  return { ...acc, [`${firstName} ${lastName}`]: responsibleFor.map(elementMap => animals.find(elementFind => elementFind.id === elementMap).name),
+  };
+}, {});
+
+const employeeCoverage = (idOrName) => {
+  if (idOrName === undefined) {
+    return animalsPerEmployees(employees);
+  }
+  const filteredEmployee = employees
+  .filter(element => element.id === idOrName || element.firstName === idOrName
+  || element.lastName === idOrName);
+  return animalsPerEmployees(filteredEmployee);
+};
+
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
