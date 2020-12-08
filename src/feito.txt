@@ -15,7 +15,7 @@ PASS test/createEmployee.test.js
 PASS test/isManager.test.js
 PASS test/addEmployee.test.js
 PASS test/animalCount.test.js
-
+PASS test/entryCalculator.test.js
 PASS test/animalMap.test.js
 
 
