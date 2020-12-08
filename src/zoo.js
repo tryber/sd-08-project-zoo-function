@@ -90,9 +90,7 @@ function oldestFromFirstSpecies(id) {
   const searchAnimal = data.animals.find(element => element.id === firstAnimal);
   const sortAnimal = searchAnimal.residents.sort((a, b) => b.age - a.age);
   const convertida = sortAnimal.map((item) => {
-    return Object.keys(item).map((key) => {
-      return item[key];
-    });
+    return Object.keys(item).map((key) => item[key]);
   });
   return convertida[0];
 }
