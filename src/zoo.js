@@ -106,7 +106,13 @@ const schedule = (dayName) => {
 };
 
 const oldestFromFirstSpecies = (id) => {
+  const { residents } = animals.find(
+    animal => animal.id === employees.find(employee => employee.id === id).responsibleFor[0],
+  );
 
+  const animal = residents.reduce((accumulator, currentValue) => (accumulator.age > currentValue.age ? accumulator : currentValue));
+
+  return [animal.name, animal.sex, animal.age];
 };
 
 const increasePrices = (percentage) => {
