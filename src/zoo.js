@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -73,18 +73,37 @@ function animalCount(species) {
   if (species === undefined) {
     const animalNames = animals.map(animal => animal.name);
     const quantityOfAnimais = animals.map(animal => animal.residents.length);
-    const ops = animalNames.reduce((acc, currvalue, index) => {
+    const speciesAndQuantityOfEach = animalNames.reduce((acc, currvalue, index) => {
       acc[currvalue] = quantityOfAnimais[index];
       return acc;
     }, {});
-    return ops;
+    return speciesAndQuantityOfEach;
   }
   const quantityOfSpecie = animals.find(animal => animal.name === species);
   return quantityOfSpecie.residents.length;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined) return 0;
+  if (Object.keys(entrants).length === 0) return 0;
+  const eentry = (entrants) => Object.keys(entrants);
+  const faixasEntrada = eentry(entrants);
+  const kombi = (prices) => Object.keys(prices);
+  const faixasTabela = kombi(prices);
+  const arrayOfEntrants = compareEntrantsAndPrices(faixasEntrada, faixasTabela);
+  let total = 0;
+  arrayOfEntrants.forEach((person) => {
+    if (person) { total = total + (entrants[person] * prices[person]); }
+  });
+  return total
+}
+
+const compareEntrantsAndPrices = (faixasEntrada, faixasTabela) => {
+  const arrayOfEntrants = faixasTabela.map(faixa => {
+    const isEntrant = faixasEntrada.includes(faixa);
+    if (isEntrant === true) return faixa;
+  });
+  return arrayOfEntrants;
 }
 
 function animalMap(options) {
