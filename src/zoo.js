@@ -53,8 +53,10 @@ function animalCount(species) {
     animals.forEach((element, index, array) => {
       let animal = `${animals[index].name}: ${animals[index].residents.length}`;
       console.log(animal);
-      arrayAnimals = [...animal];
-
+      
+      //arrayAnimals[index] = [...animal];
+      //Object.assign({arrayAnimals},animal);
+      //console.log(arrayAnimals);
     })
 
     console.log(`retorno array ${arrayAnimals}`);
