@@ -17,22 +17,21 @@ let { prices } = data;
 const { hours } = data;
 
 function animalsByIds(...ids) {
-  return animals.filter((animalInfo) => ids.includes(animalInfo.id));
+  return animals.filter(animalInfo => ids.includes(animalInfo.id));
 }
 
 function animalsOlderThan(animal, age) {
   return animals
-    .find((animalInfo) => animalInfo.name === animal)
-    .residents.every((resident) => resident.age > age);
+    .find(animalInfo => animalInfo.name === animal)
+    .residents.every(resident => resident.age > age);
 }
 
 function employeeByName(employeeName) {
   return (
     employees.find(
-      (employeeInfo) =>
+      employeeInfo =>
         employeeInfo.firstName === employeeName ||
-        employeeInfo.lastName === employeeName
-    ) || {}
+        employeeInfo.lastName === employeeName) || {}
   );
 }
 
@@ -41,7 +40,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.some((employeeInfo) => employeeInfo.managers.includes(id));
+  return employees.some(employeeInfo => employeeInfo.managers.includes(id));
 }
 
 function addEmployee(
@@ -49,17 +48,14 @@ function addEmployee(
   firstName,
   lastName,
   managers = [],
-  responsibleFor = []
-) {
+  responsibleFor = []) {
   employees.push(
-    createEmployee({ id, firstName, lastName }, { managers, responsibleFor })
-  );
+    createEmployee({ id, firstName, lastName }, { managers, responsibleFor }));
 }
 
 function animalCount(species) {
   const speciesCount = animals.find(
-    (animalInfo) => animalInfo.name === species
-  );
+    animalInfo => animalInfo.name === species);
 
   const animalListCount = animals.reduce((accumulator, animalInfo) => {
     accumulator[animalInfo.name] = animalInfo.residents.length;
@@ -85,10 +81,6 @@ function entryCalculator(entrants = 0) {
   return entrySum;
 }
 
-function animalsByLocation() {
-  return animals.map((animalInfo) => animalInfo.location + animalInfo.name);
-}
-
 function animalMap(options) {
 
 }
@@ -104,31 +96,31 @@ function schedule(dayName) {
     return accumulator;
   }, {});
 
-  if (dayName === undefined) return schedule;
-
-  for (const key in schedule) {
-    if (dayName === key) return { [key]: schedule[key] };
+  if (dayName !== undefined) {
+    for (const key in schedule) {
+      if (dayName === key) return { [key]: schedule[key] };
+    }
   }
+  return schedule;
 }
 
 function oldestFromFirstSpecies(id) {
-  const firstId = employees.find((employeeInfo) => employeeInfo.id === id)
+  const firstId = employees.find(employeeInfo => employeeInfo.id === id)
     .responsibleFor[0];
   const residentsById = animalsByIds(firstId)[0].residents;
   let oldestAge = null;
 
-  residentsById.forEach((resident) => {
+  residentsById.forEach(resident => {
     oldestAge < resident.age ? (oldestAge = resident.age) : oldestAge;
   });
 
   const oldestFromSpecies = residentsById.find(
-    resident => resident.age === oldestAge
-  );
+    resident => resident.age === oldestAge);
   return Object.values(oldestFromSpecies);
 }
 
 function increasePrices(percentage) {
-    prices = Object.entries(prices).reduce((accumulator, priceInfo) => {
+  prices = Object.entries(prices).reduce((accumulator, priceInfo) => {
     accumulator[priceInfo[0]] =
       Math.ceil((priceInfo[1] + priceInfo[1] * (percentage / 100)) * 100) / 100;
       data.prices = accumulator;
@@ -143,15 +135,16 @@ function animalsByIdsName(...ids) {
 }
 
 function employeeCoverage(idOrName) {
-  const allEmployeesResponsibility = employees.reduce((accumulator, employeeInfo) => { 
-  accumulator[`${employeeInfo.firstName} ${employeeInfo.lastName}`] = animalsByIdsName(...employeeInfo.responsibleFor);
-  return accumulator;
-  }, {});
+  const allEmployeesResponsibility = employees.reduce((accumulator, employeeInfo) => {
+    accumulator[`${employeeInfo.firstName} ${employeeInfo.lastName}`] =
+    animalsByIdsName(...employeeInfo.responsibleFor);
+    return accumulator;
+    }, {});
   if (idOrName === undefined) return allEmployeesResponsibility;
-
-  const employeeResponsibility = employees.find(employeeInfo => idOrName === employeeInfo.firstName || idOrName === employeeInfo.lastName || idOrName === employeeInfo.id);
-  return {[`${employeeResponsibility.firstName} ${employeeResponsibility.lastName}`]: animalsByIdsName(...employeeResponsibility.responsibleFor)};
-
+  const employeeResponsibility = employees.find(employeeInfo => 
+    idOrName === employeeInfo.firstName || idOrName === employeeInfo.lastName 
+    || idOrName === employeeInfo.id);
+    return {[`${employeeResponsibility.firstName} ${employeeResponsibility.lastName}`]: animalsByIdsName(...employeeResponsibility.responsibleFor)};
 }
 
 module.exports = {
