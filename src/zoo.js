@@ -114,7 +114,7 @@ function increasePrices(percentage) {
   });
 }
 
-const generateEmployee = (array) => array
+const generateEmployee = array => array
 .reduce((obj, Emp) => {
   obj[`${Emp.firstName} ${Emp.lastName}`] = Emp.responsibleFor
   .map(id => (animals.find(animal => animal.id === id).name));
@@ -126,7 +126,7 @@ function employeeCoverage(idOrName) {
     return generateEmployee(employees);
   }
   const foundEmployee = [employees
-  .find(emp => emp.firstName === idOrName || emp.lastName === idOrName || emp.id === idOrName)]
+  .find(emp => emp.firstName === idOrName || emp.lastName === idOrName || emp.id === idOrName)];
   return generateEmployee(foundEmployee);
 }
 
