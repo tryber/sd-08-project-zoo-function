@@ -1,4 +1,4 @@
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 /*
 eslint no-unused-vars: [
   "error",
@@ -51,11 +51,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
-
 }
 
 function entryCalculator(entrants) {
   // seu código aqui
+  
+  if (!entrants || entrants === {}) {
+    return 0;
+  }
+  let { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  let sum = (prices.Adult * Adult) + (prices.Child * Child) + (prices.Senior * Senior);
+  return sum;
 }
 
 function animalMap(options) {
