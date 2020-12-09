@@ -98,7 +98,7 @@ function increasePrices(percentage) {
   });
   Object.keys(prices).forEach((key) => {
     const inc = percentage / 100;
-    prices[key] = (prices[key] + (prices[key] * inc));
+    prices[key] = prices[key] + (prices[key] * inc);
     prices[key] = Number(formatter.format(prices[key]));
   })
 }
