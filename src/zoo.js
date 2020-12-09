@@ -23,11 +23,15 @@ function animalsOlderThan(animal, age) {
   current.name === animal).residents.every(resident => resident.age >= age);
 }
 
-function employeeByName(employeeName) {
-  // seu código aqui
-  if (typeof employeeName !== 'string' || employeeName.length === 0) return {};
+function fetchEmployeeByName(employeeName) {
   return data.employees.find(element => element.firstName === employeeName) ||
   data.employees.find(element => element.lastName === employeeName);
+}
+
+function employeeByName(employeeName) {
+  // seu código aqui
+  if (!employeeName) return {};
+  return fetchEmployeeByName(employeeName)
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -45,12 +49,18 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-function animalCount(species) {
-  // seu código aqui
+function animalCountObject() {
   const newObject = {};
   if (typeof species !== 'string' || species.length === 0) {
     animals.forEach(element => (newObject[element.name] = element.residents.length));
     return newObject;
+  }
+}
+
+function animalCount(species) {
+  // seu código aqui
+  if (!species) {
+    return animalCountObject()
   }
   return animals.find(({ name }) => name === species).residents.length;
 }
@@ -65,6 +75,14 @@ function entryCalculator(entrants) {
 function animalMap(options) {
   // seu código aqui
 
+}
+
+function newSchedule() {
+  Object.entries(data.hours).reduce((accumulator, [key,value]) => {
+    const { open, close } = value;
+    accumulator[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
+    return accumulator;
+  }, {});
 }
 
 function schedule(dayName) {
