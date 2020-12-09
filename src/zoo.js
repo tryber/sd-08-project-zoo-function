@@ -44,8 +44,8 @@ function createEmployee(personalInfo, associatedWith) {
     firstName,
     lastName,
     managers,
-    responsibleFor
-  }
+    responsibleFor,
+  };
   return newObj;
 }
 
