@@ -108,8 +108,20 @@ function animalMap({ includeNames = false, sorted = false, sex = '' } = {}) {
   };
 }
 
-function schedule(dayName) {
-  // seu código aqui
+function schedule(dayName = '') {
+  const { hours } = data;
+  const arrWeek = Object.entries(hours)
+    .filter(day => (dayName === '' ? true : day[0] === dayName));
+  const sch = {};
+  arrWeek.forEach((weekday) => {
+    const { open, close } = weekday[1];
+    if (open === 0 && close === 0) {
+      sch[weekday[0]] = 'CLOSED';
+    } else {
+      sch[weekday[0]] = `Open from ${open}am until ${close - 12}pm`;
+    }
+  });
+  return sch;
 }
 
 function oldestFromFirstSpecies(id) {
