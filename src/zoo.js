@@ -47,8 +47,8 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  if(!managers) managers = [];
-  if(!responsibleFor) responsibleFor = [];
+  if (!managers) managers = [];
+  if (!responsibleFor) responsibleFor = [];
   const newEmploy = { id, firstName, lastName, managers, responsibleFor };
   employees.push(newEmploy);
 }
@@ -69,18 +69,13 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  console.log(entrants);
-  if (entrants === {}) return 0;
-  
-  const adult = entrants[0];
-  const child = entrants[1];
-  const senior = entrants[2];
-
-  console.log(adult, child, senior);
-
+  // console.log(entrants);
+  // if (entrants === {}) return 0;
+  // const adult = entrants[0];
+  // const child = entrants[1];
+  // const senior = entrants[2];
 }
-
-entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 });
+// entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 });
 
 function animalMap(options) {
   // seu código aqui
