@@ -141,15 +141,15 @@ function employeeCoverage(idOrName) {
     });
     return objSearch;
   }
-  const search = data.employees.find((employee) => 
+  const search = data.employees.find(employee =>
     // console.log(`${employee.lastName}`);
     employee.id === idOrName ||
     employee.firstName === idOrName ||
-    employee.lastName === idOrName
+    employee.lastName === idOrName,
   );
   // console.log(search);
   const animalName = search.responsibleFor.map(animalId => animals
-  .find(animal => animal.id === animalId).name)
+  .find(animal => animal.id === animalId).name);
     // console.log(animalName);
   objSearch[`${search.firstName} ${search.lastName}`] = animalName;
   return objSearch;
