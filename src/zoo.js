@@ -77,7 +77,7 @@ function entryCalculator(entrants) {
   }, 0);
   return total;
 }
-// Functions para animalMap
+
 const animalsByRegion = (region, prop) => {
   const animalsRegionArray = animals.reduce((acc, animal) => {
     if (animal.location === region) acc.push(animal[prop]);
@@ -125,7 +125,6 @@ const sorted = (list) => {
   return animalList;
 };
 
-// console.log(sorted());
 const animalsFromRegion = {
   NE: animalsByRegion('NE', 'name'),
   NW: animalsByRegion('NW', 'name'),
@@ -154,11 +153,33 @@ function animalMap(options) {
   } else finalResult = animalsFromRegion;
   return finalResult;
 }
-console.log(animalMap({ includeNames: true, sex: 'male' }));
+
+const day = Object.keys(data.hours);
+const operation = Object.values(data.hours);
 
 function schedule(dayName) {
-  // seu código aqui
+  let table;
+  if (dayName === undefined) {
+    table = day.reduce((acc, value, index) => {
+      acc[`${value}`] = `Open from ${operation[index].open}am until ${operation[index].close - 12}pm`;
+      return acc;
+    }, {});
+    table.Monday = 'CLOSED';
+  } else if (dayName !== undefined && dayName !== 'Monday') {
+    table = day.reduce((acc, value, index) => {
+      if (value === dayName) {
+        acc[dayName] = `Open from ${operation[index].open}am until ${operation[index].close - 12}pm`;
+      }
+      return acc;
+    }, {});
+  } else {
+    table = {
+      Monday: 'CLOSED',
+    };
+  }
+  return table;
 }
+console.log(schedule('Sunday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
