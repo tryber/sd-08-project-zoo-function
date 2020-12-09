@@ -42,9 +42,41 @@ const entryCalculator = (entrants = 0) => {
   return countAnimals;
 };
 
-function animalMap(options) {
-  // seu código aqui
-}
+const zooFilterSetting = ({ includeNames, sorted, sex } = []) => ({
+  includeNames,
+  sorted,
+  sex,
+});
+
+const
+zooZoneOnTheMap = zone => animals.filter(({ location }) => location === zone);
+const classifiedZooAnimals = (isSorted, arr) => (isSorted ? arr.sort() : arr);
+const sexZooAnimals = (isSex, arr) => (isSex ? arr.filter(({ sex }) => sex === isSex) : arr);
+const zooAnimalsByZone = (key, includeNames, sorted, sex) => (includeNames
+  ?
+zooZoneOnTheMap(key).map(({ name, residents }) => ({
+  [name]:
+    classifiedZooAnimals(
+      sorted, sexZooAnimals(
+        sex, residents)
+      .map(({ name: nameKey }) => nameKey)) })) :
+zooZoneOnTheMap(key).map(({ name }) => name));
+
+const animalMap = (options) => {
+  const config = zooFilterSetting(options);
+  const localeMap = {
+    NE: '',
+    NW: '',
+    SE: '',
+    SW: '',
+  };
+  Object.keys(localeMap).forEach((key) => {
+    const { includeNames, sorted, sex } = config;
+    localeMap[key] = zooAnimalsByZone(key, includeNames, sorted, sex);
+  });
+
+  return localeMap;
+};
 
 const schedule = (dayName) => {
   let week = {};
