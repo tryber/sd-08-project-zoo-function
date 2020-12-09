@@ -182,12 +182,16 @@ const schedule = (dayName) => {
   return result;
 };
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+const oldestFromFirstSpecies = (id) => {
+  const finderById = data.employees.find(employee => employee.id === id);
+  const firstSpecies = finderById.responsibleFor[0];
+  const finderByCode = animals.find(animal => animal.id === firstSpecies);
+  const finderOldest = finderByCode.residents.reduce((acc, curr) =>
+    ((acc.age > curr.age) ? acc : curr));
+  return Object.values(finderOldest);
+};
 
-function increasePrices(percentage) {
-  // seu código aqui
+const increasePrices = (percentage) => {
 }
 
 function employeeCoverage(idOrName) {
