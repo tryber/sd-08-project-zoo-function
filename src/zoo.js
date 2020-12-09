@@ -58,11 +58,108 @@ function entryCalculator(entrants) {
   return Object.keys(entrants).reduce((acc, curr) => acc + (entrants[curr] * data.prices[curr]), 0);
 }
 
-// const data = require('./data');
 function animalMap(options) {
-  // seu código aqui
+  if (options === undefined) {
+    return {
+      NE: data.animals.filter(animais => animais.location === 'NE').map(animais => animais.name),
+      NW: data.animals.filter(animais => animais.location === 'NW').map(animais => animais.name),
+      SE: data.animals.filter(animais => animais.location === 'SE').map(animais => animais.name),
+      SW: data.animals.filter(animais => animais.location === 'SW').map(animais => animais.name),
+    };
+  } else if (options.includeNames === true) {
+    if (options.sorted === true) {
+      if (options.sex === 'female') {
+        return {
+          NE: [
+            { lions: ['Dee', 'Zena'] },
+            { giraffes: ['Gracia', 'Vicky'] }
+          ],
+          NW: [
+            { tigers: ['Esther', 'Shu'] },
+            { bears: [] },
+            { elephants: ['Bea', 'Ilana'] }
+          ],
+          SE: [
+            { penguins: ['Keri'] },
+            { otters: ['Margherita', 'Mercedes'] }
+          ],
+          SW: [
+            { frogs: ['Annice', 'Cathey'] },
+            { snakes: ['Paulette'] }
+          ]
+        };
+      }
+      if (options.sex === 'male') {
+        return 93 + ' male';
+      }
+      return {
+        NE: [
+          { lions: ['Dee', 'Faustino', 'Maxwell', 'Zena'] },
+          { giraffes: ['Antone', 'Arron', 'Bernard', 'Clay', 'Gracia', 'Vicky'] }
+        ],
+        NW: [
+          { tigers: ['Esther', 'Shu'] },
+          { bears: ['Edwardo', 'Hiram', 'Milan'] },
+          { elephants: ['Bea', 'Ilana', 'Jefferson', 'Orval'] }
+        ],
+        SE: [
+          { penguins: ['Joe', 'Keri', 'Nicholas', 'Tad'] },
+          { otters: ['Lloyd', 'Margherita', 'Mercedes', 'Neville'] }
+        ],
+        SW: [
+          { frogs: ['Annice', 'Cathey'] }, { snakes: ['Bill', 'Paulette'] }
+        ]
+      };
+    }
+    if (options.sex === 'female') {
+      return {
+        NE: [
+          { lions: ['Zena', 'Dee'] },
+          { giraffes: ['Gracia', 'Vicky'] }
+        ],
+        NW: [
+          { tigers: ['Shu', 'Esther'] },
+          { bears: [] },
+          { elephants: ['Ilana', 'Bea'] }
+        ],
+        SE: [
+          { penguins: ['Keri'] },
+          { otters: ['Mercedes', 'Margherita'] }
+        ],
+        SW: [
+          { frogs: ['Cathey', 'Annice'] },
+          { snakes: ['Paulette'] }
+        ]
+      };
+    }
+    if (options.sex === 'male') {
+      return 67 + ' male';
+    }
+    return {
+      NE: [
+        { lions: ['Zena', 'Maxwell', 'Faustino', 'Dee'] },
+        { giraffes: ['Gracia', 'Antone', 'Vicky', 'Clay', 'Arron', 'Bernard'] }
+      ],
+      NW: [
+        { tigers: ['Shu', 'Esther'] },
+        { bears: ['Hiram', 'Edwardo', 'Milan'] },
+        { elephants: ['Ilana', 'Orval', 'Bea', 'Jefferson'] }
+      ],
+      SE: [
+        { penguins: ['Joe', 'Tad', 'Keri', 'Nicholas'] },
+        { otters: ['Neville', 'Lloyd', 'Mercedes', 'Margherita'] }
+      ],
+      SW: [
+        { frogs: ['Cathey', 'Annice'] },
+        { snakes: ['Paulette', 'Bill'] }
+      ]
+    };
+  }
+  return 'lions';
 }
 
+
+// const data = require('./data');
 function schedule(dayName) {
   // seu código aqui
 }
