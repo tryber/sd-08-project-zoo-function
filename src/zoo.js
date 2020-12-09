@@ -47,12 +47,14 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+  if(!managers) managers = [];
+  if(!responsibleFor) responsibleFor = [];
+  
   console.log(id);
   console.log(firstName);
   console.log(lastName);
   console.log(managers);
-  // if(managers.length = 0) managers = [];
-  // if(responsibleFor.length = 0) managers = [];
+
   console.log(responsibleFor);
   const personalInfo = { id, firstName, lastName };
   const associatedWith = { managers, responsibleFor };
