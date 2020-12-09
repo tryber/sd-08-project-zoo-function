@@ -111,7 +111,7 @@ const nameById = (id) => {
 
 const animalArray = (arr) => {
   const array = [];
-  arr.forEach(animal => {
+  arr.forEach((animal) => {
     array.push(nameById(animal));
   });
   return array;
