@@ -50,17 +50,16 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   if(!managers) managers = [];
   if(!responsibleFor) responsibleFor = [];
   
-  console.log(id);
-  console.log(firstName);
-  console.log(lastName);
+  // console.log(id);
+  // console.log(firstName);
+  // console.log(lastName);
   console.log(managers);
-
   console.log(responsibleFor);
-  const personalInfo = { id, firstName, lastName };
-  const associatedWith = { managers, responsibleFor };
-  console.log(personalInfo);
-  console.log(associatedWith);
-  employees.push(createEmployee(personalInfo, associatedWith));
+
+  const newEmploy = { id, firstName, lastName, managers, responsibleFor };
+  console.log(newEmploy);
+  employees.push(newEmploy);
+  console.log(employees);
 }
 addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe');
 
