@@ -93,10 +93,10 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const formatter = new Intl.NumberFormat('en-US', {
-   minimumFractionDigits: 2,      
-   maximumFractionDigits: 2,
-});
-  for (key in prices) {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+  for (let key in prices) {
     const inc = percentage / 100;
     prices[key] = (prices[key] + (prices[key] * inc));
     prices[key] = Number(formatter.format(prices[key]));
