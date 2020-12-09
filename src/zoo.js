@@ -61,8 +61,17 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-
+  let contagem = {};
+  if (!species) {
+    animals.forEach((animal) => {
+      contagem[animal.name] = animal.residents.length;
+    });
+  } else {
+    contagem = animals.find(obj => species === obj.name).residents.length;
+  }
+  return contagem;
 }
+console.log(animalCount());
 
 function entryCalculator(entrants) {
   // seu código aqui
