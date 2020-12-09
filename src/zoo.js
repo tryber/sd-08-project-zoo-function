@@ -76,7 +76,6 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
-  return employee.filter
 }
 
 module.exports = {
