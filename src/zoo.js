@@ -69,7 +69,7 @@ function oldestFromFirstSpecies(id) {
   .sort((recent, old) => old.age - recent.age);
   return Object.values(result[0]);
 }
-// resolvi com a ajuda do plantão
+// resolvi com a ajuda do plantão do Paulo
 function increasePrices(percentage) {
   const increase = 1 + (percentage / 100);
   Object.keys(prices).forEach(key => (
