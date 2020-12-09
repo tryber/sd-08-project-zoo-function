@@ -133,22 +133,26 @@ function increasePrices(percentage) {
 // console.log(increasePrices(50));
 
 function employeeCoverage(idOrName) {
-  // if (idOrName === undefined) {
-
-  // }
-  // const search = data.employees.find((employee) => {
-  //   console.log(`${employee.lastName}`);
-  //   return employee.id === idOrName ||
-  //   employee.firstName === idOrName ||
-  //   employee.lastName === idOrName
-  // });
+  let objSearch = {};
+  if (idOrName === undefined) {
+    data.employees.forEach((employee) => {
+      objSearch[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor
+      .map((animalId) => animals.find((animal) => animal.id === animalId).name)
+    });
+    return objSearch;
+  }
+  const search = data.employees.find((employee) => {
+    // console.log(`${employee.lastName}`);
+    return employee.id === idOrName ||
+    employee.firstName === idOrName ||
+    employee.lastName === idOrName
+  });
   // console.log(search);
-  // const animalName = search.responsibleFor.map((animalId) => animals
-  // .find((animal) => animal.id === animalId).name)
-  //   console.log(animalName);
-  //   let objSearch = {};
-  //   objSearch[`${search.firstName} ${search.lastName}`] = animalName;
-  //   return objSearch;
+  const animalName = search.responsibleFor.map((animalId) => animals
+  .find((animal) => animal.id === animalId).name)
+    // console.log(animalName);
+    objSearch[`${search.firstName} ${search.lastName}`] = animalName;
+    return objSearch;
   // seu código aqui
 }
 console.log(employeeCoverage());
