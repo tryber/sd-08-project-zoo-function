@@ -72,25 +72,25 @@ function entryCalculator(entrants) {
       }, {});
 }*/
 
+Array.prototype.merge = function(data) {
+  data.forEach(element => {
+    if (!this.includes(element)) this.push(element);
+  });
+  return this;
+}
+
 Object.prototype.deepMerge = function(data) {
   if (Array.isArray(this)) {
-    if (Array.isArray(data)) {
-      data.forEach(element => {
-        if (!this.includes(element)) this.push(element);
-      })
-    } else {
-      Object.assign(this, data);
-    }
+    this.merge(data);
   } else {
     Object.entries(data).forEach(([key, value]) => {
-      if (typeof this[key] == 'object') {
-        this[key] = this[key].deepMerge(value);
+      if (typeof this[key] === 'object') {
+        this[key].deepMerge(value);
       } else {
         this[key] = value;
       }
     });
   }
-  return this;
 }
 
 Object.prototype.transformIf = function(condition, lambda) {
