@@ -92,15 +92,19 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const inc = percentage / 100;
+  const formatter = new Intl.NumberFormat('en-US', {
+   minimumFractionDigits: 2,      
+   maximumFractionDigits: 2,
+});
   for (key in prices) {
-    prices[key] = (prices[key] + (prices[key] * inc)).toFixed(2);
-    console.log(prices[key]);
+    const inc = percentage / 100;
+    prices[key] = (prices[key] + (prices[key] * inc));
+    prices[key] = Number(formatter.format(prices[key]));
   }
-
   console.log(prices);
 }
 increasePrices(50);
+// API para arredondamento(https://qastack.com.br/programming/1726630/formatting-a-number-with-exactly-two-decimals-in-javascript)
 
 function employeeCoverage(idOrName) {
   // seu código aqui
