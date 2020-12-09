@@ -9,59 +9,135 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+const animalsByIds = (...rest) => animals.filter(({ id }) => rest.some(idKey => idKey === id));
+
+const animalsOlderThan = (animal, key) =>
+  animals.some(({ residents, name }) => residents.every(({ age }) => name === animal && age > key));
+
+const employeeByName = employeeName =>
+  employees.find(
+    ({ firstName, lastName }) => firstName === employeeName || lastName === employeeName) || {};
+
+const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
+
+const isManager = id =>
+  employees.some(({ managers, id: idKey }) => managers.length === 1 && idKey === id);
+
+const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) =>
+  employees.push({ id, firstName, lastName, managers, responsibleFor });
+
+const animalCount = (species) => {
+  if (species) return animals.find(animal => animal.name === species).residents.length;
+  return animals.reduce(
+    (accAnimal, currAnimal) =>
+    Object.assign(accAnimal, { [currAnimal.name]: currAnimal.residents.length }),
+    {});
+};
+
+const entryCalculator = (entrants = 0) => {
+  let countAnimals = 0;
+  Object.keys(entrants).forEach(key => (countAnimals += prices[key] * entrants[key]));
+  return countAnimals;
+};
+
+const zooFilterSetting = ({ includeNames, sorted, sex } = []) => ({
+  includeNames,
+  sorted,
+  sex,
+});
+
+const
+zooZoneOnTheMap = zone => animals.filter(({ location }) => location === zone);
+const classifiedZooAnimals = (isSorted, arr) => (isSorted ? arr.sort() : arr);
+const sexZooAnimals = (isSex, arr) => (isSex ? arr.filter(({ sex }) => sex === isSex) : arr);
+const zooAnimalsByZone = (key, includeNames, sorted, sex) => (includeNames
+  ?
+zooZoneOnTheMap(key).map(({ name, residents }) => ({
+  [name]:
+    classifiedZooAnimals(
+      sorted, sexZooAnimals(
+        sex, residents)
+      .map(({ name: nameKey }) => nameKey)) })) :
+zooZoneOnTheMap(key).map(({ name }) => name));
+
+const animalMap = (options) => {
+  const config = zooFilterSetting(options);
+  const localeMap = {
+    NE: '',
+    NW: '',
+    SE: '',
+    SW: '',
+  };
+  Object.keys(localeMap).forEach((key) => {
+    const { includeNames, sorted, sex } = config;
+    localeMap[key] = zooAnimalsByZone(key, includeNames, sorted, sex);
+  });
+
+  return localeMap;
+};
+
+const schedule = (dayName) => {
+  let week = {};
+  Object.keys(hours).forEach((day) => {
+    const weekDay = !dayName ? day : dayName;
+    if (hours[weekDay].open === 0) {
+      week = { ...week, [weekDay]: 'CLOSED' };
+    } else {
+      week = {
+        ...week,
+        [weekDay]: `Open from ${hours[weekDay].open}am until ${hours[weekDay].close - 12}pm`,
+      };
+    }
+  });
+  return week;
+};
+
+const oldestFromFirstSpecies = (id) => {
+  const animalId = employees.find(({ id: idKey }) => idKey === id).responsibleFor;
+  const { residents } = animals.find(({ id: idKey }) => idKey === animalId[0]);
+  const firstAnimal = residents.reduce((accAnimal, currAnimal) => {
+    if (accAnimal.age > currAnimal.age) return accAnimal;
+    return currAnimal;
+  });
+  return Object.values(firstAnimal);
+};
+
+const increasePrices = (percentage) => {
+  const discount = ((percentage / 100) + 1);
+  prices.Adult = Math.round(prices.Adult * 100 * discount) / 100;
+  prices.Child = Math.round(prices.Child * 100 * discount) / 100;
+  prices.Senior = Math.round(prices.Senior * 100 * discount) / 100;
+  return prices;
+};
+
+function coverage(idOrName) {
+  const animalManager = employees.find(({ id, firstName, lastName }) =>
+  id === idOrName
+  || firstName === idOrName
+  || lastName === idOrName);
+
+  const residents = animalManager
+  .responsibleFor.map(animalsMannered => animals
+    .find(({ id }) => animalsMannered === id));
+
+  return {
+    [`${animalManager.firstName} ${animalManager.lastName}`]: residents.map(animalsMannered => animalsMannered.name) };
 }
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
-}
+const employeeCoverage = (idOrName) => {
+  if (idOrName) {
+    return coverage(idOrName);
+  }
 
-function employeeByName(employeeName) {
-  // seu código aqui
-}
-
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
-
-function isManager(id) {
-  // seu código aqui
-}
-
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-}
-
-function animalCount(species) {
-  // seu código aqui
-}
-
-function entryCalculator(entrants) {
-  // seu código aqui
-}
-
-function animalMap(options) {
-  // seu código aqui
-}
-
-function schedule(dayName) {
-  // seu código aqui
-}
-
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
-
-function increasePrices(percentage) {
-  // seu código aqui
-}
-
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+  let employeesCoverage = {};
+  const employeesId = employees.map(({ id }) => id);
+  employeesId.forEach((id) => {
+    employeesCoverage = { ...employeesCoverage, ...coverage(id) };
+  });
+  return employeesCoverage;
+};
 
 module.exports = {
   entryCalculator,
