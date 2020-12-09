@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals } = require('./data');
+const { animals, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -64,10 +64,18 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+
 }
 
 function schedule(dayName) {
   // seu código aqui
+  const result = Object.entries(data.hours).reduce((accumulator, [key,value]) => {
+    const { open, close } = value;
+    accumulator[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
+    return accumulator;
+  }, {});
+  if (typeof dayName === 'string' && dayName.length !== 0) return { [dayName]: result[dayName] };
+  return result;
 }
 
 function oldestFromFirstSpecies(id) {
@@ -76,10 +84,49 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  const increase = 1 + (percentage / 100);
+  Object.keys(prices).forEach(key => {
+    prices[key] = Math.round(prices[key] * 100) / 100
+  });
+}
+
+function getEmployeeById(idOrName) {
+  const employeeObjectById = data.employees.find(element => element.id === idOrName);
+  return employeeObjectById;
+}
+
+function getEmployeeByAnyName(idOrName) {
+  const employeeObjectByAnyName = data.employees.find(elemet => elemet.firstName === idOrName) ||
+  data.employees.find(elemet => elemet.lastName === idOrName);
+  return employeeObjectByAnyName;
+}
+
+function verifyingIdOrName(idOrName) {
+  const regex = /[0-9]/g;
+  if (typeof idOrName === 'string' && idOrName.match(regex) !== null) {
+    return getEmployeeById(idOrName);
+  }
+  return getEmployeeByAnyName(idOrName);
+}
+
+function getAnimalName(animalId) {
+  const animalName = data.animals.filter(animal => animal.id === animalId)
+    .map(element => element = element.name);
+  return animalName;
+}
+
+function getCoverageArray(idOrName) {
+  const coverageArray = verifyingIdOrName(idOrName).responsibleFor;
+  const animalsCoverage = [];
+  coverageArray.forEach( animalId => animalsCoverage.push(data.animals.filter( animal =>
+    animal.id === animalId ).map( element => element.name).toString()));
+  return animalsCoverage;
 }
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+  const animalName = data.animals.filter(animal => animal.id === animalId)
+  .map(element => element = element.name);
 }
 
 module.exports = {
