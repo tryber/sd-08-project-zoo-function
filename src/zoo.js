@@ -13,21 +13,14 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  //rest operator
-  //filter ids por parametro
   return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  //find retorna apenas 1
-  //every (todos os itens necessitam satisfazer a condicao)
-  //some (se ao menos um item retornar true)
   return animals.find(specie => specie.name === animal).residents.every(olderThan => olderThan.age >= age);
 }
 
 function employeeByName(employeeName) {
-  // undefined: {}
-  //find //fisrt === employeeName OU last === employeeName
   if (employeeName === undefined) {
     return {};
   }
@@ -35,14 +28,13 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  //spread operator (...)
   const newEmployee = Object.assign(personalInfo, associatedWith);
   return newEmployee;
 }
 
 function isManager(id) {
-  //some 
-  //find //includes (verificar se a pessoa possui pelo menos um id de manager)
+  // some 
+  // find //includes (verificar se a pessoa possui pelo menos um id de manager)
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
