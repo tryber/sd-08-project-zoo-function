@@ -55,9 +55,18 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employee.push({ id, firstName, lastName, managers, responsibleFor });
 }
 function animalCount(species) {
-  // seu código aqui
+  if (species === '' || species === ' ' || species === undefined) {
+    const lista = {};
+    data.animals.forEach((x) => {
+      lista[x.name] = x.residents.length;
+    });
+    return lista;
+  }
+  const animalSelect = arr.filter(x => (x.name === species))[0];
+  return animalSelect.popularity;
 }
 
+console.log(animalCount());
 function entryCalculator(entrants) {
   // seu código aqui
 }
