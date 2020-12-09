@@ -215,8 +215,46 @@ function increasePrices(percentage) {
   return data.prices;
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+const createCompleteList = () => {
+  const idForfullName = data.employees.reduce((accEmployees, employee) => {
+    const fullName = `${employee.firstName} ${employee.lastName}`;
+    const idForSpecie = data.animals.reduce((accSpecie, specie) => {
+      accSpecie[specie.name] = specie.id;
+      return accSpecie;
+    }, []);
+    const pairIdSpecie = Object.entries(idForSpecie);
+    const teste = employee.responsibleFor;
+    teste.forEach((id, index) =>
+      pairIdSpecie.forEach((pair) => {
+        if (id === pair[1]) {
+          teste[index] = pair[0];
+        }
+      }),
+    );
+    accEmployees[fullName] = teste;
+    return accEmployees;
+  }, {});
+  return idForfullName;
+};
+
+function employeeCoverage(idOrName = '') {
+  if (idOrName === '') {
+    return createCompleteList();
+  } else if (idOrName.length > 0 && idOrName.length < 36) {
+    const idForfullNamelist = Object.entries(createCompleteList());
+    const speciesByEmployee = idForfullNamelist.find(employee => employee[0].includes(idOrName));
+    return {
+      [speciesByEmployee[0]]: speciesByEmployee[1],
+    };
+  }
+  const emploieeFound = data.employees.find(employee => employee.id === idOrName);
+  const employeeName = emploieeFound.firstName;
+  const idForfullNamelist = Object.entries(createCompleteList());
+  const speciesByEmployee = idForfullNamelist.find(employee =>
+  employee[0].includes(employeeName));
+  return {
+    [speciesByEmployee[0]]: speciesByEmployee[1],
+  };
 }
 
 module.exports = {
