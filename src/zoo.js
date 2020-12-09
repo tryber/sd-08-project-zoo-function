@@ -41,7 +41,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
-  return employees.filter(employee => employee.id === id).some(elem => elem.managers !== []);
+  return employees.some((elem, index) => elem.managers[index] === id);
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -51,6 +51,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
+
 }
 
 function entryCalculator(entrants) {
@@ -75,6 +76,7 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+  return employee.filter
 }
 
 module.exports = {
