@@ -94,14 +94,14 @@ function entryCalculator(entrants) {
     const obj = Object.entries(entrants);
     total = obj.reduce((acc, curr) => {
       if (curr[0] === 'Adult') {
-      acc += curr[1] * 49.99;
+        acc += curr[1] * 49.99;
       } else if (curr[0] === 'Child') {
-      acc += curr[1] * 20.99;
+        acc += curr[1] * 20.99;
       } else if (curr[0] === 'Senior') {
-      acc += curr[1] * 24.99;
+        acc += curr[1] * 24.99;
       }
-    return acc;
-  }, 0);
+      return acc;
+    }, 0);
   }
   return total;
 }
