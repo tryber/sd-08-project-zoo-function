@@ -179,10 +179,19 @@ function schedule(dayName) {
   }
   return table;
 }
-console.log(schedule('Sunday'));
+const higherAge = (age) => {
+  return age.reduce((maior, value) => {
+    if (value > maior) maior = value;
+    return maior;
+  });
+}
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const employeeInfo = employees.find(employee => employee.id === id);
+  const firstAnimalResidents = animalsByIds(employeeInfo.responsibleFor[0])[0].residents;
+  const animalsAge = firstAnimalResidents.map(animal => animal.age);
+  const higherAnimalAge = firstAnimalResidents.find(animal => animal.age === higherAge(animalsAge));
+  return [higherAnimalAge.name, higherAnimalAge.sex, higherAnimalAge.age];
 }
 
 function increasePrices(percentage) {
