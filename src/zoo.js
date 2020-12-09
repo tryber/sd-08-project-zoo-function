@@ -143,16 +143,16 @@ function entryCalculator(entrants) {
   return price;
 }
 // Funções para solução do requisito 9 -------------------------------------->
-const locationObj = { NE: [], NW: [], SE: [], SW: [] };
-function makePerRegion() {
+
+function makePerRegion(arrayObj) {
   animals.forEach((objAnimals) => {
     const { name, location } = objAnimals;
-    locationObj[location].push(name);
+    arrayObj[location].push(name);
   });
-  return locationObj;
+  return arrayObj;
 }
 
-function makeIncludeNames() {
+function makeIncludeNames(arrayObj) {
   animals.forEach((objAnimals) => {
     const { name, location, residents } = objAnimals;
     const object = {};
@@ -161,12 +161,12 @@ function makeIncludeNames() {
       arrayResidentsName.push(objResident.name);
     });
     object[name] = arrayResidentsName;
-    locationObj[location].push(object);
+    arrayObj[location].push(object);
   });
-  return locationObj;
+  return arrayObj;
 }
 
-function filterSex(sex) {
+function filterSex(arrayObj, sex) {
   animals.forEach((objAnimals) => {
     const { name, location, residents } = objAnimals;
     const animalFilter = residents.filter(animal => animal.sex === sex);
@@ -174,35 +174,35 @@ function filterSex(sex) {
     const arrayAnimals = [];
     animalFilter.forEach((obj) => { arrayAnimals.push(obj.name); });
     newObj[name] = arrayAnimals;
-    locationObj[location].push(newObj);
+    arrayObj[location].push(newObj);
   });
-  return locationObj;
+  return arrayObj;
 }
 
 function sortedArrays(objToSort) {
   const keys = Object.keys(objToSort);
   keys.forEach((location) => {
     objToSort[location].forEach((obj) => {
-      const values = Object.keys(obj);
-      obj[values].sort();
+      const values = Object.values(obj);
+      console.log(values);
+      values.sort();
     });
   });
   return objToSort;
 }
 
 function animalMap(options) {
+  const locationObj = { NE: [], NW: [], SE: [], SW: [] };
   let objToReturn;
   let objToReturnSorted;
   let objSex;
-  if (!options) {
-    return makePerRegion();
-  }
+  objToReturn = makePerRegion(locationObj);
   const { includeNames, sex, sorted } = options;
   if (includeNames === true && !sex) {
-    objToReturn = makeIncludeNames();
+    objToReturn = makeIncludeNames(locationObj);
   }
   if (sex !== undefined && includeNames === true) {
-    objSex = filterSex(sex);
+    objSex = filterSex(locationObj, sex);
     objToReturn = objSex;
   }
   if (sorted === true && includeNames === true) {
@@ -211,8 +211,7 @@ function animalMap(options) {
   }
   return objToReturn;
 }
-console.log(animalMap({ includeNames: true }));
-
+animalMap({ includeNames: true, sex: 'female', sorted: true });
 function schedule(dayName) {
   const objReturn = {};
   const entries = Object.entries(hours);
