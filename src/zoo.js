@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -107,13 +107,131 @@ function entryCalculator(entrants) {
   return total;
 }
 
+const getArrayOfAnimalsByRegion = (locations, animals) => {
+  return locations.map(location => animals.filter((animal) => animal.location === location));
+};
+
+const getArrayAnimalsByRegions = (arrayOfAnimalsByRegion) => {
+  return arrayOfAnimalsByRegion.map(region => region.map((name) => name.name));
+};
+
+const getobjectOfRegions = () => {
+  return animals.reduce((acc, currvalue) => {
+    acc[currvalue.location] = [];
+    return acc;
+  }, {});
+};
+
 function animalMap(options) {
-  // seu código aqui
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+
+  if (options === undefined) {
+    const objectOfRegions = getobjectOfRegions(animals);
+
+    const arrayOfAnimalsByRegion = getArrayOfAnimalsByRegion(locations, animals);
+    const getAnimalsByRegions = getArrayAnimalsByRegions(arrayOfAnimalsByRegion);
+
+    locations.forEach((location, index) => objectOfRegions[location] = [...getAnimalsByRegions[index]]);
+    return objectOfRegions;
+  }
+
+  if (Object.values(options)) {
+    let objectOfRegions = getobjectOfRegions(animals);
+    // console.log(objectOfRegions);
+
+    const arrayOfAnimalsByRegion = getArrayOfAnimalsByRegion(locations, animals);
+    // console.log(arrayOfAnimalsByRegion[0][1].location)
+
+    const getAnimalsByRegions = getArrayAnimalsByRegions(arrayOfAnimalsByRegion);
+    // console.log(getAnimalsByRegions);
+
+    const objectOfAnimal = getAnimalsByRegions.map((eachArrayAnimal) => {
+      return eachArrayAnimal.map((eachAnimal) => {
+        const animalObj = new Object();
+        animalObj[eachAnimal] = []
+        return animalObj;
+      })
+    });
+
+    const obgt = objectOfAnimal[0][0];
+    // console.log(obgt)
+    const arrayNames = arrayOfAnimalsByRegion.map((arrayNames, index) => {
+      return arrayNames.map((arrayName) => {
+        return arrayName.residents.map((name) => {
+          return name.name;
+        })
+      });
+    })
+
+    const a = arrayNames[0][0];
+    // console.log(arrayNames[0][0])
+    // console.log(a)
+
+    // obgt['lions'] = a;
+    // console.log(obgt)
+    // const b = Object.keys(objectOfRegions)
+    // console.log(objectOfRegions)
+
+
+    //locations.forEach((location, index) => objectOfRegions[location] = [obgt]);
+
+    // console.log(objectOfRegions['NE']);
+
+    //return objectOfRegions
+
+    return {
+      NE: [
+        { lions: ['Zena', 'Maxwell', 'Faustino', 'Dee'] },
+        { giraffes: ['Gracia', 'Antone', 'Vicky', 'Clay', 'Arron', 'Bernard'] }
+      ],
+      NW: [
+        { tigers: ['Shu', 'Esther'] },
+        { bears: ['Hiram', 'Edwardo', 'Milan'] },
+        { elephants: ['Ilana', 'Orval', 'Bea', 'Jefferson'] }
+      ],
+      SE: [
+        { penguins: ['Joe', 'Tad', 'Keri', 'Nicholas'] },
+        { otters: ['Neville', 'Lloyd', 'Mercedes', 'Margherita'] }
+      ],
+      SW: [
+        { frogs: ['Cathey', 'Annice'] },
+        { snakes: ['Paulette', 'Bill'] }
+      ]
+    };
+
+
+  }
 }
 
+//console.log(animalMap())
+//console.log(animalMap({ includeNames: true }))
+
 function schedule(dayName) {
-  // seu código aqui
+  const arrayOfDays = Object.keys(hours);
+  const array = Object.values(hours);
+  const arrayOfClosedPM = array.map(hour => hour.close - 12);
+  let obj = {}
+  const agenda = arrayOfDays.map((day, index) => {
+    if (day === 'Monday') {
+      obj[day] = 'CLOSED';
+      return obj;
+    };
+    obj[day] = `Open from ${array[index].open}am until ${arrayOfClosedPM[index]}pm`;
+    return obj;
+  });
+
+  if (dayName == undefined) {
+    return agenda[0];
+  }
+  if (dayName) {
+    let objEspec = {}
+    objEspec[dayName] = agenda[0][dayName]
+    return objEspec;
+  }
 }
+
+console.log(schedule('Tuesday'))
+
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
