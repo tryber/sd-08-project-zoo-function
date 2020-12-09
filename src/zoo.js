@@ -52,7 +52,7 @@ function isManager(id) {
   return false;
 }
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  return employee.push({ id, firstName, lastName, managers, responsibleFor })
+  return employee.push({ id, firstName, lastName, managers, responsibleFor });
 }
 function animalCount(species) {
   // seu código aqui
