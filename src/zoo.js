@@ -47,21 +47,30 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  const personalInfo = {personalInfor} = {id, firstName, lastName};
-  const associatedWith = {managers, responsibleFor};
+  console.log(id);
+  console.log(firstName);
+  console.log(lastName);
+  console.log(managers);
+  // if(managers.length = 0) managers = [];
+  // if(responsibleFor.length = 0) managers = [];
+  console.log(responsibleFor);
+  const personalInfo = { id, firstName, lastName };
+  const associatedWith = { managers, responsibleFor };
   console.log(personalInfo);
   console.log(associatedWith);
   employees.push(createEmployee(personalInfo, associatedWith));
 }
-addEmployee('4141da1c-a6ed-4cf7-90c4-99c657ba4ef3', 'Jane', 'Doe',
-      [
-        '546fe3d4-2d81-4bb4-83a7-92d5b7048d17',
-        'a67a36ee-3765-4c74-8e0f-13f881f6588a',
-      ],
-      [
-        'ee6139bf-b526-4653-9e1e-1ca128d0ad2e',
-        '210fcd23-aa7b-4975-91b7-0230ebb27b99',
-      ]);
+addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe');
+
+// addEmployee('4141da1c-a6ed-4cf7-90c4-99c657ba4ef3', 'Jane', 'Doe',
+//       [
+//         '546fe3d4-2d81-4bb4-83a7-92d5b7048d17',
+//         'a67a36ee-3765-4c74-8e0f-13f881f6588a',
+//       ],
+//       [
+//         'ee6139bf-b526-4653-9e1e-1ca128d0ad2e',
+//         '210fcd23-aa7b-4975-91b7-0230ebb27b99',
+//       ]);
 
 function animalCount(species) {
   const AnimalObject = {};
