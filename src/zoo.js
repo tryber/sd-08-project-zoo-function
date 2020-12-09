@@ -69,9 +69,12 @@ function oldestFromFirstSpecies(id) {
   .sort((recent, old) => old.age - recent.age);
   return Object.values(result[0]);
 }
-
+// resolvi com a ajuda do plantão
 function increasePrices(percentage) {
-  // seu código aqui
+  const increase = 1 + (percentage / 100);
+  Object.keys(prices).forEach(key => (
+    prices[key] = Math.round(prices[key] * increase * 100) / 100
+  ));
 }
 
 function employeeCoverage(idOrName) {
