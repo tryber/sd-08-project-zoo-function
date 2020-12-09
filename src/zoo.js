@@ -107,21 +107,6 @@ function entryCalculator(entrants) {
   return total;
 }
 
-const getArrayOfAnimalsByRegion = (locations, animals) => {
-  return locations.map(location => animals.filter((animal) => animal.location === location));
-};
-
-const getArrayAnimalsByRegions = (arrayOfAnimalsByRegion) => {
-  return arrayOfAnimalsByRegion.map(region => region.map((name) => name.name));
-};
-
-const getobjectOfRegions = () => {
-  return animals.reduce((acc, currvalue) => {
-    acc[currvalue.location] = [];
-    return acc;
-  }, {});
-};
-
 function animalMap(options) {
 }
 
@@ -129,28 +114,23 @@ function schedule(dayName) {
   const arrayOfDays = Object.keys(hours);
   const array = Object.values(hours);
   const arrayOfClosedPM = array.map(hour => hour.close - 12);
-  let obj = {}
+  const obj = {};
   const agenda = arrayOfDays.map((day, index) => {
     if (day === 'Monday') {
       obj[day] = 'CLOSED';
       return obj;
-    };
+    }
     obj[day] = `Open from ${array[index].open}am until ${arrayOfClosedPM[index]}pm`;
     return obj;
   });
 
-  if (dayName == undefined) {
+  if (dayName === undefined) {
     return agenda[0];
   }
-  if (dayName) {
-    let objEspec = {}
-    objEspec[dayName] = agenda[0][dayName]
-    return objEspec;
-  }
+  let objEspec = {}
+  objEspec[dayName] = agenda[0][dayName];
+  return objEspec;
 }
-
-console.log(schedule('Tuesday'))
-
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
