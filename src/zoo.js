@@ -104,8 +104,28 @@ function increasePrices(percentage) {
   prices.Senior = Math.round(Senior * p * 100) / 100;
 }
 
+const nameById = (id) => {
+  const animal = animals.find(anim => anim.id === id);
+  return animal.name;
+};
+
+const animalArray = (arr) => {
+  const array = [];
+  arr.forEach(animal => {
+    array.push(nameById(animal));
+  });
+  return array;
+};
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) {
+    return employees.reduce((acc, emp) => {
+      Object.assign(acc, { [`${emp.firstName} ${emp.lastName}`]: animalArray(emp.responsibleFor) });
+      return acc;
+    }, {});
+  }
+  const employee = employees.find(emp => Object.values(emp).find(name => name === idOrName));
+  return { [`${employee.firstName} ${employee.lastName}`]: animalArray(employee.responsibleFor) };
 }
 
 module.exports = {
