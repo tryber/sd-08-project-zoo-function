@@ -58,8 +58,10 @@ function animalCount(species) {
   return data.animals.find(animal => animal.name === species).residents.length;
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator({ Adult = 0, Senior = 0, Child = 0 } = 0) {
+  const arrArg = [Adult, Senior, Child];
+  return Object.values(data.prices)
+    .reduce((acc, curr, index) => (acc + (curr * arrArg[index])), 0);
 }
 
 function animalMap(options) {
