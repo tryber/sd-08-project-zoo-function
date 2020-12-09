@@ -12,11 +12,11 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  return animals.filter(({ id }) => ids.includes(id));
+  return data.animals.filter(({ id }) => ids.includes(id));
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.find(current =>
+  return data.animals.find(current =>
     current.name === animal).residents.every(resident => resident.age >= age);
 }
 
@@ -27,7 +27,7 @@ function fetchEmployeeByName(employeeName) {
 
 function employeeByName(employeeName) {
   if (!employeeName) return {};
-  return fetchEmployeeByName(employeeName)
+  return fetchEmployeeByName(employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -48,9 +48,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCountObject() {
   const newObject = {};
   if (typeof species !== 'string' || species.length === 0) {
-    animals.forEach(element => (newObject[element.name] = element.residents.length));
-    return newObject;
+    data.animals.forEach(element => (newObject[element.name] = element.residents.length));
   }
+  return newObject;
 }
 
 function animalCount(species) {
@@ -58,7 +58,7 @@ function animalCount(species) {
   if (!species) {
     return animalCountObject();
   }
-  return animals.find(({ name }) => name === species).residents.length;
+  return data.animals.find(({ name }) => name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
@@ -86,8 +86,8 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  return Object.keys(prices).forEach(key => {
-    prices[key] = Math.round(prices[key] * 100) / 100;
+  return Object.keys(prices).forEach((key) => {
+    data.prices[key] = Math.round(prices[key] * 100) / 100;
   });
 }
 
@@ -97,8 +97,7 @@ function getEmployeeById(idOrName) {
 }
 
 function getEmployeeByAnyName(idOrName) {
-  const employeeObjectByAnyName = data.employees.find(elemet => elemet.firstName === idOrName) ||
-    data.employees.find(elemet => elemet.lastName === idOrName);
+  const employeeObjectByAnyName = fetchEmployeeByName(idOrName);
   return employeeObjectByAnyName;
 }
 
@@ -123,7 +122,7 @@ function getCoverageArray(idOrName) {
 function employeeFullName(idOrName) {
   const firstName = verifyingIdOrName(idOrName).firstName;
   const lastName = verifyingIdOrName(idOrName).lastName;
-  const fullName = firstName + ' ' + lastName;
+  const fullName = `${firstName} ${lastName}`;
   return fullName;
 }
 
@@ -136,7 +135,7 @@ function allEmployeesCoverage() {
 
 function employeeCoverage(idOrName) {
   if (!idOrName) {
-    return allEmployeesCoverage()
+    return allEmployeesCoverage();
   }
   const employeeCoverageObject = {};
   getCoverageArray(idOrName).forEach(animalId =>
