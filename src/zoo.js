@@ -90,6 +90,7 @@ function increasePrices(percentage) {
   });
 }
 
+
 function getEmployeeById(idOrName) {
   const employeeObjectById = data.employees.find(element => element.id === idOrName);
   return employeeObjectById;
@@ -109,24 +110,40 @@ function verifyingIdOrName(idOrName) {
   return getEmployeeByAnyName(idOrName);
 }
 
-function getAnimalName(animalId) {
-  const animalName = data.animals.filter(animal => animal.id === animalId)
-    .map(element => element = element.name);
-  return animalName;
-}
-
 function getCoverageArray(idOrName) {
   const coverageArray = verifyingIdOrName(idOrName).responsibleFor;
   const animalsCoverage = [];
-  coverageArray.forEach( animalId => animalsCoverage.push(data.animals.filter( animal =>
-    animal.id === animalId ).map( element => element.name).toString()));
+  coverageArray.forEach( animalId => animalsCoverage.push(data.animals
+    .filter( animal => animal.id === animalId )
+      .map( element => element.name)
+        .toString()));
   return animalsCoverage;
 }
 
+function employeeFullName(idOrName) {
+  const firstName = verifyingIdOrName(idOrName).firstName;
+  const lastName = verifyingIdOrName(idOrName).lastName;
+  const fullName = firstName + ' ' + lastName;
+  return fullName;
+}
+
+function allEmployeesCoverage() {
+  return data.employees.reduce((acc, employee) => {
+    acc[employeeFullName(employee.id)] = getCoverageArray(employee.id);
+    return acc;
+  }, {});
+}
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
-  const animalName = data.animals.filter(animal => animal.id === animalId)
-  .map(element => element = element.name);
+  if (!idOrName) {
+    return allEmployeesCoverage()
+  }
+  // const employeeCoverageObject = {};
+  const employeeCoverageObject = {};
+  getCoverageArray(idOrName).forEach( animalId =>
+    (employeeCoverageObject[employeeFullName(idOrName)] = getCoverageArray(idOrName)));
+  return employeeCoverageObject;
+  // return employeeCoverageObject;
 }
 
 module.exports = {
