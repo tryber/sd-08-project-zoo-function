@@ -179,12 +179,11 @@ function schedule(dayName) {
   }
   return table;
 }
-const higherAge = (age) => {
-  return age.reduce((maior, value) => {
-    if (value > maior) maior = value;
-    return maior;
-  });
-}
+const higherAge = age => age.reduce((maior, value) => {
+  if (value > maior) maior = value;
+  return maior;
+});
+
 
 function oldestFromFirstSpecies(id) {
   const employeeInfo = employees.find(employee => employee.id === id);
@@ -194,8 +193,17 @@ function oldestFromFirstSpecies(id) {
   return [higherAnimalAge.name, higherAnimalAge.sex, higherAnimalAge.age];
 }
 
+// Utilizei a função criada pelo Tandy para arredondamento de números
+/** Source: https://forum.betrybe.com/t/funcao-arredondar-para-cima/337 */
+const roundUp = (num, decimal) =>
+parseFloat((num + (4 / ((10 ** (decimal + 1))))).toFixed(decimal));
+
 function increasePrices(percentage) {
-  // seu código aqui
+  const prices = data.prices;
+  prices.Adult = roundUp(prices.Adult += prices.Adult * (percentage / 100), 2);
+  prices.Senior = roundUp(prices.Senior += prices.Senior * (percentage / 100), 2);
+  prices.Child = roundUp(prices.Child += prices.Child * (percentage / 100), 2);
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
