@@ -127,37 +127,18 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const especieId = data.employees.find(employee => employee.id === id).responsibleFor[0],
+  especie = data.animals.find(animal => animal.id === especieId),
+  olderAnimalAge = Math.max(...especie.residents.map(resident => resident.age));
+  return Object.values(especie.residents.find(resident => resident.age === olderAnimalAge));
 }
 
 function increasePrices(percentage) {
-  return animalIds.map(id => animals.find(animal => animal.id === id).name);
+  // seu código aqui
 }
 
 function employeeCoverage(idOrName) {
-  const getAnimals = (animals, ids, key) => ids.map(id => animals.find(animal => animal[key] === id))
-  .map(lista => lista.name);
-
-const getResponseAnimal = (animal, employees) => {
-  const result = employees.reduce((acumulator, previous) => {
-    const name = `${previous.firstName} ${previous.lastName}`;
-    acumulator[name] = getAnimals(animal, previous.responsibleFor, 'id');
-    return acumulator;
-  }, {});
-  console.log(result);
-  return result;
-};
-
-const getFind = (idOrName, animal, employees) => {
-  const result = employees.reduce((acc, employee) => {
-    const name = `${employee.firstName} ${employee.lastName}`;
-    if (name.includes(idOrName) || employee.id === idOrName) {
-      acc[name] = getAnimals(animal, employee.responsibleFor, 'id');
-    }
-    return acc;
-  }, {});
-  return result;
-};
+ //seu código aqui
 }
 
 module.exports = {
