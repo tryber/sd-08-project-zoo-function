@@ -106,8 +106,22 @@ function increasePrices(percentage) {
   // seu código aqui
 }
 
+function matchdeanimal(funcinario) {
+  return funcinario.responsibleFor
+    .map(id => data.animals.find(animal => id === animal.id).name);
+}
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  /* const obj = {`${data.employees.firstName} ${data.employees.lastName} `} */
+  const empregadoinfo = employeeByName(idOrName) ||
+    data.employees.find(employee => employee.id === idOrName);
+  return idOrName ? {
+    [`${empregadoinfo.firstName} ${empregadoinfo.lastName}`]: matchdeanimal(empregadoinfo),
+  }
+    : data.employees.reduce((acc, employee) => {
+      acc[`${employee.firstName} ${employee.lastName}`] = matchdeanimal(employee);
+      return acc;
+    }, {});
 }
 
 module.exports = {
