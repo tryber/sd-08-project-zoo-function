@@ -9,27 +9,23 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  // seu código aqui
   return animals.filter(({ id }) => ids.includes(id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
   return animals.find(current =>
-  current.name === animal).residents.every(resident => resident.age >= age);
+    current.name === animal).residents.every(resident => resident.age >= age);
 }
 
 function fetchEmployeeByName(employeeName) {
-  return data.employees.find(element => element.firstName === employeeName) ||
-  data.employees.find(element => element.lastName === employeeName);
+  return data.employees.find(employee => employee.firstName === employeeName) ||
+    data.employees.find(employee => employee.lastName === employeeName);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
   if (!employeeName) return {};
   return fetchEmployeeByName(employeeName)
 }
@@ -60,34 +56,23 @@ function animalCountObject() {
 function animalCount(species) {
   // seu código aqui
   if (!species) {
-    return animalCountObject()
+    return animalCountObject();
   }
   return animals.find(({ name }) => name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
   if (typeof entrants === 'undefined') return 0;
   return Object.entries(entrants).reduce((accumulator, [key, value]) =>
-  accumulator + (data.prices[key] * value), 0);
+    accumulator + (data.prices[key] * value), 0);
 }
 
 function animalMap(options) {
   // seu código aqui
-
-}
-
-function newSchedule() {
-  Object.entries(data.hours).reduce((accumulator, [key,value]) => {
-    const { open, close } = value;
-    accumulator[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
-    return accumulator;
-  }, {});
 }
 
 function schedule(dayName) {
-  // seu código aqui
-  const result = Object.entries(data.hours).reduce((accumulator, [key,value]) => {
+  const result = Object.entries(data.hours).reduce((accumulator, [key, value]) => {
     const { open, close } = value;
     accumulator[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
     return accumulator;
@@ -101,13 +86,10 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
-  const increase = 1 + (percentage / 100);
-  Object.keys(prices).forEach(key => {
-    prices[key] = Math.round(prices[key] * 100) / 100
+  return Object.keys(prices).forEach(key => {
+    prices[key] = Math.round(prices[key] * 100) / 100;
   });
 }
-
 
 function getEmployeeById(idOrName) {
   const employeeObjectById = data.employees.find(element => element.id === idOrName);
@@ -116,7 +98,7 @@ function getEmployeeById(idOrName) {
 
 function getEmployeeByAnyName(idOrName) {
   const employeeObjectByAnyName = data.employees.find(elemet => elemet.firstName === idOrName) ||
-  data.employees.find(elemet => elemet.lastName === idOrName);
+    data.employees.find(elemet => elemet.lastName === idOrName);
   return employeeObjectByAnyName;
 }
 
@@ -131,10 +113,10 @@ function verifyingIdOrName(idOrName) {
 function getCoverageArray(idOrName) {
   const coverageArray = verifyingIdOrName(idOrName).responsibleFor;
   const animalsCoverage = [];
-  coverageArray.forEach( animalId => animalsCoverage.push(data.animals
-    .filter( animal => animal.id === animalId )
-      .map( element => element.name)
-        .toString()));
+  coverageArray.forEach(animalId => animalsCoverage.push(data.animals
+    .filter(animal => animal.id === animalId)
+    .map(element => element.name)
+    .toString()));
   return animalsCoverage;
 }
 
@@ -156,12 +138,10 @@ function employeeCoverage(idOrName) {
   if (!idOrName) {
     return allEmployeesCoverage()
   }
-  // const employeeCoverageObject = {};
   const employeeCoverageObject = {};
-  getCoverageArray(idOrName).forEach( animalId =>
+  getCoverageArray(idOrName).forEach(animalId =>
     (employeeCoverageObject[employeeFullName(idOrName)] = getCoverageArray(idOrName)));
   return employeeCoverageObject;
-  // return employeeCoverageObject;
 }
 
 module.exports = {
