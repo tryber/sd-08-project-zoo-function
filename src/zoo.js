@@ -88,24 +88,48 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   const prices = data.prices;
-  const { Adult, Child, Senior } = prices;
   let total = 0;
-  if (!entrants) {
-    total = 0;
-  } else if (Object.keys(entrants).length === 0) {
+  if (!entrants || Object.keys(entrants).length === 0) {
     total = 0;
   } else if (entrants) {
-    entrants.Adult = (typeof entrants.Adult !== 'undefined') ? entrants.Adult : 0;
-    entrants.Child = (typeof entrants.Child !== 'undefined') ? entrants.Child : 0;
-    entrants.Senior = (typeof entrants.Senior !== 'undefined') ? entrants.Senior : 0;
-    total = (entrants.Adult * Adult) + (entrants.Child * Child) + (entrants.Senior * Senior);
+  const obj = Object.entries(entrants);
+  total = obj.reduce((acc, curr) => {
+    if (curr[0] === 'Adult') {
+      acc += curr[1] * 49.99;
+    } else if (curr[0] === 'Child') {
+      acc += curr[1] * 20.99;
+    } else if (curr[0] === 'Senior') {
+      acc += curr[1] * 24.99;
+    } else {
+      acc;
+    }
+    return acc;
+  }, 0);
   }
   return total;
 }
-  
 
 function animalMap(options) {
-  // seu código aqui
+  // const animals = data.animals
+  // let animalMap = {};
+  // if (!options) {
+  //   const { location } = animals;
+  //   animalMap = Object.keys(location). //usar map ou reduce com filter
+
+  // }
+  // A função é responsável pelo mapeamento geográfico das espécies e 
+  // seus animais, podendo ainda filtrá-los por ordem alfabética e gênero, por exemplo
+
+  // **Observações técnicas**
+  // - Analise o teste unitário para entender os retornos que são esperados para esta função
+  // **O que será avaliado**
+
+  // - Sem parâmetros, retorna animais categorizados por localização
+  // - Com a opção `includeNames: true` especificada, retorna nomes de animais
+  // - Com a opção `sorted: true` especificada, retorna nomes de animais ordenados
+  // - Com a opção `sex: 'female'` ou `sex: 'male'` especificada, retorna somente nomes de animais macho/fêmea
+  // - Com a opção `sex: 'female'` ou `sex: 'male'` especificada e a opção `sort: true` especificada, retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
+  // - Só retorna informações ordenadas e com sexo se a opção `includeNames: true` for especificada
 }
 
 function schedule(dayName) {
