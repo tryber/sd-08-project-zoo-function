@@ -127,7 +127,7 @@ function schedule(dayName) {
   if (dayName === undefined) {
     return agenda[0];
   }
-  let objEspec = {}
+  const objEspec = {};
   objEspec[dayName] = agenda[0][dayName];
   return objEspec;
 }
