@@ -13,6 +13,8 @@ const { animals } = require('./data');
 const data = require('./data');
 const { employees } = require('./data');
 const data2 = require('./data');
+const { prices } = require('./data');
+const data3 = require('./data');
 
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
@@ -90,8 +92,15 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const inc = percentage / 100;
+  for (key in prices) {
+    prices[key] = (prices[key] + (prices[key] * inc)).toFixed(2);
+    console.log(prices[key]);
+  }
+
+  console.log(prices);
 }
+increasePrices(50);
 
 function employeeCoverage(idOrName) {
   // seu código aqui
