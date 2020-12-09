@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 const animalsByIds = (...ids) => {
@@ -22,13 +22,13 @@ const animalsByIds = (...ids) => {
 };
 
 const animalsOlderThan = (species, age) => {
-  const animalsSearch = data.animals.find(animal => animal.name === species);
+  const animalsSearch = animals.find(animal => animal.name === species);
   const animalsResidents = Object.values(animalsSearch.residents);
   return ((animalsResidents.filter(animal => animal.age < age)).length === 0);
 };
 
 const employeeByName = (EmployeeName) => {
-  const finder = data.employees.find(employee =>
+  const finder = employees.find(employee =>
     (employee.firstName === EmployeeName || employee.lastName === EmployeeName));
   if (typeof finder === 'object') {
     return finder;
@@ -44,7 +44,7 @@ const createEmployee = ({ id, firstName, lastName }, { managers, responsibleFor 
 
 const isManager = (id) => {
   const listManagerId = [];
-  data.employees.forEach((employee) => {
+  employees.forEach((employee) => {
     employee.managers.forEach((manager) => {
       if (!listManagerId.includes(manager)) {
         listManagerId.push(manager);
@@ -59,20 +59,20 @@ const isManager = (id) => {
 
 const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => {
   const newEmployeeForAdd = { id, firstName, lastName, managers, responsibleFor };
-  return data.employees.push(newEmployeeForAdd);
+  return employees.push(newEmployeeForAdd);
 };
 
 const animalCount = (species) => {
   const listSpecies = [];
-  data.animals.forEach(animal => listSpecies.push(animal.name));
+  animals.forEach(animal => listSpecies.push(animal.name));
 
   if (listSpecies.includes(species)) {
-    return (data.animals.find(animal => animal.name === species)).residents.length;
+    return (animals.find(animal => animal.name === species)).residents.length;
   }
   const allCounted = {};
   listSpecies.forEach((animalSpecies) => {
     (allCounted[animalSpecies]) =
-      (data.animals.find(animal => animal.name === animalSpecies)).residents.length;
+      (animals.find(animal => animal.name === animalSpecies)).residents.length;
   });
   return allCounted;
 };
@@ -82,9 +82,9 @@ const entryCalculator = (entrants) => {
     const visitors = entrants;
     const defaultVisitors = { Adult: 0, Child: 0, Senior: 0 };
     Object.assign(defaultVisitors, visitors);
-    const adultPay = data.prices.Adult * defaultVisitors.Adult;
-    const childPay = data.prices.Child * defaultVisitors.Child;
-    const seniorPay = data.prices.Senior * defaultVisitors.Senior;
+    const adultPay = prices.Adult * defaultVisitors.Adult;
+    const childPay = prices.Child * defaultVisitors.Child;
+    const seniorPay = prices.Senior * defaultVisitors.Senior;
 
     return (adultPay + childPay + seniorPay);
   }
@@ -97,7 +97,7 @@ const filterByRegion = () => {
   const filtred = {};
   regions.map(region => (
   Object.assign(filtred, ({
-    [region]: data.animals.filter(animalReg =>
+    [region]: animals.filter(animalReg =>
       animalReg.location === region).map(animal => animal.name),
   }
   ))));
@@ -109,7 +109,7 @@ const objListBySex = (sex, sort) => {
   if (sort === true) {
     regions.map(region => (
     Object.assign(filtredSex, ({
-      [region]: data.animals.filter(animalReg =>
+      [region]: animals.filter(animalReg =>
         animalReg.location === region).map(animal =>
           ({ [animal.name]: (animal.residents.filter(sexResident =>
             sexResident.sex === sex)).map(resident => resident.name).sort() })),
@@ -117,7 +117,7 @@ const objListBySex = (sex, sort) => {
   } else {
     regions.map(region => (
     Object.assign(filtredSex, ({
-      [region]: data.animals.filter(animalReg =>
+      [region]: animals.filter(animalReg =>
         animalReg.location === region).map(animal =>
           ({ [animal.name]: (animal.residents.filter(sexResident =>
             sexResident.sex === sex)).map(resident => resident.name) })),
@@ -131,14 +131,14 @@ const objListWithAnimalsNames = (sex, sort) => {
   if (sort === true) {
     regions.map(region => (
     Object.assign(filtredName, ({
-      [region]: data.animals.filter(animalReg =>
+      [region]: animals.filter(animalReg =>
         animalReg.location === region).map(animal =>
             ({ [animal.name]: animal.residents.map(resident => resident.name).sort() })),
     }))));
   } else {
     regions.map(region => (
       Object.assign(filtredName, ({
-        [region]: data.animals.filter(animalReg =>
+        [region]: animals.filter(animalReg =>
           animalReg.location === region).map(animal =>
               ({ [animal.name]: animal.residents.map(resident => resident.name) })),
       }))));
@@ -165,8 +165,8 @@ const animalMap = (options) => {
 
 const schedule = (dayName) => {
   const result = {};
-  const dayFinder = day => data.hours[day];
-  const hoursKeys = Object.keys(data.hours);
+  const dayFinder = day => hours[day];
+  const hoursKeys = Object.keys(hours);
   if (hoursKeys.includes(dayName) === true && dayName !== 'Monday') {
     Object.assign(result, ({ [dayName]: `Open from ${Object.values(dayFinder(dayName))[0]}am until ${Object.values(dayFinder(dayName))[1] - 12}pm` }));
     return result;
@@ -183,7 +183,7 @@ const schedule = (dayName) => {
 };
 
 const oldestFromFirstSpecies = (id) => {
-  const finderById = data.employees.find(employee => employee.id === id);
+  const finderById = employees.find(employee => employee.id === id);
   const firstSpecies = finderById.responsibleFor[0];
   const finderByCode = animals.find(animal => animal.id === firstSpecies);
   const finderOldest = finderByCode.residents.reduce((acc, curr) =>
@@ -192,7 +192,11 @@ const oldestFromFirstSpecies = (id) => {
 };
 
 const increasePrices = (percentage) => {
-}
+  Object.keys(prices).forEach((key) => {
+    prices[key] = Math.ceil(prices[key] * (100 + percentage)) / 100;
+  });
+  return prices;
+};
 
 function employeeCoverage(idOrName) {
   // seu código aqui
