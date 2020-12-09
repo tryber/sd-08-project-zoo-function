@@ -100,7 +100,7 @@ function increasePrices(percentage) {
     const inc = percentage / 100;
     prices[key] = prices[key] + (prices[key] * inc);
     prices[key] = Number(formatter.format(prices[key]));
-  })
+  });
 }
 // API para arredondamento(https://qastack.com.br/programming/1726630/formatting-a-number-with-exactly-two-decimals-in-javascript)
 
