@@ -96,12 +96,17 @@ function increasePrices(percentage) {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
-  for (let key in prices) {
+  // for (const key in prices) {
+  Object.keys(prices).forEach((key) => {
+    
     const inc = percentage / 100;
     prices[key] = (prices[key] + (prices[key] * inc));
     prices[key] = Number(formatter.format(prices[key]));
-  }
+  })
+  //}
 }
+// increasePrices(50);
+//TESTE BOMBANDO
 // API para arredondamento(https://qastack.com.br/programming/1726630/formatting-a-number-with-exactly-two-decimals-in-javascript)
 
 function employeeCoverage(idOrName) {
