@@ -98,8 +98,8 @@ function increasePrices(percentage) {
   });
   Object.keys(prices).forEach((key) => {
     const inc = percentage / 100;
-    prices[key] = prices[key] + (prices[key] * inc);
-    prices[key] = Number(formatter.format(prices[key]));
+    const price1 = prices[key] + (prices[key] * inc);
+    prices[key] = Number(formatter.format(price1));
   });
 }
 // API para arredondamento(https://qastack.com.br/programming/1726630/formatting-a-number-with-exactly-two-decimals-in-javascript)
