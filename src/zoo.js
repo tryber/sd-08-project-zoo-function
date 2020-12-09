@@ -47,14 +47,13 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCountObject() {
   const newObject = {};
-  if (typeof species !== 'string' || species.length === 0) {
+  if (typeof data.species !== 'string' || data.species.length === 0) {
     data.animals.forEach(element => (newObject[element.name] = element.residents.length));
   }
   return newObject;
 }
 
 function animalCount(species) {
-  // seu código aqui
   if (!species) {
     return animalCountObject();
   }
@@ -86,8 +85,8 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  return Object.keys(prices).forEach((key) => {
-    data.prices[key] = Math.round(prices[key] * 100) / 100;
+  return Object.keys(data.prices).forEach((key) => {
+    data.prices[key] = Math.round(data.prices[key] * 100) / 100;
   });
 }
 
