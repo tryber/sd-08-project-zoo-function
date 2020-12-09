@@ -87,21 +87,18 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  const prices = data.prices;
   let total = 0;
   if (!entrants || Object.keys(entrants).length === 0) {
     total = 0;
   } else if (entrants) {
-  const obj = Object.entries(entrants);
-  total = obj.reduce((acc, curr) => {
+    const obj = Object.entries(entrants);
+    total = obj.reduce((acc, curr) => {
     if (curr[0] === 'Adult') {
       acc += curr[1] * 49.99;
     } else if (curr[0] === 'Child') {
       acc += curr[1] * 20.99;
     } else if (curr[0] === 'Senior') {
       acc += curr[1] * 24.99;
-    } else {
-      acc;
     }
     return acc;
   }, 0);
@@ -115,21 +112,7 @@ function animalMap(options) {
   // if (!options) {
   //   const { location } = animals;
   //   animalMap = Object.keys(location). //usar map ou reduce com filter
-
   // }
-  // A função é responsável pelo mapeamento geográfico das espécies e 
-  // seus animais, podendo ainda filtrá-los por ordem alfabética e gênero, por exemplo
-
-  // **Observações técnicas**
-  // - Analise o teste unitário para entender os retornos que são esperados para esta função
-  // **O que será avaliado**
-
-  // - Sem parâmetros, retorna animais categorizados por localização
-  // - Com a opção `includeNames: true` especificada, retorna nomes de animais
-  // - Com a opção `sorted: true` especificada, retorna nomes de animais ordenados
-  // - Com a opção `sex: 'female'` ou `sex: 'male'` especificada, retorna somente nomes de animais macho/fêmea
-  // - Com a opção `sex: 'female'` ou `sex: 'male'` especificada e a opção `sort: true` especificada, retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
-  // - Só retorna informações ordenadas e com sexo se a opção `includeNames: true` for especificada
 }
 
 function schedule(dayName) {
