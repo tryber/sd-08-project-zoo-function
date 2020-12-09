@@ -48,11 +48,20 @@ function isManager(id) {
 console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  if (!managers) {
+    managers = [];
+  }
+  if (!responsibleFor) {
+    responsibleFor = [];
+  }
+  const personalInfo = { id, firstName, lastName };
+  const associatedWith = { managers, responsibleFor };
+  const novoEmpregado = createEmployee(personalInfo, associatedWith);
+  employees.push(novoEmpregado);
 }
 
 function animalCount(species) {
-  // seu código aqui
+
 }
 
 function entryCalculator(entrants) {
