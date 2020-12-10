@@ -9,14 +9,16 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+const data = require("./data");
 
 function animalsByIds(...ids) {
   if (ids.length < 1) {
     return [];
   }
   const animById = [];
-  ids.forEach((elem1, index) => { animById[index] = data.animals.find((elem) => elem1 === elem.id); });
+  ids.forEach((elem1, index) => {
+    animById[index] = data.animals.find((elem) => elem1 === elem.id);
+  });
   return animById;
 }
 
