@@ -97,7 +97,7 @@ function getSpecies(key, sex, bool) {
     return { [animal.name]: bool ? speciesName.sort() : speciesName };
   });
 }
-
+//teste
 function animalsByLocation(boolN, sex, boolS) {
   const animalsLocation = { NE: [], NW: [], SE: [], SW: [] };
   Object.keys(animalsLocation).forEach((key) => {
