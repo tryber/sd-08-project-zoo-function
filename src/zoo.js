@@ -83,8 +83,20 @@ function schedule(dayName) {
   return weekSchedule;
 }
 
+function firstSpeciesId(id) {
+  return data.employees.find(emp => emp.id === id).responsibleFor.shift()
+}
+
+function getAnimalResidents(id) {
+  const anialId = firstSpeciesId(id);
+  return data.animals.find(specie => specie.id === anialId).residents;
+}
+
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const residents = getAnimalResidents(id);
+  return Object.values(residents.sort(function (a, b) {
+    return a.age - b.age;
+  }).pop());
 }
 
 function increasePrices(percentage) {
