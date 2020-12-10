@@ -127,7 +127,7 @@ function oldestFromFirstSpecies(id) {
   });
   return [olderAnimal.name, olderAnimal.sex, olderAnimal.age];
 }
-
+ // atencao
 function increasePrices(percentage) {
   // seu código aqui
   const adult = data.prices.Adult + (data.prices.Adult * (percentage / 100));
