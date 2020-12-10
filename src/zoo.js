@@ -87,6 +87,7 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   secondNewEmployee.id = id; secondNewEmployee.firstName = firstName;
   secondNewEmployee.lastName = lastName;
   secondNewEmployee.responsibleFor = [];
+  secondNewEmployee.managers = [];
   if (responsibleFor !== undefined) {
     secondNewEmployee.responsibleFor = responsibleFor;
   }
