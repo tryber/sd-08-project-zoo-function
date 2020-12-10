@@ -8,7 +8,7 @@ eslint no-unused-vars: [
   }
 ]
 */
-const { animals, prices } = require('./data.js');
+const { animals, prices, employees } = require('./data.js');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -64,8 +64,8 @@ function entryCalculator(entrants) {
   if (!entrants || Object.entries(entrants).length === 0) {
     return 0;
   }
-  const obj = Object.entries(entrants);
-  return obj.reduce((acc, current) => acc + (current[1] * prices[current[0]]), 0);
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  return (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
 }
 function animalMap(options) {
   // seu código aqui
@@ -76,7 +76,10 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const speciebyIDemployee = employees.find(employee => employee.id === id).responsibleFor[0];
+  const specie = animals.find(specie => specie.id === speciebyIDemployee);
+  const AnimalOlder = Math.max(...specie.residents.map(animal => animal.age));
+  return Object.values(specie.residents.find(animal => animal.age === AnimalOlder));
 }
 
 function increasePrices(percentage) {
