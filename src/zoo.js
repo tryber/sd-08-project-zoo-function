@@ -87,7 +87,7 @@ dummyArray.prototype.merge = function (source) {
     if (!this.includes(element)) this.push(element);
   });
   return this;
-}
+};
 
 dummyObject.prototype.deepMerge = function (source) {
   if (Array.isArray(this)) {
@@ -102,20 +102,20 @@ dummyObject.prototype.deepMerge = function (source) {
     }
   });
   return this;
-}
+};
 
 dummyObject.prototype.transformIf = function (condition, lambda) {
   if (condition) {
     return lambda(this);
   }
   return this;
-}
+};
 
 function animalMap(opts) {
-  if (typeof opts === 'undefined') opts = {};
-  const {includeNames, sex, sorted} = opts;
-  return data.animals.reduce((acc, animal) => {
-    return acc.deepMerge({
+  opts = opts || {};
+  const { includeNames, sex, sorted } = opts;
+  return data.animals.reduce((acc, animal) => 
+    acc.deepMerge({
       [animal.location] : [
       animal
       .transformIf(includeNames,
@@ -126,8 +126,8 @@ function animalMap(opts) {
           .transformIf(true, residents => residents.map(resident => resident.name))
           .transformIf(sorted, residents => residents.sort())}))
       .transformIf(!includeNames, animal => animal.name)
-      ]});
-  }, {});
+      ]})
+  , {});
 }
 
 /*Object.prototype.transformIf = function (condition, [successFn, successArgs], [failFn, failArgs]) {
