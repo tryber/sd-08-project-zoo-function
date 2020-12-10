@@ -9,55 +9,6 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
-
-function animalsByIds(...ids) {
-  return ids.map(id => data.animals.find(animal => animal.id === id));
-}
-
-function animalsOlderThan(animalName, age) {
-  return data.animals
-    .filter(animal => animal.name === animalName)
-    .every(animal => animal.residents.every((resident => resident.age > age)));
-}
-
-function employeeByName(employeeName) {
-  return data.employees.find(employee => employee.firstName === employeeName ||
-    employee.lastName === employeeName) || {};
-}
-
-function createEmployee(personalInfo, associatedWith) {
-  const { id, firstName, lastName } = personalInfo;
-  const { managers, responsibleFor } = associatedWith;
-  return ({ id, firstName, lastName, managers, responsibleFor });
-}
-
-function isManager(id) {
-  return data.employees.reduce((acc, val) => acc.concat(val.managers), [])
-    .some(val => val === id);
-}
-
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  data.employees.push({ id, firstName, lastName, managers, responsibleFor });
-}
-
-function animalCount(species) {
-  if (typeof species === 'undefined') {
-    return data.animals.reduce((acc, val) => {
-      acc[val.name] = val.residents.length;
-      return acc;
-    }, {});
-  }
-  return data.animals.find(specie => specie.name === species).residents.length;
-}
-
-function entryCalculator(entrants) {
-  if (typeof entrants === 'object') {
-    return Object.keys(entrants).reduce((acc, val) => acc + (entrants[val] * data.prices[val]), 0);
-  }
-  return 0;
-}
-
 const [dummyArray, dummyObject, dummyString] = [Array, Object, String];
 
 dummyArray.prototype.merge = function (source) {
@@ -115,6 +66,53 @@ dummyArray.prototype.selfMerge = function () {
 dummyString.prototype.transformIf = function (condition, lambda) {
   return ((condition) ? lambda(this) : this).valueOf();
 };
+
+const data = require('./data');
+
+function animalsByIds(...ids) {
+  return ids.map(id => data.animals.find(animal => animal.id === id));
+}
+
+function animalsOlderThan(animalName, age) {
+  return data.animals
+    .filter(animal => animal.name === animalName)
+    .every(animal => animal.residents.every((resident => resident.age > age)));
+}
+
+function employeeByName(employeeName) {
+  return data.employees.find(employee => employee.firstName === employeeName ||
+    employee.lastName === employeeName) || {};
+}
+
+function createEmployee(personalInfo, associatedWith) {
+  const { id, firstName, lastName } = personalInfo;
+  const { managers, responsibleFor } = associatedWith;
+  return ({ id, firstName, lastName, managers, responsibleFor });
+}
+
+function isManager(id) {
+  return data.employees.reduce((acc, val) => acc.concat(val.managers), [])
+    .some(val => val === id);
+}
+
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  data.employees.push({ id, firstName, lastName, managers, responsibleFor });
+}
+
+function animalCount(species) {
+  return (!species && data.animals.reduce((acc, val) => {
+    acc[val.name] = val.residents.length;
+    return acc;
+  }, {}))
+  || data.animals.find(specie => specie.name === species).residents.length;
+}
+
+function entryCalculator(entrants) {
+  if (typeof entrants === 'object') {
+    return Object.keys(entrants).reduce((acc, val) => acc + (entrants[val] * data.prices[val]), 0);
+  }
+  return 0;
+}
 
 function animalMap(opts) {
   opts = opts || {};
