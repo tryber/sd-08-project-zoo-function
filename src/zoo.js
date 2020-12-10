@@ -84,7 +84,7 @@ function increasePrices(percentage) {
   Object.entries(prices).forEach(([chave, valor]) => {
     const newPriceWithPerc = valor * increasePERC;
     prices[chave] = Math.round(newPriceWithPerc * 100) / 100;
-  })
+  });
 }
 
 function employeeCoverage(idOrName) {
