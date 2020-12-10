@@ -64,7 +64,32 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  let confirmHour = (dayName) => {
+    let object = {}
+    let { open, close } = data.hours[dayName];
+
+    if(open < 12) {
+      open = `${open}am`;
+    }else{
+      open = `${open - 12}pm`;
+    }
+
+    if(close < 12) {
+      close = `${close}am`;
+    }else{
+      close = `${close - 12}pm`;
+    }
+
+    //utilizando if ternario
+    object[dayName] = (open === close) ? 'CLOSED' : `Open from ${open} until ${close}`;
+
+    return object;
+  }
+
+  const arrayOfTime = Object.keys(data.hours).map(confirmHour);
+
+  return dayName ? arrayOfTime.find(day => day[dayName]) :
+  arrayOfTime.reduce((acc, curr) => ({ ...acc, ...curr }), {});
 }
 
 function oldestFromFirstSpecies(id) {
