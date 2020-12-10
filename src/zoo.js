@@ -23,7 +23,7 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   // seu código aqui
   const animalIdade = animals.find(param => param.name === animal)
-  .residents.every(idade => idade.age > age);
+    .residents.every(idade => idade.age > age);
   return animalIdade;
 }
 
@@ -65,7 +65,18 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
+  const obj = {};
+  if (species === undefined) {
+    animals.forEach((xablau) => {
+      const resid = xablau.residents.length;
+      const animal = xablau.name;
+      obj[animal] = resid;
+    });
+    return obj;
+  }
+  return animals.find(param => param.name === species).residents.length;
 }
+console.log(animalCount());
 
 function entryCalculator(entrants) {
   // seu código aqui
