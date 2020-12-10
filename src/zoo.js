@@ -17,7 +17,6 @@ function animalsByIds(...ids) {
 }
 // 2
 function animalsOlderThan(animal, age) {
-  // seu código aqui
   const animalsSpecies = data.animals.find(species => species.name === animal);
   const speciesOlderThan = animalsSpecies.residents.every(specie => specie.age >= age);
   return speciesOlderThan;
@@ -30,13 +29,11 @@ function employeeByName(employeeName) {
   }
   const emplName = employeeName;
   const emplData = data.employees;
-
   const getObj = emplData.find(empl => empl.firstName === emplName || empl.lastName === emplName);
   return getObj;
 }
 // 4
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
   const { id, firstName, lastName } = personalInfo;
   const { managers, responsibleFor } = associatedWith;
   const createNewEmployee = {
@@ -50,7 +47,6 @@ function createEmployee(personalInfo, associatedWith) {
 }
 // 5
 function isManager(id) {
-  // seu código aqui
   const empData = data.employees;
   const getManager = empData.some(man => man.managers.find(manId => manId === id));
   return getManager;
@@ -58,7 +54,6 @@ function isManager(id) {
 
 // 6
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  // seu código aqui
   const newEmployee = {
     id,
     firstName,
@@ -71,7 +66,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 // 7
 function animalCount(species) {
-  // seu código aqui
   if (species) {
     const findAnimals = data.animals.find(element => element.name === species);
     const animalLength = findAnimals.residents.length;
@@ -85,7 +79,6 @@ function animalCount(species) {
 
 // 8
 function entryCalculator(entrants) {
-  // seu código aqui
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
   }
@@ -133,7 +126,33 @@ function increasePrices(percentage) {
 }
 // 13
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const employees = {};
+
+  const animalsList = (firstName, lastName, responsibleFor) => {
+    const employeeName = `${firstName} ${lastName}`; // lista dos nomes de cada employee
+    const animals = []; // lista dos animais de cada employee
+    responsibleFor.forEach((animalId) => {
+      animals.push(data.animals.find(({ id }) => id === animalId).name);
+    });
+    employees[employeeName] = animals; // lista de cada employee e seus respectivos animais
+    //console.log(employeeName);
+    //console.log(animals);
+  };
+  
+  if (idOrName === undefined) {
+    data.employees.forEach(({ firstName, lastName, responsibleFor }) => {
+        return animalsList(firstName, lastName, responsibleFor);
+      });
+  } else {
+    const employeeData = data.employees.find(({ id, firstName, lastName }) => 
+    id === idOrName || firstName === idOrName || lastName === idOrName);
+
+    const { firstName, lastName, responsibleFor } = employeeData;
+
+    animalsList(firstName, lastName, responsibleFor);
+  }
+
+  return employees;
 }
 
 module.exports = {
