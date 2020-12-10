@@ -121,17 +121,17 @@ function animalMap(opts) {
         .transformIf(includeNames,
           animalObj =>
           ({ [animalObj.name]:
-             animalObj.residents
-             .transformIf(sex, residents => residents.filter(resident => resident.sex === sex))
-             .transformIf(true, residents => residents.map(resident => resident.name))
-             .transformIf(sorted, residents => residents.sort()) }))
-        .transformIf(!includeNames, animalObj => animalObj.name)
+              animalObj.residents
+              .transformIf(sex, residents => residents.filter(resident => resident.sex === sex))
+              .transformIf(true, residents => residents.map(resident => resident.name))
+              .transformIf(sorted, residents => residents.sort()) }))
+        .transformIf(!includeNames, animalObj => animalObj.name),
       ] })
   , {});
 }
 
 /*
-Object.prototype.transformIf = function (condition, 
+Object.prototype.transformIf = function (condition,
   [successFn, successArgs], [failFn, failArgs]) {
   return (condition) ? this[successFn](successArgs) : this[failFn](failArgs);
 }
@@ -171,7 +171,7 @@ function animalMap(opt) {
   Object.assign(options, opt);
   return data.animals
     .reduce(
-      (locations, animal) => 
+      (locations, animal) =>
       (locations.includes(animal.location) ? locations : [...locations, animal.location]),
       [],
     )
