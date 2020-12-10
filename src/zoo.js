@@ -63,46 +63,35 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   const newEmployee = {
-    id: personalInfo.id,
-    firstName: personalInfo.firstName,
-    lastName: personalInfo.lastName,
-    managers: associatedWith.managers,
-    responsibleFor: associatedWith.responsibleFor };
+    id: personalInfo.id, firstName: personalInfo.firstName, lastName: personalInfo.lastName };
+  newEmployee.managers = associatedWith.managers;
+  newEmployee.responsibleFor = associatedWith.responsibleFor;
   employees.push(newEmployee);
   return newEmployee;
 }
 
 function isManager(id) {
-  let cont = 0;
-  let retorno;
+  let found;
+  let retorno = false;
   employees.forEach((obj) => {
-    const found = obj.managers.find(managerId => managerId === id);
-    if (found !== undefined) {
-      cont += 1;
+    found = obj.managers.some(managerId => managerId === id);
+    if (found === true) {
+      retorno = true;
     }
   });
-  if (cont > 0) {
-    retorno = true;
-  } else {
-    retorno = false;
-  }
   return retorno;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   const secondNewEmployee = {};
-  secondNewEmployee.id = id;
-  secondNewEmployee.firstName = firstName;
+  secondNewEmployee.id = id; secondNewEmployee.firstName = firstName;
   secondNewEmployee.lastName = lastName;
-  if (managers === undefined) {
-    secondNewEmployee.managers = [];
-  } else {
-    secondNewEmployee.managers = managers;
-  }
-  if (responsibleFor === undefined) {
-    secondNewEmployee.responsibleFor = [];
-  } else {
+  secondNewEmployee.responsibleFor = [];
+  if (responsibleFor !== undefined) {
     secondNewEmployee.responsibleFor = responsibleFor;
+  }
+  if (managers !== undefined) {
+    secondNewEmployee.managers = managers;
   }
   employees.push(secondNewEmployee);
 }
@@ -113,8 +102,7 @@ function animalCount(species) {
   if (species === undefined) {
     animals.forEach((objAnimals) => {
       const animalName = objAnimals.name;
-      const animalsSize = objAnimals.residents.length;
-      objRetorno[animalName] = animalsSize;
+      objRetorno[animalName] = objAnimals.residents.length;
     });
   } else if (species !== undefined) {
     animals.forEach((objAnimals) => {
@@ -183,25 +171,29 @@ function sortedArrays(objToSort) {
   const keys = Object.keys(objToSort);
   keys.forEach((location) => {
     objToSort[location].forEach((obj) => {
-      const values = Object.values(obj);
-      console.log(values);
-      values.sort();
+      const values = Object.keys(obj);
+      obj[values].sort();
     });
   });
   return objToSort;
 }
 
 function animalMap(options) {
-  const locationObj = { NE: [], NW: [], SE: [], SW: [] };
+  let locationObj = { NE: [], NW: [], SE: [], SW: [] };
   let objToReturn;
   let objToReturnSorted;
   let objSex;
   objToReturn = makePerRegion(locationObj);
+  if (!options) {
+    return objToReturn;
+  }
   const { includeNames, sex, sorted } = options;
   if (includeNames === true && !sex) {
+    locationObj = { NE: [], NW: [], SE: [], SW: [] };
     objToReturn = makeIncludeNames(locationObj);
   }
   if (sex !== undefined && includeNames === true) {
+    locationObj = { NE: [], NW: [], SE: [], SW: [] };
     objSex = filterSex(locationObj, sex);
     objToReturn = objSex;
   }
@@ -211,7 +203,7 @@ function animalMap(options) {
   }
   return objToReturn;
 }
-animalMap({ includeNames: true, sex: 'female', sorted: true });
+
 function schedule(dayName) {
   const objReturn = {};
   const entries = Object.entries(hours);
