@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require ("./data");
+const data = require('./data');
 
 function animalsByIds(...ids) {
   if (ids.length < 1) {
@@ -17,7 +17,7 @@ function animalsByIds(...ids) {
   }
   const animById = [];
   ids.forEach((elem1, index) => {
-    animById [index] = data.animals.find((elem) => {
+    animById[index] = data.animals.find((elem) => {
       return elem1 === elem.id;
     });
   });
