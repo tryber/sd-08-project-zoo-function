@@ -31,17 +31,14 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
   return ({ ...personalInfo, ...associatedWith });
 }
 
 function isManager(id) {
-  // seu código aqui
   return data.employees.some(element => element.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  // seu código aqui
   return data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
@@ -84,7 +81,7 @@ function schedule(dayName) {
 }
 
 function firstSpeciesId(id) {
-  return data.employees.find(emp => emp.id === id).responsibleFor.shift()
+  return data.employees.find(emp => emp.id === id).responsibleFor.shift();
 }
 
 function getAnimalResidents(id) {
