@@ -82,6 +82,8 @@ const dummyArray = Array;
 
 const dummyObject = Object;
 
+const dummyString = String;
+
 dummyArray.prototype.merge = function (source) {
   source.forEach((element) => {
     if (!this.includes(element)) this.push(element);
@@ -109,6 +111,18 @@ dummyObject.prototype.transformIf = function (condition, lambda) {
     return lambda(this);
   }
   return this;
+};
+
+dummyObject.prototype.entries = function() {
+  return Object.entries(this);
+};
+
+dummyArray.prototype.fromEntries = function() {
+  return Object.fromEntries(this);
+};
+
+dummyString.prototype.transformIf = function(condition, lambda) {
+  return ((condition) ? lambda(this) : this).valueOf();
 };
 
 function animalMap(opts) {
@@ -195,7 +209,16 @@ function animalMap(opt) {
 */
 
 function schedule(dayName) {
-  // seu código aqui
+  return data.hours.entries()
+  .transformIf(dayName, entry => entry.filter(([key, value]) => key === dayName))
+  .map(([key, value]) =>
+    [key, value
+      .entries()
+      .map(([key, value]) => [key, (value >= 12) ? `${value - 12}pm` : `${value}am`])
+      .fromEntries()
+      .transformIf(value.open === value.close, day => 'CLOSED')
+      .transformIf(value.open !== value.close, day => `Open from ${day.open} until ${day.close}`)])
+  .fromEntries();
 }
 
 function oldestFromFirstSpecies(id) {
