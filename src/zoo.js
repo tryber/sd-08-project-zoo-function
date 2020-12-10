@@ -161,10 +161,15 @@ function schedule(dayName) {
   return days;
 }
 
-console.log(schedule());
-
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  let olderSpecie = ['', '', 0];
+  const firstSpecie = data.employees
+    .find(employee => employee.id === id).responsibleFor[0];
+  data.animals.find(animalSpecie => animalSpecie.id === firstSpecie)
+    .residents.forEach((resident) => {
+      if (resident.age > olderSpecie[2]) { olderSpecie = Object.values(resident); }
+    });
+  return olderSpecie;
 }
 
 function increasePrices(percentage) {
