@@ -64,7 +64,7 @@ function animalMap(options) {
 }
 
 function confirmHour(day) {
-  let object = {};
+  const object = {};
   let { open, close } = data.hours[day];
 
   open = open < 12 ? `${open}am` : `${open - 12}pm`;
