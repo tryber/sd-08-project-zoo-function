@@ -113,7 +113,7 @@ function entryCalculator(entrants = {}) {
   return entrants
     .entries()
     .reduce((acc, [key, value]) =>
-      acc + value * data.prices[key], 0);
+      acc + (value * data.prices[key]), 0);
 }
 
 function animalMap(opts = {}) {
