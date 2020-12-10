@@ -99,9 +99,9 @@ function increasePrices(percentage) {
   const { Adult, Senior, Child } = data.prices;
 
   data.prices = {
-    Adult: (Math.ceil(Adult + (Adult * (percentage / 100)))),
-    Senior: (Math.ceil(Senior + (Senior * (percentage / 100)))),
-    Child: (Math.ceil(Child + (Child * (percentage / 100)))),
+    Adult: Adult + (Adult * (percentage / 100)),
+    Senior: Senior + (Senior * (percentage / 100)),
+    Child: Child + (Child * (percentage / 100)),
   };
 }
 
