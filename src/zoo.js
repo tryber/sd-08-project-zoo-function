@@ -70,14 +70,21 @@ function animalCount(species) {
   return find.residents.length;
 }
 
-function entryCalculator(entrants) {
-  // console.log(entrants);
-  // if (entrants === {}) return 0;
-  // const adult = entrants[0];
-  // const child = entrants[1];
-  // const senior = entrants[2];
+function entryCalculator(...entrants) {
+  console.log(entrants);
+  if (entrants.length === 0) return 0;
+  const formatter = new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+  
+  // Object.keys(entrants).forEach((key) => {
+  //   const inc = percentage / 100;
+  //   const price1 = prices[key] + (prices[key] * inc);
+  //   prices[key] = Number(formatter.format(price1));
+  // });
 }
-// entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 });
+ entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 });
 
 function animalMap(options) {
   // seu código aqui
