@@ -113,30 +113,30 @@ dummyObject.prototype.transformIf = function (condition, lambda) {
   return this;
 };
 
-dummyObject.prototype.entries = function() {
+dummyObject.prototype.entries = function () {
   return Object.entries(this);
 };
 
-dummyObject.prototype.theseValues = function(...keys) {
-   return keys.map(key => this[key]);
+dummyObject.prototype.theseValues = function (...keys) {
+  return keys.map(key => this[key]);
 }
 
-dummyArray.prototype.fromEntries = function() {
+dummyArray.prototype.fromEntries = function () {
   return Object.fromEntries(this);
 };
 
-dummyArray.prototype.max = function(compareFn) {
+dummyArray.prototype.max = function (compareFn) {
   return this.reduce((acc, val) =>
-    (acc && (compareFn(val, acc) < 0)) ? acc : val, undefined);
-}
+    ((acc && (compareFn(val, acc) < 0)) ? acc : val, undefined));
+};
 
-dummyArray.prototype.selfMerge = function() {
+dummyArray.prototype.selfMerge = function () {
   return this.reduce((acc, val) =>
     acc.deepMerge(val)
   , {});
-}
+};
 
-dummyString.prototype.transformIf = function(condition, lambda) {
+dummyString.prototype.transformIf = function (condition, lambda) {
   return ((condition) ? lambda(this) : this).valueOf();
 };
 
@@ -229,7 +229,7 @@ function schedule(dayName) {
   .map(([key, value]) =>
     [key, value
       .entries()
-      .map(([key, value]) => [key, (value >= 12) ? `${value - 12}pm` : `${value}am`])
+      .map(([k, v]) => [k, (v >= 12) ? `${v - 12}pm` : `${v}am`])
       .fromEntries()
       .transformIf(value.open === value.close, () => 'CLOSED')
       .transformIf(value.open !== value.close, day => `Open from ${day.open} until ${day.close}`)])
@@ -246,7 +246,7 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   data.prices = data.prices.entries().map(([key, price]) =>
-    [key, Math.ceil((price * (1 + percentage / 100) * 100)) / 100])
+    [key, Math.ceil((price * (1 + (percentage / 100)) * 100)) / 100])
     .fromEntries();
 }
 
@@ -255,8 +255,8 @@ function employeeCoverage(idOrName) {
     !idOrName || (employee.theseValues('id', 'firstName', 'lastName').includes(idOrName)))
     .map(employee =>
       ({ [`${employee.firstName} ${employee.lastName}`]:
-         employee.responsibleFor
-           .map(animalId => data.animals.find(animal => animal.id === animalId).name) }))
+        employee.responsibleFor
+          .map(animalId => data.animals.find(animal => animal.id === animalId).name) }))
     .selfMerge();
 }
 
