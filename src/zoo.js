@@ -45,14 +45,13 @@ function createEmployee(personalInfo, associatedWith) {
   return result;
 }
 
+
 function isManager(id) {
   return employees.some(employee => employee.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  let result = employees.map(matchId => {
-
-  });
+// seu código aqui
 }
 
 function animalCount(species) {
