@@ -117,9 +117,24 @@ dummyObject.prototype.entries = function() {
   return Object.entries(this);
 };
 
+dummyObject.prototype.theseValues = function(...keys) {
+   return keys.map(key => this[key]);
+}
+
 dummyArray.prototype.fromEntries = function() {
   return Object.fromEntries(this);
 };
+
+dummyArray.prototype.max = function(compareFn) {
+  return this.reduce((acc, val) =>
+    (acc && (compareFn(val, acc) < 0)) ? acc : val, undefined);
+}
+
+dummyArray.prototype.selfMerge = function() {
+  return this.reduce((acc, val) =>
+    acc.deepMerge(val)
+  , {});
+}
 
 dummyString.prototype.transformIf = function(condition, lambda) {
   return ((condition) ? lambda(this) : this).valueOf();
@@ -216,21 +231,33 @@ function schedule(dayName) {
       .entries()
       .map(([key, value]) => [key, (value >= 12) ? `${value - 12}pm` : `${value}am`])
       .fromEntries()
-      .transformIf(value.open === value.close, day => 'CLOSED')
+      .transformIf(value.open === value.close, () => 'CLOSED')
       .transformIf(value.open !== value.close, day => `Open from ${day.open} until ${day.close}`)])
   .fromEntries();
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  return data.animals.find(animal => (animal.id ===
+    data.employees.find(employee => employee.id === id)
+    .responsibleFor[0]))
+  .residents.max((a, b) => a.age - b.age)
+  .theseValues('name', 'sex', 'age');
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  data.prices = data.prices.entries().map(([key, price]) =>
+    [key, Math.ceil((price * (1 + percentage / 100) * 100)) / 100])
+    .fromEntries();
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  return data.employees.filter(employee =>
+    !idOrName || (employee.theseValues('id', 'firstName', 'lastName').includes(idOrName)))
+    .map(employee =>
+      ({ [`${employee.firstName} ${employee.lastName}`]:
+         employee.responsibleFor
+           .map(animalId => data.animals.find(animal => animal.id === animalId).name) }))
+    .selfMerge();
 }
 
 module.exports = {
