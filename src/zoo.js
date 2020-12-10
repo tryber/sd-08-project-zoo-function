@@ -81,42 +81,41 @@ function entryCalculator(entrants = 0) {
   return entrySum;
 }
 
-function animalsByLocation(boolN, sex, boolS) {
-  const animalsLocation = {NE: [], NW: [], SE: [], SW: []};
-  Object.keys(animalsLocation)
-  .forEach(key => 
-    animalsLocation[key] = boolN ? getSpecies(key, sex, boolS) : 
-    animals.filter(animalInfo => animalInfo.location === key)
-    .map(animal => animal.name)
-  );
-  return animalsLocation;
-}
-
-function getSpecies(key, sex, bool){
-  return animals
-  .filter(animalInfo => animalInfo.location === key)
-  .map(animal => {
-    const speciesName =
-    sex !== undefined ? filterBySex(animal, sex) :
-    animal.residents.map(resident => resident.name);
-    return {[animal.name]: bool ? speciesName.sort() : speciesName}});
-}
-
 function filterBySex(allAnimals, sex) {
   return allAnimals.residents
   .filter(residents => residents.sex === sex)
   .map(species => species.name)
 }
 
-function animalMap(options) {
+function getSpecies(key, sex, bool){
+  return animals
+  .filter(animalInfo => animalInfo.location === key)
+  .map((animal) => {
+    const speciesName =
+    sex !== undefined ? filterBySex(animal, sex) :
+    animal.residents.map(resident => resident.name);
+    return { [animal.name]: bool ? speciesName.sort() : speciesName};
+  });
+}
 
+function animalsByLocation(boolN, sex, boolS) {
+  const animalsLocation = { NE: [], NW: [], SE: [], SW: [] };
+  Object.keys(animalsLocation).forEach(key =>
+    animalsLocation[key] = boolN ? getSpecies(key, sex, boolS) :
+    animals.filter(animalInfo => animalInfo.location === key)
+    .map(animal => animal.name)
+  );
+  return animalsLocation;
+}
+
+function animalMap(options) {
   if (options === undefined) return animalsByLocation(false);
 
   const namesOption = Object.keys(options)
   .some(key => key === 'includeNames' && options[key] === true);
 
   const filterBySex = Object.values(options)
-  .find(value => value ==='female' || value ==='male');
+  .find(value => value === 'female' || value === 'male');
 
   const sortOption = Object.keys(options)
   .some(key => key === 'sorted' && options[key] === true);
