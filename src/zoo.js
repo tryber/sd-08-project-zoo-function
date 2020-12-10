@@ -16,9 +16,7 @@ function animalsByIds(...ids) {
     return [];
   }
   const animById = [];
-  ids.forEach((elem1, index) => {
-    animById[index] = data.animals.find((elem) => elem1 === elem.id);
-  });
+  ids.forEach((elem1, index) => { animById[index] = data.animals.find((elem) => elem1 === elem.id); });
   return animById;
 }
 
