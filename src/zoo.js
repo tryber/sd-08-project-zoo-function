@@ -67,22 +67,13 @@ function confirmHour(day) {
   let object = {};
   let { open, close } = data.hours[day];
 
-  if (open < 12) {
-    open = `${open}am`;
-  } else {
-    open = `${open - 12}pm`;
-  }
-
-  if (close < 12) {
-    close = `${close}am`;
-  } else {
-    close = `${close - 12}pm`;
-  }
+  open = open < 12 ? `${open}am` : `${open - 12}pm`;
+  close = close < 12 ? `${close}am` : `${close - 12}pm`;
 
   object[day] = (open === close) ? 'CLOSED' : `Open from ${open} until ${close}`;
 
   return object;
-};
+}
 
 function schedule(dayName) {
   const arrayOfTime = Object.keys(data.hours).map(confirmHour);
