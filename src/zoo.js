@@ -196,7 +196,7 @@ function increasePrices(percentage) {
 }
 
 const employeeById = employeeId =>
-  employees.find((employee) => employee.id === employeeId);
+  employees.find(employee => employee.id === employeeId);
 
 const getEmployee = idOrName =>
   employeeById(idOrName) || employeeByName(idOrName);
