@@ -82,7 +82,7 @@ function schedule(dayName) {
   arrayOfTime.reduce((acc, curr) => ({ ...acc, ...curr }), {});
 }
 
-function arrumandoCodeclimate(acc, curr){
+function arrumandoCodeclimate(acc, curr) {
   return acc.age > curr.age ? acc : curr;
 }
 
