@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const [dummyArray, dummyObject, dummyString] = [Array, Object, String];
+const [dummyArray, dummyObject, dummyString, dummyNumber] = [Array, Object, String, Number];
 
 dummyArray.prototype.merge = function (source) {
   source.forEach((element) => {
@@ -34,10 +34,7 @@ dummyObject.prototype.deepMerge = function (source) {
 };
 
 dummyObject.prototype.transformIf = function (condition, lambda) {
-  if (condition) {
-    return lambda(this);
-  }
-  return this;
+  return (condition) ? lambda(this) : this;
 };
 
 dummyObject.prototype.entries = function () {
@@ -67,6 +64,10 @@ dummyString.prototype.transformIf = function (condition, lambda) {
   return ((condition) ? lambda(this) : this).valueOf();
 };
 
+dummyNumber.prototype.transformIf = function (condition, lambda) {
+  return ((condition) ? lambda(this) : this).valueOf();
+};
+
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -80,8 +81,9 @@ function animalsOlderThan(animalName, age) {
 }
 
 function employeeByName(employeeName) {
-  return data.employees.find(employee => employee.firstName === employeeName ||
-    employee.lastName === employeeName) || {};
+  return (!employeeName && data.employees
+    .find(employee => employee.firstName === employeeName ||
+    employee.lastName === employeeName)) || {};
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -107,15 +109,14 @@ function animalCount(species) {
   || data.animals.find(specie => specie.name === species).residents.length;
 }
 
-function entryCalculator(entrants) {
-  if (typeof entrants === 'object') {
-    return Object.keys(entrants).reduce((acc, val) => acc + (entrants[val] * data.prices[val]), 0);
-  }
-  return 0;
+function entryCalculator(entrants = {}) {
+  return entrants
+    .entries()
+    .reduce((acc, [key, value]) =>
+      acc + value * data.prices[key], 0);
 }
 
-function animalMap(opts) {
-  opts = opts || {};
+function animalMap(opts = {}) {
   const { includeNames, sex, sorted } = opts;
   return data.animals.reduce((acc, animal) =>
     acc.deepMerge({
