@@ -58,7 +58,7 @@ function animalCount(species) {
     obj[specie.name] = specie.residents.length;
   });
   return obj;
-};
+}
 
 function entryCalculator(entrants) {
   if (!entrants || Object.entries(entrants).length === 0) {
@@ -66,23 +66,7 @@ function entryCalculator(entrants) {
   }
   const obj = Object.entries(entrants);
   return obj.reduce((acc, current) => acc + (current[1] * prices[current[0]]), 0);
-};
-
-
-
-// data.prices.forEach((entries) => {
-//   if (entrants[prices.Adult]) {
-//     acc += entrants[prices.Adult] * prices.Adult;
-//   }
-//   if (entrants[prices.Child]) {
-//     acc += entrants[prices.Child] * prices.Child;
-//   }
-//   acc += entrants[prices.Senior] * prices.Senior;
-// });
-// return acc;
-
-
-
+}
 function animalMap(options) {
   // seu código aqui
 }
@@ -96,7 +80,6 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
 }
 
 function employeeCoverage(idOrName) {
