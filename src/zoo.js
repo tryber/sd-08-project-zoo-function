@@ -84,27 +84,26 @@ function entryCalculator(entrants = 0) {
 function filterBySex(allAnimals, sex) {
   return allAnimals.residents
   .filter(residents => residents.sex === sex)
-  .map(species => species.name)
+  .map(species => species.name);
 }
 
-function getSpecies(key, sex, bool){
+function getSpecies(key, sex, bool) {
   return animals
   .filter(animalInfo => animalInfo.location === key)
   .map((animal) => {
     const speciesName =
     sex !== undefined ? filterBySex(animal, sex) :
     animal.residents.map(resident => resident.name);
-    return { [animal.name]: bool ? speciesName.sort() : speciesName};
+    return { [animal.name]: bool ? speciesName.sort() : speciesName };
   });
 }
 
 function animalsByLocation(boolN, sex, boolS) {
   const animalsLocation = { NE: [], NW: [], SE: [], SW: [] };
-  Object.keys(animalsLocation).forEach(key =>
+  Object.keys(animalsLocation).forEach(key => {
     animalsLocation[key] = boolN ? getSpecies(key, sex, boolS) :
     animals.filter(animalInfo => animalInfo.location === key)
-    .map(animal => animal.name)
-  );
+    .map(animal => animal.name)});
   return animalsLocation;
 }
 
@@ -114,13 +113,13 @@ function animalMap(options) {
   const namesOption = Object.keys(options)
   .some(key => key === 'includeNames' && options[key] === true);
 
-  const filterBySex = Object.values(options)
+  const filterSex = Object.values(options)
   .find(value => value === 'female' || value === 'male');
 
   const sortOption = Object.keys(options)
   .some(key => key === 'sorted' && options[key] === true);
 
-  return animalsByLocation(namesOption, filterBySex, sortOption);
+  return animalsByLocation(namesOption, filterSex, sortOption);
 }
 
 function schedule(dayName) {
