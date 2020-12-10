@@ -68,8 +68,6 @@ function entryCalculator(entrants) {
   return obj.reduce((acc, current) => acc + (current[1] * prices[current[0]]), 0);
 };
 
-entryCalculator({ Adult: 2, Child: 3, Senior: 1 });
-
 
 
 // data.prices.forEach((entries) => {
