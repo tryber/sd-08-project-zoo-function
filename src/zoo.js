@@ -119,7 +119,7 @@ dummyObject.prototype.entries = function () {
 
 dummyObject.prototype.theseValues = function (...keys) {
   return keys.map(key => this[key]);
-}
+};
 
 dummyArray.prototype.fromEntries = function () {
   return Object.fromEntries(this);
@@ -127,7 +127,7 @@ dummyArray.prototype.fromEntries = function () {
 
 dummyArray.prototype.max = function (compareFn) {
   return this.reduce((acc, val) =>
-    ((acc && (compareFn(val, acc) < 0)) ? acc : val, undefined));
+    ((acc && (compareFn(val, acc) < 0)) ? acc : val), undefined);
 };
 
 dummyArray.prototype.selfMerge = function () {
