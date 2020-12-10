@@ -125,7 +125,7 @@ function increasePrices(percentage) {
   data.prices.Adult = Math.round(adult * 100) / 100;
   data.prices.Senior = Math.round(senior * 100) / 100;
   data.prices.Child = Math.round(child * 100) / 100;
-  return prices;
+  return data.prices;
 }
 
 function employeeCoverage(idOrName) {
