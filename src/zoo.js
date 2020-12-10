@@ -58,7 +58,8 @@ function entryCalculator(entrants) {
   return 0;
 }
 
-/*function animalMap(options = {}) {
+/*
+function animalMap(options = {}) {
   const {includeNames, sorted, sex} = options;
   return data.animals.reduce((locations, animal) => (locations.includes(animal.location))
     ? locations : [...locations, animal.location], [])
@@ -74,25 +75,26 @@ function entryCalculator(entrants) {
                 anima.name)], []);
         return finalObject;
       }, {});
-}*/
+}
+*/
 
 const dummyArray = Array;
 
 const dummyObject = Object;
 
-dummyArray.prototype.merge = function(data) {
-  data.forEach(element => {
+dummyArray.prototype.merge = function (source) {
+  source.forEach((element) => {
     if (!this.includes(element)) this.push(element);
   });
   return this;
 }
 
-dummyObject.prototype.deepMerge = function(data) {
+dummyObject.prototype.deepMerge = function (source) {
   if (Array.isArray(this)) {
-    this.merge(data);
+    this.merge(source);
     return this;
   }
-  Object.entries(data).forEach(([key, value]) => {
+  Object.entries(source).forEach(([key, value]) => {
     if (typeof this[key] === 'object') {
       this[key].deepMerge(value);
     } else {
@@ -102,7 +104,7 @@ dummyObject.prototype.deepMerge = function(data) {
   return this;
 }
 
-dummyObject.prototype.transformIf = function(condition, lambda) {
+dummyObject.prototype.transformIf = function (condition, lambda) {
   if (condition) {
     return lambda(this);
   }
