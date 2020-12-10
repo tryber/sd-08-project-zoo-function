@@ -139,8 +139,8 @@ function employeeCoverage(idOrName) {
     // console.log(animals);
   };
   if (idOrName === undefined) {
-    data.employees.forEach(({ firstName, lastName, responsibleFor }) => 
-      animalsList(firstName, lastName, responsibleFor)
+    data.employees.forEach(({ firstName, lastName, responsibleFor }) =>
+      animalsList(firstName, lastName, responsibleFor);
     );
   } else {
     const employeeData = data.employees.find(({ id, firstName, lastName }) =>
