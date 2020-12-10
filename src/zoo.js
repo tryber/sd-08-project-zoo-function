@@ -39,7 +39,7 @@ function createEmployee(personalInfo, associatedWith) {
     ...personalInfo,
     ...associatedWith,
   }
-}
+};
 
 function isManager(id) {
   // seu código aqui
