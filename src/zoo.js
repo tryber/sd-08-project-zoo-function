@@ -76,9 +76,9 @@ function entryCalculator(entrants) {
       }, {});
 }*/
 
-var dummyArray = Array;
+const dummyArray = Array;
 
-var dummyObject = Object;
+const dummyObject = Object;
 
 dummyArray.prototype.merge = function(data) {
   data.forEach(element => {
