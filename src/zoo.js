@@ -82,15 +82,16 @@ Array.prototype.merge = function(data) {
 Object.prototype.deepMerge = function(data) {
   if (Array.isArray(this)) {
     this.merge(data);
-  } else {
-    Object.entries(data).forEach(([key, value]) => {
-      if (typeof this[key] === 'object') {
-        this[key].deepMerge(value);
-      } else {
-        this[key] = value;
-      }
-    });
+    return this;
   }
+  Object.entries(data).forEach(([key, value]) => {
+    if (typeof this[key] === 'object') {
+      this[key].deepMerge(value);
+    } else {
+      this[key] = value;
+    }
+  });
+  return this;
 }
 
 Object.prototype.transformIf = function(condition, lambda) {
