@@ -101,9 +101,33 @@ function entryCalculator(entrants) {
 }
 console.log(entryCalculator({ Adult: 2, Child: 3, Senior: 1 }));
 
-function animalMap(options) {
-  // seu código aqui
+function animalMap(options = {}) {
+  const retorno = { NE: [], NW: [], SE: [], SW: [] };
+  const { includeNames = false, sorted = false, sex = false } = options;
+  if (includeNames) {
+    animals.forEach((animal) => {
+      const object = {};
+      let residents = animal.residents;
+      if (sex) {
+        residents = animal.residents.filter(resident => resident.sex === sex);
+      }
+      object[animal.name] = residents.map(resident => resident.name);
+      retorno[animal.location].push(object);
+    });
+    if (sorted) {
+      Object.keys(retorno).forEach((location) => {
+        retorno[location].forEach((especie) => {
+          const key = Object.keys(especie);
+          especie[key[0]].sort();
+        });
+      });
+    }
+    return retorno;
+  }
+  animals.forEach(animal => retorno[animal.location].push(animal.name));
+  return retorno;
 }
+console.log(animalMap());
 
 function schedule(dayName) {
   // seu código aqui
