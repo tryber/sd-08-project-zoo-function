@@ -87,10 +87,27 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   const obj = { NE: [], NW: [], SE: [], SW: [] };
-  if (!options) {
+  if (!options || !options.includeNames) {
     animals.forEach(each => obj[each.location].push(each.name));
-  } else if (options.includeNames === true) {
-    // obj.forEach(each => obj[each.location][each.name].push(each.residents.name));
+  } else if (options.includeNames) {
+    animals.forEach((each) => {
+      const residents = {};
+
+      if (options.sex) {
+        residents[each.name] = each.residents
+          .filter(eachResident => eachResident.sex === options.sex)
+          .map(eachMap => eachMap.name);
+      } else {
+        residents[each.name] = each.residents
+          .map(eachResident => eachResident.name);
+      }
+
+      if (options.sorted === true) {
+        residents[each.name].sort();
+      }
+
+      obj[each.location].push(residents);
+    });
   }
   return obj;
 }
