@@ -135,16 +135,15 @@ function employeeCoverage(idOrName) {
       animals.push(data.animals.find(({ id }) => id === animalId).name);
     });
     employees[employeeName] = animals; // lista de cada employee e seus respectivos animais
-    //console.log(employeeName);
-    //console.log(animals);
+    // console.log(employeeName);
+    // console.log(animals);
   };
-  
   if (idOrName === undefined) {
-    data.employees.forEach(({ firstName, lastName, responsibleFor }) => {
-        return animalsList(firstName, lastName, responsibleFor);
-      });
+    data.employees.forEach(({ firstName, lastName, responsibleFor }) => 
+      animalsList(firstName, lastName, responsibleFor)
+    );
   } else {
-    const employeeData = data.employees.find(({ id, firstName, lastName }) => 
+    const employeeData = data.employees.find(({ id, firstName, lastName }) =>
     id === idOrName || firstName === idOrName || lastName === idOrName);
 
     const { firstName, lastName, responsibleFor } = employeeData;
