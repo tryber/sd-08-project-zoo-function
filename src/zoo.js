@@ -114,18 +114,18 @@ dummyObject.prototype.transformIf = function (condition, lambda) {
 function animalMap(opts) {
   opts = opts || {};
   const { includeNames, sex, sorted } = opts;
-  return data.animals.reduce((acc, animal) => 
+  return data.animals.reduce((acc, animal) =>
     acc.deepMerge({
-      [animal.location] : [
-      animal
-      .transformIf(includeNames,
-        animal =>
-        ({[animal.name]:
-          animal.residents
-          .transformIf(sex, residents => residents.filter(resident => resident.sex === sex))
-          .transformIf(true, residents => residents.map(resident => resident.name))
-          .transformIf(sorted, residents => residents.sort())}))
-      .transformIf(!includeNames, animal => animal.name)
+      [animal.location]: [
+        animal
+        .transformIf(includeNames,
+          animalObj =>
+          ({[animalObj.name]:
+            animalObj.residents
+            .transformIf(sex, residents => residents.filter(resident => resident.sex === sex))
+            .transformIf(true, residents => residents.map(resident => resident.name))
+            .transformIf(sorted, residents => residents.sort())}))
+        .transformIf(!includeNames, animal => animal.name)
       ]})
   , {});
 }
