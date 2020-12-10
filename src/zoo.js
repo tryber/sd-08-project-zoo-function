@@ -15,8 +15,9 @@ function animalsByIds(...ids) {
   return ids.map(id => data.animals.find(animal => animal.id === id));
 }
 
-function animalsOlderThan(animal, age) {
-  return data.animals.filter(animalObj => animalObj.name === animal)
+function animalsOlderThan(animalName, age) {
+  return data.animals
+    .filter(animal => animal.name === animalName)
     .every(animal => animal.residents.every((resident => resident.age > age)));
 }
 
@@ -41,17 +42,20 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (typeof species === 'undefined') return data.animals.reduce((acc, val) => {
-    acc[val.name] = val.residents.length;
-    return acc;
-  }, {});
-  return data.animals.find(specie => specie.name == species).residents.length;
+  if (typeof species === 'undefined') {
+    return data.animals.reduce((acc, val) => {
+      acc[val.name] = val.residents.length;
+      return acc;
+    }, {});
+  }
+  return data.animals.find(specie => specie.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
-  if (typeof entrants === 'object')
-    return Object.keys(entrants).reduce((acc, val) => acc + entrants[val] * data.prices[val], 0);
-  else return 0;
+  if (typeof entrants === 'object') {
+    return Object.keys(entrants).reduce((acc, val) => acc + (entrants[val] * data.prices[val]), 0);
+  }
+  return 0;
 }
 
 /*function animalMap(options = {}) {
@@ -72,14 +76,18 @@ function entryCalculator(entrants) {
       }, {});
 }*/
 
-Array.prototype.merge = function(data) {
+var dummyArray = Array;
+
+var dummyObject = Object;
+
+dummyArray.prototype.merge = function(data) {
   data.forEach(element => {
     if (!this.includes(element)) this.push(element);
   });
   return this;
 }
 
-Object.prototype.deepMerge = function(data) {
+dummyObject.prototype.deepMerge = function(data) {
   if (Array.isArray(this)) {
     this.merge(data);
     return this;
@@ -94,7 +102,7 @@ Object.prototype.deepMerge = function(data) {
   return this;
 }
 
-Object.prototype.transformIf = function(condition, lambda) {
+dummyObject.prototype.transformIf = function(condition, lambda) {
   if (condition) {
     return lambda(this);
   }
