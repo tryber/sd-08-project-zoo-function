@@ -70,15 +70,17 @@ function animalMap(options) {
   // seu código aqui
 }
 
-const result = Object.entries(data.hours).reduce((accumulator, [key, value]) => {
+const weekSchedule = Object.entries(data.hours).reduce((accumulator, [key, value]) => {
   const { open, close } = value;
   accumulator[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
   return accumulator;
 }, {});
 
 function schedule(dayName) {
-  if (typeof dayName === 'string' && dayName.length !== 0) return { [dayName]: result[dayName] };
-  return result;
+  if (typeof dayName === 'string' && dayName.length !== 0) {
+    return { [dayName]: weekSchedule[dayName] };
+  }
+  return weekSchedule;
 }
 
 function oldestFromFirstSpecies(id) {
