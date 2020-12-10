@@ -100,10 +100,11 @@ function getSpecies(key, sex, bool) {
 
 function animalsByLocation(boolN, sex, boolS) {
   const animalsLocation = { NE: [], NW: [], SE: [], SW: [] };
-  Object.keys(animalsLocation).forEach(key => {
+  Object.keys(animalsLocation).forEach((key) => {
     animalsLocation[key] = boolN ? getSpecies(key, sex, boolS) :
     animals.filter(animalInfo => animalInfo.location === key)
-    .map(animal => animal.name)});
+    .map(animal => animal.name);
+  });
   return animalsLocation;
 }
 
