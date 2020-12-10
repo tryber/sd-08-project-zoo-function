@@ -58,31 +58,7 @@ function entryCalculator(entrants) {
   return 0;
 }
 
-/*
-function animalMap(options = {}) {
-  const {includeNames, sorted, sex} = options;
-  return data.animals.reduce((locations, animal) => (locations.includes(animal.location))
-    ? locations : [...locations, animal.location], [])
-      .reduce((finalObject, location) => {
-        finalObject[location] = data.animals.filter(animal => animal.location === location)
-          .reduce((finalArray, anima) => [...finalArray, ((includeNames) ?
-            ({[anima.name]: ((st, sx, rs, rsn, rsx, stf, mpf, ftf) =>
-              ((st) ? ((sx) ? (rs[ftf](rsx)[mpf](rsn)[stf]()) :
-                (rs[mpf](rsn)[stf]())) : (sx) ? (rs[ftf](rsx)[mpf](rsn))
-                  : (rs[mpf](rsn))))
-                    (sorted, sex, anima.residents, resident => resident.name,
-                      resident => resident.sex === sex, 'sort', 'map', 'filter')}) :
-                anima.name)], []);
-        return finalObject;
-      }, {});
-}
-*/
-
-const dummyArray = Array;
-
-const dummyObject = Object;
-
-const dummyString = String;
+const [dummyArray, dummyObject, dummyString] = [Array, Object, String];
 
 dummyArray.prototype.merge = function (source) {
   source.forEach((element) => {
@@ -158,70 +134,6 @@ function animalMap(opts) {
       ] })
   , {});
 }
-
-/*
-Object.prototype.transformIf = function (condition,
-  [successFn, successArgs], [failFn, failArgs]) {
-  return (condition) ? this[successFn](successArgs) : this[failFn](failArgs);
-}
-*/
-
-/*
-function animalMap(options = {}) {
-  const { includeNames, sex, sorted } = options;
-  return data.animals.reduce((acc, animal) =>
-    deepMerge(acc,
-      ({
-        [animal.location]: [
-        animal.transformIf(includeNames,
-          ['justDoIt', animal => ({
-            [animal.name]:
-            animal.residents
-              .transformIf(sex,
-                ['filter', resident => resident.sex == sex],
-                ['doNothing', undefined])
-                  .map(resident => resident.name)
-                  .transformIf(sorted,
-                    ['sort', undefined],
-                    ['doNothing', undefined])
-          })],
-          ['justDoIt', animal => animal.name]) ]
-      }))
-    , {});
-}*/
-
-/*
-function animalMap(opt) {
-  const options = {
-    includeNames: false,
-    sorted: false,
-    sex: '',
-  };
-  Object.assign(options, opt);
-  return data.animals
-    .reduce(
-      (locations, animal) =>
-      (locations.includes(animal.location) ? locations : [...locations, animal.location]),
-      [],
-    )
-    .reduce((finalObject, location) => {
-      finalObject[location] = data.animals
-        .filter(animal => animal.location === location)
-        .reduce(
-          (finalArray, animal) => [
-            ...finalArray,
-            options.includeNames
-              ? {
-                [animal.name]: animal.residents.map(resident => resident.name),
-              }
-              : animal.name,
-          ],
-          [],
-        );
-      return finalObject;
-    }, {});
-}
-*/
 
 function schedule(dayName) {
   return data.hours.entries()
