@@ -70,12 +70,13 @@ function animalMap(options) {
   // seu código aqui
 }
 
+const result = Object.entries(data.hours).reduce((accumulator, [key, value]) => {
+  const { open, close } = value;
+  accumulator[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
+  return accumulator;
+}, {});
+
 function schedule(dayName) {
-  const result = Object.entries(data.hours).reduce((accumulator, [key, value]) => {
-    const { open, close } = value;
-    accumulator[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
-    return accumulator;
-  }, {});
   if (typeof dayName === 'string' && dayName.length !== 0) return { [dayName]: result[dayName] };
   return result;
 }
