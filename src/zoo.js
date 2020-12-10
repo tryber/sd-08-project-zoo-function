@@ -82,13 +82,15 @@ function schedule(dayName) {
   arrayOfTime.reduce((acc, curr) => ({ ...acc, ...curr }), {});
 }
 
+function arrumandoCodeclimate(acc, curr){
+  return acc.age > curr.age ? acc : curr;
+}
+
 function oldestFromFirstSpecies(id) {
   const responsible = data.employees.find(employe => employe.id === id).responsibleFor[0];
   const animals = data.animals.find(animal => animal.id === responsible);
 
-  const { name, sex, age } = animals.residents.reduce((acc, curr) => {
-    return acc.age > curr.age ? acc : curr;
-  });
+  const { name, sex, age } = animals.residents.reduce(arrumandoCodeclimate);
 
   return [name, sex, age];
 }
