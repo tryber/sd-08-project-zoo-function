@@ -38,7 +38,7 @@ function isManager(id) {
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
-
+// resolvi com ajuda do Bruno Pedrosa
 function animalCount(species) {
   if (!species) {
     return animals.reduce((acc, curr) => {
@@ -69,16 +69,30 @@ function oldestFromFirstSpecies(id) {
   .sort((recent, old) => old.age - recent.age);
   return Object.values(result[0]);
 }
-// resolvi com a ajuda do plantão do Paulo
+// resolvi com a ajuda do plantão do mestre PS
 function increasePrices(percentage) {
   const increase = 1 + (percentage / 100);
   Object.keys(prices).forEach(key => (
     prices[key] = Math.round(prices[key] * increase * 100) / 100
   ));
 }
-
+// resolvi com a ajuda do plantão do mestre PS
+function employeeById(id) {
+  return employees.find(employee => employee.id === id);
+}
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const result = employees.reduce((acc, employee) => {
+    const { firstName, lastName, responsibleFor } = employee;
+    acc[`${firstName} ${lastName}`] = responsibleFor.map(id => animalsByIds(id)[0].name);
+    return acc;
+  }, {});
+  if (typeof idOrName === 'string' && idOrName.length !== 0) {
+    const employee = employeeByName(idOrName) || employeeById(idOrName);
+    const { firstName, lastName } = employee;
+    const name = `${firstName} ${lastName}`;
+    return { [name]: result[name] };
+  }
+  return result;
 }
 
 module.exports = {
