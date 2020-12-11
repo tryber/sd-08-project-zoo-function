@@ -85,10 +85,20 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
-  const { includeNames, sorted, sex } = options;
-  return options;
+  // const { includeNames, sorted, sex } = options;
+  if (!options)
+    const noParam = animals.reduce((acc, currentValue) => {
+      const { name, location } = currentValue;
+      if (!acc[location]) {
+        acc[location] = [];
+      }
+      acc[location].push(name);
+      return acc;
+    }, {});
+  return noParam;
 }
-console.log(animalMap());
+let test = console.log(test);
+
 function schedule(dayName) {
   // seu código aqui
   const theReturn = Object.entries(hours).reduce(
