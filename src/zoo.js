@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -63,8 +63,8 @@ function addEmployee(
 function animalCount(species) {
   // seu código aqui
   if (!species) {
-    return animals.reduce((accumulator, currrentValue) => {
-      accumulator[currrentValue.name] = currrentValue.residents.length;
+    return animals.reduce((accumulator, currentValue) => {
+      accumulator[currentValue.name] = currentValue.residents.length;
       return accumulator;
     }, {});
   }
@@ -89,7 +89,28 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
+
+  if (!dayName) {
+    return Object.entries(hours).reduce((acc, [day, openClose]) => {
+      if (openClose.open - openClose.close === 0) {
+        acc[day] = 'CLOSED';
+      } else {
+        acc[day] = `Open from ${openClose.open}am until ${
+          openClose.close - 12
+        }pm`;
+      }
+      return acc;
+    }, {});
+  }
+  return Object.entries(hours).reduce((acc, [day, openClose]) => {
+    if (dayName === day) {
+      return ([dayName] = `Open from ${openClose.open}am until ${
+        openClose.close - 12
+      }pm`);
+    }
+  }, {});
 }
+console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -117,7 +138,7 @@ const responsibleForAnimals = (responsibleFor = []) => {
   const res =
     responsibleFor.map(rf => data.animals.find(a => a.id === rf).name) || [];
   return res;
-}; // função copiada do projeto de Viviane Florido;
+}; // solução copiada do projeto de Viviane Florido;
 function employeeCoverage(idOrName) {
   // seu código aqui
   let result = {};
@@ -145,8 +166,6 @@ function employeeCoverage(idOrName) {
   return result;
 }
 
-console.log(employeeCoverage());
-// console.log(employeeCoverage());
 module.exports = {
   entryCalculator,
   schedule,
