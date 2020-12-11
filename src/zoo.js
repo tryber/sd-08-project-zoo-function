@@ -105,7 +105,6 @@ function animalMap(options) {
       if (options.sorted === true) {
         residents[each.name].sort();
       }
-
       obj[each.location].push(residents);
     });
   }
@@ -113,25 +112,32 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  Object.entries(hours).forEach((eachOne) => {
-    const days = Object.entries(hours);
-    if (!dayName) {
-      console.log(days);
-      return days;
+  const hoursArray = Object.entries(hours);
+  const obj = {};
+  if (!dayName) {
+    hoursArray.map((each) => {
+      if (each[0] === 'Monday') obj[each[0]] = 'CLOSED';
+      else {
+        obj[each[0]] = `Open from ${each[1].open}am until ${
+          each[1].close - 12
+        }pm`;
+      }
+      return null;
+    });
+  } else {
+    if (dayName === 'Monday') {
+      obj[dayName] = 'CLOSED';
+    } else {
+      hoursArray.find(
+        each =>
+          (obj[dayName] = `Open from ${each[1].open}am until ${
+            each[1].close - 12
+          }pm`),
+      );
     }
-    return null;
-  });
+  }
+  return obj;
 }
-
-// const expected = {
-//   'Tuesday': 'Open from 8am until 6pm',
-//   'Wednesday': 'Open from 8am until 6pm',
-//   'Thursday': 'Open from 10am until 8pm',
-//   'Friday': 'Open from 10am until 8pm',
-//   'Saturday': 'Open from 8am until 10pm',
-//   'Sunday': 'Open from 8am until 8pm',
-//   'Monday': 'CLOSED'
-// };
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
