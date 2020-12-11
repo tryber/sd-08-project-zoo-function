@@ -76,7 +76,7 @@ function animalCount(species) {
   // seu código aqui
   const newObj = {};
   if (!species) {
-    animals.forEach(elem => {
+    animals.forEach((elem) => {
       const obj = {
         [elem.name]: elem.residents.length,
       };
@@ -111,7 +111,7 @@ function oldestFromFirstSpecies(id) {
   const animal = animals.find(specie => specie.id === animalId);
   let oldestAge = 0;
   let oldestAnimal;
-  animal.residents.forEach(elem => {
+  animal.residents.forEach((elem) => {
     if (elem.age > oldestAge) {
       oldestAge = elem.age;
       oldestAnimal = Object.values(elem);
