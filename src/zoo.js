@@ -85,8 +85,10 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+  const { includeNames, sorted, sex } = options;
+  return options;
 }
-
+console.log(animalMap());
 function schedule(dayName) {
   // seu código aqui
   const theReturn = Object.entries(hours).reduce(
@@ -108,9 +110,6 @@ function schedule(dayName) {
   }
   return theReturn;
 }
-
-// console.log(Object.keys(hours));
-console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
