@@ -34,15 +34,9 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   let retorno = true;
-  const passedAge = age;
   animals.forEach((obj) => {
     if (animal === obj.name) {
-      const entries = obj.residents;
-      entries.forEach((objEntries) => {
-        if (objEntries.age < passedAge) {
-          retorno = false;
-        }
-      });
+      obj.residents.forEach((objEntries) => { if (objEntries.age < age) { retorno = false; } });
     }
   });
   return retorno;
@@ -50,14 +44,13 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   let employee = {};
-  if (employeeName === undefined) {
-    return {};
+  if (employeeName !== undefined) {
+    employees.forEach((obj) => {
+      if (obj.firstName === employeeName || obj.lastName === employeeName) {
+        employee = obj;
+      }
+    });
   }
-  employees.forEach((obj) => {
-    if (obj.firstName === employeeName || obj.lastName === employeeName) {
-      employee = obj;
-    }
-  });
   return employee;
 }
 
@@ -71,13 +64,14 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  let found;
   let retorno = false;
   employees.forEach((obj) => {
-    found = obj.managers.some(managerId => managerId === id);
-    if (found === true) {
-      retorno = true;
-    }
+    obj.managers.find((managerId) => {
+      if (managerId === id) {
+        retorno = true;
+      }
+      return null;
+    });
   });
   return retorno;
 }
@@ -100,17 +94,11 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 function animalCount(species) {
   const objRetorno = {};
   let specieSize = 0;
-  if (species === undefined) {
-    animals.forEach((objAnimals) => {
-      const animalName = objAnimals.name;
-      objRetorno[animalName] = objAnimals.residents.length;
-    });
-  } else if (species !== undefined) {
-    animals.forEach((objAnimals) => {
-      if (objAnimals.name === species) {
-        specieSize = objAnimals.residents.length;
-      }
-    });
+  animals.forEach((objAnimals) => {
+    objRetorno[objAnimals.name] = objAnimals.residents.length;
+  });
+  if (species !== undefined) {
+    specieSize = objRetorno[species];
   }
   return specieSize > 0 ? specieSize : objRetorno;
 }
@@ -119,19 +107,15 @@ function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
   }
+  const entries = Object.entries(entrants);
   let price = 0;
-  if (entrants.Adult !== undefined) {
-    price += prices.Adult * entrants.Adult;
-  }
-  if (entrants.Senior !== undefined) {
-    price += prices.Senior * entrants.Senior;
-  }
-  if (entrants.Child !== undefined) {
-    price += prices.Child * entrants.Child;
+  for (let i = 0; i < entries.length; i += 1) {
+    if (entrants[entries[i][0]] !== undefined) {
+      price += prices[entries[i][0]] * entries[i][1];
+    }
   }
   return price;
 }
-// Funções para solução do requisito 9 -------------------------------------->
 
 function makePerRegion(arrayObj) {
   animals.forEach((objAnimals) => {
@@ -228,11 +212,9 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   const employ = employees.find(objt => objt.id === id);
-  const animalId = employ.responsibleFor[0];
-  const objtAnimal = animals.find(objts => objts.id === animalId);
-  const { residents } = objtAnimal;
+  const objtAnimal = animals.find(objts => objts.id === employ.responsibleFor[0]);
   let olderAnimal = { age: 0 };
-  residents.forEach((obj) => {
+  objtAnimal.residents.forEach((obj) => {
     if (obj.age > olderAnimal.age) {
       olderAnimal = obj;
     }
@@ -241,17 +223,44 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const adult = prices.Adult + (prices.Adult * (percentage / 100));
-  const senior = prices.Senior + (prices.Senior * (percentage / 100));
-  const child = prices.Child + (prices.Child * (percentage / 100));
-  prices.Adult = Math.round(adult * 100) / 100;
-  prices.Senior = Math.round(senior * 100) / 100;
-  prices.Child = Math.round(child * 100) / 100;
+  const perc = percentage / 100;
+  prices.Adult = Math.round((prices.Adult + (prices.Adult * perc)) * 100) / 100;
+  prices.Senior = Math.round((prices.Senior + (prices.Senior * perc)) * 100) / 100;
+  prices.Child = Math.round((prices.Child + (prices.Child * perc)) * 100) / 100;
   return prices;
 }
 
+function responsibleForCoverage(identify) {
+  const employee = employees.find((obj) => {
+    let test = false;
+    if (identify === obj.id || identify === obj.firstName || identify === obj.lastName) {
+      test = true;
+    }
+    return test;
+  });
+  const animal = [];
+  employee.responsibleFor.forEach((specie) => {
+    animals.forEach((obj) => {
+      if (obj.id === specie) { animal.push(obj.name); }
+    });
+  });
+  let arrayReturn = [];
+  arrayReturn = [`${employee.firstName} ${employee.lastName}`, animal];
+  return arrayReturn;
+}
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const objToReturn = {};
+  if (!idOrName) {
+    employees.forEach((obj) => {
+      const array = responsibleForCoverage(obj.id);
+      objToReturn[array[0]] = array[1];
+    });
+  } else {
+    const array = responsibleForCoverage(idOrName);
+    objToReturn[array[0]] = array[1];
+  }
+  return objToReturn;
 }
 
 module.exports = {
