@@ -23,8 +23,8 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   // seu código aqui
   return animals
-    .find((elem) => elem.name === animal)
-    .residents.every((elem) => elem.age >= age);
+    .find(elem => elem.name === animal)
+    .residents.every(elem => elem.age >= age);
 }
 
 function employeeByName(employeeName) {
@@ -32,9 +32,7 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  return employees.find(
-    (elem) => elem.firstName === employeeName || elem.lastName === employeeName
-  );
+  return employees.find(elem => elem.firstName === employeeName || elem.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -61,7 +59,7 @@ function addEmployee(
   firstName,
   lastName,
   managers = [],
-  responsibleFor = []
+  responsibleFor = [],
 ) {
   // seu código aqui
   const newObj = {
@@ -116,7 +114,7 @@ function oldestFromFirstSpecies(id) {
   animal.residents.forEach(elem => {
     if (elem.age > oldestAge) {
       oldestAge = elem.age;
-      oldestAnimal = Object.values(elem);     
+      oldestAnimal = Object.values(elem);
     }
   });
   return oldestAnimal;
