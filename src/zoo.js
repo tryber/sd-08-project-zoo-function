@@ -153,14 +153,29 @@ function increasePrices(percentage) {
     prices[element] = Math.round(prices[element] * (1 + (percentage / 100)) * 100) / 100;
   });
   return prices;
-
-  // seu código aqui
 }
-console.log(increasePrices(50));
-console.log(increasePrices(30));
+function getAnimalsById(animalIds) {
+  return animalIds.map(id => animals.find(animal => animal.id === id).name);
+}
 function employeeCoverage(idOrName) {
-// seu código aqui
-
+  const tabela = {};
+  employees.forEach((employee) => {
+    const { firstName, lastName, responsibleFor } = employee;
+    const nomeCompleto = `${firstName} ${lastName}`;
+    const response = getAnimalsById(responsibleFor);
+    tabela[nomeCompleto] = response;
+  });
+  if (!idOrName) return tabela;
+  const resposta = {};
+  const names = employees.find(
+    employee =>
+      idOrName === employee.firstName || idOrName === employee.lastName || idOrName === employee.id,
+  );
+  const nome = `${names.firstName} ${names.lastName}`;
+  const responsible = tabela[nome];
+  resposta[nome] = responsible;
+  return resposta;
+  // seu código aqui
 }
 
 module.exports = {
