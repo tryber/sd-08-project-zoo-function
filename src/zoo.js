@@ -186,7 +186,7 @@ function employeeCoverage(idOrName) {
   ] = responsibleForAnimals(foundEmployee.responsibleFor);
   return result;
 }
-
+// Refatorar esse código nas férias por conta do aprendizado decadente.
 module.exports = {
   entryCalculator,
   schedule,
