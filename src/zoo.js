@@ -124,10 +124,10 @@ function schedule(dayName) {
       }
       return null;
     });
-  } else {
+  } else if (dayName) {
     if (dayName === 'Monday') {
       obj[dayName] = 'CLOSED';
-    } else {
+    } else if (dayName !== 'Monday') {
       hoursArray.find(
         each =>
           (obj[dayName] = `Open from ${each[1].open}am until ${
