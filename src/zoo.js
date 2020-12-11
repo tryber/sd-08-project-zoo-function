@@ -152,8 +152,9 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  Object.keys(prices).forEach(item => 
-    prices[item] = Math.ceil(prices[item] * (100 + percentage)) / 100);
+  Object.keys(prices).forEach(
+    item => (prices[item] = Math.ceil(prices[item] * (100 + percentage)) / 100),
+  );
 }
 
 const responsibleForAnimals = (responsibleFor = []) => {
