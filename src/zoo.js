@@ -69,12 +69,11 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  
-    let container = {};
-    animals.filter((anima) => {
-      container[anima.name] = anima.residents.length
+
+  let container = {};
+  animals.filter((anima) => {
+  container[anima.name] = anima.residents.length
     })
-  
     if (!species) {
       return container
     }
