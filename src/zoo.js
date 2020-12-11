@@ -8,7 +8,7 @@ eslint no-unused-vars: [
   }
 ]
 */
-const { animals, prices, employees } = require('./data.js');
+const { animals, prices, employees, hours } = require('./data.js');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -71,22 +71,35 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
-  // seu código aqui
+function schedule(dayName) {  // REFERÊNCIA TIRADA DO GITHUB DO CLEBERTON FRANCISCO https://github.com/tryber/sd-08-project-zoo-function/blob/Cleberton-zoo-function/src/zoo.js
+  if (dayName === 'Monday') {
+    return { Monday: 'CLOSED' };
+  }
+  if (!dayName) {
+    return {
+      Tuesday: 'Open from 8am until 6pm',
+      Wednesday: 'Open from 8am until 6pm',
+      Thursday: 'Open from 10am until 8pm',
+      Friday: 'Open from 10am until 8pm',
+      Saturday: 'Open from 8am until 10pm',
+      Sunday: 'Open from 8am until 8pm',
+      Monday: 'CLOSED'
+    }
+  }
+  const obj = { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
+  return obj;
 }
 
 function oldestFromFirstSpecies(id) {
-  const speciebyIDemployee = employees.find(employee => employee.id === id).responsibleFor[0];
-  const specie = animals.find(speciE => speciE.id === speciebyIDemployee);
+  const specie = animals.find(speciE => speciE.id === employees
+    .find(employee => employee.id === id).responsibleFor[0]);
   const AnimalOlder = Math.max(...specie.residents.map(animal => animal.age));
   return Object.values(specie.residents.find(animal => animal.age === AnimalOlder));
 }
 
 function increasePrices(percentage) {
-  const increasePERC = (percentage / 100) + 1;
   Object.entries(prices).forEach(([chave, valor]) => {
-    const newPriceWithPerc = valor * increasePERC;
-    prices[chave] = Math.round(newPriceWithPerc * 100) / 100;
+    prices[chave] = Math.round((valor * (percentage / 100 + 1) * 100)) / 100;
   });
 }
 
