@@ -152,7 +152,7 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  Object.keys(prices).forEach((item) => {
+  Object.keys(prices).forEach(item => {
     prices[item] = Math.ceil(prices[item] * (100 + percentage)) / 100;
   });
 }
@@ -174,17 +174,18 @@ function employeeCoverage(idOrName) {
     );
     return result;
   }
-  const foundEmployee = employees.find(employee => 
+  const foundEmployee = employees.find(
+    employee =>
       employee.id === idOrName ||
       employee.firstName === idOrName ||
-      employee.lastName === idOrName
-  )
-  
+      employee.lastName === idOrName,
+  );
+
   result[
     `${foundEmployee.firstName} ${foundEmployee.lastName}`
   ] = responsibleForAnimals(foundEmployee.responsibleFor);
   return result;
-  }
+}
 
 module.exports = {
   entryCalculator,
