@@ -91,6 +91,7 @@ function schedule(dayName) {
   // seu código aqui
   const theReturn = Object.entries(hours).reduce(
     (acc, [day, { open, close }]) => {
+      // descoberta a incrível possibilidade de passar array E objeto como parâmetros vendo plantões do Paulo Simões.
       if (open - close === 0) {
         acc[day] = 'CLOSED';
       } else {
