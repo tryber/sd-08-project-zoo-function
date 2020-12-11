@@ -45,14 +45,13 @@ function isManager(id) {
   return employees.some(eachEmployee => eachEmployee.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  const obj = { id, firstName, lastName, managers: [], responsibleFor: [] };
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const obj = { id, firstName, lastName, managers, responsibleFor };
   if (!managers === undefined) {
     obj.managers.push(managers);
     obj.responsibleFor.push(responsibleFor);
   }
   employees.push(obj);
-  console.log(managers);
 }
 
 function animalCount(species) {
@@ -140,7 +139,6 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
 }
 
 function increasePrices(percentage) {
