@@ -165,7 +165,6 @@ const responsibleForAnimals = (responsibleFor = []) => {
 function employeeCoverage(idOrName) {
   // seu código aqui
   const result = {};
-
   if (!idOrName) {
     employees.forEach(
       employee =>
@@ -175,19 +174,17 @@ function employeeCoverage(idOrName) {
     );
     return result;
   }
-
-  const foundEmployee = employees.find((employee) => {
-    return (
+  const foundEmployee = employees.find(employee => 
       employee.id === idOrName ||
       employee.firstName === idOrName ||
       employee.lastName === idOrName
-    );
-  });
+  )
+  
   result[
     `${foundEmployee.firstName} ${foundEmployee.lastName}`
   ] = responsibleForAnimals(foundEmployee.responsibleFor);
   return result;
-}
+  }
 
 module.exports = {
   entryCalculator,
