@@ -83,8 +83,8 @@ function schedule(dayName) {  // REFERÊNCIA TIRADA DO GITHUB DO CLEBERTON FRANC
       Friday: 'Open from 10am until 8pm',
       Saturday: 'Open from 8am until 10pm',
       Sunday: 'Open from 8am until 8pm',
-      Monday: 'CLOSED'
-    }
+      Monday: 'CLOSED',
+    };
   }
   const obj = { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
   return obj;
@@ -93,13 +93,18 @@ function schedule(dayName) {  // REFERÊNCIA TIRADA DO GITHUB DO CLEBERTON FRANC
 function oldestFromFirstSpecies(id) {
   const specie = animals.find(speciE => speciE.id === employees
     .find(employee => employee.id === id).responsibleFor[0]);
-  const AnimalOlder = Math.max(...specie.residents.map(animal => animal.age));
-  return Object.values(specie.residents.find(animal => animal.age === AnimalOlder));
+  const AnimalOlder = specie.residents.reduce((animal1, animal2) => {
+    if (animal1.age > animal2.age) {
+      return animal1;
+    }
+    return animal2;
+  });
+  return Object.values(AnimalOlder);
 }
 
 function increasePrices(percentage) {
   Object.entries(prices).forEach(([chave, valor]) => {
-    prices[chave] = Math.round((valor * (percentage / 100 + 1) * 100)) / 100;
+    prices[chave] = Math.round((valor * (1 + (percentage / 100)) * 100)) / 100;
   });
 }
 
