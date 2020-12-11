@@ -78,7 +78,7 @@ function entryCalculator(entrants) {
   }
   return Object.keys(entrants).reduce(
     (accumulator, currentValue) =>
-      accumulator + entrants[currentValue] * prices[currentValue],
+      accumulator + (entrants[currentValue] * prices[currentValue]),
     0,
   );
 }
@@ -152,7 +152,7 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  Object.keys(prices).forEach(item => {
+  Object.keys(prices).forEach((item) => {
     prices[item] = Math.ceil(prices[item] * (100 + percentage)) / 100;
   });
 }
@@ -161,7 +161,7 @@ const responsibleForAnimals = (responsibleFor = []) => {
   const res =
     responsibleFor.map(rf => data.animals.find(a => a.id === rf).name) || [];
   return res;
-}; // função exclusiva .map + .find retornando um array conciso...observando o projeto de Viviane Florido;
+}; // .map + .find retornando um array conciso...observando o projeto de Viviane Florido;
 function employeeCoverage(idOrName) {
   // seu código aqui
   const result = {};
@@ -176,7 +176,7 @@ function employeeCoverage(idOrName) {
     return result;
   }
 
-  const foundEmployee = employees.find(employee => {
+  const foundEmployee = employees.find((employee) => {
     return (
       employee.id === idOrName ||
       employee.firstName === idOrName ||
