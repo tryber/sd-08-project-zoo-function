@@ -102,10 +102,18 @@ function schedule(dayName) {
   });
   return obj;
 }
-console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const idFunc = employees.find(func => func.id === id).responsibleFor[0];
+  const idMaisVelho = animals.find(param => param.id === idFunc).residents
+    .reduce((acc, curr) => {
+      if (acc.age > curr.age) {
+        curr = acc;
+      }
+      return curr;
+    });
+  return Object.values(idMaisVelho);
 }
 
 function increasePrices(percentage) {
