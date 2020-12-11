@@ -70,12 +70,14 @@ function entryCalculator(entrants) {
     Child: 0,
   };
   Object.assign(income, entrants);
-  const result = (prices.Adult * income.Adult) + (prices.Child * income.Child) + (prices.Senior * income.Senior);
+  const result = (prices.Adult * income.Adult) +
+  (prices.Child * income.Child) +
+  (prices.Senior * income.Senior);
   return result;
 }
 
 function animalMap(options) {
-  // seu código aqui
+  // code
 }
 
 function schedule(dayName) {
