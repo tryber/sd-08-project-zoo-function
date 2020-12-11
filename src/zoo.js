@@ -151,8 +151,21 @@ function schedule(dayName) {
 console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const empregadoRecebido = employees.find(empregado => empregado.id === id);
+  const animalRecebido = empregadoRecebido.responsibleFor[0];
+  const especieRecebido = animals.filter(animal => animal.id === animalRecebido);
+  const residentesRecebido = especieRecebido[0].residents;
+  let maiorIdade = 0;
+  residentesRecebido.forEach((residente) => {
+    if (residente.age > maiorIdade) {
+      maiorIdade = residente.age;
+    }
+  });
+  const objetoAnimal = residentesRecebido.filter(residente => residente.age === maiorIdade);
+  const retorno = [objetoAnimal[0].name, objetoAnimal[0].sex, objetoAnimal[0].age];
+  return retorno;
 }
+console.log(oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 function increasePrices(percentage) {
   // seu código aqui
