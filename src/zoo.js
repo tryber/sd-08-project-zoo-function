@@ -90,6 +90,7 @@ function animalMap(options) {
     const noParam = animals.reduce((acc, currentValue) => {
       const { name, location } = currentValue;
       if (!acc[location]) {
+        // sacada para 'dibrar' o reduce ficar só com 1 array do PS.
         acc[location] = [];
       }
       acc[location].push(name);
@@ -97,7 +98,6 @@ function animalMap(options) {
     }, {});
   return noParam;
 }
-let test = console.log(test);
 
 function schedule(dayName) {
   // seu código aqui
