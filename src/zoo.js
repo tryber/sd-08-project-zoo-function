@@ -91,7 +91,8 @@ function schedule(dayName) {
   // seu código aqui
   const theReturn = Object.entries(hours).reduce(
     (acc, [day, { open, close }]) => {
-      // descoberta a incrível possibilidade de passar array E objeto como parâmetros vendo plantões do Paulo Simões.
+      // descoberta a incrível possibilidade de passar array E objeto como parâmetros...
+      // vendo plantões do Paulo Simões.
       if (open - close === 0) {
         acc[day] = 'CLOSED';
       } else {
@@ -137,10 +138,11 @@ const responsibleForAnimals = (responsibleFor = []) => {
   const res =
     responsibleFor.map(rf => data.animals.find(a => a.id === rf).name) || [];
   return res;
-}; // descoberta possibilitade de ter uma função exclusiva .map + .find retornando um array conciso observando o projeto de Viviane Florido;
+}; // descoberta possibilitade de ter uma função exclusiva .map + .find retornando um array conciso...
+// ...observando o projeto de Viviane Florido;
 function employeeCoverage(idOrName) {
   // seu código aqui
-  let result = {};
+  const result = {};
 
   if (!idOrName) {
     employees.forEach(
