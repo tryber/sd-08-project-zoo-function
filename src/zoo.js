@@ -78,7 +78,7 @@ function entryCalculator(entrants) {
   }
   return Object.keys(entrants).reduce(
     (accumulator, currentValue) =>
-      accumulator + (entrants[currentValue] * prices[currentValue]),
+      accumulator + entrants[currentValue] * prices[currentValue],
     0
   );
 }
