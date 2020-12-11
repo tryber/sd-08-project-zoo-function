@@ -74,8 +74,8 @@ function animalCount(species) {
     container[anima.name] = anima.residents.length;
   });
   if (!species) {
-      return container;
-    }
+    return container;
+  }
   return container[species];
 }
 
