@@ -49,38 +49,34 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-const expected1 = {
-  'lions': 4,
-  'tigers': 2,
-  'bears': 3,
-  'penguins': 4,
-  'otters': 4,
-  'frogs': 2,
-  'snakes': 2,
-  'elephants': 4,
-  'giraffes': 6
-};
-
-//console.log(expected1.length);
+// const expected1 = {
+//   'lions': 4,
+//   'tigers': 2,
+//   'bears': 3,
+//   'penguins': 4,
+//   'otters': 4,
+//   'frogs': 2,
+//   'snakes': 2,
+//   'elephants': 4,
+//   'giraffes': 6
+// };
 
 function animalCount(species) {
-  // const acc = {};
-  // if (species == null) {
-  //   data.animals.forEach((elem, index) => {
-      
-  //   });
-  // }
-  // return (acc);
+  let quantity=0;
+  if (species == null) {
+    quantity = data.animals.map((elem) => {
+      return (`${elem.name}: ${elem.residents.length}`);
+    });
+  }
+  return quantity;
 }
-//console.log(animalCount());
 
 function entryCalculator(entrants) {
-  if (entrants == null || entrants == {}){
+  if ( entrants === null || entrants === {} ){
     return 0;
   }
-  const { Adult=0, Child=0, Senior=0 } = entrants;
-  console.log
-  return ((Adult*49.99)+(Child*20.99)+(Senior*24.99));
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  return (( Adult * 49.99) + ( Child * 20.99 ) + ( Senior * 24.99 ));
 }
 
 function animalMap(options) {
