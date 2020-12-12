@@ -70,15 +70,16 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   const container = {};
-  
+
   if (!species) {
     animals.filter((anima) => {
-    container[anima.name] = anima.residents.length;
+      container[anima.name] = anima.residents.length;
     });
     return container;
   }
   animals.filter((anima) => {
-  container[anima.name] = anima.residents.length;})
+    container[anima.name] = anima.residents.length;
+  })
   return container[species];
 }
 
