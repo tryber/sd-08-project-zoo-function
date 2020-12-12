@@ -167,8 +167,17 @@ function oldestFromFirstSpecies(id) {
 }
 console.log(oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
+// pesquisei para saber como arredondar corretamente: https://www.alura.com.br/artigos/formatando-numeros-no-javascript?gclid=Cj0KCQiAzsz-BRCCARIsANotFgNTwpZy8AYQk0KE4-pew9B4eFz2yrLD06t9g2gGnaFv3syTP7i14L8aAkF7EALw_wcB
 function increasePrices(percentage) {
-  // seu código aqui
+  const valorAumento = prices.Adult * (percentage / 100);
+  const novoValor = prices.Adult + valorAumento;
+  prices.Adult = Math.round(novoValor * 100) / 100;
+  const valorAumento2 = prices.Senior * (percentage / 100);
+  const novoValor2 = prices.Senior + valorAumento2;
+  prices.Senior = Math.round(novoValor2 * 100) / 100;
+  const valorAumento3 = prices.Child * (percentage / 100);
+  const novoValor3 = prices.Child + valorAumento3;
+  prices.Child = Math.round(novoValor3 * 100) / 100;
 }
 
 function employeeCoverage(idOrName) {
