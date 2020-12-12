@@ -74,13 +74,15 @@ function animalCount(species) {
   if (!species) {
     animals.filter((anima) => {
       container[anima.name] = anima.residents.length;
+      return container;
     });
-    return container;
+    
   }
   animals.filter((anima) => {
     container[anima.name] = anima.residents.length;
-  })
-  return container[species];
+    return container[species];
+  });
+  
 }
 
 
