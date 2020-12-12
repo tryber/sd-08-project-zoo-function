@@ -1,4 +1,4 @@
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 /*
 eslint no-unused-vars: [
   "error",
@@ -54,13 +54,7 @@ function isManager(id) {
   return employees.some((elem, index) => elem.managers[index] === id);
 }
 
-function addEmployee(
-  id,
-  firstName,
-  lastName,
-  managers = [],
-  responsibleFor = [],
-) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
   const newObj = {
     id,
@@ -99,10 +93,24 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+  const { includeNames, sorted, sex } = options;
 }
 
 function schedule(dayName) {
   // seu código aqui
+  if (!dayName) {
+  const days = Object.keys(hours).map(day => console.log(day));
+  }
+  
+//   const day = hours.find(elem => elem.key === dayName);
+//   const dayInfo = `Open from ${day.open}am until ${day.close}pm`;
+//   const objInfo = {
+//     day: dayInfo,
+//   };
+//   if (day.open === 0 && day.close === 0) {
+//     dayInfo = 'CLOSED'; // let dayInfo não vaza o escopo
+//   }
+//   return objInfo;
 }
 
 function oldestFromFirstSpecies(id) {
@@ -131,8 +139,24 @@ function increasePrices(percentage) {
   prices.Senior = Math.round(senior * 100) / 100;
 }
 
+function employeeById(id) {
+  return employees.find(employee => employee.id === id);
+}
+
 function employeeCoverage(idOrName) {
   // seu código aqui
+  const result = employees.reduce((acc, employee) => {
+    const { firstName, lastName, responsibleFor } = employee;
+    acc[`${firstName} ${lastName}`] = responsibleFor.map(id => animalsByIds(id)[0].name);
+    return acc;
+  }, {});
+  if (typeof idOrName === 'string' && idOrName.length !== 0) {
+    const employee = employeeByName(idOrName) || employeeById(idOrName);
+    const  { firstName, lastName } = employee;
+    const name = `${firstName} ${lastName}`;
+    return { [name]: result[name] };
+  }
+  return result;
 }
 
 module.exports = {
