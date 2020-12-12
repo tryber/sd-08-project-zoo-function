@@ -1,4 +1,4 @@
-const { animals, employees, prices, hours } = require('./data');
+const { animals, employees, prices } = require('./data');
 /*
 eslint no-unused-vars: [
   "error",
