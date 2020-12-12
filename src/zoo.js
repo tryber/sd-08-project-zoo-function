@@ -62,17 +62,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 // };
 
 function animalCount(species) {
-  let quantity=0;
-  if (species == null) {
-    quantity = data.animals.map((elem) => {
-      return (`${elem.name}: ${elem.residents.length}`);
-    });
-  }
-  return quantity;
+  // let quantity = 0;
+  // if (species == null) {
+  //   quantity = data.animals.map((elem) => {
+  //     return (`${elem.name}: ${elem.residents.length}`);
+  //   });
+  // }
+  // return quantity;
 }
 
 function entryCalculator(entrants) {
-  if ( entrants === null || entrants === {} ){
+  if (entrants === null || entrants === {}){
     return 0;
   }
   const { Adult = 0, Child = 0, Senior = 0 } = entrants;
