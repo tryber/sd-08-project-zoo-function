@@ -93,24 +93,10 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
-  const { includeNames, sorted, sex } = options;
 }
 
 function schedule(dayName) {
   // seu código aqui
-  if (!dayName) {
-  const days = Object.keys(hours).map(day => console.log(day));
-  }
-  
-//   const day = hours.find(elem => elem.key === dayName);
-//   const dayInfo = `Open from ${day.open}am until ${day.close}pm`;
-//   const objInfo = {
-//     day: dayInfo,
-//   };
-//   if (day.open === 0 && day.close === 0) {
-//     dayInfo = 'CLOSED'; // let dayInfo não vaza o escopo
-//   }
-//   return objInfo;
 }
 
 function oldestFromFirstSpecies(id) {
@@ -152,7 +138,7 @@ function employeeCoverage(idOrName) {
   }, {});
   if (typeof idOrName === 'string' && idOrName.length !== 0) {
     const employee = employeeByName(idOrName) || employeeById(idOrName);
-    const  { firstName, lastName } = employee;
+    const { firstName, lastName } = employee;
     const name = `${firstName} ${lastName}`;
     return { [name]: result[name] };
   }
