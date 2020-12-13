@@ -9,9 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { hours } = require("./data");
-
-// const data = require('./data');
+const data = require('./data');
 
 function animalsByIds(...ids) {
   return data.animals.filter(animais => ids.includes(animais.id));
