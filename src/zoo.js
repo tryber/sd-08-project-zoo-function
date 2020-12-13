@@ -9,7 +9,9 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+const { hours } = require("./data");
+
+// const data = require('./data');
 
 function animalsByIds(...ids) {
   return data.animals.filter(animais => ids.includes(animais.id));
@@ -158,9 +160,20 @@ function animalMap(options) {
   // return 'lions';
 }
 
-// const data = require('./data');
 function schedule(dayName) {
-  // seu código aqui
+  const agenda = {
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+    Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
+    Monday: 'CLOSED',
+  };
+  if (dayName !== undefined) {
+    return { [dayName]: agenda[dayName] };
+  }
+  return agenda;
 }
 
 function oldestFromFirstSpecies(id) {
