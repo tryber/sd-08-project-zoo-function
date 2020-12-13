@@ -131,6 +131,22 @@ function createObjectSchedule(day) {
   return obj;
 }
 
+function sortArray(array, sorted) {
+  if (sorted) {
+    array.sort();
+  }
+}
+
+function animalsByRegion() {
+  const regions = ['NE', 'NW', 'SE', 'SW'];
+  return regions.reduce((acc, curr) => {
+    acc[curr] = data.animals
+      .filter(animal => animal.location === curr)
+      .map(animal => animal.name);
+    return acc;
+  }, {});
+}
+
 function schedule(dayName) {
   // seu código aqui
   const timeArray = Object.keys(data.hours).map(createObjectSchedule);
