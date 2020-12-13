@@ -75,6 +75,22 @@ function getAnimalsFromSpecies(specie, sex) {
       .residents.map(animal => animal.name);
 }
 
+function sortArray(array, sorted) {
+  if (sorted) {
+    array.sort();
+  }
+}
+
+function animalMap(options) {
+  // seu código aqui
+  if (!options) {
+    return animalsByRegion();
+  }
+  const { includeNames = false, sorted = false, sex = false } = options;
+  const animals = includeNames ? animalsByRegionWithNames(sex, sorted) : animalsByRegion();
+  return animals;
+}
+
 function animalCount(species) {
   // seu código aqui
   if (species !== undefined) {
@@ -112,16 +128,6 @@ function animalsByRegionWithNames(sex, sorted) {
   }, {});
 }
 
-function animalMap(options) {
-  // seu código aqui
-  if (!options) {
-    return animalsByRegion();
-  }
-  const { includeNames = false, sorted = false, sex = false } = options;
-  const animals = includeNames ? animalsByRegionWithNames(sex, sorted) : animalsByRegion();
-  return animals;
-}
-
 function createObjectSchedule(day) {
   const obj = {};
   let { open, close } = data.hours[day];
@@ -129,12 +135,6 @@ function createObjectSchedule(day) {
   close = close > 12 ? `${close - 12}pm` : `${close}am`;
   obj[day] = (open === close) ? 'CLOSED' : `Open from ${open} until ${close}`;
   return obj;
-}
-
-function sortArray(array, sorted) {
-  if (sorted) {
-    array.sort();
-  }
 }
 
 function animalsByRegion() {
