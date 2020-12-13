@@ -64,6 +64,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return data.employees.push(newAddEmployee);
 }
 
+function getAnimalsFromSpecies(specie, sex) {
+  return sex ?
+    data.animals
+      .find(animal => animal.name === specie)
+      .residents.filter(animal => animal.sex === sex)
+      .map(animal => animal.name) :
+    data.animals
+      .find(animal => animal.name === specie)
+      .residents.map(animal => animal.name);
+}
+
 function animalCount(species) {
   // seu código aqui
   if (species !== undefined) {
