@@ -64,33 +64,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return data.employees.push(newAddEmployee);
 }
 
-function getAnimalsFromSpecies(specie, sex) {
-  return sex ?
-    data.animals
-      .find(animal => animal.name === specie)
-      .residents.filter(animal => animal.sex === sex)
-      .map(animal => animal.name) :
-    data.animals
-      .find(animal => animal.name === specie)
-      .residents.map(animal => animal.name);
-}
-
-function sortArray(array, sorted) {
-  if (sorted) {
-    array.sort();
-  }
-}
-
-function animalMap(options) {
-  // seu código aqui
-  if (!options) {
-    return animalsByRegion();
-  }
-  const { includeNames = false, sorted = false, sex = false } = options;
-  const animals = includeNames ? animalsByRegionWithNames(sex, sorted) : animalsByRegion();
-  return animals;
-}
-
 function animalCount(species) {
   // seu código aqui
   if (species !== undefined) {
@@ -112,6 +85,33 @@ function entryCalculator(entrants = {}) {
   }, 0);
 }
 
+function animalsByRegion() {
+  const regions = ['NE', 'NW', 'SE', 'SW'];
+  return regions.reduce((acc, curr) => {
+    acc[curr] = data.animals
+      .filter(animal => animal.location === curr)
+      .map(animal => animal.name);
+    return acc;
+  }, {});
+}
+
+function getAnimalsFromSpecies(specie, sex) {
+  return sex ?
+    data.animals
+      .find(animal => animal.name === specie)
+      .residents.filter(animal => animal.sex === sex)
+      .map(animal => animal.name) :
+    data.animals
+      .find(animal => animal.name === specie)
+      .residents.map(animal => animal.name);
+}
+
+function sortArray(array, sorted) {
+  if (sorted) {
+    array.sort();
+  }
+}
+
 function animalsByRegionWithNames(sex, sorted) {
   const regions = ['NE', 'NW', 'SE', 'SW'];
   return regions.reduce((regionObj, nextRegion) => {
@@ -124,8 +124,18 @@ function animalsByRegionWithNames(sex, sorted) {
         sortArray(objPerRegion[animal], sorted);
         return objPerRegion;
       });
+
     return regionObj;
   }, {});
+}
+
+function animalMap(options) {
+  if (!options) {
+    return animalsByRegion();
+  }
+  const { includeNames = false, sorted = false, sex = false } = options;
+  const animals = includeNames ? animalsByRegionWithNames(sex, sorted) : animalsByRegion();
+  return animals;
 }
 
 function createObjectSchedule(day) {
@@ -137,19 +147,9 @@ function createObjectSchedule(day) {
   return obj;
 }
 
-function animalsByRegion() {
-  const regions = ['NE', 'NW', 'SE', 'SW'];
-  return regions.reduce((acc, curr) => {
-    acc[curr] = data.animals
-      .filter(animal => animal.location === curr)
-      .map(animal => animal.name);
-    return acc;
-  }, {});
-}
-
 function schedule(dayName) {
-  // seu código aqui
   const timeArray = Object.keys(data.hours).map(createObjectSchedule);
+
   return dayName ?
     timeArray.find(day => day[dayName]) :
     timeArray.reduce((acc, curr) => ({ ...acc, ...curr }), {});
@@ -160,19 +160,55 @@ function checkGreaterAge(acc, curr) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
   const speciesId = data.employees.find(employee => employee.id === id).responsibleFor[0];
   const animalsFromSpecies = data.animals.find(animal => animal.id === speciesId);
-  const { name, sex, age } = animalsFromSpecies.residents.reduce(checkGreaterAge);
+st { name, sex, age } = animalsFromSpecies.residents.reduce(checkGreaterAge);
   return [name, sex, age];
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const { Adult, Child, Senior } = data.prices;
+  data.prices = {
+    Adult: (Math.ceil(((1 + (percentage / 100)) * Adult) * 100)) / 100,
+    Child: (Math.ceil(((1 + (percentage / 100)) * Child) * 100)) / 100,
+    Senior: (Math.ceil(((1 + (percentage / 100)) * Senior) * 100)) / 100,
+  };
+}
+
+function findEmployee(idOrName) {
+  return data.employees.find(
+    employee => employee.id === idOrName ||
+      employee.firstName === idOrName ||
+      employee.lastName === idOrName,
+  );
+}
+
+function getEmployeeAnimals(employee) {
+  const animalArray = animalsByIds(...employee.responsibleFor);
+  return animalArray.map(animal => animal.name);
+}
+
+function createSingleEmployee(employee) {
+  const employeeAnimals = getEmployeeAnimals(employee);
+  const name = `${employee.firstName} ${employee.lastName}`;
+  const result = {};
+  result[name] = employeeAnimals;
+  return result;
+}
+
+function getAllEmployeesAnimals() {
+  const result = data.employees.reduce((acc, curr) => {
+    const employee = createSingleEmployee(curr);
+    return { ...acc, ...employee };
+  }, {});
+  return result;
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const employee = findEmployee(idOrName);
+  return employee ?
+    createSingleEmployee(employee) :
+    getAllEmployeesAnimals();
 }
 
 module.exports = {
