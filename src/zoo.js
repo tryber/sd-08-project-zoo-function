@@ -162,7 +162,7 @@ function checkGreaterAge(acc, curr) {
 function oldestFromFirstSpecies(id) {
   const speciesId = data.employees.find(employee => employee.id === id).responsibleFor[0];
   const animalsFromSpecies = data.animals.find(animal => animal.id === speciesId);
-st { name, sex, age } = animalsFromSpecies.residents.reduce(checkGreaterAge);
+  const { name, sex, age } = animalsFromSpecies.residents.reduce(checkGreaterAge);
   return [name, sex, age];
 }
 
