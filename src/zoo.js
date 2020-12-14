@@ -180,7 +180,7 @@ function increasePrices(percentage) {
   prices.Child = Math.round(novoValor3 * 100) / 100;
 }
 
-//fiz com a ajuda do grupo de estudos gravado :).
+// fiz com a ajuda do grupo de estudos gravado :).
 
 function employeeById(id) {
   return employees.find(employee => employee.id === id);
@@ -192,7 +192,7 @@ function employeeCoverage(idOrName) {
     acc[`${firstName} ${lastName}`] = responsibleFor.map(id => animalsByIds(id)[0].name);
     return acc;
   }, {});
-  if (typeof idOrName === 'string' && idOrName.length != 0) {
+  if (typeof idOrName === 'string' && idOrName.length !== 0) {
     const employee = employeeByName(idOrName) || employeeById(idOrName);
     const { firstName, lastName } = employee;
     const name = `${firstName} ${lastName}`;
