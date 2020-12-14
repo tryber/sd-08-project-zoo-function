@@ -20,7 +20,7 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(...ids) {
   return animals.find(tipobicho => tipobicho.name === ids[0])
-  .residents.every(tipobicho => tipobicho.age >= 7);
+    .residents.every(tipobicho => tipobicho.age >= 7);
 }
 
 function employeeByName(ids) {
@@ -69,20 +69,19 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  const container = {};
-
-  if (!species) {
+    if (!species) {
+    const container = {};
     animals.filter((anima) => {
-      container[anima.name] = anima.residents.length;
-      return container;
-    });
-    
-  }
-  animals.filter((anima) => {
     container[anima.name] = anima.residents.length;
-    return container[species];
-  });
-  
+    });
+    return container;
+  }
+  const container = {};
+  animals.filter((anima) => {
+  container[anima.name] = anima.residents.length;
+  }
+  );
+  return container[species]
 }
 
 
