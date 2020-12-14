@@ -180,9 +180,52 @@ function increasePrices(percentage) {
   prices.Child = Math.round(novoValor3 * 100) / 100;
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+//fiz com a ajuda do grupo de estudos gravado :).
+
+function employeeById(id) {
+  return employees.find(employee => employee.id === id);
 }
+
+function employeeCoverage(idOrName) {
+  const resultado = employees.reduce((acc, employee) => {
+    const { firstName, lastName, responsibleFor } = employee;
+    acc[`${firstName} ${lastName}`] = responsibleFor.map(id => animalsByIds(id)[0].name);
+    return acc;
+  }, {});
+  if (typeof idOrName === 'string' && idOrName.length != 0) {
+    const employee = employeeByName(idOrName) || employeeById(idOrName);
+    const { firstName, lastName } = employee;
+    const name = `${firstName} ${lastName}`;
+    return { [name]: resultado[name] };
+  }
+  return resultado;
+}
+console.log(employeeCoverage());
+// minha lógica inicial:
+// function employeeCoverage(idOrName) {
+//   const retorno = {};
+//   if (!idOrName) {
+//     const funcionarios = [];
+//     const animalRespectivoIDs = [];
+//     employees.forEach((empregado) => {
+//       funcionarios.push(empregado.firstName + ' ' + empregado.lastName)
+//       animalRespectivoIDs.push(empregado.responsibleFor);
+//     });
+//     const objAnimais = [];
+//     animalRespectivoIDs.forEach((ids) => {
+//       objAnimais.push(animals.filter(animal => ids.some(id => animal.id === id)));
+//     })
+//     let index = -1;
+//     funcionarios.forEach((funcionario) => {
+//       index++;
+//       const animaisAgora = objAnimais[index]
+//       retorno[funcionario] = animaisAgora.forEach((animal) => {
+//         return animal.name;
+//       });
+//     })
+//     return retorno;
+//   }
+// }
 
 module.exports = {
   entryCalculator,
