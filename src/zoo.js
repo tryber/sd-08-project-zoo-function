@@ -121,7 +121,22 @@ function increasePrices(percentage) {
   });
 }
 
+function mapEmployeeAnimals(...employees) {
+  const employeesMaped = employees.map((employee) => {
+    const animalsName = employee.responsibleFor.map((idAnimal) => {
+      const animalFinder = data.animals.find(animal => idAnimal === animal.id);
+      return animalFinder.name;
+    });
+    const allName = `${employee.firstName} ${employee.lastName}`;
+    return { [allName]: animalsName };
+  });
+  return employeesMaped;
+}
+
 function employeeCoverage(idOrName) {
+  if (!idOrName) {
+    return mapEmployeeAnimals(...data.employees);
+  }
   const employeeFinder = data.employees.find((employee) => {
     const employeeId = employee.id;
     const employeeFirstName = employee.firstName;
@@ -129,12 +144,8 @@ function employeeCoverage(idOrName) {
     return employeeId === idOrName || employeeFirstName === idOrName
     || employeeLastName === idOrName;
   });
-  const animalsName = employeeFinder.responsibleFor.map((idAnimal) => {
-    const animalFinder = data.animals.find(animal => idAnimal === animal.id);
-    return animalFinder.name;
-  });
-  const allName = `${employeeFinder.firstName} ${employeeFinder.lastName}`;
-  return { [allName]: animalsName };
+
+  return mapEmployeeAnimals(employeeFinder)[0];
 }
 
 module.exports = {
