@@ -94,7 +94,17 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if(!idOrName) return employees.reduce((acc, empl) => {
+    acc[`${empl.firstName} ${empl.lastName}`] = animals.filter(animal => empl.responsibleFor.includes(animal.id)).map(name => name.name);
+    return acc;
+  }, {})
+  return employees.reduce((acc, empl) => {
+    if(empl.id.includes(idOrName) || empl.firstName.includes(idOrName) || empl.lastName.includes(idOrName)) { 
+      acc[`${empl.firstName} ${empl.lastName}`] = animals.filter(animal => empl.responsibleFor.includes(animal.id)).map(name => name.name);
+    }
+    return acc;
+  }, {})
+  
 }
 
 module.exports = {
