@@ -34,7 +34,7 @@ function createEmployee(personalInfo, associatedWith) {
   return result;
 }
 function isManager(id) {
-  const count = 0;
+  let count = 0;
   data.employees.forEach((employee) => {
     if (employee.managers.includes(id)) count += 1;
   });
