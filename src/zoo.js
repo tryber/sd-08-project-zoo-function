@@ -146,7 +146,7 @@ function employeeCoverage(idOrName) {
     || employeeLastName === idOrName;
   });
 
-  return mapEmployeeAnimals(employeeFinder)[0];
+  return mapEmployeeAnimals(employeeFinder);
 }
 
 module.exports = {
