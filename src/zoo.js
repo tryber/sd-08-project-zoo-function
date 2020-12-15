@@ -47,26 +47,33 @@ function createEmployee(personalInfo, associatedWith) {
   return result;
 }
 function isManager(id) {
-  let result = false;
-  data.employees.forEach((employee) => {
+  data.employees.forEach(employee => {
     if (employee.managers.includes(id)) {
-      result = true;
+      return true;
     }
   });
-  return result;
+  return false;
 }
 function addEmployee(
-  id,firstName,lastName,managers = [],responsibleFor = [],
+  id,
+  firstName,
+  lastName,
+  managers = [],
+  responsibleFor = [],
 ) {
   const employee = {
-    id,firstName,lastName,managers,responsibleFor,
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
   };
   data.employees.push(employee);
 }
 function animalCount(species) {
   if (species === undefined) {
     const returnObj = {};
-    data.animals.forEach((animal) => {
+    data.animals.forEach(animal => {
       returnObj[animal.name] = animal.residents.length;
     });
     return returnObj;
@@ -79,114 +86,89 @@ function entryCalculator(entrants) {
   }
   return Object.keys(entrants).reduce(
     (previousValue, currentValue) =>
-      previousValue + (data.prices[currentValue] * entrants[currentValue]),
+      previousValue + data.prices[currentValue] * entrants[currentValue],
     0,
   );
 }
-function returnToAnimalMapNoParameter(region) {
-  return data.animals
-  .filter(animalFilter => animalFilter.location === region)
-  .map(animal => animal.name);
+function divisionPerRegion() {
+  const NE = data.animals.filter(specie => specie.location === 'NE');
+  const NW = data.animals.filter(specie => specie.location === 'NW');
+  const SE = data.animals.filter(specie => specie.location === 'SE');
+  const SW = data.animals.filter(specie => specie.location === 'SW');
+  const arrayRegions = [NE, NW, SE, SW];
+  return arrayRegions;
 }
 function animalMapNoParameter() {
   return {
-    NE: returnToAnimalMapNoParameter('NE'),
-    NW: returnToAnimalMapNoParameter('NW'), 
-    SE: returnToAnimalMapNoParameter('SE'), 
-    SW: returnToAnimalMapNoParameter('SW'),
+    NE: divisionPerRegion()[0].map(specie => specie.name),
+    NW: divisionPerRegion()[1].map(specie => specie.name),
+    SE: divisionPerRegion()[2].map(specie => specie.name),
+    SW: divisionPerRegion()[3].map(specie => specie.name),
   };
 }
-function animalsPerRegions(region) {
-  const animalsPerRegion = data.animals
-    .filter(animalFilter => animalFilter.location === region)
-    .map((animal) => {
-      const objNamesSpecie = {};
-      const names = animal.residents.map(
-        informationOfAnimal => informationOfAnimal.name,
-      );
-      objNamesSpecie[animal.name] = names;
-      return objNamesSpecie;
-    });
-  return animalsPerRegion;
-}
-function animalMapJustIncludeNames() {
-  return {
-    NE: animalsPerRegions('NE'), 
-    NW: animalsPerRegions('NW'), 
-    SE: animalsPerRegions('SE'),
-    SW: animalsPerRegions('SW'),
-  };
-}
-function ordRegion(regions) {
-  regions.forEach((region) => {
-    region[Object.keys(region)[0]].sort();
+function objReturnForIncludesTrue(specie) {
+  return specie.map(specie => {
+    const obj = {};
+    obj[specie.name] = specie.residents.map(animal => animal.name);
+    return obj;
   });
-  return regions;
 }
-function animalMapIncludesAndSort() {
+function justIncludesTrue() {
   return {
-    NE: ordRegion(animalsPerRegions('NE')),
-    NW: ordRegion(animalsPerRegions('NW')),
-    SE: ordRegion(animalsPerRegions('SE')),
-    SW: ordRegion(animalsPerRegions('SW')),
+    NE: objReturnForIncludesTrue(divisionPerRegion()[0]),
+    NW: objReturnForIncludesTrue(divisionPerRegion()[1]),
+    SE: objReturnForIncludesTrue(divisionPerRegion()[2]),
+    SW: objReturnForIncludesTrue(divisionPerRegion()[3]),
   };
 }
-function animalsPerRegionsWithSex(regions, sex) {
-  if (sex === 'male') {
-    return regions.map((specie) => {
-      const objReturn = {};
-      objReturn[specie.name] = specie.residents
-        .filter(information => information.sex === 'male')
-        .map(allInfo => allInfo.name);
-      return objReturn;
-    });
+function sortedAnimal() {
+  const objAnimalNames = justIncludesTrue();
+  const regions = Object.keys(objAnimalNames);
+  regions.forEach(region => {
+    objAnimalNames[region].forEach(specie =>
+      specie[Object.keys(specie)[0]].sort(),
+    );
+  });
+  return objAnimalNames;
+}
+function auxSortedAnimalWithSex(region, sex, sorted) {
+  return region.map(specie => {
+    const obj = {};
+    if (sorted === true) {
+      obj[specie.name] = specie.residents
+        .filter(animal => animal.sex === sex)
+        .map(info => info.name)
+        .sort();
+    } else {
+      obj[specie.name] = specie.residents
+        .filter(animal => animal.sex === sex)
+        .map(info => info.name);
+    }
+    return obj;
+  });
+}
+function sortedAnimalWithSex(sorted, sex) {
+  return {
+    NE: auxSortedAnimalWithSex(divisionPerRegion()[0], sex, sorted),
+    NW: auxSortedAnimalWithSex(divisionPerRegion()[1], sex, sorted),
+    SE: auxSortedAnimalWithSex(divisionPerRegion()[2], sex, sorted),
+    SW: auxSortedAnimalWithSex(divisionPerRegion()[3], sex, sorted),
+  };
+}
+function includesNameTrue(sorted, sex) {
+  if (sorted === undefined && sex === undefined) {
+    return justIncludesTrue();
+  } else if (sorted !== undefined && sex === undefined) {
+    return sortedAnimal();
   }
-  return regions.map((specie) => {
-    const objReturn = {};
-    objReturn[specie.name] = specie.residents
-      .filter(information => information.sex === 'female')
-      .map(allInfo => allInfo.name);
-    return objReturn;
-  });
+  return sortedAnimalWithSex(sorted, sex);
 }
-function returnToanimalMapIncludesAndSex(region){
-  return data.animals.filter(
-    animalFilter => animalFilter.location === region,
-  );
-}
-function animalMapIncludesAndSex(sex) {
+function includeNamesUndefined() {
   return {
-    NE: animalsPerRegionsWithSex(returnToanimalMapIncludesAndSex('NE'), sex),
-    NW: animalsPerRegionsWithSex(returnToanimalMapIncludesAndSex('NW'), sex),
-    SE: animalsPerRegionsWithSex(returnToanimalMapIncludesAndSex('SE'), sex),
-    SW: animalsPerRegionsWithSex(returnToanimalMapIncludesAndSex('SW'), sex),
-  };
-}
-function orderNames(region) {
-  region.forEach((specie) => {
-    specie[Object.keys(specie)[0]].sort();
-  });
-  return region;
-}
-function animalMapIncludesAndSexSorted(objPerSex) {
-  const { NE, NW, SE, SW } = objPerSex;
-  return {
-    NE: orderNames(NE),
-    NW: orderNames(NW),
-    SE: orderNames(SE),
-    SW: orderNames(SW),
-  };
-}
-function returnNamesPerRegion(regions) {
-  return regions.map(specie => Object.keys(specie)[0]);
-}
-function justNames(objWithInformation) {
-  const { NE, NW, SE, SW } = objWithInformation;
-  return {
-    NE: returnNamesPerRegion(NE),
-    NW: returnNamesPerRegion(NW),
-    SE: returnNamesPerRegion(SE),
-    SW: returnNamesPerRegion(SW),
+    NE: divisionPerRegion()[0].map(specie => specie.name),
+    NW: divisionPerRegion()[1].map(specie => specie.name),
+    SE: divisionPerRegion()[2].map(specie => specie.name),
+    SW: divisionPerRegion()[3].map(specie => specie.name),
   };
 }
 function animalMap(options) {
@@ -194,21 +176,10 @@ function animalMap(options) {
     return animalMapNoParameter();
   }
   const { includeNames, sorted, sex } = options;
-  if (includeNames === true && sorted === undefined && sex === undefined) {
-    return animalMapJustIncludeNames();
-  } else if (includeNames === true && sorted === true && sex === undefined) {
-    return animalMapIncludesAndSort();
-  } else if (
-    includeNames === true &&
-    sorted === undefined &&
-    sex !== undefined
-  ) {
-    return animalMapIncludesAndSex(sex);
-  } else if (includeNames === true && sorted === true && sex !== undefined) {
-    return animalMapIncludesAndSexSorted(animalMapIncludesAndSex(sex));
-  } else {
-    return justNames(animalMapIncludesAndSort());
+  if (includeNames === true) {
+    return includesNameTrue(sorted, sex);
   }
+  return includeNamesUndefined();
 }
 function isClosed(openTime, closeTime) {
   if (openTime === 0 && closeTime === 0) {
@@ -237,7 +208,7 @@ function sayTheTimeOpen(day) {
 function schedule(dayName) {
   const returnObj = {};
   if (dayName === undefined) {
-    Object.keys(data.hours).forEach((day) => {
+    Object.keys(data.hours).forEach(day => {
       const timeInString = sayTheTimeOpen(day);
       returnObj[day] = timeInString;
     });
@@ -271,9 +242,9 @@ function increasePrices(percentage) {
 }
 function employeeCoverageWithNoParameter() {
   const objReturn = {};
-  data.employees.forEach((employee) => {
+  data.employees.forEach(employee => {
     const fullNameEmployee = `${employee.firstName} ${employee.lastName}`;
-    const responsibleFor = employee.responsibleFor.map((animalId) => {
+    const responsibleFor = employee.responsibleFor.map(animalId => {
       const animalNameSelected = data.animals.find(
         animal => animal.id === animalId,
       ).name;
