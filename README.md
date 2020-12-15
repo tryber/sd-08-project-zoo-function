@@ -71,10 +71,6 @@ O arquivo `src/zoo.js` conterá a implementação de uma função, `animalsByIds
 
 Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que não estão indicados nos requisitos não devem ser alterados, ou sua avaliação poderá ser comprometida.**
 
-### DATA DE ENTREGA
-
-  - O projeto tem até a seguinte data: `dd/mm/yyyy - 14:00h` para ter entregue a avaliação final.
-
 ---
 
 ## Instruções para entregar seu projeto
@@ -82,9 +78,9 @@ Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que n
 ### ANTES DE COMEÇAR A DESENVOLVER
 
 1. Clone o repositório
-  * `git clone https://github.com/tryber/sd-08-project-zoo-functions.git`.
+  * `git clone https://github.com/tryber/sd-08-project-zoo-function.git`.
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-08-project-zoo-functions`
+    * `cd sd-08-project-zoo-function`
 
 2. Instale as dependências
   * `npm install`
@@ -96,7 +92,7 @@ Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que n
     * Exemplo: `git checkout master`
   * Agora crie uma branch para qual você vai submeter os `commits` do seu projeto
     * Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
-    * Exemplo: `git checkout -b luiza-zoo-functions-project`
+    * Exemplo: `git checkout -b luiza-zoo-function-project`
 
 4. Desenvolva a solução para os problemas no arquivo `src/zoo.js`. Você pode usar os arquivos do diretório `test` para verificar se a sua implementação está de acordo com o esperado;
 
@@ -113,16 +109,16 @@ Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que n
         * `git status` (deve aparecer uma mensagem tipo _nothing to commit_ )
 
 6. Adicione a sua branch com o novo `commit` ao repositório remoto
-  * Usando o exemplo anterior: `git push -u origin luiza-zoo-functions-project`
+  * Usando o exemplo anterior: `git push -u origin luiza-zoo-function-project`
 
 7. Crie um novo `Pull Request` _(PR)_
-  * Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-08-project-zoo-functions/pulls)
+  * Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-08-project-zoo-function/pulls)
   * Clique no botão verde _"New pull request"_
   * Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**
   * Clique no botão verde _"Create pull request"_
   * Adicione uma descrição para o _Pull Request_ e clique no botão verde _"Create pull request"_
   * **Não se preocupe em preencher mais nada por enquanto!**
-  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-08-project-zoo-functions/pulls) e confira que o seu _Pull Request_ está criado.
+  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-08-project-zoo-function/pulls) e confira que o seu _Pull Request_ está criado.
 
 ### DURANTE O DESENVOLVIMENTO
 
