@@ -34,11 +34,11 @@ function createEmployee(personalInfo, associatedWith) {
   return result;
 }
 function isManager(id) {
+  const count = 0;
   data.employees.forEach((employee) => {
-    if (employee.managers.includes(id)) return true;
-    return;
+    if (employee.managers.includes(id)) count += 1;
   });
-  return false;
+  return count > 0 ? true : false;
 }
 function addEmployee(
   id,
