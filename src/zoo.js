@@ -9,12 +9,10 @@ eslint no-unused-vars: [
 ]
 */
 const data = require('./data');
+
 function animalsByIds(...ids) {
-  if (ids === undefined) {
-    return [];
-  } else if (ids.length === 1) {
-    return data.animals.filter(animal => animal.id === ids[0]);
-  }
+  if (ids === undefined) return [];
+  else if (ids.length === 1) return data.animals.filter(animal => animal.id === ids[0]);
   return ids.map(id => data.animals.find(animal => animal.id === id));
 }
 function animalsOlderThan(animal, age) {
@@ -23,9 +21,7 @@ function animalsOlderThan(animal, age) {
   );
   const result = selectedAnimal.residents.reduce(
     (previousValue, currentValue) => {
-      if (currentValue.age >= age) {
-        return previousValue;
-      }
+      if (currentValue.age >= age) return previousValue;
       return false;
     },
     true,
@@ -33,9 +29,7 @@ function animalsOlderThan(animal, age) {
   return result;
 }
 function employeeByName(employeeName) {
-  if (employeeName === undefined) {
-    return {};
-  }
+  if (employeeName === undefined) return {};
   return data.employees.find(
     employee =>
       employee.firstName === employeeName || employee.lastName === employeeName,
@@ -48,9 +42,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 function isManager(id) {
   data.employees.forEach(employee => {
-    if (employee.managers.includes(id)) {
-      return true;
-    }
+    if (employee.managers.includes(id)) return true;
   });
   return false;
 }
@@ -81,9 +73,7 @@ function animalCount(species) {
   return data.animals.find(animal => animal.name === species).residents.length;
 }
 function entryCalculator(entrants) {
-  if (entrants === undefined || Object.keys(entrants).length === 0) {
-    return 0;
-  }
+  if (entrants === undefined || Object.keys(entrants).length === 0) return 0;
   return Object.keys(entrants).reduce(
     (previousValue, currentValue) =>
       previousValue + data.prices[currentValue] * entrants[currentValue],
@@ -156,11 +146,8 @@ function sortedAnimalWithSex(sorted, sex) {
   };
 }
 function includesNameTrue(sorted, sex) {
-  if (sorted === undefined && sex === undefined) {
-    return justIncludesTrue();
-  } else if (sorted !== undefined && sex === undefined) {
-    return sortedAnimal();
-  }
+  if (sorted === undefined && sex === undefined) return justIncludesTrue();
+  else if (sorted !== undefined && sex === undefined) return sortedAnimal();
   return sortedAnimalWithSex(sorted, sex);
 }
 function includeNamesUndefined() {
@@ -172,19 +159,13 @@ function includeNamesUndefined() {
   };
 }
 function animalMap(options) {
-  if (options === undefined) {
-    return animalMapNoParameter();
-  }
+  if (options === undefined) return animalMapNoParameter();
   const { includeNames, sorted, sex } = options;
-  if (includeNames === true) {
-    return includesNameTrue(sorted, sex);
-  }
+  if (includeNames === true) return includesNameTrue(sorted, sex);
   return includeNamesUndefined();
 }
 function isClosed(openTime, closeTime) {
-  if (openTime === 0 && closeTime === 0) {
-    return true;
-  }
+  if (openTime === 0 && closeTime === 0) return true;
   return false;
 }
 function openAmPm(openTime) {
@@ -197,9 +178,8 @@ function sayTheTimeOpen(day) {
   const open = data.hours[day].open;
   const close = data.hours[day].close;
   let timeOpen = '';
-  if (isClosed(open, close)) {
-    timeOpen = 'CLOSED';
-  } else {
+  if (isClosed(open, close)) timeOpen = 'CLOSED';
+  else {
     timeOpen = `Open from ${openAmPm(open)} until `;
     timeOpen += `${closeAmPm(close)}`;
   }
@@ -224,9 +204,7 @@ function oldestFromFirstSpecies(id) {
     .residents;
   return Object.values(
     animalsById.reduce((acc, currentValue) => {
-      if (currentValue.age > acc.age) {
-        return currentValue;
-      }
+      if (currentValue.age > acc.age) return currentValue;
       return acc;
     }),
   );
@@ -256,9 +234,7 @@ function employeeCoverageWithNoParameter() {
 }
 function employeeCoverage(idOrName) {
   const objReturn = {};
-  if (idOrName === undefined) {
-    return employeeCoverageWithNoParameter();
-  }
+  if (idOrName === undefined) return employeeCoverageWithNoParameter();
   const selectedEmployee = data.employees.find(
     employee =>
       employee.firstName === idOrName ||
