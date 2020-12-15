@@ -135,7 +135,11 @@ function mapEmployeeAnimals(...employees) {
 
 function employeeCoverage(idOrName) {
   if (!idOrName) {
-    return mapEmployeeAnimals(...data.employees);
+    const unordedEmployees = mapEmployeeAnimals(...data.employees);
+    return Object.keys(unordedEmployees).sort().reduce((result, key) => {
+      result[key] = unordedEmployees[key];
+      return result;
+    }, {});
   }
   const employeeFinder = data.employees.find((employee) => {
     const employeeId = employee.id;
