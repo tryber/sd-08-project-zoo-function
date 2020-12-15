@@ -8,7 +8,7 @@ eslint no-unused-vars: [
   }
 ]
 */
-/**prices, hours, não esquecer de colocar quando for usar novamente. */
+/*prices, hours, não esquecer de colocar quando for usar novamente. */
 
 const { animals, employees } = require('./data');
 
