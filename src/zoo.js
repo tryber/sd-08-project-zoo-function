@@ -80,14 +80,14 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  if (entrants === (!entrants) || {}){
-    return 0
+  if (entrants === (!entrants) || {}) {
+    return 0;
   }
   const entrantsKeys = Object.keys(entrants).map(eachKey =>
   data.prices[eachKey] * entrants[eachKey]);
   const soma = entrantsKeys.reduce((previus, current) => previus + current);
-  return parseFloat(soma.toFixed(2))
-};
+  return parseFloat(soma.toFixed(2));
+}
 
 
 function animalMap(options) {
