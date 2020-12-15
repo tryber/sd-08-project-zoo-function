@@ -16,17 +16,18 @@ function animalsByIds(...ids) {
   return ids.map(id => data.animals.find(animal => animal.id === id));
 }
 function animalsOlderThan(animal, age) {
-  const selectedAnimal = data.animals.find(
-    animalName => animalName.name === animal,
+  const selected = data.animals.find(
+    specie => specie.name === animal,
   );
-  const result = selectedAnimal.residents.reduce(
-    (previousValue, currentValue) => {
-      if (currentValue.age >= age) return previousValue;
-      return false;
-    },
-    true,
-  );
-  return result;
+  return selected.residents.every(animalInfo => animalInfo.age > age);
+  // const result = selected.residents.reduce(
+  //   (previousValue, currentValue) => {
+  //     if (currentValue.age >= age) return previousValue;
+  //     return false;
+  //   },
+  //   true,
+  // );
+  // return result;
 }
 function employeeByName(employeeName) {
   if (employeeName === undefined) return {};
