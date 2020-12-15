@@ -34,7 +34,7 @@ function createEmployee(personalInfo, associatedWith) {
   return result;
 }
 function isManager(id) {
-  data.employees.forEach(employee => {
+  data.employees.forEach((employee) => {
     if (employee.managers.includes(id)) return true;
   });
   return false;
@@ -58,7 +58,7 @@ function addEmployee(
 function animalCount(species) {
   if (species === undefined) {
     const returnObj = {};
-    data.animals.forEach(animal => {
+    data.animals.forEach((animal) => {
       returnObj[animal.name] = animal.residents.length;
     });
     return returnObj;
@@ -69,7 +69,7 @@ function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) return 0;
   return Object.keys(entrants).reduce(
     (previousValue, currentValue) =>
-      previousValue + data.prices[currentValue] * entrants[currentValue],
+      previousValue + (data.prices[currentValue] * entrants[currentValue]),
     0,
   );
 }
@@ -89,8 +89,8 @@ function animalMapNoParameter() {
     SW: divisionPerRegion()[3].map(specie => specie.name),
   };
 }
-function objReturnForIncludesTrue(specie) {
-  return specie.map(specie => {
+function objReturnForIncludesTrue(species) {
+  return species.map((specie) => {
     const obj = {};
     obj[specie.name] = specie.residents.map(animal => animal.name);
     return obj;
@@ -107,7 +107,7 @@ function justIncludesTrue() {
 function sortedAnimal() {
   const objAnimalNames = justIncludesTrue();
   const regions = Object.keys(objAnimalNames);
-  regions.forEach(region => {
+  regions.forEach((region) => {
     objAnimalNames[region].forEach(specie =>
       specie[Object.keys(specie)[0]].sort(),
     );
@@ -115,7 +115,7 @@ function sortedAnimal() {
   return objAnimalNames;
 }
 function auxSortedAnimalWithSex(region, sex, sorted) {
-  return region.map(specie => {
+  return region.map((specie) => {
     const obj = {};
     if (sorted === true) {
       obj[specie.name] = specie.residents
@@ -173,7 +173,7 @@ function sayTheTimeOpen(day) {
 function schedule(dayName) {
   const returnObj = {};
   if (dayName === undefined) {
-    Object.keys(data.hours).forEach(day => {
+    Object.keys(data.hours).forEach((day) => {
       const timeInString = sayTheTimeOpen(day);
       returnObj[day] = timeInString;
     });
@@ -202,9 +202,9 @@ function increasePrices(percentage) {
 }
 function employeeCoverageWithNoParameter() {
   const objReturn = {};
-  data.employees.forEach(employee => {
+  data.employees.forEach((employee) => {
     const fullNameEmployee = `${employee.firstName} ${employee.lastName}`;
-    const responsibleFor = employee.responsibleFor.map(animalId => {
+    const responsibleFor = employee.responsibleFor.map((animalId) => {
       const animalNameSelected = data.animals.find(
         animal => animal.id === animalId,
       ).name;
