@@ -76,12 +76,9 @@ function animalCount(species) {
     });
     return container;
   }
-  const container = {};
-  animals.filter((anima) => {
-  container[anima.name] = anima.residents.length;
-  }
-  );
-  return container[species]
+  const numerAnima = animals.find(anima => anima.name === species);
+  const lght = numerAnima.residents.length;
+  return lght;
 }
 
 
