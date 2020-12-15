@@ -38,7 +38,7 @@ function isManager(id) {
   data.employees.forEach((employee) => {
     if (employee.managers.includes(id)) count += 1;
   });
-  return count > 0 ? true : false;
+  return count > 0;
 }
 function addEmployee(
   id,
