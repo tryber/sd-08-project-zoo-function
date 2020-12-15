@@ -7,8 +7,9 @@ eslint no-unused-vars: [
     "varsIgnorePattern": "data"
   }
 ]
-//prices, hours, não esquecer de colocar quando for usar novamente.
 */
+/**prices, hours, não esquecer de colocar quando for usar novamente. */
+
 const { animals, employees } = require('./data');
 
 function animalsByIds(...ids) {
