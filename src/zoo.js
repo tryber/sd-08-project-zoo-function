@@ -210,12 +210,9 @@ function oldestFromFirstSpecies(id) {
   );
 }
 function increasePrices(percentage) {
-  const kindOfClient = Object.keys(data.prices);
   const pricesPerClient = Object.values(data.prices);
-  const multiple = percentage + 100;
-  kindOfClient.forEach((client, index) => {
-    const newValue = Math.ceil(pricesPerClient[index] * multiple) / 100;
-    data.prices[client] = newValue;
+  Object.keys(data.prices).forEach((client, index) => {
+    data.prices[client] = Math.ceil(pricesPerClient[index] * (percentage + 100)) / 100;
   });
 }
 function employeeCoverageWithNoParameter() {
