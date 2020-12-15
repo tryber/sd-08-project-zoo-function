@@ -69,21 +69,23 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-    if (!species) {
-    const container = {};
+  const container = {};
+  if (!species) {
     animals.filter((anima) => {
-    container[anima.name] = anima.residents.length;
+     container[anima.name] = anima.residents.length;
     });
     return container;
   }
   const numerAnima = animals.find(anima => anima.name === species);
-  const lght = numerAnima.residents.length;
-  return lght;
+  const lgth = numerAnima.residents.length;
+  return lgth;
 }
 
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  
+  
+
 }
 
 function animalMap(options) {
