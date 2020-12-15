@@ -36,8 +36,9 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   data.employees.forEach((employee) => {
     if (employee.managers.includes(id)) return true;
-    return false;
+    return;
   });
+  return false;
 }
 function addEmployee(
   id,
