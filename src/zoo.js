@@ -20,14 +20,6 @@ function animalsOlderThan(animal, age) {
     specie => specie.name === animal,
   );
   return selected.residents.every(animalInfo => animalInfo.age > age);
-  // const result = selected.residents.reduce(
-  //   (previousValue, currentValue) => {
-  //     if (currentValue.age >= age) return previousValue;
-  //     return false;
-  //   },
-  //   true,
-  // );
-  // return result;
 }
 function employeeByName(employeeName) {
   if (employeeName === undefined) return {};
@@ -151,19 +143,11 @@ function includesNameTrue(sorted, sex) {
   else if (sorted !== undefined && sex === undefined) return sortedAnimal();
   return sortedAnimalWithSex(sorted, sex);
 }
-function includeNamesUndefined() {
-  return {
-    NE: divisionPerRegion()[0].map(specie => specie.name),
-    NW: divisionPerRegion()[1].map(specie => specie.name),
-    SE: divisionPerRegion()[2].map(specie => specie.name),
-    SW: divisionPerRegion()[3].map(specie => specie.name),
-  };
-}
 function animalMap(options) {
   if (options === undefined) return animalMapNoParameter();
   const { includeNames, sorted, sex } = options;
   if (includeNames === true) return includesNameTrue(sorted, sex);
-  return includeNamesUndefined();
+  return animalMapNoParameter();
 }
 function isClosed(openTime, closeTime) {
   if (openTime === 0 && closeTime === 0) return true;
