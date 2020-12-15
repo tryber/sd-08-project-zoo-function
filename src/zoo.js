@@ -71,9 +71,7 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 function animalCount(species) {
   const container = {};
   if (!species) {
-    animals.filter((anima) => {
-     container[anima.name] = anima.residents.length;
-    });
+    animals.filter(anima => container[anima.name] = anima.residents.length);
     return container;
   }
   const numerAnima = animals.find(anima => anima.name === species);
@@ -81,11 +79,7 @@ function animalCount(species) {
   return lgth;
 }
 
-
 function entryCalculator(entrants) {
-  
-  
-
 }
 
 function animalMap(options) {
