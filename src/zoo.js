@@ -68,11 +68,38 @@ function entryCalculator(entrants) {
 
 
 function animalMap(options) {
-  // seu código aqui
+  const NE = data.animals.filter(region => region.location === 'NE');
+  const NW = data.animals.filter(region => region.location === 'NW');
+  const SE = data.animals.filter(region => region.location === 'SE');
+  const SW = data.animals.filter(region => region.location === 'SW');
+  if (options === undefined) {
+    const resultRegion = {
+      NE: NE.map(nome => nome.name),
+      NW: NW.map(nome => nome.name),
+      SE: SE.map(nome => nome.name),
+      SW: SW.map(nome => nome.name),
+    };
+    return resultRegion;
+  }
+  return undefined;
+  // if (options === 'teste') {
+  //   const resultName = {
+  //     NE: NE.map((nome) => Object.entries(nome.residents)).
+  //   }
+  //   return console.log(resultName);
+  // }
 }
 
+
 function schedule(dayName) {
-  // seu código aqui
+  const scheduleDay = Object.entries(data.hours).reduce((acc, [chave, valor]) => {
+    acc[chave] = valor.open - valor.close < 0 ? `Open from ${valor.open}am until ${valor.close - 12}pm` : 'CLOSED';
+    return acc;
+  }, {});
+  if (dayName === undefined) {
+    return scheduleDay;
+  }
+  return { [dayName]: scheduleDay[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
