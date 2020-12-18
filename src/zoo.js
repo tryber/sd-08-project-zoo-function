@@ -65,7 +65,7 @@ function animalCount(species) {
   }
   const specie = animals.find(element => element.name === species);
   return specie.residents.length;
-};
+}
 
 function entryCalculator(entrants) {
   // seu código aqui
