@@ -9,38 +9,67 @@ eslint no-unused-vars: [
 ]
 */
 
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+
+function animalsByIds(...ids) {
+  if (ids.length === 0) {
+    return [];
+  }
+  return ids.map(id => animals.find(animal => animal.id === id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const specie = data.animals.find(animalName => animalName.name === animal);
+  return specie.residents.every(element => element.age >= age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined) {
+    return {};
+  }
+  const employee = data.employees.find(element => element.firstName === employeeName
+    || element.lastName === employeeName);
+  return employee;
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return {
+    ...personalInfo,
+    ...associatedWith,
+  };
 }
 
 function isManager(id) {
-  // seu código aqui
+  const empManager = data.employees.some(manager => manager.managers
+    .find(idManager => idManager === id));
+  return empManager;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id = [], firstName = [], lastName = [], managers = [], responsibleFor = []) {
+  return employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined) {
+    const speciesCount = {};
+    animals.forEach(element => (speciesCount[element.name] = element.residents.length));
+    return speciesCount;
+  }
+  const specie = animals.find(element => element.name === species);
+  return specie.residents.length;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined || Object.keys(entrants).length === 0) return 0;
+  return Object.keys(entrants).reduce((acc, curr) => acc + (entrants[curr] * prices[curr]), 0);
 }
 
 function animalMap(options) {
