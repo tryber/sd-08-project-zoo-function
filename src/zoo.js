@@ -70,20 +70,20 @@ function animalCount(species) {
 }
 
 function entryCalculator(...entrants) {
-  const formatter = new Intl.NumberFormat('en-US', {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-  });
-  console.log(entrants);
-  if (entrants.length === 0) return 0;
-  const { Adult: ad, Senior: se, Child: ch } = prices;
-  console.log(ad, se, ch);
- entrants.forEach((el, index) => {
-    let sum;
-    console.log(entrants[0].key);
-    console.log(el);
-   });
-  console.log("fasfsfd");
+  // const formatter = new Intl.NumberFormat('en-US', {
+  //   minimumFractionDigits: 2,
+  //   maximumFractionDigits: 2,
+  // });
+  // console.log(entrants);
+  // if (entrants.length === 0) return 0;
+  // const { Adult: ad, Senior: se, Child: ch } = prices;
+  // console.log(ad, se, ch);
+  // entrants.forEach((el, index) => {
+  //   let sum;
+  //   console.log(entrants[0].key);
+  //   console.log(el);
+  // });
+  // console.log("fasfsfd");
 }
 
 function animalMap(options) {
