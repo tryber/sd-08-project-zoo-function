@@ -62,7 +62,6 @@ function animalCount(species) {
       const animalName = `${animals[index].name}`;
       const AnimalNumber = `${animals[index].residents.length}`;
       AnimalObject[animalName] = Number(AnimalNumber);
-      console.log(AnimalObject);
     }
     return AnimalObject;
   }
@@ -71,20 +70,21 @@ function animalCount(species) {
 }
 
 function entryCalculator(...entrants) {
+  const formatter = new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+  });
   console.log(entrants);
   if (entrants.length === 0) return 0;
-  const formatter = new Intl.NumberFormat('en-US', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-  
-  // Object.keys(entrants).forEach((key) => {
-  //   const inc = percentage / 100;
-  //   const price1 = prices[key] + (prices[key] * inc);
-  //   prices[key] = Number(formatter.format(price1));
-  // });
+  const { Adult: ad, Senior: se, Child: ch } = prices;
+  console.log(ad, se, ch);
+ entrants.forEach((el, index) => {
+    let sum;
+    console.log(entrants[0].key);
+    console.log(el);
+   });
+  console.log("fasfsfd");
 }
- entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 });
 
 function animalMap(options) {
   // seu código aqui
@@ -94,8 +94,16 @@ function schedule(dayName) {
   // seu código aqui
 }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
+function oldestFromFirstSpecies(idTratador) {
+  const tratador = employees.find(({id}) => id === idTratador);
+  const idAnimal = tratador.responsibleFor[0];
+  const animal = animals.find(({id}) => id === idAnimal);
+  const {residents} = animal;
+  const oldAnimal = residents.reduce((acc, valor) => {
+    if(acc.age > valor.age) return acc;
+    return valor;
+  });
+  return Object.values(oldAnimal);
 }
 
 function increasePrices(percentage) {
