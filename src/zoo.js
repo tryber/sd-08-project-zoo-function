@@ -61,8 +61,8 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
 
   if (species === undefined) {
-    let objeto = {};
-    animals.forEach(element => {
+    const objeto = {};
+    animals.forEach((element) => {
       objeto[element.name] = element.residents.length;
     });
     return objeto;
@@ -71,7 +71,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  if (entrants == undefined) {
+  if (entrants === undefined) {
     return 0;
   }
 
