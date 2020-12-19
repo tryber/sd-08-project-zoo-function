@@ -49,8 +49,7 @@ Neste projeto, verificamos se você é capaz de:
   - [Avaliação do projeto](#avaliação-do-projeto)
   - [Ordem dos requisitos no avaliador automático](#ordem-dos-requisitos-no-avaliador-automático)
 
---- 
-
+---
 ## Entregáveis
 
 ### O QUE DEVERÁ SER DESENVOLVIDO
@@ -64,8 +63,7 @@ Após clonar o projeto e instalar as dependências, você não precisará realiz
 Todos os arquivos estritamente necessários para finalizar o projeto já estão criados, **não** sendo necessária a criação de outros arquivos.
 Você deverá completar as funções e testes unitários de forma a satisfazer os requisitos listados na próxima seção.
 
-Na pasta raíz do projeto, temos a pasta `src` e a pasta `tests`. A pasta `src` é composta pelo arquivo `zoo.js`, que contém as funções a serem implementadas, e o arquivo `data.js`, que armazena os dados que serão utilizados. Já a pasta `tests`, contém os testes unitários correspondentes a cada função do arquivo `zoo.js`. 
-
+Na pasta raíz do projeto, temos a pasta `src` e a pasta `tests`. A pasta `src` é composta pelo arquivo `zoo.js`, que contém as funções a serem implementadas, e o arquivo `data.js`, que armazena os dados que serão utilizados. Já a pasta `tests`, contém os testes unitários correspondentes a cada função do arquivo `zoo.js`.
 O nome dos arquivos também segue uma ordem definida. Basicamente, os arquivos de teste possuem o nome da função alvo acrescido do nome `.spec.js`.
 O arquivo `src/zoo.js` conterá a implementação de uma função, `animalsByIds,` por exemplo, e o arquivo `tests/animalsByIds.spec.js` conterá os testes unitários referentes à função.
 
@@ -123,9 +121,8 @@ Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que n
 ### DURANTE O DESENVOLVIMENTO
 
 📌 **PULL REQUESTS COM ISSUES NO CODE CLIMATE NÃO SERÃO AVALIADAS, ATENTE-SE PARA RESOLVÊ-LAS ANTES DE FINALIZAR O DESENVOLVIMENTO!**
- 
-📌 **OS NOMES DOS ARQUIVOS NÃO DEVEM SER ALTERADOS!** Você pode adicionar outros arquivos, se julgar necessário. Qualquer dúvida, procure a Pessoa Instrutora que te acompanha.
 
+📌 **OS NOMES DOS ARQUIVOS NÃO DEVEM SER ALTERADOS!** Você pode adicionar outros arquivos, se julgar necessário. Qualquer dúvida, procure a Pessoa Instrutora que te acompanha.
 * Faça `commits` das alterações que você fizer no código regularmente
 
 * Lembre-se de sempre, após um (ou alguns) `commits`, atualizar o repositório remoto
@@ -170,10 +167,9 @@ Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão
 
   **Observações técnicas**
 
-  - O parâmetro desta função pode ser alterado para atender ao requisito proposto 
+  - O parâmetro desta função pode ser alterado para atender ao requisito proposto
 
   **O que será avaliado**
-
   - Caso receba nenhum parâmetro, necessário retornar um array vazio
   - Ao receber como parâmetro um único id, retorna um array com a espécie referente à esse id
   - Ao receber mais de um id, retorna um array com as espécies referentes aos ids
@@ -184,11 +180,11 @@ Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão
 
   **Observações técnicas**
 
-  - Deve retornar um valor booleano 
+ - Deve retornar um valor booleano
 
   **O que será avaliado**
 
-  - Ao passar o nome de uma espécie e uma idade, testa se todos os animais desta
+ - Ao passar o nome de uma espécie e uma idade, testa se todos os animais desta
  espécie possuem a idade mínima especificada
 
 ### 3. IMPLEMENTE A FUNÇÃO employeeByName
@@ -267,11 +263,10 @@ Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão
   A função é responsável pelo mapeamento geográfico das espécies e seus animais, podendo ainda filtrá-los por ordem alfabética e gênero, por exemplo
 
   **Observações técnicas**
-  
+
   - Analise o teste unitário para entender os retornos que são esperados para esta função
 
   **O que será avaliado**
-
   - Sem parâmetros, retorna animais categorizados por localização
   - Com a opção `includeNames: true` especificada, retorna nomes de animais
   - Com a opção `sorted: true` especificada, retorna nomes de animais ordenados
@@ -284,13 +279,13 @@ Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão
   A função é responsável por disponibilizar as informações de horário para uma consulta, que pode querer ter acesso a todo o cronograma da semana ou apenas o cronograma de um dia específico
 
   **Observações técnicas**
-  
+
   - Analise o teste unitário para entender os retornos que são esperados para esta função
 
   **O que será avaliado**
 
-  - Sem parâmetros, retorna um cronograma legível para humanos
-  - Se um único dia for passado, retorna somente este dia em um formato legível para humanos
+ - Sem parâmetros, retorna um cronograma legível para humanos
+ - Se um único dia for passado, retorna somente este dia em um formato legível para humanos
 
 ### 11. IMPLEMENTE A FUNÇÃO oldestFromFirstSpecies
 
@@ -320,15 +315,15 @@ Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão
   A função é responsável por consultar as espécies pela qual a pessoa colaborada, recebida no parâmetro através de seu `id`, `firstName` ou `lastName`, é responsável
 
   **Observações técnicas**
-  
+
   - Analise o teste unitário para entender os retornos que são esperados para esta função
 
   **O que será avaliado**
 
-  - Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
-  - Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
-  - Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
-  - Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+ - Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
+ - Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
+ - Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+ - Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
 
 ---
 
