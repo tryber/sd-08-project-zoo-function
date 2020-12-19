@@ -125,10 +125,31 @@ function increasePrices(percentage) {
   prices.forEach(value => (data.prices[value[0]] = value[1]));
   return data.prices;
 }
-
-function employeeCoverage(idOrName) {
-  // seu código aqui
+function animalsEmployeeResponsible(employee) {
+  return employee.responsibleFor.map(id => animalsByIds(id)[0].name);
 }
+function employeeCoverage(idOrName) {
+  if (idOrName !== undefined) {
+    const employeeFinded = data.employees.find(
+      employee =>
+        employee.id === idOrName ||
+        employee.firstName === idOrName ||
+        employee.lastName === idOrName,
+    );
+    const { firstName, lastName } = employeeFinded;
+    const result = {};
+    result[`${firstName} ${lastName}`] = animalsEmployeeResponsible(
+      employeeFinded,
+    );
+    return result;
+  }
+  return data.employees.reduce((acc, employee) => {
+    const { firstName, lastName } = employee;
+    acc[`${firstName} ${lastName}`] = animalsEmployeeResponsible(employee);
+    return acc;
+  }, {});
+}
+console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
