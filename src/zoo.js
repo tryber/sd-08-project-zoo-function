@@ -81,9 +81,63 @@ function entryCalculator(entrants) {
     0,
   );
 }
-
+function filterBySex(specie, sex) {
+  return specie.residents.reduce((accumulator, resident) => {
+    if (resident.sex === sex) {
+      accumulator.push(resident.name);
+    }
+    return accumulator;
+  }, []);
+}
+function animalsNamesForSpecie(specie, options) {
+  const { includeNames, sorted, sex } = options;
+  const animalFinded = data.animals.find(animal => animal.name === specie);
+  let names = animalFinded.residents.map(resident => resident.name);
+  if (includeNames) {
+    if (sex) {
+      names = filterBySex(animalFinded, sex);
+    }
+    if (sorted === true) {
+      names.sort();
+    }
+  }
+  return names;
+}
+function mapEstructure() {
+  const result = data.animals.reduce((acc, animal) => {
+    acc[animal.location] = [];
+    return acc;
+  }, {});
+  return Object.keys(result);
+}
+function speciesForLocation(location) {
+  const result = data.animals.reduce((accumulator, animal) => {
+    const validate = animal.location === location;
+    if (validate) {
+      accumulator.push(animal.name);
+    }
+    return accumulator;
+  }, []);
+  return result;
+}
 function animalMap(options) {
-  // seu código aqui
+  const result = mapEstructure();
+  if (options === undefined || options.includeNames === undefined) {
+    return result.reduce((acc, region) => {
+      acc[region] = speciesForLocation(region);
+      return acc;
+    }, {});
+  }
+  return result.reduce((accumulator, region) => {
+    const species = speciesForLocation(region);
+    accumulator[region] = species.reduce((acc, specie) => {
+      const obj = {};
+      obj[specie] = animalsNamesForSpecie(specie, options);
+      acc.push(obj);
+      return acc;
+    }, []);
+    return accumulator;
+  }, {});
 }
 
 function schedule(dayName) {
@@ -149,7 +203,6 @@ function employeeCoverage(idOrName) {
     return acc;
   }, {});
 }
-console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
