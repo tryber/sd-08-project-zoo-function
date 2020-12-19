@@ -9,59 +9,168 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+const {
+  animals, employees, prices, hours,
+} = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+const animalsByIds = (...args) => animals.filter(({ id }) => args.some(value => value === id));
+
+const animalsOlderThan = (animal, age) => {
+  const res = animals.some(e => e.residents.every(value => e.name === animal && value.age > age));
+  return res;
+};
+
+const employeeByName = employeeName => {
+  if (!employeeName) return {};
+  return employees.find(v => v.firstName === employeeName || v.lastName === employeeName);
+};
+
+const createEmployee = (info, awith) => ({ ...info, ...awith });
+
+const isManager = id => {
+  const res = employees.some(element => element.id === id && element.managers.length === 1);
+  return res;
+};
+
+const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => {
+  const res = employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
+  return res;
+};
+
+const animalCount = species => {
+  if (!species) {
+    const allResidents = {};
+    animals.forEach(element => (allResidents[element.name] = element.residents.length));
+    return allResidents;
+  }
+
+  return animals.find(ele => ele.name === species).residents.length;
+};
+
+const entryCalculator = entrants => {
+  if (!entrants || entrants === {}) return 0;
+  const { Adult = 0, Senior = 0, Child = 0 } = entrants;
+  const price1 = prices.Adult * Adult;
+  const price2 = prices.Senior * Senior;
+  const price3 = prices.Child * Child;
+  return price1 + price2 + price3;
+};
+
+// Requisito 9
+
+function filterLocation(element) {
+  return animals.filter(value => element === value.location);
 }
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
+function returnName(pams) {
+  return pams.map(({ name }) => name);
 }
 
-function employeeByName(employeeName) {
-  // seu código aqui
+function filterSex(pams, opt) {
+  return pams.filter(({ sex }) => sex === opt);
 }
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+function sortNames(pams) {
+  return pams.sort();
 }
 
-function isManager(id) {
-  // seu código aqui
+function objetoAnimalMap() {
+  const objeto = {
+    NE: '',
+    NW: '',
+    SE: '',
+    SW: '',
+  };
+  return objeto;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function animalMap({ includeNames, sex, sorted } = {}) {
+  const obj = objetoAnimalMap();
+  Object.keys(obj).forEach(element => {
+    if (includeNames === true && sex === 'female' && sorted === true) {
+      obj[element] = filterLocation(element).map(({ name, residents }) => ({
+        [name]: sortNames(returnName(filterSex(residents, sex))) }));
+    } else if (includeNames === true && sex === 'male' && sorted === true) {
+      obj[element] = filterLocation(element).map(({ name, residents }) => ({
+        [name]: sortNames(returnName(filterSex(residents, sex))) }));
+    } else if (includeNames === true && sex === 'female') {
+      obj[element] = filterLocation(element).map(({ name, residents }) => ({
+        [name]: returnName(filterSex(residents, sex)) }));
+    } else if (includeNames === true && sex === 'male') {
+      obj[element] = filterLocation(element).map(({ name, residents }) => ({
+        [name]: returnName(filterSex(residents, sex)) }));
+    } else if (includeNames === true && sorted === true) {
+      obj[element] = filterLocation(element).map(({ name, residents }) => ({
+        [name]: sortNames(returnName(residents)) }));
+    } else if (includeNames === true) {
+      obj[element] = filterLocation(element).map(({ name, residents }) => ({
+        [name]: returnName(residents) }));
+    } else {
+      obj[element] = filterLocation(element).map(({ name }) => name);
+    }
+  });
+  return obj;
 }
-
-function animalCount(species) {
-  // seu código aqui
-}
-
-function entryCalculator(entrants) {
-  // seu código aqui
-}
-
-function animalMap(options) {
-  // seu código aqui
-}
-
-function schedule(dayName) {
-  // seu código aqui
-}
-
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+const schedule = dayName => {
+  let objHours = {};
+  Object.keys(hours).forEach(element => {
+    const keyWeek = dayName || element;
+    objHours = {
+      ...objHours,
+      [keyWeek]: `Open from ${hours[keyWeek].open}am until ${hours[keyWeek].close - 12}pm`,
+    };
+    if (keyWeek === 'Monday') {
+      objHours[keyWeek] = 'CLOSED';
+    }
+  });
+  return objHours;
+};
+const oldestFromFirstSpecies = id => {
+  const responsavel = employees.find(element => element.id === id);
+  const animais = animals.find(specie => specie.id === responsavel.responsibleFor[0]);
+  const reduz = animais.residents.reduce((acc, value) => {
+    if (acc.age > value.age) return acc;
+    return value;
+  });
+  return Object.values(reduz);
+};
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const aumento = ((percentage / 100) + 1);
+  prices.Adult = Math.round(prices.Adult * 100 * aumento) / 100;
+  prices.Senior = Math.round(prices.Senior * 100 * aumento) / 100;
+  prices.Child = Math.round(prices.Child * 100 * aumento) / 100;
+  return prices;
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+// Desafio 13
+
+// procura o nome os animais de acordo com o id dos funcionarios responsaveis
+const animaisCuidados = element => element.map(id => animals.find(animal => animal.id === id).name);
+
+const employeeCoverage = idOrName => {
+  let array = {};
+  employees.forEach(element => {
+    array = {
+      ...array,
+      [`${element.firstName} ${element.lastName}`]: animaisCuidados(element.responsibleFor),
+    };
+  });
+  if (!idOrName) return array;
+  const funcionario = employees.find(
+    empregado => empregado.id === idOrName
+      || empregado.firstName === idOrName
+      || empregado.lastName === idOrName,
+  );
+  const nomeEmpregado = `${funcionario.firstName} ${funcionario.lastName}`;
+  return { [nomeEmpregado]: array[nomeEmpregado] };
+};
 
 module.exports = {
   entryCalculator,

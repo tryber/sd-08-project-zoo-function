@@ -1,13 +1,16 @@
+
 {
   "extends": "airbnb",
   "rules": {
     "no-console": "off",
     "prefer-arrow-callback": "off",
     "func-names": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "arrow-parens": ["error", "as-needed"]
   },
   "env": {
     "browser": true,
     "jest": true
   }
 }
+

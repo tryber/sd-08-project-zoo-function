@@ -164,7 +164,7 @@ Utilize as novas funcionalidades do ES6 como arrow functions, template literals,
 
 Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão usados.
 
-### 1. IMPLEMENTE A FUNÇÃO animalsByIds
+### 1. IMPLEMENTE A FUNÇÃO animalsByIds 
 
   Esta função é responsável pela busca das espécies de animais por id. Ela retorna um array contendo as espécies referentes aos ids passados como parâmetro, podendo receber um ou mais ids.
 
@@ -287,7 +287,7 @@ Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão
   
   - Analise o teste unitário para entender os retornos que são esperados para esta função
 
-  **O que será avaliado**
+  **O que será avaliado** 
 
   - Sem parâmetros, retorna um cronograma legível para humanos
   - Se um único dia for passado, retorna somente este dia em um formato legível para humanos
@@ -317,7 +317,7 @@ Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão
 
 ### 13. IMPLEMENTE A FUNÇÃO employeeCoverage
 
-  A função é responsável por consultar as espécies pela qual a pessoa colaborada, recebida no parâmetro através de seu `id`, `firstName` ou `lastName`, é responsável
+  A função é responsável por consultar as espécies pela qual a pessoa colaboradora, recebida no parâmetro através de seu `id`, `firstName` ou `lastName`, é responsável
 
   **Observações técnicas**
   
