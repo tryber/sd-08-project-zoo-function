@@ -69,21 +69,17 @@ function animalCount(species) {
   return find.residents.length;
 }
 
-function entryCalculator(...entrants) {
-  // const formatter = new Intl.NumberFormat('en-US', {
-  //   minimumFractionDigits: 2,
-  //   maximumFractionDigits: 2,
-  // });
-  // console.log(entrants);
-  // if (entrants.length === 0) return 0;
-  // const { Adult: ad, Senior: se, Child: ch } = prices;
-  // console.log(ad, se, ch);
-  // entrants.forEach((el, index) => {
-  //   let sum;
-  //   console.log(entrants[0].key);
-  //   console.log(el);
-  // });
-  // console.log("fasfsfd");
+function entryCalculator(entrants) {  
+  if (entrants === undefined || entrants === {}) return 0;
+  const { Adult: ad, Senior: se, Child: ch } = prices;
+  const entrantsArray = Object.entries(entrants);
+  let sum = 0;
+  entrantsArray.forEach((el, index) => {
+    if(el[0] === 'Adult') sum += (ad * el[1]);
+    if(el[0] === 'Child') sum += (ch * el[1]);
+    if(el[0] === 'Senior') sum += (se * el[1]);
+  });
+  return sum;
 }
 
 function animalMap(options) {
