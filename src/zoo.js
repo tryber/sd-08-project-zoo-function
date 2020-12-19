@@ -62,10 +62,61 @@ const entryCalculator = entrants => {
   return price1 + price2 + price3;
 };
 
-function animalMap(options) {
-  // seu código aqui
+// Requisito 9
+
+function filterLocation(element) {
+  return animals.filter(value => element === value.location);
 }
 
+function returnName(pams) {
+  return pams.map(({ name }) => name);
+}
+
+function filterSex(pams, opt) {
+  return pams.filter(({ sex }) => sex === opt);
+}
+
+function sortNames(pams) {
+  return pams.sort();
+}
+
+function objetoAnimalMap() {
+  const objeto = {
+    NE: '',
+    NW: '',
+    SE: '',
+    SW: '',
+  };
+  return objeto;
+}
+
+function animalMap({ includeNames, sex, sorted } = {}) {
+  const obj = objetoAnimalMap();
+  Object.keys(obj).forEach(element => {
+    if (includeNames === true && sex === 'female' && sorted === true) {
+      obj[element] = filterLocation(element).map(({ name, residents }) => ({
+        [name]: sortNames(returnName(filterSex(residents, sex))) }));
+    } else if (includeNames === true && sex === 'male' && sorted === true) {
+      obj[element] = filterLocation(element).map(({ name, residents }) => ({
+        [name]: sortNames(returnName(filterSex(residents, sex))) }));
+    } else if (includeNames === true && sex === 'female') {
+      obj[element] = filterLocation(element).map(({ name, residents }) => ({
+        [name]: returnName(filterSex(residents, sex)) }));
+    } else if (includeNames === true && sex === 'male') {
+      obj[element] = filterLocation(element).map(({ name, residents }) => ({
+        [name]: returnName(filterSex(residents, sex)) }));
+    } else if (includeNames === true && sorted === true) {
+      obj[element] = filterLocation(element).map(({ name, residents }) => ({
+        [name]: sortNames(returnName(residents)) }));
+    } else if (includeNames === true) {
+      obj[element] = filterLocation(element).map(({ name, residents }) => ({
+        [name]: returnName(residents) }));
+    } else {
+      obj[element] = filterLocation(element).map(({ name }) => name);
+    }
+  });
+  return obj;
+}
 const schedule = dayName => {
   let objHours = {};
   Object.keys(hours).forEach(element => {
@@ -114,13 +165,12 @@ const employeeCoverage = idOrName => {
   if (!idOrName) return array;
   const funcionario = employees.find(
     empregado => empregado.id === idOrName
-        || empregado.firstName === idOrName
-        || empregado.lastName === idOrName,
+      || empregado.firstName === idOrName
+      || empregado.lastName === idOrName,
   );
   const nomeEmpregado = `${funcionario.firstName} ${funcionario.lastName}`;
   return { [nomeEmpregado]: array[nomeEmpregado] };
 };
-console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
