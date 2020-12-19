@@ -48,7 +48,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (!species) {
     const obj = {};
-    animals.forEach(e => {
+    animals.forEach((e) => {
       obj[e.name] = e.residents.length;
     });
     return obj;
@@ -56,7 +56,7 @@ function animalCount(species) {
   return animals.filter(e => species === e.name)[0].residents.length;
 }
 function entryCalculator(entrants) {
-  if ( !entrants) return 0;
+  if (!entrants) return 0;
   return Object.keys(entrants).reduce((accumulator, currentValue) => (
     accumulator + (entrants[currentValue] * prices[currentValue])
   ), 0);
