@@ -69,15 +69,15 @@ function animalCount(species) {
   return find.residents.length;
 }
 
-function entryCalculator(entrants) {  
+function entryCalculator(entrants) {
   if (entrants === undefined || entrants === {}) return 0;
   const { Adult: ad, Senior: se, Child: ch } = prices;
   const entrantsArray = Object.entries(entrants);
   let sum = 0;
   entrantsArray.forEach((el, index) => {
-    if(el[0] === 'Adult') sum += (ad * el[1]);
-    if(el[0] === 'Child') sum += (ch * el[1]);
-    if(el[0] === 'Senior') sum += (se * el[1]);
+    if (el[0] === 'Adult') sum += (ad * el[1]);
+    if (el[0] === 'Child') sum += (ch * el[1]);
+    if (el[0] === 'Senior') sum += (se * el[1]);
   });
   return sum;
 }
