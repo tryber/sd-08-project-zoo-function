@@ -91,21 +91,20 @@ function animalMap(options) {
 function schedule(dayName) {
   const horarios = Object.entries(hours);
   const retorno = {};
-  buscaDia = horarios.forEach(([chave, valor]) => {
+  horarios.forEach(([chave, valor]) => {
     let mensagem;
     if (chave === dayName && dayName === 'Monday') {
       mensagem = 'CLOSED';
       retorno[chave] = mensagem;
     } else if (chave === dayName) {
-      //console.log (chave, valor.open, valor.close);
-      mensagem = (`Open from ${valor.open}am until ${valor.close -12}pm`);
+      mensagem = (`Open from ${ valor.open }am until ${ valor.close -12 }pm`);
       retorno[chave] = mensagem;
     }
   });
-    console.log(retorno);
-    return retorno;
+  // console.log(retorno);
+  return retorno;
 }
-//schedule('Tuesday');
+// schedule('Tuesday');
 
 function oldestFromFirstSpecies(idTratador) {
   const tratador = employees.find(({ id }) => id === idTratador);
