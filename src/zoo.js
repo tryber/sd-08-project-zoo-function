@@ -97,7 +97,7 @@ function schedule(dayName) {
       mensagem = 'CLOSED';
       retorno[chave] = mensagem;
     } else if (chave === dayName) {
-      mensagem = (`Open from ${ valor.open }am until ${ valor.close -12 }pm`);
+      mensagem = (`Open from ${valor.open}am until ${valor.close - 12}pm`);
       retorno[chave] = mensagem;
     }
   });
