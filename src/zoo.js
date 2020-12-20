@@ -15,6 +15,8 @@ const { employees } = require('./data');
 const data2 = require('./data');
 const { prices } = require('./data');
 const data3 = require('./data');
+const { hours } = require('./data');
+const data4 = require('./data');
 
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
@@ -87,8 +89,23 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const horarios = Object.entries(hours);
+  const retorno = {};
+  buscaDia = horarios.forEach(([chave, valor]) => {
+    let mensagem;
+    if (chave === dayName && dayName === 'Monday') {
+      mensagem = 'CLOSED';
+      retorno[chave] = mensagem;
+    } else if (chave === dayName) {
+      //console.log (chave, valor.open, valor.close);
+      mensagem = (`Open from ${valor.open}am until ${valor.close -12}pm`);
+      retorno[chave] = mensagem;
+    }
+  });
+    console.log(retorno);
+    return retorno;
 }
+//schedule('Tuesday');
 
 function oldestFromFirstSpecies(idTratador) {
   const tratador = employees.find(({ id }) => id === idTratador);
