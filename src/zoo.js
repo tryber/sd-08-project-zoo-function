@@ -91,8 +91,17 @@ function animalMap(options) {
 function schedule(dayName) {
   const horarios = Object.entries(hours);
   const retorno = {};
+  let mensagem;
+  // console.log(typeof dayName);
   horarios.forEach(([chave, valor]) => {
-    let mensagem;
+    if (dayName === undefined) {
+      if (chave === 'Monday') {
+        mensagem = 'CLOSED';
+      } else {
+        mensagem = (`Open from ${valor.open}am until ${valor.close - 12}pm`);
+      }
+      retorno[chave] = mensagem;
+    }
     if (chave === dayName && dayName === 'Monday') {
       mensagem = 'CLOSED';
       retorno[chave] = mensagem;
@@ -104,7 +113,7 @@ function schedule(dayName) {
   // console.log(retorno);
   return retorno;
 }
-// schedule('Tuesday');
+// schedule();
 
 function oldestFromFirstSpecies(idTratador) {
   const tratador = employees.find(({ id }) => id === idTratador);
