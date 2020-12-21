@@ -91,8 +91,29 @@ function entryCalculator(entrants) {
 
 
 function animalMap(options) {
-  // seu código aqui
-}
+  const cont = { NE: [], NW: [], SE: [], SW: [] };
+  if (!options || options === undefined) {
+    animals.filter((anima) => {
+
+      switch (anima.location) {
+        case 'NE':
+          cont.NE.push(anima.name);
+          break;
+        case 'NW':
+          cont.NW.push(anima.name);
+          break;
+        case 'SE':
+          cont.SE.push(anima.name);
+          break;
+        case 'SW':
+          cont.SW.push(anima.name);
+         break;
+      }
+      return cont;
+    })
+  }
+
+};
 
 function schedule(dayName) {
   // seu código aqui
