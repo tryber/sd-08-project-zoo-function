@@ -11,7 +11,6 @@ eslint no-unused-vars: [
 
 const { animals } = require('./data');
 const data = require('./data');
-// const { hours } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -96,31 +95,23 @@ function isManager(id) {
   // Deve retornar um valor booleano
   // O que será avaliado
   // Testa se o id passado é de um gerente
-  let isIdOfManager = false;
+  let isManage = false;
   const result = data.employees.filter((employee) => {
     const results = employee.managers[0] === id || employee.managers[1] === id;
     return results;
   });
   // data.employees.forEach((employee) => {console.log(employee.managers)});
-  if (result.length >= 1) { isIdOfManager = true; }
+  if (result.length >= 1) { isManage = true; }
   // console.log(` string de resultado   ${result} e tem como resoltado ${isManager}`);
-  return isIdOfManager;
+  return isManage;
 }
 
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
   // A função irá adicionar uma nova pessoa colaboradora ao array employees,
   // presente no arquivo data.js.
   // O que será avaliado
   // Adiciona um funcionário no fim da lista
-  const newEmploy = {
-    id,
-    firstName,
-    lastName,
-    managers,
-    responsibleFor,
-  };
-  data.employees.push(newEmploy);
 }
 
 function animalCount(species) {
@@ -132,15 +123,6 @@ function animalCount(species) {
   // O que será avaliado
   // Sem parâmetros, retorna animais e suas quantidades
   // Com o nome de uma espécie de animal, retorna somente a quantidade
-  if (typeof species === 'string') {
-    const theAnimal = animals.find(animal => animal.name === species);
-    return theAnimal.residents.length;
-  }
-  const numberOfAnimal = {};
-  animals.forEach((animal) => {
-    numberOfAnimal[animal.name] = animal.residents.length;
-  });
-  return numberOfAnimal;
 }
 
 function entryCalculator(entrants) {
@@ -154,21 +136,6 @@ function entryCalculator(entrants) {
   // Retorna 0 se nenhum argumento for passado
   // Retorna 0 se um objeto vazio for passado
   // Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
-  if (typeof entrants !== 'object') { return 0; }
-  if (entrants === {}) { return 0; }
-  let received = 0;
-  // const multipleEntries(a,b) => {
-  //   received += a * b;
-  //   console.log(`${received} =  ${a} x ${b}`);
-  // }
-  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
-  // const zooPrices = data.prices;
-  // const {priceAdult, priceChild, priceSenior} = zooPrices;
-  received += data.prices.Adult * Adult;
-  received += data.prices.Child * Child;
-  received += data.prices.Senior * Senior;
-  // multipleEntries(...entrants, ...data.prices);
-  return received;
 }
 
 function animalMap(options) {
@@ -189,104 +156,17 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-//   // // seu código aqui
-//   // // A função é responsável por disponibilizar as informações de horário para uma
-//   // // consulta, que pode querer ter acesso a todo o cronograma da semana ou apenas
-//   // // o cronograma de um dia específico
-//   // // Observações técnicas
-//   // // Analise o teste unitário para entender os retornos que são esperados para esta função
-//   // // O que será avaliado
-//   // // Sem parâmetros, retorna um cronograma legível para humanos
-//   // // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
-//   // let calendar = data.hours;
-//   // let daysAsked=[];
-//   // if (typeof dayName !== 'string') {
-//   //   daysAsked = Object.keys(calendar);
-//   // } else {
-//   //   daysAsked[0] = dayName;
-//   // }
+  // seu código aqui
+  // A função é responsável por disponibilizar as informações de horário para uma
+  // consulta, que pode querer ter acesso a todo o cronograma da semana ou apenas
+  // o cronograma de um dia específico
+  // Observações técnicas
+  // Analise o teste unitário para entender os retornos que são esperados para esta função
+  // O que será avaliado
+  // Sem parâmetros, retorna um cronograma legível para humanos
+  // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
 
-
-//   // let result = {};
-//   // // let result ="";
-//   // console.table(calendar);
-//   // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach
-//   // // https://stackoverflow.com/questions/54651873/how-to-map-key-value-pairs-of-a-map-in-javascript
-//   // const days = Object.entries(calendar).reduce((,[k,v]) =>{
-//   //   if (v.open === 0) { return `CLOSED` };
-//   //   return `Open from  ${v.open}am until  ${v.close}pm`;
-//   // })
-//   // console.table(days);
-//   // let daysList = Object.keys(calendar);
-//   // for (const day in calendar){
-//   //   result  = daysAsked.forEach((date,index) => {
-//   //     if (day === date){
-//   //       day = days[index];
-//   //     }
-//   //   })
-//   // }
-//   // console.table(result);
-//   // return days;
-//   // // return result;
-
-//   // // function logMapElements(value, key, map) {
-//   // //   console.log(`m[${key}] = ${value}`);
-//   // // }
-
-//   // // new Map([['foo', 3], ['bar', {}], ['baz', undefined]])
-//   // //   .forEach(logMapElements);
-
-//   // // // expected output: "m[foo] = 3"
-//   // // // expected output: "m[bar] = [object Object]"
-//   // // // expected output: "m[baz] = undefined"
-//   // let daysAsked=[];
-//   // if (typeof dayName !== 'string') {
-//   //   daysAsked = Object.keys(calendar);
-//   // } else {
-//   //   daysAsked[0] = dayName;
-//   // }
-//   const result = {};
-//   // let result ="";
-//   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach
-//   // https://stackoverflow.com/questions/54651873/how-to-map-key-value-pairs-of-a-map-in-javascript
-
-//   const xblau = Object.entries(hours).reduce((day) => {
-//     console.table(day);
-//     // console.log(`value: ${day[0].valueOf()}`);
-//    // console.log(`open: ${day[1].open}`);
-//     if(day[0].valueOf() === dayName){
-//       if (day[1].open === 0) {
-//         result[day[0].valueOf()] = `CLOSED` ;
-//         return 0;
-//       }
-//         result[day[0].valueOf()] =  `Open from  ${day[1].open}am until  ${day[1].close}pm`;
-//         return 1;
-//     } else {
-//       if (day[1].open === 0) {
-//         result[day[0].valueOf()] = `CLOSED` ;
-//       }
-//         result[day[0].valueOf()] =  `Open from  ${day[1].open}am until  ${day[1].close}pm`;
-//     }
-//   })
-
-//   // const days = Object.entries(calendar).reduce(([k,v]) =>{
-//   //   if (v.open === 0) { return `CLOSED` };
-//   //   return `Open from  ${v.open}am until  ${v.close}pm`;
-//   // })
-//   // console.table(days);
-//   // let daysList = Object.keys(calendar);
-//   // for (const day in calendar){
-//   //   result  = daysAsked.forEach((date,index) => {
-//   //     if (day === date){
-//   //       day = days[index];
-//   //     }
-//   //   })
-//   // }
-//   console.log(`resultado ${xblau}`)
-//   console.table(result);
-//   return days;
 }
-
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -295,12 +175,8 @@ function oldestFromFirstSpecies(id) {
   // O que será avaliado
   // Passado o id de um funcionário, encontra a primeira espécie de animal
   // gerenciado pelo funcionário, e retorna um array com nome, sexo e idade
-  // do animal mais velho dessa espéciet
-  const firstAnimalID = data.employees.find(employee => employee.id === id).responsibleFor[0];
-  const AnimalsList = animals.find(animal => animal.id === firstAnimalID).residents;
-  AnimalsList.sort((animal, bnimal) => bnimal.age - animal.age);
-  // console.log(AnimalsList[0]);
-  return [AnimalsList[0].name, AnimalsList[0].sex, AnimalsList[0].age];
+  // do animal mais velho dessa espécie
+
 }
 
 function increasePrices(percentage) {
