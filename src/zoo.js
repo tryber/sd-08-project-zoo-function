@@ -31,11 +31,11 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
 }
 
 function isManager(id) {
-  // seu código aqui
+  const employeeId = data.employees;
+  return employeeId.some(employeeManager => employeeManager.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
