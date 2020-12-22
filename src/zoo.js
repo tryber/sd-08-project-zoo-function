@@ -82,12 +82,6 @@ function animalMap(options) {
     return resultRegion;
   }
   return undefined;
-  // if (options === 'teste') {
-  //   const resultName = {
-  //     NE: NE.map((nome) => Object.entries(nome.residents)).
-  //   }
-  //   return console.log(resultName);
-  // }
 }
 
 
@@ -126,8 +120,20 @@ function increasePrices(percentage) {
 
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const workers = Object.values(data.employees).reduce((acc, curr) => {
+    acc[`${curr.firstName} ${curr.lastName}`] = curr.responsibleFor.map(id => animalsByIds(id)[0].name);
+    return acc;
+  }, {});
+  if (idOrName === undefined) {
+    return workers;
+  }
+  const finder = data.employees.find(worker => worker.firstName === idOrName ||
+    worker.lastName === idOrName || worker.id === idOrName);
+  const name = `${finder.firstName} ${finder.lastName}`;
+
+  return { [name]: workers[name] };
 }
+
 
 module.exports = {
   entryCalculator,
