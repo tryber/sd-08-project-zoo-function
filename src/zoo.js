@@ -41,12 +41,12 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  return data.employees.push({
+  return employees.push({
     id,
     firstName,
     lastName,
     managers,
-    responsibleFor
+    responsibleFor,
   });
 }
 
@@ -54,11 +54,9 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  const finalValue = 0;
-  if (entrants === undefined || {}) return finalValue;
 }
 
-function animalMap(options) { 
+function animalMap(options) {
   // seu código aqui
 }
 
