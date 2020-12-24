@@ -115,7 +115,7 @@ function animalMap(options) {
 
 };
 
-unction schedule(dayName) {
+function schedule(dayName) {
   // seu código aqui
   let cont = {};
   if (!dayName || dayName === undefined) {
