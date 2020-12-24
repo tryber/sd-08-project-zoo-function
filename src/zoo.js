@@ -91,25 +91,47 @@ function entryCalculator(entrants) {
 
 
 function animalMap(options) {
-// essa fica para a ultima
+  if (options === undefined) {
+    options = { includeNames: false, sex: '', sorted: false };
+  }
+
+  const output = getRegionsAndSpecies();
+  const regions = Object.keys(output);
+
+  if (options.includeNames === true) {
+    const { sex, sorted } = options;
+    regions.forEach((region) => {
+      output[region] = getResidentsNames({ region, sex, sorted });
+    });
+  }
+
+  return output;
 }
 
 function schedule(dayName) {
-  const result = {};
-  const dayFinder = day => data.hours[day];
-  const hoursKeys = Object.keys(data.hours);
-  if (hoursKeys.includes(dayName) === true && dayName !== 'Monday') {
-    Object.assign(result, ({ [dayName]: `Open from ${Object.values(dayFinder(dayName))[0]}am until ${Object.values(dayFinder(dayName))[1] - 12}pm` }));
-    return result;
+  const scheduleKeys = Object.keys(hours);
+  const scheduleValues = Object.values(hours);
+  let output;
+
+  const week = {};
+  scheduleKeys.map((elem, index) => {
+    const openHour = (scheduleValues[index].open !== 0) ?
+    `Open from ${scheduleValues[index].open}am until ${(scheduleValues[index].close - 12)}pm` :
+    'CLOSED';
+    return Object.assign(week, { [elem]: openHour });
+  });
+
+  if (dayName !== undefined) {
+    Object.entries(week).forEach((key) => {
+      if (dayName === key[0]) {
+        output = { [key[0]]: key[1] };
+      }
+    });
+  } else {
+    output = week;
   }
-  if (dayName === 'Monday') {
-    Object.assign(result, ({ Monday: 'CLOSED' }));
-  }
-  for (let index = 0; index < hoursKeys.length; index += 1) {
-    Object.assign(result, ({ [hoursKeys[index]]: `Open from ${Object.values(dayFinder(hoursKeys[index]))[0]}am until ${Object.values(dayFinder(hoursKeys[index]))[1] - 12}pm` }));
-    Object.assign(result, ({ Monday: 'CLOSED' }));
-  }
-  return result;
+
+  return output;
 }
 
 function oldestFromFirstSpecies(id) {
