@@ -91,7 +91,7 @@ function entryCalculator(entrants) {
 
 
 function animalMap(options) {
- // fica para o final
+  // fica para o final
 }
 
 function schedule(dayName) {
