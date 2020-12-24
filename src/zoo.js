@@ -91,44 +91,35 @@ function entryCalculator(entrants) {
 
 
 function animalMap(options) {
-  /* const cont = { NE: [], NW: [], SE: [], SW: [] };
-  if (!options || options === undefined) {
-    animals.filter((anima) =>
-    {
-      switch (anima.location) {
-        case 'NE':
-          cont.NE.push(anima.name);
-          break;
-        case 'NW':
-          cont.NW.push(anima.name);
-          break;
-        case 'SE':
-          cont.SE.push(anima.name);
-          break;
-        case 'SW':
-          cont.SW.push(anima.name);
-          break;
-      }
-      return cont;
-    }) */
+  let result = filterByRegion();
+  const defaultOptions = { includeNames: false, sorted: false, sex: null };
+  if (typeof options === 'object' && options !== {}) {
+    Object.assign(defaultOptions, options);
+    if (defaultOptions.includeNames === true) {
+      result = objListWithAnimalsNames(defaultOptions.sex, defaultOptions.sorted);
+    }
+    return result;
+  }
+  return result;
 }
-
-
 
 function schedule(dayName) {
-  // seu código aqui
-  let cont = {};
-  if (!dayName || dayName === undefined) {
-    cont = `'Tuesday': 'Open from ${data.hours.Thursday.open}am until ${data.hours.Thursday.close}pm',
-            'Wednesday': 'Open from ${data.hours.Wednesday.open}am until ${data.hours.Wednesday.close}pm',
-            'Thursday': 'Open from ${data.hours.Thursday.open}am until ${data.hours.Thursday.close}pm',
-            'Friday': 'Open from ${data.hours.Friday.open}am until ${data.hours.Friday.close}pm',
-            'Saturday': 'Open from ${data.hours.Saturday.open}am until ${data.hours.Saturday.close}pm',
-            'Sunday': 'Open from ${data.hours.Sunday.open}am until ${data.hours.Sunday.close}pm',
-            'Monday': 'CLOSED'`;
-    return cont;
+  const result = {};
+  const dayFinder = day => hours[day];
+  const hoursKeys = Object.keys(hours);
+  if (hoursKeys.includes(dayName) === true && dayName !== 'Monday') {
+    Object.assign(result, ({ [dayName]: `Open from ${Object.values(dayFinder(dayName))[0]}am until ${Object.values(dayFinder(dayName))[1] - 12}pm` }));
+    return result;
   }
-}
+  if (dayName === 'Monday') {
+    Object.assign(result, ({ Monday: 'CLOSED' }));
+  } else {
+    for (let index = 0; index < hoursKeys.length; index += 1) {
+      Object.assign(result, ({ [hoursKeys[index]]: `Open from ${Object.values(dayFinder(hoursKeys[index]))[0]}am until ${Object.values(dayFinder(hoursKeys[index]))[1] - 12}pm` }));
+      Object.assign(result, ({ Monday: 'CLOSED' }));
+    }
+  }
+  return result;
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
