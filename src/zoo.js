@@ -93,7 +93,7 @@ function entryCalculator(entrants) {
 function animalMap(options) {
   /* const cont = { NE: [], NW: [], SE: [], SW: [] };
   if (!options || options === undefined) {
-    animals.filter((anima) => 
+    animals.filter((anima) =>
     {
       switch (anima.location) {
         case 'NE':
@@ -113,7 +113,7 @@ function animalMap(options) {
     }) */
 }
 
-};
+
 
 function schedule(dayName) {
   // seu código aqui
@@ -131,7 +131,7 @@ function schedule(dayName) {
 
 
   }
-};
+}
 
 
 function oldestFromFirstSpecies(id) {
