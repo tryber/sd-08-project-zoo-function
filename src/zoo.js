@@ -91,21 +91,7 @@ function entryCalculator(entrants) {
 
 
 function animalMap(options) {
-  if (options === undefined) {
-    options = { includeNames: false, sex: '', sorted: false };
-  }
-
-  const output = getRegionsAndSpecies();
-  const regions = Object.keys(output);
-
-  if (options.includeNames === true) {
-    const { sex, sorted } = options;
-    regions.forEach((region) => {
-      output[region] = getResidentsNames({ region, sex, sorted });
-    });
-  }
-
-  return output;
+ // fica para o final
 }
 
 function schedule(dayName) {
