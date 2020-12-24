@@ -31,14 +31,10 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  const newEmpl = {
-    id: personalInfo.id,
-    firstName: personalInfo.firstName,
-    lastName: personalInfo.lastName,
-    managers: associatedWith.managers,
-    responsibleFor: associatedWith.responsibleFor
+  return {
+    ...personalInfo,
+    ...associatedWith,
   }
-  return newEmpl
 }
 
 function isManager(id) {
