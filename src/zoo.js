@@ -109,8 +109,8 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const scheduleKeys = Object.keys(hours);
-  const scheduleValues = Object.values(hours);
+  const scheduleKeys = Object.keys(data.hours);
+  const scheduleValues = Object.values(data.hours);
   let output;
 
   const week = {};
