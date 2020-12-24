@@ -120,6 +120,7 @@ function schedule(dayName) {
     }
   }
   return result;
+}  
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
