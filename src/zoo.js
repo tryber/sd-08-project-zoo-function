@@ -104,11 +104,10 @@ function schedule(dayName) {
   }
   if (dayName === 'Monday') {
     Object.assign(result, ({ Monday: 'CLOSED' }));
-  } else {
-    for (let index = 0; index < hoursKeys.length; index += 1) {
-      Object.assign(result, ({ [hoursKeys[index]]: `Open from ${Object.values(dayFinder(hoursKeys[index]))[0]}am until ${Object.values(dayFinder(hoursKeys[index]))[1] - 12}pm` }));
-      Object.assign(result, ({ Monday: 'CLOSED' }));
-    }
+  } 
+  for (let index = 0; index < hoursKeys.length; index += 1) {
+    Object.assign(result, ({ [hoursKeys[index]]: `Open from ${Object.values(dayFinder(hoursKeys[index]))[0]}am until ${Object.values(dayFinder(hoursKeys[index]))[1] - 12}pm` }));
+    Object.assign(result, ({ Monday: 'CLOSED' }));
   }
   return result;
 }
