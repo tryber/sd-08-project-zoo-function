@@ -91,13 +91,13 @@ function entryCalculator(entrants) {
 
 
 function animalMap(options) {
-// essa fica para a ultima  
+// essa fica para a ultima
 }
 
 function schedule(dayName) {
   const result = {};
-  const dayFinder = day => hours[day];
-  const hoursKeys = Object.keys(hours);
+  const dayFinder = day => data.hours[day];
+  const hoursKeys = Object.keys(data.hours);
   if (hoursKeys.includes(dayName) === true && dayName !== 'Monday') {
     Object.assign(result, ({ [dayName]: `Open from ${Object.values(dayFinder(dayName))[0]}am until ${Object.values(dayFinder(dayName))[1] - 12}pm` }));
     return result;
