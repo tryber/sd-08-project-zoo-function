@@ -91,16 +91,7 @@ function entryCalculator(entrants) {
 
 
 function animalMap(options) {
-  let result = filterByRegion();
-  const defaultOptions = { includeNames: false, sorted: false, sex: null };
-  if (typeof options === 'object' && options !== {}) {
-    Object.assign(defaultOptions, options);
-    if (defaultOptions.includeNames === true) {
-      result = objListWithAnimalsNames(defaultOptions.sex, defaultOptions.sorted);
-    }
-    return result;
-  }
-  return result;
+// essa fica para a ultima  
 }
 
 function schedule(dayName) {
@@ -120,10 +111,15 @@ function schedule(dayName) {
     }
   }
   return result;
-}  
+}
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const finderById = employees.find(employee => employee.id === id);
+  const firstSpecies = finderById.responsibleFor[0];
+  const finderByCode = animals.find(animal => animal.id === firstSpecies);
+  const finderOldest = finderByCode.residents.reduce((acc, curr) =>
+    ((acc.age > curr.age) ? acc : curr));
+  return Object.values(finderOldest);
 }
 
 function increasePrices(percentage) {
