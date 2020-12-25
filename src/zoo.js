@@ -17,11 +17,34 @@ function animalsByIds(...ids) {
   return animals.filter(actua => actua.id === ids[0] || actua.id === ids[1]);
 }
 
+const getAllEmployee = () => {
+  const output = {};
+  employees.map((person) => {
+    const fullname = `${person.firstName} ${person.lastName}`;
+    const animalsId = person.responsibleFor;
+    const animalsName = getAnimal(animalsId);
+    const obj = { [fullname]: animalsName };
+    return Object.assign(output, obj);
+  });
+  return output;
+};
 
 function animalsOlderThan(...ids) {
   return animals.find(tipobicho => tipobicho.name === ids[0])
     .residents.every(tipobicho => tipobicho.age >= 7);
 }
+
+const getAnimal = (animalId) => {
+  const output = [];
+  for (let index = 0; index < animalId.length; index += 1) {
+    animals.forEach((animal) => {
+      if (animalId[index] === animal.id) {
+        output.push(animal.name);
+      }
+    });
+  }
+  return output;
+};
 
 function employeeByName(ids) {
   if (!ids) return {};
@@ -134,20 +157,6 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const getAllEmployee = () => {
-    const output = {};
-  
-    employees.map((person) => {
-      const fullname = `${person.firstName} ${person.lastName}`;
-      const animalsId = person.responsibleFor;
-      const animalsName = getAnimal(animalsId);
-      const obj = { [fullname]: animalsName };
-      return Object.assign(output, obj);
-    });
-  
-    return output;
-  };
-
   const getAnimal = (animalId) => {
     const output = [];
   
