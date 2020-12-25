@@ -157,19 +157,7 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const getAnimal = (animalId) => {
-    const output = [];
   
-    for (let index = 0; index < animalId.length; index += 1) {
-      animals.forEach((animal) => {
-        if (animalId[index] === animal.id) {
-          output.push(animal.name);
-        }
-      });
-    }
-  
-    return output;
-  };
   let output = {};
 
   if (idOrName === undefined) { return getAllEmployee(); }
