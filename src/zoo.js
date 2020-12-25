@@ -157,20 +157,15 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  
   let output = {};
-
   if (idOrName === undefined) { return getAllEmployee(); }
-
   const getEmployee = employees.find((person) => {
     const { id, firstName, lastName } = person;
     return id === idOrName || firstName === idOrName || lastName === idOrName;
   });
-
   const fullname = `${getEmployee.firstName} ${getEmployee.lastName}`;
   const animalId = getEmployee.responsibleFor;
   output = { [fullname]: getAnimal(animalId) };
-
   return output;
 }
 
