@@ -313,6 +313,12 @@ function increasePrices(percentage) {
   // O que será avaliado
   // Ao passar uma porcentagem, incrementa todos os preços, arrendondados
   // em duas casas decimais
+  const listPrices = data.prices;
+  Object.entries(listPrices).forEach(([a, price]) => {
+    data.prices[a] = Math.round((price * (1 + (percentage / 100))) * 100) / 100;
+  });
+  // console.log (listPrices);
+  // https://www.includehelp.com/code-snippets/how-to-round-off-a-number-upto-2-decimal-places-using-javascript.aspx
 }
 
 function employeeCoverage(idOrName) {
