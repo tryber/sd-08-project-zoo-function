@@ -342,7 +342,7 @@ function employeeCoverage(idOrName) {
   // animais pelos quais o funcionário é responsável
   // Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
   const listEmployAndAnimals = {};
-  data.employees.forEach(empl => {
+  data.employees.forEach((empl) => {
     if (typeof idOrName === 'undefined') {
       listEmployAndAnimals[`${empl.firstName} ${empl.lastName}`] = nameAnimalsByIds(empl.responsibleFor);
     } else if (empl.firstName === idOrName || empl.lastName === idOrName || empl.id === idOrName) {
