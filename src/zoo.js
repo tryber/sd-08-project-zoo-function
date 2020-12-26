@@ -314,13 +314,20 @@ function increasePrices(percentage) {
   // Ao passar uma porcentagem, incrementa todos os preços, arrendondados
   // em duas casas decimais
   const listPrices = data.prices;
-  Object.entries(listPrices).forEach(([a, price]) => {
-    data.prices[a] = Math.round((price * (1 + (percentage / 100))) * 100) / 100;
+  Object.entries(listPrices).forEach(([type, price]) => {
+    data.prices[type] = Math.round((price * (1 + (percentage / 100))) * 100) / 100;
   });
   // console.log (listPrices);
   // https://www.includehelp.com/code-snippets/how-to-round-off-a-number-upto-2-decimal-places-using-javascript.aspx
 }
 
+function nameAnimalsByIds(listId) {
+  const listNames = [];
+  listId.forEach((id) => {
+    listNames.push(animals.find(animal => animal.id === id).name);
+  });
+  return listNames;
+}
 function employeeCoverage(idOrName) {
   // seu código aqui
   // A função é responsável por consultar as espécies pela qual a pessoa colaborada, recebida
@@ -334,6 +341,20 @@ function employeeCoverage(idOrName) {
   // Com o primeiro nome de um funcionário, retorna os
   // animais pelos quais o funcionário é responsável
   // Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+  const listEmployAndAnimals = {};
+  data.employees.forEach((employee) => {
+    if (typeof idOrName === 'undefined') {
+      listEmployAndAnimals[`${employee.firstName} ${employee.lastName}`] = nameAnimalsByIds(employee.responsibleFor);
+    } else if (employee.firstName === idOrName) {
+      listEmployAndAnimals[`${employee.firstName} ${employee.lastName}`] = nameAnimalsByIds(employee.responsibleFor);
+      return listEmployAndAnimals;
+    } else if (employee.lastName === idOrName || employee.id === idOrName) {
+      listEmployAndAnimals[`${employee.firstName} ${employee.lastName}`] = nameAnimalsByIds(employee.responsibleFor);
+      return listEmployAndAnimals;
+    }
+  });
+  console.log(listEmployAndAnimals);
+  return listEmployAndAnimals;
 }
 
 module.exports = {
