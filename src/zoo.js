@@ -9,22 +9,25 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
-const data = require('./data');
+const { animals, employees } = require("./data");
+const data = require("./data");
 
 function animalsByIds(...ids) {
-  return animals.filter(element => ids.includes(element.id));
+  return animals.filter((element) => ids.includes(element.id));
 }
-
 
 function animalsOlderThan(animal, age) {
   return animals
-    .find(element => element.name === animal)
-    .residents.every(elementTwo => elementTwo.age >= age);
+    .find((element) => element.name === animal)
+    .residents.every((elementTwo) => elementTwo.age >= age);
 }
 
 function employeeByName(employeeName) {
-  return (employees.find(i => i.firstName === employeeName || i.lastName === employeeName) || {});
+  return (
+    employees.find(
+      (i) => i.firstName === employeeName || i.lastName === employeeName
+    ) || {}
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -41,11 +44,18 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return data.employees.some(({ managers }) => managers.some(element => element === id));
+  return data.employees.some(({ managers }) =>
+    managers.some((element) => element === id)
+  );
 }
 
-
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+function addEmployee(
+  id,
+  firstName,
+  lastName,
+  managers = [],
+  responsibleFor = []
+) {
   data.employees.push({
     id,
     firstName,
@@ -56,17 +66,16 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (!species) 
+  if (!species) {
     return animals.reduce((acc, animal) => {
       acc[animal.name] = animal.residents.length;
       return acc;
     }, {});
-  return animals.find(animal => animal.name === species).residents.length;
+  };
+  return animals.find((animal) => animal.name === species).residents.length;
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
-}
+function entryCalculator(entrants) {}
 
 function animalMap(options) {
   // seu código aqui
