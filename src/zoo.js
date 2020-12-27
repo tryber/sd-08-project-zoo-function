@@ -71,11 +71,13 @@ function animalCount(species) {
       acc[animal.name] = animal.residents.length;
       return acc;
     }, {});
-  };
-  return animals.find((animal) => animal.name === species).residents.length;
+  }
+  return animals.find(element => element.name === species).residents.length;
 }
 
-function entryCalculator(entrants) {}
+function entryCalculator(entrants) {
+  // seu código aqui
+}
 
 function animalMap(options) {
   // seu código aqui
