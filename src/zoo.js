@@ -34,8 +34,13 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   return employees.some(employee => employee.managers.includes(id));
 }
-
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+function addEmployee(
+  id,
+  firstName,
+  lastName,
+  managers = [],
+  responsibleFor = [],
+) {
   return employees.push({
     id,
     firstName,
@@ -48,7 +53,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (!species) {
     const obj = {};
-    animals.forEach((e) => {
+    animals.forEach((e, index) => {
       obj[e.name] = e.residents.length;
     });
     return obj;
@@ -57,14 +62,33 @@ function animalCount(species) {
 }
 function entryCalculator(entrants) {
   if (!entrants) return 0;
-  return Object.keys(entrants).reduce((accumulator, currentValue) => (
-    accumulator + (entrants[currentValue] * prices[currentValue])
-  ), 0);
+  return Object.keys(entrants).reduce(
+    (accumulator, currentValue) =>
+      accumulator + (entrants[currentValue] * prices[currentValue]), 0);
 }
-function animalMap(options) {
-  // seu código aqui
+function getResidents(animalName, sorted = false, sex) {
+  let { residents } = animals.find(animal => animal.name === animalName);
+  if (sex) residents = residents.filter(resident => resident.sex === sex);
+  const names = residents.map(resident => resident.name);
+  if (sorted) names.sort();
+  return { [animalName]: names };
 }
-
+function animalMap(options = {}) {
+  const { includeNames = false, sorted = false, sex } = options;
+  const result = animals.reduce((previousValue, currentValue) => {
+    const { location, name } = currentValue;
+    if (!previousValue[location]) previousValue[location] = [];
+    previousValue[location].push(name);
+    return previousValue;
+  }, {});
+  if (includeNames) {
+    return Object.entries(result).reduce((previousValue, [keys, value]) => {
+      previousValue[keys] = value.map(name => getResidents(name, sorted, sex));
+      return previousValue;
+    }, {});
+  }
+  return result;
+}
 function schedule(dayName) {
   // seu código aqui
 }
