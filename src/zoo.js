@@ -35,7 +35,7 @@ function createEmployee(personalInfo, associatedWith) {
   return {
     ...personalInfo,
     ...associatedWith,
-  }
+  };
 }
 
 function isManager(id) {
@@ -72,10 +72,8 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const increasePercentage = percentage / 100;
   const prices = data.prices;
   return Object.entries(prices).forEach((value) => {
-    
   });
 }
 
