@@ -9,7 +9,6 @@ eslint no-unused-vars: [
 ]
 */
 
-const { employees } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -33,6 +32,10 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
+  return {
+    ...personalInfo,
+    ...associatedWith,
+  }
 }
 
 function isManager(id) {
@@ -41,7 +44,7 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  return employees.push({
+  return data.employees.push({
     id,
     firstName,
     lastName,
@@ -69,7 +72,11 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const increasePercentage = percentage / 100;
+  const prices = data.prices;
+  return Object.entries(prices).forEach((value) => {
+    
+  });
 }
 
 function employeeCoverage(idOrName) {
