@@ -65,8 +65,13 @@ function animalCount(species) {
   return result;
 }
 
+const { prices } = require('./data');
+
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (typeof entrants !== 'object' || Object.keys(entrants).length === 0) return 0;
+  return Object.keys(entrants).reduce((acumulador, chave) => (
+    acumulador + (entrants[chave] * prices[chave])
+  ), 0);
 }
 
 function animalMap(options) {
