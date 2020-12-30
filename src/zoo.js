@@ -70,10 +70,10 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const employee = employees.find(employee => employee.id === id).responsibleFor[0];
-  const animalObj = animals.find(animalId => animalId.id === employee).residents;
-  const olderAnimal = animalObj.reduce((acc, curr) => curr.age > acc.age ? acc = curr : acc)
-  return Object.values(olderAnimal)
+  const responsible = employees.find(employee => employee.id === id).responsibleFor[0];
+  const animalObj = animals.find(animalId => animalId.id === responsible).residents;
+  const olderAnimal = animalObj.reduce((acc, curr) => {return curr.age > acc.age ? curr : acc});
+  return Object.values(olderAnimal);
 }
 
 function increasePrices(percentage) {
