@@ -16,21 +16,18 @@ const {
 } = data;
 const { Adult, Senior, Child } = prices;
 function animalsByIds(...ids) {
-  return animals.filter(idAnimal => ids.includes(idAnimal.id));
+  return animals.filter((idAnimal) => ids.includes(idAnimal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.find(Element => Element.name === animal).residents.every
-  (Element => Element.age >= age);
+  return animals.find((Element) => Element.name === animal).residents.every((Element) => Element.age >= age);
 }
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  return employees.find((Element) => {
-    return (Element.firstName === employeeName || Element.lastName === employeeName)
-  });
+  return employees.find((Element) => (Element.firstName === employeeName || Element.lastName === employeeName));
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -39,7 +36,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.some(Element => (Element.managers.includes(id)));
+  return employees.some((Element) => (Element.managers.includes(id)));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -59,7 +56,7 @@ function animalCount(species) {
       return previousValue;
     }, {});
   }
-  return animals.find(Element => (species === Element.name)).residents.length;
+  return animals.find((Element) => (species === Element.name)).residents.length;
 }
 
 function entryCalculator(entrants = 0) {
@@ -77,18 +74,16 @@ function schedule(dayName) {
   arrObj = Object.keys((hours));
   if (dayName === undefined || dayName.length < 1) {
     arrObj.forEach((Element) => {
-      if (Element === 'Monday') {
+      if (hours[Element].open === 0 && hours[Element].close === 0) {
         obj[Element] = 'CLOSED';
       } else {
         obj[Element] = `Open from ${hours[Element].open}am until ${hours[Element].close - 12}pm`;
       }
     });
+  } else if (dayName === 'Monday') {
+    obj[dayName] = 'CLOSED';
   } else {
-    if (dayName === 'Monday') {
-      obj[dayName] = 'CLOSED';
-    } else {
-      obj[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
-    }
+    obj[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
   }
   return obj;
 }
@@ -96,8 +91,8 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   let animalAge = 0;
   let firstAnima;
-  const animalList = employees.find((Element => Element.id === id)).responsibleFor[0];
-  animals.find(Element => Element.id === animalList).residents.forEach((Element) => {
+  const animalList = employees.find(((Element) => Element.id === id)).responsibleFor[0];
+  animals.find((Element) => Element.id === animalList).residents.forEach((Element) => {
     if (Element.age > animalAge) {
       animalAge = Element.age;
       firstAnima = Object.values(Element);
