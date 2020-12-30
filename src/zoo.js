@@ -70,7 +70,7 @@ function entryCalculator(entrants = {}) {
   }
   const prices = Object.values(data.prices);
   const { Adult = 0, Child = 0, Senior = 0 } = entrants;
-  finalPrice = Adult * prices[0] + Senior * prices[1] + Child * prices[2];
+  finalPrice = (Adult * prices[0]) + (Senior * prices[1]) + (Child * prices[2]);
   return finalPrice;
 }
 
@@ -98,10 +98,6 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  if (idOrName === undefined) {
-
-  }
-  const responsibleFor = data.employees.find(employee)
 }
 
 module.exports = {
