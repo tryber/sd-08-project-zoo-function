@@ -60,12 +60,12 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const ret = Object.entries(hours).reduce((acc, [key, value]) => {
+  const ret = Object.entries(dayName).reduce((acc, [key, value]) => {
     const { open, close } = value;
-    acc[key] = close - open > 0 ? `Open from ${open}pm until ${close % 12}pm` : 'CLOSED'
+    acc[key] = close - open > 0 ? `Open from ${open}pm until ${close % 12}pm` : 'CLOSED';
     return acc;
   }, {});
-  if (typeof dayName === 'string' && dayName.length !== 0) return {[dayName]: ret[dayName]}
+  if (typeof dayName === 'string' && dayName.length !== 0) return { [dayName]: ret[dayName] };
   return ret;
 }
 
