@@ -79,7 +79,6 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
 }
 
 function oldestFromFirstSpecies(id) {
@@ -97,7 +96,23 @@ function increasePrices(percentage) {
   });
 }
 
+function employeebyId(id) {
+  return data.employees.find(employee => employee.id === id);
+}
+
 function employeeCoverage(idOrName) {
+  const result = data.employees.reduce((acc, employee) => {
+    const { firstName, lastName, responsibleFor } = employee;
+    acc[`${firstName} ${lastName}`] = responsibleFor.map(id => animalsByIds(id)[0].name);
+    return acc;
+  }, {});
+  if (typeof idOrName === 'string' && idOrName.length !== 0) {
+    const employee = employeeByName(idOrName) || employeebyId(idOrName);
+    const { firstName, lastName} = employee;
+    const name = `${firstName} ${lastName}`;
+    return { [name]: result[name] };
+  }
+  return result;
 }
 
 module.exports = {
