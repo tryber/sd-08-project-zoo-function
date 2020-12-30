@@ -68,7 +68,6 @@ function schedule(dayName) {
   if (typeof dayName === 'string' && dayName.length > 0) return { [dayName]: ret[dayName] };
   return ret;
 }
-console.log(schedule('Monday'))
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
