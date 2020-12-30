@@ -108,7 +108,7 @@ function employeeCoverage(idOrName) {
   }, {});
   if (typeof idOrName === 'string' && idOrName.length !== 0) {
     const employee = employeeByName(idOrName) || employeebyId(idOrName);
-    const { firstName, lastName} = employee;
+    const { firstName, lastName } = employee;
     const name = `${firstName} ${lastName}`;
     return { [name]: result[name] };
   }
