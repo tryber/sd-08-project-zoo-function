@@ -20,16 +20,16 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.find(Element => Element.name === animal).residents.every
-  (Element => Element.age >= age);
+  let olde = animals.find(Element => Element.name === animal).residents;
+  return olde.every(Element => Element.age >= age);
 }
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  return employees.find
-  (Element => (Element.firstName === employeeName || Element.lastName === employeeName));
+  return employees.find(el => (el.firstName === employeeName || el.lastName === employeeName));
+
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -82,8 +82,8 @@ function schedule(dayName) {
       returnDay[day] = `Open from ${open}am until ${close - 12}pm`;
     }
   };
-  if (dayName == undefined) {
-    returnday = dayWeek.map((day) => daylyInfo(day));
+  if (dayName === undefined) {
+    returnday = dayWeek.map(day => daylyInfo(day));
     return returnDay;
   }
   daylyInfo(dayName);
