@@ -52,13 +52,13 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) return 0;
   return Object.keys(entrants).reduce(
-    (acc, curr, index, obj) => acc + data.prices[curr] * entrants[curr], 0);
+    (acc, curr, index, obj) => acc + (data.prices[curr] * entrants[curr]), 0);
 }
 
 function animalMap(options) {
   // seu código aqui
 }
-''
+
 function schedule(dayName) {
   // seu código aqui
 }
