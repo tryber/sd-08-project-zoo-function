@@ -92,12 +92,32 @@ function increasePrices(percentage) {
   const increase = 1 + (percentage / 100);
   Object.keys(prices).forEach(key => {
     prices[key] = Math.round(prices[key] * increase * 100) / 100;
-  })
+  });
 }
 
+// <-------------------------------------------------------------------------------------->
+// functions for execution of employeeCoverage - req. 13
+
+function employeeById(id) {
+  return employees.find(employee => employee.id === id);
+}
+
+function manager(employee) {
+  return employee.responsibleFor.map(id => animals.find(animal => animal.id === id).name);
+  }
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
-  
+  const employee = employeeByName(idOrName) || employeeById(idOrName);
+  const result = employees.reduce((acc, employee) => {
+    const { firstName, lastName, responsibleFor } = employee;
+    acc[`${firstName} ${lastName}`] = responsibleFor
+      .map(id => animals.find(animal => id === animal.id).name);
+    return acc;
+  }, {});
+
+  return idOrName ? {[`${employee.firstName} ${employee.lastName}`]: manager(employee)}
+
+: result;
 }
 
 module.exports = {
