@@ -84,15 +84,16 @@ function oldestFromFirstSpecies(id) {
   const firstSpeciesId = employee.responsibleFor[0];
   const animal = animalsByIds(firstSpeciesId)[0];
   const { residents } = animal;
-  const oldest = residents.reduce((maisVelho, atual) => (atual.age > maisVelho.age ? atual : maisVelho));
+  const oldest = residents
+    .reduce((maisVelho, atual) => (atual.age > maisVelho.age ? atual : maisVelho));
   return Object.values(oldest);
 }
 
 function increasePrices(percentage) {
   const increase = 1 + (percentage / 100);
-  Object.keys(prices).forEach(key => {
-    prices[key] = Math.round(prices[key] * increase * 100) / 100;
-  });
+  Object.keys(prices).forEach(key => (
+    prices[key] = Math.round(prices[key] * increase * 100) / 100
+  ));
 }
 
 // <-------------------------------------------------------------------------------------->
@@ -104,19 +105,19 @@ function employeeById(id) {
 
 function manager(employee) {
   return employee.responsibleFor.map(id => animals.find(animal => animal.id === id).name);
-  }
+}
 
 function employeeCoverage(idOrName) {
   const employee = employeeByName(idOrName) || employeeById(idOrName);
-  const result = employees.reduce((acc, employee) => {
-    const { firstName, lastName, responsibleFor } = employee;
+  const result = employees.reduce((acc, employeeConst) => {
+    const { firstName, lastName, responsibleFor } = employeeConst;
     acc[`${firstName} ${lastName}`] = responsibleFor
       .map(id => animals.find(animal => id === animal.id).name);
     return acc;
   }, {});
 
   return idOrName ?
-    {[`${employee.firstName} ${employee.lastName}`]: manager(employee)} : result;
+    { [`${employee.firstName} ${employee.lastName}` ]: manager(employee)} : result;
 }
 
 module.exports = {
