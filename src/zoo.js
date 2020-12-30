@@ -117,7 +117,7 @@ function employeeCoverage(idOrName) {
   }, {});
 
   return idOrName ?
-    { [`${employee.firstName} ${employee.lastName}` ]: manager(employee)} : result;
+    { [`${employee.firstName} ${employee.lastName}`]: manager(employee) } : result;
 }
 
 module.exports = {
