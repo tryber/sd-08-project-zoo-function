@@ -20,11 +20,11 @@ function animalsOlderThan(animal, age) {
   return animals.find(object => object.name === animal).residents.every(some => some.age >= age);
 }
 
-function employeeByName(employeeName) {
-  if (employeeName == null) {
+function employeeByName(name) {
+  if (name == null) {
     return {};
   }
-  return employees.find(worker => worker.lastName === employeeName || worker.firstName === employeeName);
+  return employees.find(worker => worker.lastName === name || worker.firstName === name);
 }
 
 function createEmployee(personalInfo, associatedWith) {
