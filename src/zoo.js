@@ -26,11 +26,12 @@ function employeeByName(employeeName) {
     return {};
   }
   return employees.find(employee => employee.firstName === employeeName
-      || employee.lastName === employeeName);
+    || employee.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const worker = {...personalInfo, ...associatedWith};
+  return worker;
 }
 
 function isManager(id) {
