@@ -53,14 +53,12 @@ function animalCount(species) {
   return animals.find(animal => animal.name === species).residents.length;
 }
 
-function entryCalculator({ adultq = 0, childq = 0, seniorq } = 0) {
-  const {Adult , Child , Senior } = prices;
-  const total = (Adult * adultq) + (Child * childq) + (Senior * seniorq);
-  return total;
+function entryCalculator(entrants = {}) {
+  return Object.entries(entrants).reduce((acc, [person, amount]) => {
+    acc += data.prices[person] * amount;
+    return acc;
+  }, 0);
 }
-
-const adulto = {'Adult':1}
-console.log(entryCalculator(adulto))
 
 function animalMap(options) {
   // seu código aqui
