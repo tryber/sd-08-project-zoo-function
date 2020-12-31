@@ -61,7 +61,7 @@ function entryCalculator(entrants = {}) {
     return acc;
   }, 0);
 }
-}
+
 
 function animalMap(options) {
   // seu código aqui
