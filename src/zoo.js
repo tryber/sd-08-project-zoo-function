@@ -45,8 +45,8 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     lastName,
     managers,
     responsibleFor,
-  }
-  employess.push(newColab);
+  };
+  employees.push(newColab);
 }
 
 function animalCount(species) {
