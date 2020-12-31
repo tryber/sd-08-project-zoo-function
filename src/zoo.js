@@ -63,6 +63,10 @@ function entryCalculator(entrants = {}) {
 }
 
 function animalMap(options) {
+  // seu código aqui
+}
+
+function schedule(dayName) {
   const result = Object.entries(data.hours).reduce((acumulador, [key, val]) => {
     const { open, close } = val;
     acumulador[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
@@ -74,10 +78,6 @@ function animalMap(options) {
     };
   }
   return result;
-}
-
-function schedule(dayName) {
-  // seu código aqui
 }
 
 function oldestFromFirstSpecies(id) {
