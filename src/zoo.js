@@ -30,12 +30,12 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const worker = {...personalInfo, ...associatedWith};
+  const worker = { ...personalInfo, ...associatedWith };
   return worker;
 }
 
 function isManager(id) {
-  // seu código aqui
+  // seu código aqui  
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
