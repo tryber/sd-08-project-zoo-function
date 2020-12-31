@@ -29,7 +29,8 @@ function employeeByName(name) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return Object.assign(newColab = {}, personalInfo, associatedWith);
+  const newColab = Object.assign(newColab = {}, personalInfo, associatedWith);
+  return newColab;
 }
 
 function isManager(id) {
