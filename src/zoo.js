@@ -82,7 +82,7 @@ function increasePrices(percentage) {
   return Object.keys(prices).forEach((key) => {
     const newPrices = prices[key] + (((prices[key] * percentage) / 100) + 0.005);
     prices[key] = parseFloat(newPrices.toFixed(2));
-    });
+  });
 }
 
 
