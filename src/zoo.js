@@ -29,7 +29,7 @@ function employeeByName(name) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const newColab = Object.assign(newColab = {}, personalInfo, associatedWith);
+  const newColab = Object.assign(colab = {}, personalInfo, associatedWith);
   return newColab;
 }
 
