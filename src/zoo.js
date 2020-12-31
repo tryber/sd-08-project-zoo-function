@@ -38,8 +38,8 @@ function isManager(id) {
   return employees.some(office => office.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  const newWorker = {id, firstName, lastName, managers, responsibleFor}
+function addEmployee(id, firstName, lastName, managers, responsibleFor = []) {
+  const newWorker = { id, firstName, lastName, managers, responsibleFor };
   employees.push(newWorker);
 }
 
