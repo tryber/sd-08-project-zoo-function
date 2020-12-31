@@ -59,14 +59,15 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  const { Adult, Senior, Child } = prices;
-  const { AdultEntr = 0, SeniorEntr = 0, ChildEntr = 0} = entrants;
-  const adultValor = (Adult * AdultEntr); 
-  const seniorValor = (Senior * SeniorEntr);
-  const childValor = (Child * ChildEntr);
-  return adultValor
+  if(!entrants)  return 0;
+  const { Adult = 0, Senior = 0, Child = 0} = entrants;
+  const adultValor = prices.Adult * Adult;
+  const seniorValor = prices.Senior * Senior;
+  const childValor = prices.Child * Child;
+  return (adultValor + seniorValor + childValor).toFixed(2);
+  
 }
-console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }))
+console.log(entryCalculator())
 function animalMap(options) {
   // seu código aqui
 }
