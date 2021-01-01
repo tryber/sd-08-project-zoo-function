@@ -86,7 +86,7 @@ function increasePrices(percentage) {
 }
 
 const animalId = (responsibleFor = []) => {
-  const result = responsibleFor.map(responsible => animals.find(animal => 
+  const result = responsibleFor.map(responsible => animals.find(animal =>
     animal.id === responsible).name)
     || [];
   return result;
@@ -102,7 +102,7 @@ function employeeCoverage(idOrName) {
     return result;
   }
   const employee = employees.find(
-    emp => emp.id === idOrName || emp.firstName === idOrName 
+    emp => emp.id === idOrName || emp.firstName === idOrName
     || emp.lastName === idOrName,
   );
   const { firstName, lastName, responsibleFor } = employee;
