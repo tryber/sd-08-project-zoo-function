@@ -36,7 +36,7 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   const perfilZoo = Object.assign(personalInfo, associatedWith);
-  return perfilZoo
+  return perfilZoo;
 }
 
 function isManager(id) {
