@@ -48,10 +48,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (!species) { 
+  if (!species) {
     const bichosEqtd = animals.reduce((anterior, atual) => {
-    anterior[atual.name] = atual.residents.length;
-    return anterior;
+      anterior[atual.name] = atual.residents.length;
+      return anterior;
     }, {});
     return bichosEqtd;
   }
