@@ -11,8 +11,8 @@ eslint no-unused-vars: [
 //
 
 const data = require('./data');
-const { animals, employees } = require('./data');
-let { prices } = require('./data');
+const { animals, employees, prices } = require('./data');
+
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.find(id => animal.id === id));
@@ -86,15 +86,17 @@ function increasePrices(percentage) {
   prices.Adult = +((prices.Adult *= addition) + 0.001).toFixed(2);
   prices.Senior = +((prices.Senior *= addition) + 0.001).toFixed(2);
   prices.Child = +((prices.Child *= addition) + 0.001).toFixed(2);
-  /*prices = {
+  /* prices = {
     Adult: +((prices.Adult * addition) + 0.001).toFixed(2),
     Senior: +((prices.Senior * addition) + 0.001).toFixed(2),
     Child: +((prices.Child * addition) + 0.001).toFixed(2),
-  };*/
+  }; */
   return prices;
 }
-console.log(increasePrices(50))
-console.log(increasePrices(30))
+
+increasePrices(50);
+increasePrices(30);
+
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
