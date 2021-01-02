@@ -67,7 +67,7 @@ function entryCalculator(entrants) {
   const total = (adultValor + seniorValor + childValor).toFixed(2);
   return Number(total);
 }
-console.log(entryCalculator())
+
 function animalMap(options) {
   // seu código aqui
 }
