@@ -81,8 +81,8 @@ function oldestFromFirstSpecies(parameter) {
   const idAnimals = employees.find(workers => workers.id === parameter).responsibleFor;
   const objectAnimals = animals.find(animal => idAnimals.find(id => animal.id === id)).residents;
   const result = objectAnimals.reduce((acumulator, animais) =>
-    { return acumulator.age < animais.age ? animais : acumulator });
-  return result
+    ( acumulator.age < animais.age ? animais : acumulator ));
+  return result;
 }
 
 function increasePrices(percentage) {
