@@ -82,7 +82,7 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const addition = (percentage / 100) + 1;
-  let { prices } = require('./data')
+  const { prices } = require('./data')
   prices = {
     Adult: +((prices.Adult * addition) + 0.001).toFixed(2),
     Senior: +((prices.Senior * addition) + 0.001).toFixed(2),
