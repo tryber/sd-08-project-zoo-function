@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 //
 
 const data = require('./data');
-const { animals, employees, prices, hours } = require('./data');
+const { animals, employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.find(id => animal.id === id));
@@ -69,9 +69,8 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
- 
-}
 
+}
 
 function schedule(dayName) {
 
@@ -82,12 +81,12 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage = 0) {
-  const addition = (percentage/100)+1;
+  const addition = (percentage / 100) + 1;
   return {
-    'Adult': +(prices.Adult * addition).toFixed(2),
-    'Senior': +(prices.Senior * addition).toFixed(2),
-    'Child': +(prices.Child * addition).toFixed(2)
-  }
+    Adult: +(prices.Adult * addition).toFixed(2),
+    Senior: +(prices.Senior * addition).toFixed(2),
+    Child: +(prices.Child * addition).toFixed(2),
+  };
 }
 
 function employeeCoverage(idOrName) {
