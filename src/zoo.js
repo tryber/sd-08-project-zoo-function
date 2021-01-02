@@ -70,7 +70,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-
+ 
 }
 
 function schedule(dayName) {
@@ -78,19 +78,17 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-
+  const idAnimals = employees.find(workers => workers.id).responsibleFor;
+  const objectAnimals = animals.find(animal => idAnimals.find(id => animal.id === id)).residents
+  const result = objectAnimals.reduce((acumulator, animals) => acumulator.age < animals.age ? animals : acumulator)
+  return Object.values(result)
 }
 
 function increasePrices(percentage) {
   const addition = (percentage / 100) + 1;
-  prices.Adult = +((prices.Adult *= addition) + 0.001).toFixed(2);
-  prices.Senior = +((prices.Senior *= addition) + 0.001).toFixed(2);
-  prices.Child = +((prices.Child *= addition) + 0.001).toFixed(2);
-  /* prices = {
-    Adult: +((prices.Adult * addition) + 0.001).toFixed(2),
-    Senior: +((prices.Senior * addition) + 0.001).toFixed(2),
-    Child: +((prices.Child * addition) + 0.001).toFixed(2),
-  }; */
+  prices.Adult = +((prices.Adult * addition) + 0.001).toFixed(2);
+  prices.Senior = +((prices.Senior * addition) + 0.001).toFixed(2);
+  prices.Child = +((prices.Child * addition) + 0.001).toFixed(2);
   return prices;
 }
 
