@@ -29,13 +29,10 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  const show = data.employees.find(person => {
-    if (person.firstName === employeeName || person.lastName === employeeName) {
-      return person;
-    }
-  });
-
-  return show;
+  return data.employees.find(
+    person =>
+      person.firstName === employeeName || person.lastName === employeeName
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -51,12 +48,15 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  let isManager = null;
-  data.employees.find(element =>
-    element.managers.includes(id) ? (isManager = true) : (isManager = false)
+  let checkTrueOrFalse = false;
+  const checkManager = data.employees.find(element =>
+    element.managers.includes(id)
   );
+  if (checkManager !== undefined) {
+    checkTrueOrFalse = true;
+  }
 
-  return isManager;
+  return checkTrueOrFalse;
 }
 
 function addEmployee(
@@ -89,23 +89,23 @@ function animalCount(species) {
     return countAnimal;
   }
   const findAnimal = animals.find(animal => animal.name === species);
-  return findAnimal.residents.length;
+  const totalRes = findAnimal.residents.length;
+  return totalRes;
 }
 
 function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
-  const entrantsKeys = Object.keys(entrants);
-  const show = entrantsKeys.map(eachKey => {
-    return data.prices[eachKey];
-  });
-  const entrantsValues = Object.values(entrants);
-  const total = entrantsValues.reduce((acc, curr, index) => {
-    return acc + show[index] * curr;
-  }, 0);
+  const entrantsKeys = Object.keys(entrants).map(
+    eachKey => data.prices[eachKey]
+  );
+  const entrantsValues = Object.values(entrants).reduce(
+    (acc, curr, index) => acc + entrantsKeys[index] * curr,
+    0
+  );
 
-  return total;
+  return entrantsValues;
 }
 
 const animalFilter = (name, sorted, sex) => {
