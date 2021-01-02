@@ -23,11 +23,7 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  return (
-    employees.find(
-      (e) => e.firstName === employeeName || e.lastName === employeeName
-    ) || {}
-  );
+  return (employees.find((e) => e.firstName === employeeName || e.lastName === employeeName) || {});
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -77,10 +73,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   if (!entrants) return 0;
-  return Object.keys(entrants).reduce(
-    (acc, key) => acc + entrants[key] * prices[key],
-    0
-  );
+  return Object.keys(entrants).reduce((acc, key) => acc + entrants[key] * prices[key], 0);
 }
 
 function animalMap(options) {}
@@ -98,7 +91,7 @@ function schedule(dayName) {
     return {
       [dayName]: `Open from ${hours[dayName].open}am until ${
         hours[dayName].close % 12
-      }pm`
+      }pm`;
     };
   }
 }
