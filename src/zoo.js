@@ -29,11 +29,10 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  const show = data.employees.find(person => {
-    return (
+  const show = data.employees.find(
+    person =>
       person.firstName === employeeName || person.lastName === employeeName
-    );
-  });
+  );
 
   return show;
 }
@@ -86,9 +85,9 @@ function addEmployee(
 function animalCount(species) {
   const countAnimal = {};
   if (!species) {
-    animals.forEach(animal => {
-      countAnimal[animal.name] = animal.residents.length;
-    });
+    animals.forEach(
+      animal => (countAnimal[animal.name] = animal.residents.length)
+    );
     return countAnimal;
   }
   const findAnimal = animals.find(animal => animal.name === species);
