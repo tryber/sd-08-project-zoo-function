@@ -71,7 +71,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   if (!entrants) return 0;
-  return Object.keys(entrants).reduce((acc, key) =>  acc + (entrants[key] * prices[key]), 0 );
+  return Object.keys(entrants).reduce((acc, key) => acc + (entrants[key] * prices[key]), 0 );
 }
 
 function animalMap(options) {
@@ -85,7 +85,8 @@ function schedule(dayName) {
       acc[key] = close + open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
       return acc;
     }, {});
-  } else if (dayName === 'Monday') {
+  };
+  if (dayName === 'Monday') {
     return { [dayName]: 'CLOSED' };
   } else {
     return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close % 12}pm` };
