@@ -23,11 +23,7 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  return (
-    employees.find(
-      (e) => e.firstName === employeeName || e.lastName === employeeName
-    ) || {}
-  );
+  return (employees.find((e) => e.firstName === employeeName || e.lastName === employeeName) || {});
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -44,9 +40,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return data.employees.some(({ managers }) =>
-    managers.some((element) => element === id)
-  );
+  return data.employees.some(({ managers }) => managers.some((element) => element === id));
 }
 
 function addEmployee(
@@ -77,32 +71,24 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   if (!entrants) return 0;
-  return Object.keys(entrants).reduce(
-    (acc, key) => acc + entrants[key] * prices[key],
-    0
-  );
+  return Object.keys(entrants).reduce((acc, key) => acc + entrants[key] * prices[key],0);
 }
 
-function animalMap(options) {}
+function animalMap(options) {
+  // seu código aqui
+}
 
 function schedule(dayName) {
   if (!dayName) {
     return Object.entries(hours).reduce((acc, [key, value]) => {
       const { open, close } = value;
-      acc[key] =
-        close + open > 0
-          ? `Open from ${open}am until ${close % 12}pm`
-          : 'CLOSED';
+      acc[key] = close + open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
       return acc;
     }, {});
   } else if (dayName === 'Monday') {
     return { [dayName]: 'CLOSED' };
   } else {
-    return {
-      [dayName]: `Open from ${hours[dayName].open}am until ${
-        hours[dayName].close % 12
-      }pm`,
-    };
+    return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close % 12}pm`, };
   }
 }
 
