@@ -64,10 +64,10 @@ function entryCalculator(entrants) {
     const adultValor = prices.Adult * Adult;
     const seniorValor = prices.Senior * Senior;
     const childValor = prices.Child * Child;
-    return (adultValor + seniorValor + childValor).toFixed(2);
-  
+    const total = (adultValor + seniorValor + childValor).toFixed(2);
+    return typeof Number(total);
 }
-console.log(entryCalculator({}))
+console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }))
 function animalMap(options) {
   // seu código aqui
 }
