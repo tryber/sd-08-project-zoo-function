@@ -13,17 +13,17 @@ const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  return animals.filter((element) => ids.includes(element.id));
+  return animals.filter(element => ids.includes(element.id));
 }
 
 function animalsOlderThan(animal, age) {
   return animals
     .find((element) => element.name === animal)
-    .residents.every((elementTwo) => elementTwo.age >= age);
+    .residents.every(elementTwo => elementTwo.age >= age);
 }
 
 function employeeByName(employeeName) {
-  return (employees.find((e) => e.firstName === employeeName || e.lastName === employeeName) || {});
+  return (employees.find(e => e.firstName === employeeName || e.lastName === employeeName) || {});
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -40,7 +40,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return data.employees.some(({ managers }) => managers.some((element) => element === id));
+  return data.employees.some(({ managers }) => managers.some(element => element === id));
 }
 
 function addEmployee(
@@ -48,7 +48,7 @@ function addEmployee(
   firstName,
   lastName,
   managers = [],
-  responsibleFor = []
+  responsibleFor = [],
 ) {
   data.employees.push({
     id,
@@ -66,12 +66,12 @@ function animalCount(species) {
       return acc;
     }, {});
   }
-  return animals.find((element) => element.name === species).residents.length;
+  return animals.find(element => element.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
   if (!entrants) return 0;
-  return Object.keys(entrants).reduce((acc, key) => acc + entrants[key] * prices[key],0);
+  return Object.keys(entrants).reduce((acc, key) => acc + entrants[key] * prices[key], 0);
 }
 
 function animalMap(options) {
@@ -88,8 +88,8 @@ function schedule(dayName) {
   } else if (dayName === 'Monday') {
     return { [dayName]: 'CLOSED' };
   } else {
-    return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close % 12}pm`, };
-  }
+    return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close % 12}pm`, }
+  };
 }
 
 function oldestFromFirstSpecies(id) {
