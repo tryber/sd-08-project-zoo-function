@@ -18,7 +18,7 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   return animals
-    .find((element) => element.name === animal)
+    .find(element => element.name === animal)
     .residents.every(elementTwo => elementTwo.age >= age);
 }
 
@@ -71,7 +71,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   if (!entrants) return 0;
-  return Object.keys(entrants).reduce((acc, key) => acc + entrants[key] * prices[key], 0);
+  return Object.keys(entrants).reduce((acc, key) => { acc + entrants[key] * prices[key], 0 });
 }
 
 function animalMap(options) {
@@ -88,8 +88,8 @@ function schedule(dayName) {
   } else if (dayName === 'Monday') {
     return { [dayName]: 'CLOSED' };
   } else {
-    return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close % 12}pm`, }
-  };
+    return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close % 12}pm` };
+  }
 }
 
 function oldestFromFirstSpecies(id) {
