@@ -70,20 +70,22 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
- 
+
 }
 
 function schedule(dayName) {
 
 }
 
-function oldestFromFirstSpecies(id) {
-  const idAnimals = employees.find(workers => workers.id).responsibleFor;
-  const objectAnimals = animals.find(animal => idAnimals.find(id => animal.id === id)).residents
-  const result = objectAnimals.reduce((acumulator, animals) => acumulator.age < animals.age ? animals : acumulator)
-  return Object.values(result)
+function oldestFromFirstSpecies(parameter) {
+  const idAnimals = employees.find(workers => workers.id === parameter).responsibleFor;
+  const objectAnimals = animals.find(animal => idAnimals.find(id => animal.id === id)).residents;
+  const result = objectAnimals.reduce((acumulator, animais) => 
+    acumulator.age < animais.age ? animais : acumulator);
+  return result;
 }
 
+console.log(oldestFromFirstSpecies('fdb2543b-5662-46a7-badc-93d960fdc0a8'))
 function increasePrices(percentage) {
   const addition = (percentage / 100) + 1;
   prices.Adult = +((prices.Adult * addition) + 0.001).toFixed(2);
