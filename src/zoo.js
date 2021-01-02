@@ -29,12 +29,10 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  const show = data.employees.find(
+  return data.employees.find(
     person =>
       person.firstName === employeeName || person.lastName === employeeName
   );
-
-  return show;
 }
 
 function createEmployee(personalInfo, associatedWith) {
