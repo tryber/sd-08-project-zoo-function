@@ -94,9 +94,6 @@ function increasePrices(percentage) {
   return prices;
 }
 
-increasePrices(50);
-increasePrices(30);
-
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
