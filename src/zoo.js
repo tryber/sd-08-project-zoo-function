@@ -63,10 +63,9 @@ function animalCount(species) {
     return lista;
   }
   const animalSelect = arr.filter(x => (x.name === species))[0];
-  return animalSelect.popularity;
+  return animalSelect.residents.length;
 }
 
-console.log(animalCount());
 function entryCalculator(entrants) {
   // seu código aqui
 }
