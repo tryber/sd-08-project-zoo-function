@@ -17,16 +17,7 @@ function animalsByIds(...ids) {
     return ids;
   }
 
-  const animalsResult = [];
-  ids.forEach(animalId => {
-    animals.forEach(animal => {
-      if (animal.id === animalId) {
-        animalsResult.push(animal);
-      }
-    });
-  });
-
-  return animalsResult;
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
