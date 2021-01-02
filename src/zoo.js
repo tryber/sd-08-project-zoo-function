@@ -94,20 +94,19 @@ const animalsPush = (responsibleFor = []) => {
 
 function employeeCoverage(idOrName) {
   const format = {};
-  
   if (!idOrName) {
     employees.forEach((employee) => {
       format[`${employee.firstName} ${employee.lastName}`] = animalsPush(employee.responsibleFor);
-    })
-  return format;
+    });
+    return format;
   }
   const employeeName = employees.find(
-    employee => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName
-  );
+    employee => employee.id === idOrName || employee.firstName === idOrName 
+      || employee.lastName === idOrName);
   format[`${employeeName.firstName} ${employeeName.lastName}`] = animalsPush(
     employeeName.responsibleFor,
   );
-  return format;
+    return format;
 }
 
 module.exports = {
