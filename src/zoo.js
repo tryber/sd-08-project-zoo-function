@@ -65,6 +65,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
+
 }
 
 function oldestFromFirstSpecies(id) {
@@ -84,9 +85,30 @@ function increasePrices(percentage) {
   return prices;
 }
 
-function employeeCoverage(idOrName) {
-}
 
+const animalsPush = (responsibleFor = []) => {
+  const result = responsibleFor.map(some => animals.find(specie => specie.id === some).name)
+    || [];
+  return result;
+};
+
+function employeeCoverage(idOrName) {
+  const format = {};
+  
+  if (!idOrName) {
+    employees.forEach((employee) => {
+      format[`${employee.firstName} ${employee.lastName}`] = animalsPush(employee.responsibleFor);
+    })
+  return format;
+  }
+  const employeeName = employees.find(
+    employee => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName
+  );
+  format[`${employeeName.firstName} ${employeeName.lastName}`] = animalsPush(
+    employeeName.responsibleFor,
+  );
+  return format;
+}
 
 module.exports = {
   entryCalculator,
