@@ -107,12 +107,10 @@ function oldestFromFirstSpecies(id) {
 
 
 function increasePrices(percentage) {
-  const { Adult, Child, Senior } = prices;
-  return {
-    Adult: Math.ceil(Adult * (percentage + 100)) / 100,
-    Senior: Math.ceil(Senior * (percentage + 100)) / 100,
-    Child: Math.ceil(Child * (percentage + 100)) / 100,
-  };
+  Object.keys(prices)
+    .forEach((categoria) => {
+      prices[categoria] = Math.ceil(prices[categoria] * (percentage + 100)) / 100;
+    });
 }
 
 
