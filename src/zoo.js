@@ -16,35 +16,25 @@ function animalsByIds(...ids) {
   if (ids.length === 0) {
     return ids;
   }
-
-  const animalsResult = [];
-  ids.forEach((animalId) => {
-    animals.forEach((animal) => {
-      if (animal.id === animalId) {
-        animalsResult.push(animal);
-      }
-    });
-  });
-
-  return animalsResult;
+  return animals.filter((animal) => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  const findAnimal = animals.find(elem => elem.name === animal);
-  return findAnimal.residents.every(eachAnimal => eachAnimal.age >= age);
+  const findAnimal = animals.find((elem) => elem.name === animal);
+  return findAnimal.residents.every((eachAnimal) => eachAnimal.age >= age);
 }
-
 
 function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  const show = data.employees.find(person =>
-    person.firstName === employeeName || person.lastName === employeeName);
+  const show = data.employees.find(
+    (person) =>
+      person.firstName === employeeName || person.lastName === employeeName
+  );
 
   return show;
 }
-
 
 function createEmployee(personalInfo, associatedWith) {
   if (!personalInfo || !associatedWith) {
@@ -58,10 +48,11 @@ function createEmployee(personalInfo, associatedWith) {
   return employee;
 }
 
-
 function isManager(id) {
   let checkTrueOrFalse = false;
-  const checkManager = data.employees.find(element => element.managers.includes(id));
+  const checkManager = data.employees.find((element) =>
+    element.managers.includes(id)
+  );
   if (checkManager !== undefined) {
     checkTrueOrFalse = true;
   }
@@ -69,8 +60,13 @@ function isManager(id) {
   return checkTrueOrFalse;
 }
 
-
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+function addEmployee(
+  id,
+  firstName,
+  lastName,
+  managers = [],
+  responsibleFor = []
+) {
   if (!id || !firstName || !lastName) {
     return {};
   }
@@ -93,27 +89,65 @@ function animalCount(species) {
     });
     return countAnimal;
   }
-  const findAnimal = animals.find(animal => animal.name === species);
+  const findAnimal = animals.find((animal) => animal.name === species);
   const totalRes = findAnimal.residents.length;
   return totalRes;
 }
-
 
 function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
-  const entrantsKeys = Object.keys(entrants).map(eachKey =>
-    data.prices[eachKey]);
-  const entrantsValues = Object.values(entrants).reduce((acc, curr, index) =>
-    acc + (entrantsKeys[index] * curr), 0);
+  const entrantsKeys = Object.keys(entrants).map(
+    (eachKey) => data.prices[eachKey]
+  );
+  const entrantsValues = Object.values(entrants).reduce(
+    (acc, curr, index) => acc + entrantsKeys[index] * curr,
+    0
+  );
 
   return entrantsValues;
 }
 
-
 function animalMap(...options) {
   // codigo
+  const locations = {};
+  animals.forEach((animal) => {
+    locations[animal.location] = [];
+  });
+  if (!options || options.length === 0) {
+    animals.forEach((animal) => {
+      locations[animal.location].push(animal.name);
+    });
+    return locations;
+  }
+
+  const includeName = options.some((item) => item.includeNames === true);
+  const sorted = options.some((item) => item.sorted === true);
+
+  if (includeName && sorted) {
+    animals.forEach((animal) => {
+      const animalName = animal.name;
+      const residentsName = animal.residents
+        .map((resident) => resident.name)
+        .sort();
+      const animalObj = {};
+      animalObj[animalName] = residentsName;
+      locations[animal.location].push(animalObj);
+    });
+  } else if (includeName) {
+    animals.forEach((animal) => {
+      const animalName = animal.name;
+      const residentsName = animal.residents.map((resident) => resident.name);
+      const animalObj = {};
+      animalObj[animalName] = residentsName;
+      locations[animal.location].push(animalObj);
+    });
+
+    return locations;
+  }
+
+  return locations;
 }
 
 function schedule(dayName) {
