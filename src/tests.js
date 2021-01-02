@@ -1,3 +1,2 @@
-const { animals } = require('./data');
-const data = require('./data');
-
+const { animals } = require("./data");
+const data = require("./data");

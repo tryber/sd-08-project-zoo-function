@@ -9,8 +9,8 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals } = require('./data');
-const data = require('./data');
+const { animals } = require("./data");
+const data = require("./data");
 
 function animalsByIds(...ids) {
   if (ids.length === 0) {
@@ -30,21 +30,21 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const findAnimal = animals.find(elem => elem.name === animal);
-  return findAnimal.residents.every(eachAnimal => eachAnimal.age >= age);
+  const findAnimal = animals.find((elem) => elem.name === animal);
+  return findAnimal.residents.every((eachAnimal) => eachAnimal.age >= age);
 }
-
 
 function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  const show = data.employees.find(person =>
-    person.firstName === employeeName || person.lastName === employeeName);
+  const show = data.employees.find(
+    (person) =>
+      person.firstName === employeeName || person.lastName === employeeName
+  );
 
   return show;
 }
-
 
 function createEmployee(personalInfo, associatedWith) {
   if (!personalInfo || !associatedWith) {
@@ -58,10 +58,11 @@ function createEmployee(personalInfo, associatedWith) {
   return employee;
 }
 
-
 function isManager(id) {
   let checkTrueOrFalse = false;
-  const checkManager = data.employees.find(element => element.managers.includes(id));
+  const checkManager = data.employees.find((element) =>
+    element.managers.includes(id)
+  );
   if (checkManager !== undefined) {
     checkTrueOrFalse = true;
   }
@@ -69,8 +70,13 @@ function isManager(id) {
   return checkTrueOrFalse;
 }
 
-
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+function addEmployee(
+  id,
+  firstName,
+  lastName,
+  managers = [],
+  responsibleFor = []
+) {
   if (!id || !firstName || !lastName) {
     return {};
   }
@@ -93,27 +99,60 @@ function animalCount(species) {
     });
     return countAnimal;
   }
-  const findAnimal = animals.find(animal => animal.name === species);
+  const findAnimal = animals.find((animal) => animal.name === species);
   const totalRes = findAnimal.residents.length;
   return totalRes;
 }
-
 
 function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
-  const entrantsKeys = Object.keys(entrants).map(eachKey =>
-    data.prices[eachKey]);
-  const entrantsValues = Object.values(entrants).reduce((acc, curr, index) =>
-    acc + (entrantsKeys[index] * curr), 0);
+  const entrantsKeys = Object.keys(entrants).map(
+    (eachKey) => data.prices[eachKey]
+  );
+  const entrantsValues = Object.values(entrants).reduce(
+    (acc, curr, index) => acc + entrantsKeys[index] * curr,
+    0
+  );
 
   return entrantsValues;
 }
 
-
-function animalMap(...options) {
+function animalMap(options = {}) {
   // codigo
+  const { includeNames = false, sorted = false, sex } = options;
+
+  let mapResult = animals.reduce((acc, animal) => {
+    if (!acc[animal.location]) {
+      acc[animal.location] = [];
+    }
+    acc[animal.location].push(animal.name);
+    return acc;
+  }, {});
+
+  if (includeNames) {
+    mapResult = Object.entries(mapResult).reduce((acc, [region, animal]) => {
+      acc[region] = animal.map((name) => {
+        let filterAnimal = animals.find((animal) => animal.name === name)
+          .residents;
+        if (sex === "female" || sex === "male") {
+          filterAnimal = filterAnimal.filter((animal) => animal.sex === sex);
+        }
+
+        const filteredAnimal = filterAnimal.map((animal) => animal.name);
+
+        if (sorted) {
+          filteredAnimal.sort();
+        }
+
+        return { [name]: filteredAnimal };
+      });
+      return acc;
+    }, {});
+  }
+
+  return mapResult;
 }
 
 function schedule(dayName) {
