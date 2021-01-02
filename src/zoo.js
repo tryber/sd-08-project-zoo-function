@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 //
 
 const data = require('./data');
-let { animals, employees, prices } = require('./data');
+const { animals, employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.find(id => animal.id === id));
@@ -82,6 +82,7 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const addition = (percentage / 100) + 1;
+  let { prices } = require('./data')
   prices = {
     Adult: +((prices.Adult * addition) + 0.001).toFixed(2),
     Senior: +((prices.Senior * addition) + 0.001).toFixed(2),
