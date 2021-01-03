@@ -81,17 +81,13 @@ function oldestFromFirstSpecies(id) {
   const primeiroIdBicho = buscaId.responsibleFor[0];
   const buscaIdLista = animals.find(elemento => elemento.id === primeiroIdBicho);
   const buscaListaResidentes = buscaIdLista.residents;
-  const procuraBichoVelho = buscaListaResidentes.reduce((anterior, atual) => {
+  const maisVelho = buscaListaResidentes.reduce((anterior, atual) => {
     if (anterior > (atual.age)) { return anterior; }
     return atual.age;
   }, {});
-  const bichoVelhoLocalizado = buscaListaResidentes.find(element => {
-    element.age === procuraBichoVelho;
-  });
-  const transformaEmArray = Object.keys(bichoVelhoLocalizado).map(entrada => {
-    bichoVelhoLocalizado[entrada];
-  });
-  return transformaEmArray;
+  const localiza = maisVelho.find(element => element.age === maisVelho);
+  const arr = Object.keys(localiza).map(entrada => localiza[entrada]);
+  return arr;
 }
 
 function increasePrices(percentage) {
