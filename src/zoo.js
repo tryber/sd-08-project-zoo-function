@@ -61,9 +61,9 @@ function entryCalculator(entrants) {
   if (!entrants || Object.values(entrants).length === 0) return 0;
   return Object.keys(entrants).reduce((acc, key) => acc + (prices[key] * entrants[key]), 0);
 }
-
+//9
 function animalMap(options) {
-  // seu código aqui
+
 }
 
 function schedule(dayName) {
@@ -103,8 +103,7 @@ function employeeCoverage(idOrName) {
       acc[`${empl.firstName} ${empl.lastName}`] = animals.filter(animal => empl.responsibleFor.includes(animal.id)).map(name => name.name);
     }
     return acc;
-  }, {})
-  
+  }, {}) 
 }
 
 module.exports = {
