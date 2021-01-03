@@ -77,7 +77,7 @@ Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que n
 
 ### ANTES DE COMEÇAR A DESENVOLVER
 
-1. Clone o repositório
+/1. Clone o repositório
   * `git clone https://github.com/tryber/sd-08-project-zoo-function.git`.
   * Entre na pasta do repositório que você acabou de clonar:
     * `cd sd-08-project-zoo-function`
@@ -164,7 +164,7 @@ Utilize as novas funcionalidades do ES6 como arrow functions, template literals,
 
 Antes de começar, analise o arquivo `src/data.js`, para ver os dados que serão usados.
 
-### 1. IMPLEMENTE A FUNÇÃO animalsByIds
+/### 1. IMPLEMENTE A FUNÇÃO animalsByIds
 
   Esta função é responsável pela busca das espécies de animais por id. Ela retorna um array contendo as espécies referentes aos ids passados como parâmetro, podendo receber um ou mais ids.
 
