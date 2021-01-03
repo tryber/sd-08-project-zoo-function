@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 //
 
 const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 
 function animalsByIds(...ids) {
@@ -74,7 +74,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-
+  
 }
 
 function oldestFromFirstSpecies(parameter) {
@@ -93,8 +93,23 @@ function increasePrices(percentage) {
   return prices;
 }
 
+function names(parameter) {
+ return parameter.map(id => animals.find(animals => animals.id === id).name)
+} 
+
+// Tive ajuda do aluno Samuel Ramos para desenvolver esse requisito.
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const objectFinal = {};
+  if (!idOrName) { 
+    employees.forEach(worker => {
+     objectFinal[`${worker.firstName} ${worker.lastName}`] = names(worker.responsibleFor);
+    });
+    return objectFinal;
+  };
+  const colab = employees.find(worker => 
+    worker.lastName === idOrName || worker.firstName === idOrName || worker.id === idOrName);
+  objectFinal[`${colab.firstName} ${colab.lastName}`] = names(colab.responsibleFor);
+  return objectFinal;
 }
 
 module.exports = {
