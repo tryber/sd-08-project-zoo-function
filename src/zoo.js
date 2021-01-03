@@ -104,7 +104,12 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const inflacao = 1 + (percentage / 100)
+  const novosValores = Object.keys(prices);
+  const calcula = novosValores.forEach(valor => {
+    prices[valor] = (prices[valor] * inflacao).toFixed(2);
+  });
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
