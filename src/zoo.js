@@ -151,18 +151,18 @@ function schedule(dayName = '') {
 
   Object.entries(data.hours).reduce((acc, [index, value]) => {
     const closeTime = value.close % 12;
-    myObj[index] =
+    return (myObj[index] =
       value.close - value.open > 0
         ? `Open from ${value.open}am until ${closeTime}pm`
-        : 'CLOSED';
+        : 'CLOSED');
   }, {});
 
   const dayExist = Object.entries(myObj).some(day => day[0] === dayName);
   if (dayName !== '') {
-    if (dayExist) {
-      return { [dayName]: myObj[dayName] };
-    } else {
+    if (!dayExist) {
       return 'Dia inválido!';
+    } else {
+      return { [dayName]: myObj[dayName] };
     }
   }
 
@@ -171,6 +171,20 @@ function schedule(dayName = '') {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  let result = data.employees.find(employee => employee.id === id);
+  result = result.responsibleFor[0];
+  result = animals.find(animal => animal.id === result);
+
+  result = result.residents.reduce((acc, curr) => {
+    if (acc.age > curr.age) {
+      return acc;
+    }
+
+    return curr;
+  });
+  result = [result.name, result.sex, result.age];
+
+  return result;
 }
 
 function increasePrices(percentage) {
