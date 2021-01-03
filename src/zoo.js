@@ -196,6 +196,11 @@ function increasePrices(percentage) {
   });
 }
 
+const auxEmployeeCoverage = () => {
+  const animalName = animals.find(animal => animal.id === resp);
+  return animalName.name;
+};
+
 function employeeCoverage(idOrName) {
   // seu código aqui
   const { employees } = data;
@@ -205,8 +210,7 @@ function employeeCoverage(idOrName) {
     employees.map(employee => {
       const fullName = `${employee.firstName} ${employee.lastName}`;
       const respFor = employee.responsibleFor.map(resp => {
-        const animalName = animals.find(animal => animal.id === resp);
-        return animalName.name;
+        return auxEmployeeCoverage(resp);
       });
       obj[fullName] = respFor;
     });
