@@ -60,7 +60,7 @@ function entryCalculator(entrants = {}) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  //
 }
 
 function schedule(dayName) {
@@ -75,7 +75,9 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.keys(prices).forEach((theAge) => {
+    prices[theAge] = Math.ceil(data.prices[theAge] * (percentage + 100)) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
