@@ -100,7 +100,7 @@ function increasePrices(num) {
 }
 
 function employeeCoverage(idOrName) {
-  
+  // seu código aqui
 }
 
 module.exports = {
