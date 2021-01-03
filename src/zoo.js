@@ -10,12 +10,7 @@ eslint no-unused-vars: [
 */
 
 
-const {
-  animals,
-  employees,
-  prices,
-  hours
-} = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 
@@ -33,14 +28,11 @@ const employeeByName = (employeeName) => {
 };
 
 
-const createEmployee = (personalInfo, associatedWith) => ({
-  ...personalInfo,
-  ...associatedWith
-});
+const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
 
 
 const isManager = id => employees.map(a => a.managers)
-  .reduce((a, b) => a.concat(b)).some(a => a === id);
+.reduce((a, b) => a.concat(b)).some(a => a === id);
 
 
 function addEmployee(id = [], firstName = [], lastName = [], managers = [], responsibleFor = []) {
@@ -81,11 +73,8 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const result = Object.entries(data.hours).reduce((acumulador, [key, val]) => {
-    const {
-      open,
-      close
-    } = val;
+  const result = Object.entries(hours).reduce((acumulador, [key, val]) => {
+    const { open, close } = val;
     acumulador[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
     return acumulador;
   }, {});
@@ -100,7 +89,7 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   const animalId = employees.find(a => a.id === id).responsibleFor[0];
   const older = animals.find(a => a.id === animalId).residents
-    .reduce((a, b) => (a = b.age < a.age ? a : b));
+  .reduce((a, b) => (a = b.age < a.age ? a : b));
   return [older.name, older.sex, older.age];
 }
 
@@ -111,7 +100,7 @@ function increasePrices(num) {
 }
 
 function employeeCoverage(idOrName) {
-
+  
 }
 
 module.exports = {
