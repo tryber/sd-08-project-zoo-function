@@ -85,7 +85,7 @@ function oldestFromFirstSpecies(id) {
     if (anterior > (atual.age)) { return anterior; }
     return atual.age;
   }, {});
-  const localiza = maisVelho.find(element => element.age === maisVelho);
+  const localiza = buscaListaResidentes.find(element => element.age === maisVelho);
   const arr = Object.keys(localiza).map(entrada => localiza[entrada]);
   return arr;
 }
