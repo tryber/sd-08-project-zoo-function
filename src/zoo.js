@@ -102,8 +102,9 @@ function rewriteHours() {
   return result;
 }
 function schedule(dayName) {
-  if (!dayName) return rewriteHours();
-  return { [dayName]: rewriteHours()[dayName] };
+  const obj = rewriteHours();
+  if (!dayName) return obj;
+  return { [dayName]: obj[dayName] };
 }
 function oldestFromFirstSpecies(id) {
   const employee = employees.find(animal => animal.id === id).responsibleFor[0];
@@ -118,10 +119,29 @@ function increasePrices(percentage) {
       prices[level] = Math.ceil(prices[level] * (percentage + 100)) / 100;
     });
 }
-
-function employeeCoverage(idOrName) {
-  // seu código aqui
+function localizaAnimal(id) {
+  return animals.filter(element => id === element.id)[0].name;
 }
+function employeeCoverage(idOrName) {
+  const obj = {};
+  let result = 0;
+  employees.forEach((element) => {
+    obj[`${element.firstName} ${element.lastName}`] = element.responsibleFor
+      .map(elemento => localizaAnimal(elemento));
+  });
+  if (idOrName === undefined) {
+    result = obj;
+  } else if (idOrName.length === 36) {
+    const firstName = employees.find(element => element.id === idOrName).firstName;
+    const lastName = employees.find(element => element.id === idOrName).lastName;
+    result = { [`${firstName} ${lastName}`]: obj[`${firstName} ${lastName}`] };
+  } else {
+    const n = employees.find(e => e.firstName === idOrName || e.lastName === idOrName);
+    result = { [`${n.firstName} ${n.lastName}`]: obj[`${n.firstName} ${n.lastName}`] };
+  }
+  return result;
+}
+
 
 module.exports = {
   entryCalculator,
