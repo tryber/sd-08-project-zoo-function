@@ -75,13 +75,13 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const dias = Object.keys(hours);
+  const dias = Object.keys(data.hours);
   const horario = dias.reduce((programacao, index) => {
     if (index === 'Monday') {
       programacao[index] = 'CLOSED';
       return programacao;
     }
-    programacao[index] = `Open from ${hours[index].open}am until ${hours[index].close - 12}pm`;
+    programacao[index] = `Open from ${data.hours[index].open}am until ${data.hours[index].close - 12}pm`;
     return programacao;
   }, {});
   if (dayName) return { [dayName]: horario[dayName] };
