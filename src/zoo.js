@@ -90,7 +90,9 @@ function animalMap(options) {
 
 function schedule(dayName) {
   const obj = {};
-  Object.keys(hours).forEach(element => obj[element] = `Open from ${hours[element].open}am until ${(hours[element].close) - 12}pm`);
+  Object.keys(hours).forEach((element) => {
+    obj[element] = `Open from ${hours[element].open}am until ${(hours[element].close) - 12}pm`;
+  });
   obj.Monday = 'CLOSED';
   if (dayName === undefined) return obj;
 
