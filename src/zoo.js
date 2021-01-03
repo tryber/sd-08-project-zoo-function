@@ -102,7 +102,7 @@ function employeeCoverage(idOrName) {
   const objectFinal = {};
   if (!idOrName) {
     employees.forEach(worker => {
-      objectFinal[`${worker.firstName} ${worker.lastName}`] = names(worker.responsibleFor);
+      (objectFinal[`${worker.firstName} ${worker.lastName}`] = names(worker.responsibleFor));
     });
     return objectFinal;
   }
@@ -111,7 +111,7 @@ function employeeCoverage(idOrName) {
   objectFinal[`${colab.firstName} ${colab.lastName}`] = names(colab.responsibleFor);
   return objectFinal;
 }
-
+console.log(employeeCoverage())
 module.exports = {
   entryCalculator,
   schedule,
