@@ -55,7 +55,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (!species) {
     return data.animals.reduce((index, animal) => {
-      index[animal.name] = data.animal.residents.length;
+      index[animal.name] = animal.residents.length;
       return index;
     }, {});
   }
