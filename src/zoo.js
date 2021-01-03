@@ -161,9 +161,9 @@ function schedule(dayName = '') {
   if (dayName !== '') {
     if (!dayExist) {
       return 'Dia inválido!';
-    } else {
-      return { [dayName]: myObj[dayName] };
     }
+
+    return { [dayName]: myObj[dayName] };
   }
 
   return myObj;
@@ -189,10 +189,45 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  const { prices } = data;
+  return Object.entries(prices).forEach(price => {
+    let newValue = Math.round(price[1] * (percentage / 100 + 1) * 100) / 100;
+    prices[price[0]] = newValue;
+  });
 }
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+  const { employees } = data;
+  const obj = {};
+
+  if (!idOrName) {
+    employees.map(employee => {
+      const fullName = `${employee.firstName} ${employee.lastName}`;
+      const respFor = employee.responsibleFor.map(resp => {
+        const animalName = animals.find(animal => animal.id === resp);
+        return animalName.name;
+      });
+      obj[fullName] = respFor;
+    });
+    return obj;
+  }
+
+  const findEmployee = employees.find(
+    employee =>
+      employee.id === idOrName ||
+      employee.firstName === idOrName ||
+      employee.lastName === idOrName
+  );
+
+  const resposibleFor = findEmployee.responsibleFor.map(resp => {
+    const animalName = animals.find(animal => animal.id === resp);
+    return animalName.name;
+  });
+  const fullName = `${findEmployee.firstName} ${findEmployee.lastName}`;
+  obj[fullName] = resposibleFor;
+
+  return obj;
 }
 
 module.exports = {
