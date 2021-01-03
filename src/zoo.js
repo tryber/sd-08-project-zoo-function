@@ -108,7 +108,6 @@ function increasePrices(percentage) {
   Object.keys(prices).forEach((valor) => {
     prices[valor] = Math.round(prices[valor] * inflacao).toFixed(2);
   });
-  return prices;
 }
 
 function employeeCoverage(idOrName) {
