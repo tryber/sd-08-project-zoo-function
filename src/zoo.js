@@ -131,7 +131,7 @@ function employeeCoverage(idOrName) {
     result = { [`${firstName} ${lastName}`]: obj[`${firstName} ${lastName}`] };
   } else {
     const procuraNomeCompleto = employees.find((element) => {
-      element.firstName === idOrName || element.lastName === idOrName;
+      return element.firstName === idOrName || element.lastName === idOrName;
     });
     result = { [`${procuraNomeCompleto.firstName} ${procuraNomeCompleto.lastName}`]: obj[`${procuraNomeCompleto.firstName} ${procuraNomeCompleto.lastName}`] };
   }
