@@ -190,13 +190,14 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
   const { prices } = data;
-  return Object.entries(prices).forEach(price => {
-    let newValue = Math.round(price[1] * (percentage / 100 + 1) * 100) / 100;
-    prices[price[0]] = newValue;
-  });
+  return Object.entries(prices).forEach(
+    price =>
+      (prices[price[0]] =
+        Math.round(price[1] * (percentage / 100 + 1) * 100) / 100)
+  );
 }
 
-const auxEmployeeCoverage = () => {
+const auxEmployeeCoverage = (resp) => {
   const animalName = animals.find(animal => animal.id === resp);
   return animalName.name;
 };
@@ -207,12 +208,12 @@ function employeeCoverage(idOrName) {
   const obj = {};
 
   if (!idOrName) {
-    employees.map(employee => {
+    employees.map((employee) => {
       const fullName = `${employee.firstName} ${employee.lastName}`;
-      const respFor = employee.responsibleFor.map(resp => {
+      const respFor = employee.responsibleFor.map((resp) => {
         return auxEmployeeCoverage(resp);
       });
-      obj[fullName] = respFor;
+      return obj[fullName] = respFor;
     });
     return obj;
   }
