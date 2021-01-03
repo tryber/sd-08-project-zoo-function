@@ -13,6 +13,7 @@ const data = require('./data');
 const { animals } = require('./data');
 const { employees } = require('./data');
 const { prices } = require('./data');
+const { hours } = require('./data');
 
 function animalsByIds(ids2, ids1) {
   if (ids2 === undefined && ids1 === undefined) { return []; }
@@ -79,12 +80,12 @@ function schedule(dayName) {
       prev[acc] = 'CLOSED';
       return prev;
     } else {
-    prev[acc] = `Open from ${hours[acc].open}am until ${hours[acc].close - 12}pm`;
-    return prev;
+      prev[acc] = `Open from ${hours[acc].open}am until ${hours[acc].close - 12}pm`;
+      return prev;
     }
   }, {});
-  if (dayName !== undefined){
-    return { [dayName] : previsao[dayName] };
+  if (dayName !== undefined) {
+    return { [dayName]: previsao[dayName] };
   }
   return previsao;
 }
