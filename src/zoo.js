@@ -90,7 +90,7 @@ function schedule(dayName) {
       arrayTeste[`${key}`] = 'ClOSED';
       return;
     }
-    arrayTeste[`${key}`] = `Open from ${element[1].open}am until ${element[1].close - 12}pm `;
+    arrayTeste[`${key}`] = `Open from ${element[1].open}am until ${element[1].close - 12}pm`;
   });
   if (dayName === undefined) {
     return arrayTeste;
