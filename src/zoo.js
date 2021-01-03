@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   if (!ids) return [];
@@ -64,11 +64,14 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  //
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const especieId = employees.find(employee => employee.id === id).responsibleFor[0];
+  const especie = animals.find(animal => animal.id === especieId);
+  const olderAnimalAge = Math.max(...especie.residents.map(resident => resident.age));
+  return Object.values(especie.residents.find(resident => resident.age === olderAnimalAge));
 }
 
 function increasePrices(percentage) {
