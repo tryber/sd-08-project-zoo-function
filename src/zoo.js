@@ -56,7 +56,7 @@ function animalCount(species) {
   const search = data.animals.find(specimen => specimen.name === species);
   const counter = search.residents.length;
   return counter;
-};
+}
 
 function entryCalculator(entrants) {
   // seu código aqui
