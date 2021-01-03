@@ -119,7 +119,7 @@ function increasePrices(percentage) {
       prices[level] = Math.ceil(prices[level] * (percentage + 100)) / 100;
     });
 }
-function localizaAnimal(id) {
+function searchAnimal(id) {
   return animals.filter(element => id === element.id)[0].name;
 }
 function employeeCoverage(idOrName) {
@@ -127,7 +127,7 @@ function employeeCoverage(idOrName) {
   let result = 0;
   employees.forEach((element) => {
     obj[`${element.firstName} ${element.lastName}`] = element.responsibleFor
-      .map(elemento => localizaAnimal(elemento));
+      .map(elemento => searchAnimal(elemento));
   });
   if (idOrName === undefined) {
     result = obj;
@@ -141,8 +141,7 @@ function employeeCoverage(idOrName) {
   }
   return result;
 }
-
-
+//Exercico employeeCoverage feito ajudando a Marcela Souza.
 module.exports = {
   entryCalculator,
   schedule,
