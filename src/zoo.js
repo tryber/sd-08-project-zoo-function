@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices, hours } = require('./data');
+const { animals, employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids === undefined) return [];
@@ -117,22 +117,22 @@ function localizaAnimal(id) {
   return animals.filter(element => id === element.id)[0].name;
 }
 function employeeCoverage(idOrName) {
-  let obj = {};
+  const obj = {};
   let result = 0;
   employees.forEach((element) => {
     obj[`${element.firstName} ${element.lastName}`] = element.responsibleFor
-      .map((element) => localizaAnimal(element));
-
+      .map(elemento => localizaAnimal(elemento));
   });
   if (idOrName === undefined) {
     result = obj;
   } else if (idOrName.length === 36) {
-    const firstName = employees.find((element) => element.id === idOrName).firstName;
-    const lastName = employees.find((element) => element.id === idOrName).lastName;
-
+    const firstName = employees.find(element => element.id === idOrName).firstName;
+    const lastName = employees.find(element => element.id === idOrName).lastName;
     result = { [`${firstName} ${lastName}`]: obj[`${firstName} ${lastName}`] };
   } else {
-    const procuraNomeCompleto = employees.find(element => element.firstName === idOrName || element.lastName === idOrName);
+    const procuraNomeCompleto = employees.find((element) => {
+      element.firstName === idOrName || element.lastName === idOrName;
+    });
     result = { [`${procuraNomeCompleto.firstName} ${procuraNomeCompleto.lastName}`]: obj[`${procuraNomeCompleto.firstName} ${procuraNomeCompleto.lastName}`] };
   }
   return result;
