@@ -79,10 +79,9 @@ function schedule(dayName) {
     if (acc === 'Monday') {
       prev[acc] = 'CLOSED';
       return prev;
-    } else {
-      prev[acc] = `Open from ${hours[acc].open}am until ${hours[acc].close - 12}pm`;
-      return prev;
     }
+    prev[acc] = `Open from ${hours[acc].open}am until ${hours[acc].close - 12}pm`;
+    return prev;
   }, {});
   if (dayName !== undefined) {
     return { [dayName]: previsao[dayName] };
