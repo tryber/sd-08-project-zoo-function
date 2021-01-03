@@ -87,7 +87,7 @@ function schedule(dayName) {
   horas.forEach((element) => {
     const key = element[0];
     if (element[0] === 'Monday') {
-      arrayTeste[`${key}`] = 'ClOSED';
+      arrayTeste[`${key}`] = 'CLOSED';
       return;
     }
     arrayTeste[`${key}`] = `Open from ${element[1].open}am until ${element[1].close - 12}pm`;
