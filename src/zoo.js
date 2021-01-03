@@ -61,7 +61,7 @@ function entryCalculator(entrants) {
   if (!entrants || Object.values(entrants).length === 0) return 0;
   return Object.keys(entrants).reduce((acc, key) => acc + (prices[key] * entrants[key]), 0);
 }
-//9
+
 function animalMap(options) {
 
 }
@@ -94,16 +94,17 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  if(!idOrName) return employees.reduce((acc, empl) => {
-    acc[`${empl.firstName} ${empl.lastName}`] = animals.filter(animal => empl.responsibleFor.includes(animal.id)).map(name => name.name);
-    return acc;
-  }, {})
   return employees.reduce((acc, empl) => {
-    if(empl.id.includes(idOrName) || empl.firstName.includes(idOrName) || empl.lastName.includes(idOrName)) { 
-      acc[`${empl.firstName} ${empl.lastName}`] = animals.filter(animal => empl.responsibleFor.includes(animal.id)).map(name => name.name);
+    const vazio = !idOrName;
+    const id = empl.id.includes(idOrName);
+    const name = empl.firstName.includes(idOrName);
+    const lName = empl.lastName.includes(idOrName);
+    if (vazio || id || name || lName) {
+      acc[`${empl.firstName} ${empl.lastName}`] =
+      animals.filter(animal => empl.responsibleFor.includes(animal.id)).map(n => n.name);
     }
     return acc;
-  }, {}) 
+  }, {});
 }
 
 module.exports = {
