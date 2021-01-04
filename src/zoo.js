@@ -63,7 +63,10 @@ function entryCalculator(entrants) {
     return 0;
   }
   const { Adult = 0, Child = 0, Senior = 0 } = entrants;
-  const profit = (data.prices.Adult * Adult) + (data.prices.Child * Child) + (data.prices.Senior * Senior);
+  const profit = 
+  (data.prices.Adult * Adult) + 
+  (data.prices.Child * Child) + 
+  (data.prices.Senior * Senior);
   return profit;
 }
 
