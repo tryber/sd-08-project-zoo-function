@@ -73,7 +73,7 @@ function entryCalculator(entrants) {
   }
   return Object.keys(entrants).reduce((acumulador, valorAtual) => (
     acumulador + (entrants[valorAtual] * prices[valorAtual])), 0
-  );
+  )
 }
 
 function animalMap(options) {
