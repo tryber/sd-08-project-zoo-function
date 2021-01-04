@@ -118,18 +118,14 @@ function animalMap(options) {
   // return animalsMap;
 }
 
-
-
-
 function schedule(dayName) {
   const hours = data.hours;
-  const schedule = Object.entries(hours).reduce((acc, [key, value]) =>
-    {
-      acc[key] = key === 'Monday' ? 'CLOSED' : `Open from ${value.open}am until ${value.close % 12}pm`;
-      return acc
-    }, {});
-    if (typeof dayName === 'string' && dayName.length > 0) return { [dayName] : schedule[dayName] };
-  return schedule
+  const scheduling = Object.entries(hours).reduce((acc, [key, value]) => {
+    acc[key] = key === 'Monday' ? 'CLOSED' : `Open from ${value.open}am until ${value.close % 12}pm`;
+    return acc;
+  }, {});
+  if (typeof dayName === 'string' && dayName.length > 0) return { [dayName]: scheduling[dayName] };
+  return scheduling;
 }
 
 function oldestFromFirstSpecies(id) {
