@@ -130,17 +130,17 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const employee = employees.find(employee => employee.id === id);
+  const { animals, employees} = data;
+  const employee = employees.find(person => person.id === id);
   const { responsibleFor } = employee;
   const [key] = responsibleFor;
   const species = animals.find(animal => animal.id === key);
   const residents = species.residents;
-  const maxAge = residents.reduce((acc, curr) => (acc.age > curr.age) ? acc : curr);
+  const maxAge = residents.reduce((acc, curr) => acc.age > curr.age ? acc : curr);
   return Object.values(maxAge);
 }
 
 function increasePrices(percentage) {
-  //const prices = data.prices;
 
 }
 
