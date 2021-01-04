@@ -66,6 +66,16 @@ function animalCount(species) {
 }
 function entryCalculator(entrants) {
   // seu código aqui
+  if (entrants == null || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  const clientes = Object.keys(entrants);
+  const calculo = clientes.map(individuo => data.prices[individuo]);
+  const valor = Object.values(entrants);
+  const soma = valor.reduce((acumulador, posAtual, indice) => {
+    return acumulador + (calculo[indice] * posAtual)
+  }, 0)
+  return soma;
 }
 
 function animalMap(options) {
@@ -81,9 +91,11 @@ function oldestFromFirstSpecies(id) {
   const animalSpecie = animals.find(animal => {
     return animal.id === employees.find(employee => employee.id === id).responsibleFor[0];
   });
-  let biggest = animalSpecie.residents[0].age;
-  animalSpecie.residents.map(element => { if (element.age > biggest) biggest = element; });
-  ({ name, sex, age } = biggest);
+  let maior = animalSpecie.residents[0].age;
+  animalSpecie.residents.map(element => {
+    if (element.age > maior) return maior = element;
+  });
+  ({ name, sex, age } = maior);
   return [name, sex, age];
 }
 
