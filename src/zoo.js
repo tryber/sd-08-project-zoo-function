@@ -29,8 +29,7 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  return data.employees.find
-  (person => person.firstName === employeeName || person.lastName === employeeName);
+  return data.employees.find(person => person.firstName === employeeName || person.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -56,7 +55,7 @@ function isManager(id) {
   return checkTrueOrFalse;
 }
 
-function addEmployee( id, firstName, lastName, managers = [], responsibleFor = [] ) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   if (!id || !firstName || !lastName) {
     return {};
   }
@@ -181,7 +180,7 @@ function increasePrices(percentage) {
       (prices[price[0]] = Math.round((price[1] * ((percentage / 100) + 1) * 100)) / 100));
 }
 
-const auxEmployeeCoverage = resp => {
+const auxEmployeeCoverage = (resp) => {
   const animalName = animals.find(animal => animal.id === resp);
   return animalName.name;
 };
@@ -192,11 +191,11 @@ function employeeCoverage(idOrName) {
   const obj = {};
 
   if (!idOrName) {
-    employees.map(employee => {
+    employees.map((employee) => {
       const fullName = `${employee.firstName} ${employee.lastName}`;
-      const respFor = employee.responsibleFor.map(resp => auxEmployeeCoverage(resp));      
-      const myReturn = (obj[fullName] = respFor);
-      return myReturn;
+      const respFor = employee.responsibleFor.map(resp => auxEmployeeCoverage(resp));
+      obj[fullName] = respFor;
+      return obj;
     });
     return obj;
   }
