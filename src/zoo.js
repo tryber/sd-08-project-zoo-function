@@ -90,7 +90,7 @@ function schedule(dayName = '') {
   const { hours } = data;
   const week = Object.entries(hours).filter(day =>
     (dayName === '' ? true : day[0] === dayName));
-  let scheduleInfo = {};
+  const scheduleInfo = {};
   week.forEach((weekday) => {
     const { open, close } = weekday[1];
     if (open === 0 && close === 0) {
