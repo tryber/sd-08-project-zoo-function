@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, hours, prices } = require('./data');
+const { animals } = require('./data');
 
 function animalsByIds(...ids) {
   return ids.map(itemId => animals.find(itemAnimal => itemAnimal.id === itemId));
