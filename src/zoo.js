@@ -46,7 +46,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (!species) {
+  if (species === undefined) {
     const noParameter = data.animals.reduce((animal, current) => {
       animal[current.name] = current.residents.length;
       return animal;
@@ -59,7 +59,12 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined || entrants === {}) {
+    return 0;
+  }
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  const profit = (data.prices.Adult * Adult) + (data.prices.Child * Child) + (data.prices.Senior * Senior);
+  return profit;
 }
 
 function animalMap(options) {
