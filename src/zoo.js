@@ -107,16 +107,29 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // const animals = data.animals
-  // let animalMap = {};
+  // const animals = data.animals;
+  // let animalsMap;
   // if (!options) {
-  //   const { location } = animals;
-  //   animalMap = Object.keys(location). //usar map ou reduce com filter
+  //   animalsMap = animals.reduce((acc, curr) => {
+  //     acc[curr.location] = curr.name
+  //     return acc;
+  //   }, {});
   // }
+  // return animalsMap;
 }
 
+
+
+
 function schedule(dayName) {
-  // seu código aqui
+  const hours = data.hours;
+  const schedule = Object.entries(hours).reduce((acc, [key, value]) =>
+    {
+      acc[key] = key === 'Monday' ? 'CLOSED' : `Open from ${value.open}am until ${value.close % 12}pm`;
+      return acc
+    }, {});
+    if (typeof dayName === 'string' && dayName.length > 0) return { [dayName] : schedule[dayName] };
+  return schedule
 }
 
 function oldestFromFirstSpecies(id) {
