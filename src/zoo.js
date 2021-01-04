@@ -27,7 +27,8 @@ function employeeByName(employeeName) {
   if (typeof employeeName !== 'string') {
     return {};
   }
-  return data.employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+  return data.employees.find(employee => 
+    employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -35,7 +36,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return data.employees.some(employee => employee.managers[0] === id || employee.managers[1] === id);
+  return data.employees.some(employee =>
+    employee.managers[0] === id || employee.managers[1] === id);
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
