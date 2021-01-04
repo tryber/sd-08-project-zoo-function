@@ -140,6 +140,7 @@ function oldestFromFirstSpecies(id) {
     return (acc.age > curr.age) ? acc : curr;
   })
   return Object.values(maxAge);
+}
 
 function increasePrices(percentage) {
   // seu código aqui
