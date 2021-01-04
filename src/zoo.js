@@ -29,10 +29,8 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  return data.employees.find(
-    person =>
-      person.firstName === employeeName || person.lastName === employeeName
-  );
+  return data.employees.find
+  (person => person.firstName === employeeName || person.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -50,8 +48,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   let checkTrueOrFalse = false;
   const checkManager = data.employees.find(element =>
-    element.managers.includes(id)
-  );
+    element.managers.includes(id));
   if (checkManager !== undefined) {
     checkTrueOrFalse = true;
   }
@@ -59,13 +56,7 @@ function isManager(id) {
   return checkTrueOrFalse;
 }
 
-function addEmployee(
-  id,
-  firstName,
-  lastName,
-  managers = [],
-  responsibleFor = []
-) {
+function addEmployee( id, firstName, lastName, managers = [], responsibleFor = [] ) {
   if (!id || !firstName || !lastName) {
     return {};
   }
@@ -83,9 +74,7 @@ function addEmployee(
 function animalCount(species) {
   const countAnimal = {};
   if (!species) {
-    animals.forEach(
-      animal => (countAnimal[animal.name] = animal.residents.length)
-    );
+    animals.forEach(animal => (countAnimal[animal.name] = animal.residents.length));
     return countAnimal;
   }
   const findAnimal = animals.find(animal => animal.name === species);
@@ -97,13 +86,10 @@ function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
-  const entrantsKeys = Object.keys(entrants).map(
-    eachKey => data.prices[eachKey]
-  );
+  const entrantsKeys = Object.keys(entrants).map(eachKey => data.prices[eachKey]);
   const entrantsValues = Object.values(entrants).reduce(
-    (acc, curr, index) => acc + entrantsKeys[index] * curr,
-    0
-  );
+    (acc, curr, index) => acc + (entrantsKeys[index] * curr),
+    0);
 
   return entrantsValues;
 }
@@ -192,12 +178,10 @@ function increasePrices(percentage) {
   const { prices } = data;
   return Object.entries(prices).forEach(
     price =>
-      (prices[price[0]] =
-        Math.round(price[1] * (percentage / 100 + 1) * 100) / 100)
-  );
+      (prices[price[0]] = Math.round((price[1] * ((percentage / 100) + 1) * 100)) / 100));
 }
 
-const auxEmployeeCoverage = (resp) => {
+const auxEmployeeCoverage = resp => {
   const animalName = animals.find(animal => animal.id === resp);
   return animalName.name;
 };
@@ -208,12 +192,11 @@ function employeeCoverage(idOrName) {
   const obj = {};
 
   if (!idOrName) {
-    employees.map((employee) => {
+    employees.map(employee => {
       const fullName = `${employee.firstName} ${employee.lastName}`;
-      const respFor = employee.responsibleFor.map((resp) => {
-        return auxEmployeeCoverage(resp);
-      });
-      return obj[fullName] = respFor;
+      const respFor = employee.responsibleFor.map(resp => auxEmployeeCoverage(resp));      
+      const myReturn = (obj[fullName] = respFor);
+      return myReturn;
     });
     return obj;
   }
@@ -222,10 +205,9 @@ function employeeCoverage(idOrName) {
     employee =>
       employee.id === idOrName ||
       employee.firstName === idOrName ||
-      employee.lastName === idOrName
-  );
+      employee.lastName === idOrName);
 
-  const resposibleFor = findEmployee.responsibleFor.map(resp => {
+  const resposibleFor = findEmployee.responsibleFor.map((resp) => {
     const animalName = animals.find(animal => animal.id === resp);
     return animalName.name;
   });
