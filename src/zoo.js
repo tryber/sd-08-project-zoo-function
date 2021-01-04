@@ -74,7 +74,8 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  /*if (dayName === undefined) {
+  /*
+  if (dayName === undefined) {
     return {
       'Tuesday': 'Open from 8am until 6pm',
       'Wednesday': 'Open from 8am until 6pm',
