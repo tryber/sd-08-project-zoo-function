@@ -74,7 +74,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  if (dayName === undefined) {
+  /*if (dayName === undefined) {
     return {
       'Tuesday': 'Open from 8am until 6pm',
       'Wednesday': 'Open from 8am until 6pm',
@@ -82,10 +82,10 @@ function schedule(dayName) {
       'Friday': 'Open from 10am until 8pm',
       'Saturday': 'Open from 8am until 10pm',
       'Sunday': 'Open from 8am until 8pm',
-      'Monday': 'CLOSED'
-    }
+      'Monday': 'CLOSED',
+    };
   }
-  return data.hours.find(day => day.hours === dayName);
+  return data.hours.find(day => day.hours === dayName);*/
 }
 
 function oldestFromFirstSpecies(id) {
@@ -103,7 +103,11 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const increase = (percentage / 100) + 1;
+  Object.keys(data.prices).forEach((value) => {
+    const update = data.prices[value] * increase;
+    data.prices[value] = Math.round((update + Number.EPSILON) * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
