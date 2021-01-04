@@ -130,13 +130,14 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const { animals, employees} = data;
+  const animals = data.animals;
   const employee = employees.find(person => person.id === id);
   const { responsibleFor } = employee;
   const [key] = responsibleFor;
   const species = animals.find(animal => animal.id === key);
   const residents = species.residents;
-  const maxAge = residents.reduce((acc, curr) => acc.age > curr.age ? acc : curr);
+  const maxAge = residents.reduce(function(acc, curr) {
+    return (acc.age > curr.age) ? acc : curr });
   return Object.values(maxAge);
 }
 
