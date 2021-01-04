@@ -90,16 +90,16 @@ function schedule(dayName = '') {
   const { hours } = data;
   const week = Object.entries(hours).filter(day =>
     (dayName === '' ? true : day[0] === dayName));
-  const schedule = {};
+  let scheduleInfo = {};
   week.forEach((weekday) => {
     const { open, close } = weekday[1];
     if (open === 0 && close === 0) {
-      schedule[weekday[0]] = 'CLOSED';
+      scheduleInfo[weekday[0]] = 'CLOSED';
     } else {
-      schedule[weekday[0]] = `Open from ${open}am until ${close - 12}pm`;
+      scheduleInfo[weekday[0]] = `Open from ${open}am until ${close - 12}pm`;
     }
   });
-  return schedule;
+  return scheduleInfo;
 }
 
 function oldestFromFirstSpecies(id) {
