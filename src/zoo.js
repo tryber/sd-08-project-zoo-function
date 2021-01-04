@@ -29,7 +29,6 @@ function employeeByName(employeeName) {
   return employees.filter(employee => employeeName)
   .find(employee => employeeName === employee.firstName || employeeName === employee.lastName);
 }
-// console.log(employeeByName());
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
@@ -59,9 +58,28 @@ function entryCalculator(entrants = {}) {
   }, 0);
 }
 
-function animalMap(options) {
-  //
-}
+function animalMap(options = {}) {
+  const { includeNames, par1, part2 } = options;
+  return animals.reduce((accumulator, animal) => {
+    const location = accumulator[animal.location] || [];
+
+    if (!includeNames) {
+      accumulator[animal.location] = [...location, animal.name];
+
+      return accumulator;
+    }
+
+    let residents = animal.residents;
+    residents = animalsFilteredBySex(residents, par1);
+
+    let names = residents.map(({ name }) => name);
+    names = sortedAnimalNames(names, part2);
+
+    accumulator[animal.location] = [...location, { [animal.name]: names }];
+
+    return accumulator;
+  }, {});
+};
 
 function schedule(dayName) {
   //
@@ -75,9 +93,14 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  Object.keys(prices).forEach((theAge) => {
-    prices[theAge] = Math.ceil(data.prices[theAge] * (percentage + 100)) / 100;
+  const increase = percentage / 100;
+  Object.entries(data.prices).forEach(([key, val]) => {
+    const newPrice = val * (increase + 1);
+    data.prices[key] = Math.round(newPrice * 100) / 100;
   });
+  // Object.keys(prices).forEach((theAge) => {
+  //   prices[theAge] = Math.ceil(data.prices[theAge] * (percentage + 100)) / 100;
+  // });
 }
 
 function employeeCoverage(idOrName) {
