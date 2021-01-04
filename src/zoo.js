@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, hours } = data;
+const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.find(id => id === animal.id));
@@ -53,8 +53,15 @@ function animalCount(species) {
   return animals.find(animal => animal.name === species).residents.length;
 }
 
+const invalidEntry = entrants =>
+  (!entrants) || (Object.keys(entrants).length === 0);
+
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (invalidEntry(entrants)) return 0;
+  const total = Object.entries(entrants)
+  .reduce((acc, [kindOfTicket, amount]) => acc + (prices[kindOfTicket] * amount), 0);
+
+  return total;
 }
 
 function animalMap(options) {
@@ -79,15 +86,45 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const employeeResponsable = employees.find(employee => employee.id === id)
+    .responsibleFor[0];
+  const animalsResidents = animals.find(
+    animal => animal.id === employeeResponsable,
+  ).residents;
+  const oldAnimals = animalsResidents.sort((age1, age2) => age2.age - age1.age);
+  return [oldAnimals[0].name, oldAnimals[0].sex, oldAnimals[0].age];
 }
 
 function increasePrices(percentage) {
   // seu código aqui
 }
 
+const employeeObj = idOrName => data.employees.find(
+  ({ id, firstName, lastName }) =>
+    id === idOrName || firstName === idOrName || lastName === idOrName);
+
+const fullName = ({ firstName, lastName }) => `${firstName} ${lastName}`;
+
+const filterSpeciesResp = ({ responsibleFor }) => responsibleFor
+.map(animalId => animals.find(animal => animal.id === animalId).name);
+
+const withIdOrName = (idOrName) => {
+  const employee = employeeObj(idOrName);
+
+  const returnObj = {};
+  returnObj[fullName(employee)] = filterSpeciesResp(employee);
+  return returnObj;
+};
+
+const withoutIdOrName = () => data.employees
+.reduce((acc, employee) => {
+  acc[fullName(employee)] = filterSpeciesResp(employee);
+  return acc;
+}, {});
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) return withoutIdOrName();
+  return withIdOrName(idOrName);
 }
 
 module.exports = {
