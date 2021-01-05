@@ -120,11 +120,15 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  
+  // if (idOrName == null){
+  //   return {
+      
+  //   }
+  // }
 }
 
-employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad')
-employeeCoverage('Stephanie')
+// employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad')
+// employeeCoverage('Stephanie')
 
 module.exports = {
   entryCalculator,
