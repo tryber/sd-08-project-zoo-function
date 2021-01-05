@@ -79,36 +79,12 @@ function entryCalculator(entrants) {
   return ((Adult * 49.99) + (Child * 20.99) + (Senior * 24.99));
 }
 
-function animalMap(...options) {
-  regions = ['NE','NW','SE','SW'];
-  if (options.length < 1) {
-    return {
-      NE: data.animals.filter( elem => elem.location == 'NE' ).map( elem1 => `${elem1.name}` ),
-      NW: data.animals.filter( elem => elem.location == 'NW' ).map( elem1 => `${elem1.name}` ),
-      SE: data.animals.filter( elem => elem.location == 'SE' ).map( elem1 => `${elem1.name}` ),
-      SW: data.animals.filter( elem => elem.location == 'SW' ).map( elem1 => `${elem1.name}` )
-    }
-  }
-  if (options.some(elem => elem.includeNames == true)) {
-      let NE = data.animals.filter (elem => elem.location == 'NE');
-      
-      NE.forEach(elem => {
-        console.log(elem.residents[0].name);
-      })
-      // let nwNames = data.animals.filter (elem => elem.location == 'NW')
-      // .map((elem1,index) => elem1.residents[index].name);
-      // let seNames = data.animals.filter (elem => elem.location == 'SE')
-      // .map((elem1,index) => elem1.residents[index].name);
-      // let swNames = data.animals.filter (elem => elem.location == 'SW')
-      // .map((elem1,index) => elem1.residents[index].name);
-      
-  }
-  
+function animalMap(options) {
+  // seu código aqui
 }
-console.log(animalMap())
 
 function schedule(dayName) {
-  //escreva o codigo aqui 
+  // seu código aqui
 }
 
 function oldestFromFirstSpecies(id) {
@@ -120,15 +96,8 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // if (idOrName == null){
-  //   return {
-      
-  //   }
-  // }
+  // seu código aqui
 }
-
-// employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad')
-// employeeCoverage('Stephanie')
 
 module.exports = {
   entryCalculator,
