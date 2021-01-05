@@ -153,9 +153,56 @@ function increasePrices(percentage) {
   return prices;
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+function findById(id) {
+  const animalsObj = animals.find((animal) => {
+    if (animal.id === id) {
+      return animal;
+    }
+    return false;
+  });
+  return animalsObj.name;
 }
+
+function getGullnameOfEmployee() {
+  return employees.map(employee => `${employee.firstName} ${employee.lastName}`);
+}
+
+function getArrayNamesAnimals(arrayOfAnimalsByEmployee) {
+  return arrayOfAnimalsByEmployee.map(each => each.map(animalId => findById(animalId)));
+}
+
+function employeeCoverage(idOrName) {
+  if (idOrName === undefined) {
+    const fullnameOfEmployee = getGullnameOfEmployee();
+    const arrayOfAnimalsByEmployee = employees.map(employee => employee.responsibleFor);
+    const arrayNamesAnimals = getArrayNamesAnimals(arrayOfAnimalsByEmployee);
+
+    return fullnameOfEmployee.reduce((acc, curr, index) => {
+      acc[curr] = arrayNamesAnimals[index];
+      return acc;
+    }, {});
+  }
+
+  let employeeObj = null;
+
+  if (employees.find(employee => employee.id === idOrName)) {
+    employeeObj = employees.find(employee => employee.id === idOrName);
+  } else if (employees.find(employee => employee.firstName === idOrName)) {
+    employeeObj = employees.find(employee => employee.firstName === idOrName);
+  } else {
+    employeeObj = employees.find(employee => employee.lastName === idOrName);
+  }
+
+  const ops = employeeObj.responsibleFor.map(each => findById(each));
+  const fullName = `${employeeObj.firstName} ${employeeObj.lastName}`;
+
+  const newObj = {};
+  const newKey = fullName;
+  newObj[newKey] = ops;
+
+  return newObj;
+}
+
 
 module.exports = {
   entryCalculator,
