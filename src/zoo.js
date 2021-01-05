@@ -34,7 +34,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   const checkEmployeePosition = employees.filter(employee => employee.managers.includes(id));
-  return checkEmployeePosition.length > 0 ? true : false;
+  return checkEmployeePosition.length > 0;
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
