@@ -29,7 +29,6 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  /* O método Object.assign() é usado para copiar os valores de todas as propriedades próprias enumeráveis de um ou mais objetos de origem para um objeto destino. Este método irá retornar o objeto destino. */
   return Object.assign(personalInfo, associatedWith);
 }
 
@@ -39,7 +38,6 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  //managers e responsibleFor pré-declarados arrays vazios para que o retorno (caso vazio) não seja undefined
   employees.push({
     id,
     firstName,
@@ -50,7 +48,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  const howManyAnimals = animals.find(animal => animal.name === species).residents.length;
 
 }
 
