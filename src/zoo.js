@@ -38,8 +38,15 @@ function isManager(id) {
   return checkEmployeePosition.length > 0 ? true : false;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  //managers e responsibleFor pré-declarados arrays vazios para que o retorno (caso vazio) não seja undefined
+  employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
 }
 
 function animalCount(species) {
