@@ -54,6 +54,7 @@ function animalCount(species) {
   if (!species) {
     return data.animals.reduce((obj, animal) => {
       obj[animal.name] = animal.residents.length;
+      console.log(obj);
       return obj;
     }, {});
   }
@@ -80,7 +81,6 @@ function schedule(dayName) {
       schedule1[day1] = 'CLOSED';
       return (schedule1);
     }
-    console.log(schedule1);
     schedule1[day1] = `Open from ${data.hours[day1].open}am until ${data.hours[day1].close - 12}pm`;
     return (schedule1);
   }, {});
@@ -99,16 +99,47 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const pK = Object.keys(prices);
-  console.log(data.prices);
   pK.forEach((p) => {
     prices[p] = Math.round(prices[p] * (1 + (percentage / 100)) * 100) / 100;
   });
   return prices;
 }
 
+function getAnimalsById(animalIds) {
+    return animalIds.map(id => data.animals.find(animal => animal.id === id).name);
+  }  
+
 function employeeCoverage(idOrName) {
   // seu código aqui
+  const tableEmployees = {};
+  
+  data.employees.forEach((elem) => {
+    const { firstName, lastName, responsibleFor } = elem;
+    const animals = responsibleFor.map(id => data.animals.find(animal => animal.id === id).name);
+    tableEmployees[`${firstName} ${lastName}`] = animals;
+  });
+  if (!idOrName) {
+    return tableEmployees;
+  }
+  const oneEmployee = {};
+  const names = data.employees.find(employee =>
+      idOrName === employee.firstName || idOrName === employee.lastName || idOrName === employee.id,
+  );
+  const responsible = tableEmployees[`${names.firstName} ${names.lastName}`];
+  oneEmployee[`${names.firstName} ${names.lastName}`] = responsible;
+  return oneEmployee;
 }
+
+// const expected = {
+//     'Nigel Nelson': ['lions', 'tigers'],
+//     'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
+//     'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
+//     'Wilburn Wishart': ['snakes', 'elephants'],
+//     'Stephanie Strauss': ['giraffes', 'otters'],
+//     'Sharonda Spry': ['otters', 'frogs'],
+//     'Ardith Azevado': ['tigers', 'bears'],
+//     'Emery Elser': ['elephants', 'bears', 'lions']
+//   };
 
 module.exports = {
   entryCalculator,
