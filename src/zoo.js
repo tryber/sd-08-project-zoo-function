@@ -16,13 +16,8 @@ function animalsByIds(ids, ids2) {
     return [];
   }
   const animais = data.animals;
-  let result = [];
-  const array = animais.filter((each) => {
-    if (each.id === ids || each.id === ids2) {
-      result.push(each);
-    }
-  });
-  return result;
+  const animaisFiltrados = animais.filter((each) => each.id === ids || each.id === ids2);
+  return animaisFiltrados;
 }
 console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
 
