@@ -46,13 +46,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   const employees = data.employees;
-  const managers = employees.find((each) => {
-    let man = each.managers;
-    if (man.includes(id)) {
-      return each;
-    }
-    return;
-  });
+  const managers = employees.find(each => each.managers.includes(id));
   if (!managers) {
     return false;
   }
