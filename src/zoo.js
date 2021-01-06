@@ -79,6 +79,7 @@ function schedule(dayName) {
       schedule1[day1] = 'CLOSED';
       return (schedule1);
     }
+    console.log(schedule1);
     schedule1[day1] = `Open from ${data.hours[day1].open}am until ${data.hours[day1].close - 12}pm`;
     return (schedule1);
   }, {});
@@ -86,9 +87,25 @@ function schedule(dayName) {
   return result;
 }
 
+function getFirstIdResponsibleFor(id) {
+    const employee = data.employees.find(elem => elem.id === id);
+    return employee.responsibleFor[0];
+}
+
+function getAnimals(id) {
+    const animals = data.animals.find(elem => elem.id === getFirstIdResponsibleFor(id));
+    return animals;
+}
+
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const employee = data.employees.find(elem => elem.id === id);
+  const animals = data.animals.find(elem => elem.id === employee.responsibleFor[0]);
+  const older = animals.residents.sort((a1, a2) => a2.age - a1.age)[0];
+  const { name, sex, age } = older;
+  return [name, sex, age];
 }
+console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 function increasePrices(percentage) {
   // seu código aqui
