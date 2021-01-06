@@ -93,9 +93,7 @@ function employeeCoverage(idOrName) {
       element.firstName === idOrName ||
       element.id === idOrName
     );
-    const animal = employee.responsibleFor.map((id) => {
-      animalsByIds(id)[0].name;
-    });
+    const animal = employee.responsibleFor.map(id => animalsByIds(id)[0].name);
     listOfCoverage[`${employee.firstName} ${employee.lastName}`] = animal;
   }
   return listOfCoverage;
