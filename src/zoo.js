@@ -105,14 +105,9 @@ function increasePrices(percentage) {
   return prices;
 }
 
-function getAnimalsById(animalIds) {
-    return animalIds.map(id => data.animals.find(animal => animal.id === id).name);
-  }  
-
 function employeeCoverage(idOrName) {
   // seu código aqui
   const tableEmployees = {};
-  
   data.employees.forEach((elem) => {
     const { firstName, lastName, responsibleFor } = elem;
     const animals = responsibleFor.map(id => data.animals.find(animal => animal.id === id).name);
@@ -129,17 +124,6 @@ function employeeCoverage(idOrName) {
   oneEmployee[`${names.firstName} ${names.lastName}`] = responsible;
   return oneEmployee;
 }
-
-// const expected = {
-//     'Nigel Nelson': ['lions', 'tigers'],
-//     'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
-//     'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
-//     'Wilburn Wishart': ['snakes', 'elephants'],
-//     'Stephanie Strauss': ['giraffes', 'otters'],
-//     'Sharonda Spry': ['otters', 'frogs'],
-//     'Ardith Azevado': ['tigers', 'bears'],
-//     'Emery Elser': ['elephants', 'bears', 'lions']
-//   };
 
 module.exports = {
   entryCalculator,
