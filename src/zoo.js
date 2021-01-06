@@ -77,10 +77,10 @@ function schedule(dayName) {
   const result = day.reduce((schedule1, day1) => {
     if (day1 === 'Monday') {
       schedule1[day1] = 'CLOSED';
-      return(schedule1); 
+      return (schedule1);
     }
     schedule1[day1] = `Open from ${data.hours[day1].open}am until ${data.hours[day1].close - 12}pm`;
-    return(schedule1); 
+    return (schedule1);
   }, {});
   if (dayName) return { [dayName]: result[dayName] };
   return result;
