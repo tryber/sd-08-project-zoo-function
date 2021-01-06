@@ -11,18 +11,20 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
+function animalsByIds(ids, ids2) {
   if (!ids) {
     return [];
   }
-  let animais = data.animals;
-  animais.forEach((each) => {
-    if (each.id == ids) {
-      return each;
+  const animais = data.animals;
+  let result = [];
+  const array = animais.filter((each) => {
+    if (each.id === ids || each.id === ids2) {
+      result.push(each);
     }
   });
+  return result;
 }
-console.log(animalsByIds());
+console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
