@@ -91,7 +91,7 @@ function employeeCoverage(idOrName) {
     const employee = data.employees.find(element =>
       element.lastName === idOrName ||
       element.firstName === idOrName ||
-      element.id === idOrName
+      element.id === idOrName,
     );
     const animal = employee.responsibleFor.map(id => animalsByIds(id)[0].name);
     listOfCoverage[`${employee.firstName} ${employee.lastName}`] = animal;
