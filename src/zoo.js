@@ -49,14 +49,14 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-function animalCount(species){
-    if (!species) {
-        return data.animals.reduce((obj, animal) => {
-            obj[animal.name] = animal.residents.length;
-            return obj;
+function animalCount(species) {
+    if ( !species ) {
+        return data.animals.reduce(( obj, animal ) => {
+            obj[ animal.name ] = animal.residents.length;
+            return (obj);
         }, {});
     }
-    return (data.animals.find(animal => animal.name === species).residents.length);
+    return ( data.animals.find( animal => animal.name === species ).residents.length);
 }
 
 function entryCalculator(entrants) {
