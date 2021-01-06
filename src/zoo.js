@@ -48,15 +48,14 @@ function addEmployee(
   firstName,
   lastName,
   managers = [],
-  responsibleFor = []
-) {
+  responsibleFor = []) {
   // seu código aqui
   employees.push({
     id,
     firstName,
     lastName,
     managers,
-    responsibleFor,
+    responsibleFor
   });
 }
 
@@ -79,9 +78,7 @@ function entryCalculator(entrants) {
   const calculo = clientes.map((individuo) => data.prices[individuo]);
   const valor = Object.values(entrants);
   const soma = valor.reduce(
-    (acumulador, posAtual, indice) => acumulador + calculo[indice] * posAtual,
-    0
-  );
+    (acumulador, posAtual, indice) => (acumulador + calculo[indice]) * posAtual, 0);
   return soma;
 }
 
@@ -112,7 +109,7 @@ function increasePrices(percentage) {
   // seu código aqui
   Object.entries(prices).forEach(([key, value]) => {
     prices[key] = parseFloat(
-      ((value + 0.001) * (percentage / 100 + 1)).toFixed(2)
+      ((value + 0.001) * percentage /(100 + 1)).toFixed(2)
     );
   });
 }
