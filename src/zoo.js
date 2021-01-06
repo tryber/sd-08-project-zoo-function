@@ -45,8 +45,20 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  const employees = data.employees;
+  const managers = employees.find((each) => {
+    let man = each.managers;
+    if (man.includes(id)) {
+      return each;
+    }
+    return;
+  });
+  if (!managers) {
+    return false;
+  }
+  return true;
 }
+console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
