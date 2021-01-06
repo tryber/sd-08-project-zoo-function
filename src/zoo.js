@@ -82,6 +82,14 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+  const listOfCoverage = {};
+  if (!idOrName){
+    data.employees.forEach((element) => {
+    listOfCoverage[`${element.firstName} ${element.lastName}`] = element.responsibleFor.map((id) => 
+      animalsByIds(id)[0].name);
+    });
+  }
+  return listOfCoverage;
 }
 
 module.exports = {
