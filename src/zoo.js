@@ -61,13 +61,14 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   if (!managers) {
     managers = [];
   }
+  let newEmployee = new Object;
   
-  let newEmployee = {
+  newEmployee = {
     id: id,
     firstName: firstName,
     lastName: lastName,
     managers: managers,
-    responsibleFor: responsibleFor
+    responsibleFor: responsibleFor,
   };
   // let n =  data.employees.length;
   data.employees.push(newEmployee);
