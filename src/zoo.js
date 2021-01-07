@@ -74,12 +74,12 @@ function addEmployee(iD, firstname, lastname, Managers, responsiblefor) {
 
 function animalCount(species) {
   if (!species) {
-    let retorno = {};
+    const retorno = {};
     data.animals.forEach((each) => {
       const animal = each.name;
       const quantidade = each.residents.length;
       retorno[animal] = quantidade;
-    })
+    });
     return retorno;
   }
   const animal = data.animals.find(each => Object.values(each).includes(species));
