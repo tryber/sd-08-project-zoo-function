@@ -17,14 +17,14 @@ function animalsByIds(...args) {
   args.forEach((id) => {
     data.animals.forEach((animal) => {
       if (animal.id === id) {
-        animais.push(animal.name);
+        animais.push(animal);
       }
     });
   });
   return animais;
 }
 
-// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
+console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
