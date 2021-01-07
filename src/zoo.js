@@ -24,11 +24,24 @@ function animalsByIds(...args) {
   return animais;
 }
 
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
+// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  const listaDeAnimais = data.animals;
+  let temIdade = true;
+  let especimes;
+  listaDeAnimais.forEach((atual) => {
+    if (atual.name === animal) {
+      especimes = atual.residents;
+    }
+  })
+  especimes.forEach((especime) => { if (especime.age < age) { temIdade = false }; });
+  return temIdade;
 }
+
+// console.log(animalsOlderThan('otters', 7))
+// console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
   // seu código aqui
