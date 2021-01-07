@@ -54,21 +54,20 @@ function isManager(id) {
 }
 console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  if (!responsibleFor) {
-    responsibleFor = [];
+function addEmployee(iD, firstname, lastname, Managers, responsiblefor) {
+  if (!responsiblefor) {
+    responsiblefor = [];
   }
-  if (!managers) {
-    managers = [];
+  if (!Managers) {
+    Managers = [];
   }
-  let newEmployee = new Object;
-  
+  let newEmployee = {};
   newEmployee = {
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
-    managers: managers,
-    responsibleFor: responsibleFor,
+    id: iD,
+    firstName: firstname,
+    lastName: lastname,
+    managers: Managers,
+    responsibleFor: responsiblefor,
   };
   // let n =  data.employees.length;
   data.employees.push(newEmployee);
