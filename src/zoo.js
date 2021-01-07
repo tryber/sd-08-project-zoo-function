@@ -40,7 +40,6 @@ function animalsOlderThan(animal, age) {
     if (especime.age < age) {
       temIdade = false;
     }
-    return;
   });
   return temIdade;
 }
