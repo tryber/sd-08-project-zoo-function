@@ -64,16 +64,40 @@ function entryCalculator(entrants) {
     .reduce((acc, key) => (data.prices[key] * entrants[key]) + acc, 0);
 }
 
-function animalByLocation() {
+function reduceList(listToBeReduce) {
+  const list = listToBeReduce.reduce((newList, originalList) => {
+    const regions = Object.keys(originalList);
+    if (!newList[regions]) {
+      newList[regions] = [originalList[regions]];
+    } else {
+      newList[regions].push(originalList[regions]);
+    }
+    return newList;
+  }, {});
+  return list;
+}
+
+function animalsByLocation() {
   const locations = animals.map(animal => ({
     [animal.location]: animal.name,
   }));
   return locations;
 }
 
+function animalsByLocationAndName() {
+  const locationAndName = animals.map(animal => ({
+    [animal.location]: { [animal.name]: animal.residents },
+  }));
+  return locationAndName;
+}
+
 function animalMap(options) {
-  const shortList = animalByLocation();
-  return shortList;
+  const { includeNames = false} = options || {};
+  const animalListByLocation = animalsByLocation();
+  const animalListByLocationAndName = animalsByLocationAndName();
+  const reducedByLocationList = reduceList(animalListByLocation);
+  if (includeNames) return animalListByLocationAndName;
+  return reducedByLocationList;
 }
 
 function schedule(dayName) {
