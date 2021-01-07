@@ -78,7 +78,13 @@ function schedule(dayName) {
       openHourSchedule[day] = `Open from ${open}am until ${close - 12}pm`
     }
   });
-  if (!dayName) return openHourSchedule;
+  if (!dayName) {
+    return openHourSchedule
+  } else {
+    const specificDay = {};
+    specificDay[dayName] = openHourSchedule[dayName];
+    return specificDay;
+  }
 }
 
 function oldestFromFirstSpecies(id) {
