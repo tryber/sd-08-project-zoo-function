@@ -14,21 +14,17 @@ const data = require('./data');
 function animalsByIds(...args) {
   // seu código aqui
   const animais = [];
-  if (args.length === 0) {
-    return animais;
-  } else {
-    args.forEach((id) => {
-      for (animal of data.animals) {
-        if (animal.id === id) {
-          animais.push(animal.name)
-        }
-      };
-    })
-  }
+  args.forEach((id) => {
+    data.animals.forEach((animal) => {
+      if (animal.id === id) {
+        animais.push(animal.name);
+      }
+    });
+  });
   return animais;
 }
 
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'))
+// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
