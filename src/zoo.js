@@ -64,8 +64,16 @@ function entryCalculator(entrants) {
     .reduce((acc, key) => (data.prices[key] * entrants[key]) + acc, 0);
 }
 
+function animalByLocation() {
+  const locations = animals.map(animal => ({
+    [animal.location]: animal.name,
+  }));
+  return locations;
+}
+
 function animalMap(options) {
-  // seu código aqui
+  const shortList = animalByLocation();
+  return shortList;
 }
 
 function schedule(dayName) {
