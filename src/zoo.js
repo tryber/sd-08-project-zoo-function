@@ -35,8 +35,13 @@ function animalsOlderThan(animal, age) {
     if (atual.name === animal) {
       especimes = atual.residents;
     }
-  })
-  especimes.forEach((especime) => { if (especime.age < age) { temIdade = false }; });
+  });
+  especimes.forEach((especime) => {
+    if (especime.age < age) {
+      temIdade = false;
+    }
+    return;
+  });
   return temIdade;
 }
 
