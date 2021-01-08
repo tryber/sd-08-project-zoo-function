@@ -51,7 +51,7 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   // seu código aqui
   const employee = {};
-  data.employees.forEach((objFunc) => {
+  employees.forEach((objFunc) => {
     if (objFunc.firstName === employeeName || objFunc.lastName === employeeName) {
       Object.assign(employee, objFunc);
     }
