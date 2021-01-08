@@ -101,15 +101,14 @@ function animalCount(species) {
       listaAnimais[animal.name] = animal.residents.length;
     });
     return listaAnimais;
-  } else {
-    let saida = 0;
-    data.animals.forEach((animal) => {
-      if (animal.name === species) {
-        saida = animal.residents.length;
-      }
-    });
-    return saida;
   }
+  let saida = 0;
+  data.animals.forEach((animal) => {
+    if (animal.name === species) {
+      saida = animal.residents.length;
+    }
+  });
+  return saida;
 }
 
 function entryCalculator(entrants) {
