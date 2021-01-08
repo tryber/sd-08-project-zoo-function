@@ -68,11 +68,11 @@ function entryCalculator(entrants) {
 
 function reduceList(listToBeReduce) {
   const list = listToBeReduce.reduce((newList, originalList) => {
-    const regions = Object.keys(originalList);
-    if (!newList[regions]) {
-      newList[regions] = [originalList[regions]];
+    const keys = Object.keys(originalList);
+    if (!newList[keys]) {
+      newList[keys] = [originalList[keys]];
     } else {
-      newList[regions].push(originalList[regions]);
+      newList[keys].push(originalList[keys]);
     }
     return newList;
   }, {});
@@ -86,23 +86,34 @@ function animalsByLocation() {
   return byLocations;
 }
 
-function byLocationSpeciesResidentValues() {
-  const locationAndValues = animals.map(animal => ({
-    [animal.location]: { [animal.name]: animal.residents },
-  }));
-  return locationAndValues;
-}
-
 function animalMap(options) {
   const { includeNames = false, sorted = false, sex } = options || {};
-  const animalListByLocation = animalsByLocation();
-  const animalListByLocationAndValues = byLocationSpeciesResidentValues();
-
-  const reducedByLocationSpeciesResidentsValues = reduceList(animalListByLocationAndValues);
-  const reducedByLocationList = reduceList(animalListByLocation);
   
-  if (includeNames) return reducedByLocationSpeciesResidentsValues;
-  return reducedByLocationList;
+  let list = reduceList(animalsByLocation());
+
+  const animalsValuesByLocation = animals.map(animal => ({
+    [animal.location]: { [animal.name]: animal.residents },
+  }));
+  if (includeNames) {
+    list = reduceList(animalsValuesByLocation);
+    const listOfRegions = Object.keys(list);
+    listOfRegions.forEach(rg =>
+      list[rg].forEach((spcs) => {
+        const species = Object.keys(spcs)[0];
+        if (sex) {
+          spcs[species] = spcs[species]
+          .filter(resident => resident.sex === sex)
+          .map(animal => animal.name);
+        } else {
+          spcs[species] = spcs[species].map(name => name.name);
+        }
+        if (sorted) {
+          spcs[species].sort();
+        }
+      }),
+    );
+  };
+  return list;
 }
 
 //-----------------------------------------------------------------------
