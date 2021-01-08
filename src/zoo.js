@@ -39,8 +39,6 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   const newEmployee = { ...personalInfo, ...associatedWith };
-  // newEmployee.managers = associatedWith.managers;
-  // newEmployee.responsibleFor = associatedWith.responsibleFor;
   return newEmployee;
 }
 
@@ -114,11 +112,11 @@ function schedule(dayName) {
   const agenda = data.hours;
   const dia = Object.keys(agenda);
   dia.forEach((each) => {
-    const weekDay = agenda[each];
-    if (weekDay.close > 12) weekDay.close -= 12;
-    agenda[each] = `Open from ${weekDay.open}am until ${weekDay.close}pm`;
-    if (weekDay.open === 0) {
-      agenda[each] = 'CLOSED';
+    const open = agenda[each].open;
+    const close = agenda[each].close;
+    agenda[each] = `Open from ${open}am until ${(close - 12)}pm`;
+    if (each === 'Monday') {
+      agenda[each] = 'CLOSED'; 
     }
   });
   if (!dayName) {
@@ -128,6 +126,7 @@ function schedule(dayName) {
   alone[dayName] = agenda[dayName];
   return alone;
 }
+// console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -149,7 +148,33 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const empregados = data.employees;
+  const animals = data.animals;
+  const result = {};
+  if (!idOrName) {
+    empregados.forEach((each) => {
+      const name = `${each.firstName} ${each.lastName}`;
+      const animais = each.responsibleFor;
+      result[name] = [];
+      animais.forEach((ouch, index) => {
+        const animName = animals.find((one) => ouch === one.id);
+        result[name].push(animName.name);
+      })
+      // const respons = animals.filter((anim) => anim.id === animais[0] || anim.id === animais[1]);
+      // result[name] = [respons[0].name, respons[1].name];
+    })
+    return result;
+  }
+  const empregadinho = empregados.find(each => each.id === idOrName || each.firstName === idOrName || each.lastName === idOrName);
+  const name = `${empregadinho.firstName} ${empregadinho.lastName}`;
+  const animais = empregadinho.responsibleFor;
+  result[name] = [];
+  animais.forEach((each) => {
+    const respons = animals.find((anim) => anim.id === each)
+    result[name].push(respons.name);
+  })
+  // const respons = animals.filter((anim) => anim.id === animais[animais.length - 1] || anim.id === animais[animais.length - 2] || anim.id === animais[animais.length - 3] || anim.id === animais[animais.length - 4]);
+  return result;
 }
 
 module.exports = {
