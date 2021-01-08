@@ -91,15 +91,15 @@ function animalMap(options) {
       list[rg].forEach((spcs) => {
         const species = Object.keys(spcs)[0];
         if (sex) {
-        spcs[species] = spcs[species]
-          .filter(resident => resident.sex === sex)
-          .map(animal => animal.name);
-      } else {
-        spcs[species] = spcs[species].map(name => name.name);
-      }
+          spcs[species] = spcs[species]
+            .filter(resident => resident.sex === sex)
+            .map(animal => animal.name);
+        } else {
+          spcs[species] = spcs[species].map(name => name.name);
+        }
         if (sorted) {
         spcs[species].sort();
-      }
+        }
       }));
   }
   return list;
