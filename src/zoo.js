@@ -10,6 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const assert = require('assert');
 
 function animalsByIds(...ids) {
   if (!ids) {
@@ -111,9 +112,35 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const agenda = data.hours;
+  const dia = Object.keys(agenda);
+  dia.forEach((each) => {
+    const weekDay = agenda[each];
+    if (weekDay.close > 12) weekDay.close -= 12;
+    agenda[each] = `Open from ${weekDay.open}am until ${weekDay.close}pm`;
+    if (weekDay.open === 0) {
+      agenda[each] = `CLOSED`;
+    }
+  })
+  if (!dayName) {
+    return agenda;
+  }
+  const alone = {};
+  alone[dayName] = agenda[dayName];
+  return alone;
 }
+const actual = schedule();
+    const expected = {
+      'Tuesday': 'Open from 8am until 6pm',
+      'Wednesday': 'Open from 8am until 6pm',
+      'Thursday': 'Open from 10am until 8pm',
+      'Friday': 'Open from 10am until 8pm',
+      'Saturday': 'Open from 8am until 10pm',
+      'Sunday': 'Open from 8am until 8pm',
+      'Monday': 'CLOSED'
+    };
 
+    assert.deepStrictEqual(actual, expected);
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
