@@ -119,9 +119,9 @@ function schedule(dayName) {
     if (weekDay.close > 12) weekDay.close -= 12;
     agenda[each] = `Open from ${weekDay.open}am until ${weekDay.close}pm`;
     if (weekDay.open === 0) {
-      agenda[each] = `CLOSED`;
+      agenda[each] = 'CLOSED';
     }
-  })
+  });
   if (!dayName) {
     return agenda;
   }
@@ -129,18 +129,7 @@ function schedule(dayName) {
   alone[dayName] = agenda[dayName];
   return alone;
 }
-const actual = schedule();
-    const expected = {
-      'Tuesday': 'Open from 8am until 6pm',
-      'Wednesday': 'Open from 8am until 6pm',
-      'Thursday': 'Open from 10am until 8pm',
-      'Friday': 'Open from 10am until 8pm',
-      'Saturday': 'Open from 8am until 10pm',
-      'Sunday': 'Open from 8am until 8pm',
-      'Monday': 'CLOSED'
-    };
 
-    assert.deepStrictEqual(actual, expected);
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
