@@ -68,6 +68,16 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
+  let ehGerente = false;
+  const gerentes = [];
+  employees.forEach((empregado) => {
+    empregado.managers.forEach((gerente) => {
+      if (gerentes.indexOf(gerente) === -1 && gerente === id) {
+        ehGerente = true;
+      }
+    });
+  });
+  return ehGerente;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
