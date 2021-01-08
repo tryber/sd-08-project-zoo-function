@@ -113,7 +113,19 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
+  if (entrants === undefined) {
+    return 0;
+  } else if (Object.keys(entrants).length === undefined) {
+    return 0;
+  }
+  let custo = 0;
+  Object.keys(entrants).forEach((chave) => {
+    custo += data.prices[chave] * entrants[chave];
+  });
+  return custo;
 }
+
+// console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }))
 
 function animalMap(options) {
   // seu código aqui
