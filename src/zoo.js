@@ -116,7 +116,7 @@ function schedule(dayName) {
     const close = agenda[each].close;
     agenda[each] = `Open from ${open}am until ${(close - 12)}pm`;
     if (each === 'Monday') {
-      agenda[each] = 'CLOSED'; 
+      agenda[each] = 'CLOSED';
     }
   });
   if (!dayName) {
@@ -157,25 +157,24 @@ function employeeCoverage(idOrName) {
       const animais = each.responsibleFor;
       result[name] = [];
       animais.forEach((ouch, index) => {
-        const animName = animals.find((one) => ouch === one.id);
+        const animName = animals.find(one => ouch === one.id);
         result[name].push(animName.name);
-      })
-      // const respons = animals.filter((anim) => anim.id === animais[0] || anim.id === animais[1]);
-      // result[name] = [respons[0].name, respons[1].name];
-    })
+      });
+    });
     return result;
   }
-  const empregadinho = empregados.find(each => each.id === idOrName || each.firstName === idOrName || each.lastName === idOrName);
+  const empregadinho = empregados.find((each) => {
+   return each.id === idOrName || each.firstName === idOrName || each.lastName === idOrName;
+  });
   const name = `${empregadinho.firstName} ${empregadinho.lastName}`;
   const animais = empregadinho.responsibleFor;
   result[name] = [];
   animais.forEach((each) => {
-    const respons = animals.find((anim) => anim.id === each)
+    const respons = animals.find(anim => anim.id === each)
     result[name].push(respons.name);
   })
-  // const respons = animals.filter((anim) => anim.id === animais[animais.length - 1] || anim.id === animais[animais.length - 2] || anim.id === animais[animais.length - 3] || anim.id === animais[animais.length - 4]);
   return result;
-}
+};
 
 module.exports = {
   entryCalculator,
