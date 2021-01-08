@@ -16,12 +16,13 @@ function animalsByIds(...ids) {
   return animals.filter(animal => ids.includes(animal.id));
 }
 
-function animalsOlderThan(animal, age) {
-  return animals.find(older => older.age >= age);
+function animalsOlderThan(animalName, animalAge) {
+  return animals.find(arr => arr.name === animalName)
+  .residents.every(arr => arr.age >= animalAge);
 }
 
 function employeeByName(employName) {
-  if (employName === '') return {};
+  if (employName === undefined) return {};
   return employees.find(emp => emp.firstName === employName || emp.lastName === employName);
 }
 
