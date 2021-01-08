@@ -64,7 +64,6 @@ function entryCalculator(entrants) {
     .reduce((acc, key) => (data.prices[key] * entrants[key]) + acc, 0);
 }
 
-//------------------------------------------------------------------------
 
 function reduceList(listToBeReduce) {
   const list = listToBeReduce.reduce((newList, originalList) => {
@@ -79,18 +78,12 @@ function reduceList(listToBeReduce) {
   return list;
 }
 
-function animalsByLocation() {
-  const byLocations = animals.map(animal => ({
-    [animal.location]: animal.name,
-  }));
-  return byLocations;
-}
-
 function animalMap(options) {
   const { includeNames = false, sorted = false, sex } = options || {};
-  
-  let list = reduceList(animalsByLocation());
-
+  const byLocations = animals.map(animal => ({
+    [animal.location]: animal.name,
+  }));  
+  let list = reduceList(byLocations);
   const animalsValuesByLocation = animals.map(animal => ({
     [animal.location]: { [animal.name]: animal.residents },
   }));
@@ -112,7 +105,7 @@ function animalMap(options) {
         }
       }),
     );
-  };
+  }
   return list;
 }
 
