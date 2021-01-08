@@ -80,19 +80,18 @@ function reduceList(listToBeReduce) {
 
 function animalMap(options) {
   const { includeNames = false, sorted = false, sex } = options || {};
-  const byLocations = animals.map(animal => ({
-    [animal.location]: animal.name,
-  }));
+  const byLocations = animals.map(animal => ({ [animal.location]: animal.name }));
   let list = reduceList(byLocations);
   const animalsValuesByLocation = animals.map(animal => ({
-    [animal.location]: { [animal.name]: animal.residents }}));
+    [animal.location]: { [animal.name]: animal.residents } }));
   if (includeNames) {
     list = reduceList(animalsValuesByLocation);
     const listOfRegions = Object.keys(list);
-    listOfRegions.forEach(rg => list[rg].forEach((spcs) => {
-        const species = Object.keys(spcs)[0];
+    listOfRegions.forEach(rg =>
+      list[rg].forEach((spcs) => { const species = Object.keys(spcs)[0];
         if (sex) {
-          spcs[species] = spcs[species].filter(resident => resident.sex === sex)
+          spcs[species] = spcs[species]
+          .filter(resident => resident.sex === sex)
           .map(animal => animal.name);
         } else {
           spcs[species] = spcs[species].map(name => name.name);
