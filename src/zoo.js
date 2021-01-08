@@ -98,7 +98,7 @@ function animalMap(options) {
           spcs[species] = spcs[species].map(name => name.name);
         }
         if (sorted) {
-        spcs[species].sort();
+          spcs[species].sort();
         }
       }));
   }
