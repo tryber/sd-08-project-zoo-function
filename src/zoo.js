@@ -64,6 +64,8 @@ function entryCalculator(entrants) {
     .reduce((acc, key) => (data.prices[key] * entrants[key]) + acc, 0);
 }
 
+//------------------------------------------------------------------------
+
 function reduceList(listToBeReduce) {
   const list = listToBeReduce.reduce((newList, originalList) => {
     const regions = Object.keys(originalList);
@@ -78,27 +80,32 @@ function reduceList(listToBeReduce) {
 }
 
 function animalsByLocation() {
-  const locations = animals.map(animal => ({
+  const byLocations = animals.map(animal => ({
     [animal.location]: animal.name,
   }));
-  return locations;
+  return byLocations;
 }
 
-function animalsByLocationAndName() {
-  const locationAndName = animals.map(animal => ({
+function byLocationSpeciesResidentValues() {
+  const locationAndValues = animals.map(animal => ({
     [animal.location]: { [animal.name]: animal.residents },
   }));
-  return locationAndName;
+  return locationAndValues;
 }
 
 function animalMap(options) {
-  const { includeNames = false} = options || {};
+  const { includeNames = false, sorted = false, sex } = options || {};
   const animalListByLocation = animalsByLocation();
-  const animalListByLocationAndName = animalsByLocationAndName();
+  const animalListByLocationAndValues = byLocationSpeciesResidentValues();
+
+  const reducedByLocationSpeciesResidentsValues = reduceList(animalListByLocationAndValues);
   const reducedByLocationList = reduceList(animalListByLocation);
-  if (includeNames) return animalListByLocationAndName;
+  
+  if (includeNames) return reducedByLocationSpeciesResidentsValues;
   return reducedByLocationList;
 }
+
+//-----------------------------------------------------------------------
 
 function schedule(dayName) {
   const openHourSchedule = {};
