@@ -164,17 +164,16 @@ function employeeCoverage(idOrName) {
     return result;
   }
   const empregadinho = empregados.find((each) => {
-   return each.id === idOrName || each.firstName === idOrName || each.lastName === idOrName;
+    return each.id === idOrName || each.firstName === idOrName || each.lastName === idOrName;
   });
   const name = `${empregadinho.firstName} ${empregadinho.lastName}`;
   const animais = empregadinho.responsibleFor;
   result[name] = [];
   animais.forEach((each) => {
-    const respons = animals.find(anim => anim.id === each)
+    const respons = animals.find(anim => anim.id === each);
     result[name].push(respons.name);
-  })
-  return result;
-};
+  });
+  return result; };
 
 module.exports = {
   entryCalculator,
