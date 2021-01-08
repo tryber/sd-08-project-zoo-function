@@ -80,12 +80,22 @@ function isManager(id) {
   return ehGerente;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  let naLista = false;
+  employees.forEach((empregado) => {
+    if (empregado.id === id) {
+      naLista = true;
+    }
+  });
+  if (naLista === false) {
+    employees.push({ id, firstName, lastName, managers, responsibleFor });
+  }
 }
 
 function animalCount(species) {
   // seu código aqui
+
 }
 
 function entryCalculator(entrants) {
