@@ -15,22 +15,20 @@ const data = require('./data');
 function animalsByIds(...ids) {
   // seu código aqui
   if (!ids) return [];
-  return animals.filter(animal => ids.find((id) => animal.id === id));
+  return animals.filter(animal => ids.find(id => animal.id === id));
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  return animals
-    .find(a => (a.name = animal))
-    .residents.every( resident => resident.age >= age);
+  return animals.find(a => (a.name = animal)).residents.every(resident => resident.age >= age);
 }
 
 function employeeByName(employeeName) {
   // seu código aqui
   if (!employeeName) return {};
-  return employees.find(
-    name => {name.firstName === employeeName || name.lastName === employeeName}
-  );
+  return employees.find(name => {
+    name.firstName === employeeName || name.lastName === employeeName;
+  });
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -43,19 +41,14 @@ function isManager(id) {
   return employees.some(someId => someId.managers.includes(id));
 }
 
-function addEmployee(
-  id,
-  firstName,
-  lastName,
-  managers = [],
-  responsibleFor = []) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
   employees.push({
     id,
     firstName,
     lastName,
     managers,
-    responsibleFor
+    responsibleFor,
   });
 }
 
@@ -67,7 +60,7 @@ function animalCount(species) {
       return acc;
     }, {});
   }
-  return animals.find((animal) => animal.name === species).residents.length;
+  return animals.find(animal => animal.name === species).residents.length;
 }
 function entryCalculator(entrants) {
   // seu código aqui
@@ -75,10 +68,12 @@ function entryCalculator(entrants) {
     return 0;
   }
   const clientes = Object.keys(entrants);
-  const calculo = clientes.map((individuo) => data.prices[individuo]);
+  const calculo = clientes.map(individuo => data.prices[individuo]);
   const valor = Object.values(entrants);
   const soma = valor.reduce(
-    (acumulador, posAtual, indice) => (acumulador + calculo[indice]) * posAtual, 0);
+    (acumulador, posAtual, indice) => (acumulador + calculo[indice]) * posAtual,
+    0,
+  );
   return soma;
 }
 
@@ -93,12 +88,10 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   // seu código aqui
   const animalSpecie = animals.find(
-    (animal) =>
-      animal.id ===
-      employees.find((employee) => employee.id === id).responsibleFor[0]
+    animal => animal.id === employees.find(employee => employee.id === id).responsibleFor[0],
   );
   let maior = animalSpecie.residents[0].age;
-  animalSpecie.residents.map((element) => {
+  animalSpecie.residents.map(element => {
     if (element.age > maior) return (maior = element);
   });
   ({ name, sex, age } = maior);
@@ -108,9 +101,7 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
   Object.entries(prices).forEach(([key, value]) => {
-    prices[key] = parseFloat(
-      ((value + 0.001) * percentage /(100 + 1)).toFixed(2)
-    );
+    prices[key] = parseFloat((((value + 0.001) * percentage) / (100 + 1)).toFixed(2));
   });
 }
 function employeeCoverage(idOrName) {

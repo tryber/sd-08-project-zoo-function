@@ -1,6 +1,11 @@
-# O NOME DO ARQUIVO DEVE SER `.gitignore` (ATENTE-SE AO PONTO NO INÍCIO)
-
-# VSCode repo settings
-.vscode
 node_modules/
-.gitignore
+instalar
+package.json
+package-lock.json
+.stylelintignore
+debug.js
+corrigir
+.prettierrc
+.eslintrc
+.prettierignore
+.eslintignore
