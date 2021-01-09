@@ -109,24 +109,26 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const agenda = data.hours;
-  const dia = Object.keys(agenda);
+  const agenda = data.hours
+  let datas = {};
+  Object.assign(datas, agenda);
+  const dia = Object.keys(datas);
   dia.forEach((each) => {
-    const open = agenda[each].open;
-    const close = agenda[each].close;
-    agenda[each] = `Open from ${open}am until ${(close - 12)}pm`;
+    const open = datas[each].open;
+    const close = datas[each].close;
+    datas[each] = `Open from ${open}am until ${(close - 12)}pm`;
     if (each === 'Monday') {
-      agenda[each] = 'CLOSED';
+      datas[each] = 'CLOSED';
     }
   });
   if (!dayName) {
-    return agenda;
+    return datas;
   }
   const alone = {};
-  alone[dayName] = agenda[dayName];
+  alone[dayName] = datas[dayName];
   return alone;
 }
-// console.log(schedule('Tuesday'));
+ console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -147,33 +149,34 @@ function increasePrices(percentage) {
   return precos;
 }
 
-function employeeCoverage(idOrName) {
-  const empregados = data.employees;
-  const animals = data.animals;
-  const result = {};
-  if (!idOrName) {
-    empregados.forEach((each) => {
-      const name = `${each.firstName} ${each.lastName}`;
-      const animais = each.responsibleFor;
-      result[name] = [];
-      animais.forEach((ouch, index) => {
-        const animName = animals.find(one => ouch === one.id);
-        result[name].push(animName.name);
-      });
-    });
-    return result;
-  }
-  const empregadinho = empregados.find((each) => {
-    return each.id === idOrName || each.firstName === idOrName || each.lastName === idOrName;
-  });
-  const name = `${empregadinho.firstName} ${empregadinho.lastName}`;
-  const animais = empregadinho.responsibleFor;
-  result[name] = [];
-  animais.forEach((each) => {
-    const respons = animals.find(anim => anim.id === each);
-    result[name].push(respons.name);
-  });
-  return result; };
+ function employeeCoverage(idOrName) {
+//   const empregados = data.employees;
+//   const animals = data.animals;
+//   if (!idOrName) {
+//     empregados.forEach((each) => {
+//       const name = `${each.firstName} ${each.lastName}`;
+//       const animais = each.responsibleFor;
+//       const result = {}
+//       animais.forEach((ouch, index) => {
+//         const animName = animals.find(one => ouch === one.id);
+//         //result[name]
+//       });
+//     });
+//     //return result;
+//   }
+//   const empregadinho = empregados.find((each) => {
+//     return each.id === idOrName || each.firstName === idOrName || each.lastName === idOrName;
+//   });
+//   const name = `${empregadinho.firstName} ${empregadinho.lastName}`;
+//   const animais = empregadinho.responsibleFor;
+//   result[name] = [];
+//   animais.forEach((each) => {
+//     const respons = animals.find(anim => anim.id === each);
+//     result[name].push(respons.name);
+//   });
+//   return result;
+ }
+// console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
