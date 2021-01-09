@@ -110,7 +110,6 @@ function increasePrices(percentage) {
 
   return prices;
 }
-console.log(increasePrices(50));
 
 function employeeCoverage(idOrName) {}
 
