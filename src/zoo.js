@@ -58,31 +58,45 @@ function entryCalculator(entrants = {}) {
   }, 0);
 }
 
-function animalMap(options = {}) {
-  const { includeNames, par1, part2 } = options;
-  return animals.reduce((accumulator, animal) => {
-    const location = accumulator[animal.location] || [];
+function animalMap(options) {
+  const locationObj = { NE: [], NW: [], SE: [], SW: [] };
+  if (options === undefined || options === {} || !options.includeNames) {
+    animals.forEach(({ name, location }) => {
+      locationObj[location].push(name);
+    });
+    return locationObj;
+  }
+  animals.forEach(({ name, location, residents }) => {
+    const animalsNames = {};
+    animalsNames[name] = residents.reduce((accumulator, { name: residentName, sex }) => {
+      const auxiliar = accumulator;
+      if (!options.sex) auxiliar.push(residentName);
+      else if (options.sex === sex) auxiliar.push(residentName);
+      return auxiliar;
+    }, []);
+    if (options.sorted) animalsNames[name].sort();
 
-    if (!includeNames) {
-      accumulator[animal.location] = [...location, animal.name];
+    locationObj[location].push(animalsNames);
+  });
 
-      return accumulator;
-    }
-
-    let residents = animal.residents;
-    residents = animalsFilteredBySex(residents, par1);
-
-    let names = residents.map(({ name }) => name);
-    names = sortedAnimalNames(names, part2);
-
-    accumulator[animal.location] = [...location, { [animal.name]: names }];
-
-    return accumulator;
-  }, {});
+  return locationObj;
 };
 
 function schedule(dayName) {
-  //
+  const allDays = Object.keys(data.hours);
+  const workDay = {};
+
+  allDays.forEach((day) => {
+    if (day === 'Monday') {
+      workDay[day] = 'CLOSED';
+    } else {
+      const openHours = data.hours[day].open;
+      const closeHours = data.hours[day].close - 12;
+      workDay[day] = `Open from ${openHours}am until ${closeHours}pm`;
+    }
+  });
+  if (dayName === undefined) return workDay;
+  return { [dayName]: workDay[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
@@ -98,13 +112,11 @@ function increasePrices(percentage) {
     const newPrice = val * (increase + 1);
     data.prices[key] = Math.round(newPrice * 100) / 100;
   });
-  // Object.keys(prices).forEach((theAge) => {
-  //   prices[theAge] = Math.ceil(data.prices[theAge] * (percentage + 100)) / 100;
-  // });
+
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+ 
 }
 
 module.exports = {
