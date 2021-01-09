@@ -103,7 +103,7 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  const increase = percentage / 100(+1);
+  const increase = (percentage / 100) + 1;
   prices.Adult = +(prices.Adult * (increase + 0.001)).toFixed(2);
   prices.Senior = +(prices.Senior * (increase + 0.001)).toFixed(2);
   prices.Child = +(prices.Child * (increase + 0.001)).toFixed(2);
