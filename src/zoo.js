@@ -84,18 +84,18 @@ function animalMap(options) {
 function schedule(dayName) {
   // seu código aqui
 }
-
 function oldestFromFirstSpecies(id) {
-  // const animalSpecie = animals.find(
-  //   animal => animal.id === employees.find(employee => employee.id === id).responsibleFor[0],
-  // );
-  // let maior = animalSpecie.residents[0].age;
-  // animalSpecie.residents.map(element => {
-  //   if (element.age > maior) maior = element;
-  //   return maior;
-  // });
-  // ({ name, sex, age } = maior);
-  // return [name, sex, age];
+  const employee = employees.find(animal => animal.id === id);
+  const animalCared = animals.find(anim => anim.id === Object.values(employee.responsibleFor)[0]);
+  let residentsAge = 0;
+  let output;
+  animalCared.residents.forEach(animal => {
+    if (residentsAge < animal.age) {
+      residentsAge = animal.age;
+      output = Object.values(animal);
+    }
+  });
+  return output;
 }
 
 function increasePrices(percentage) {
