@@ -20,15 +20,17 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  return animals.find(a => (a.name = animal)).residents.every(resident => resident.age >= age);
+  return animals
+    .find(a => {
+      a.name = animal;
+    })
+    .residents.every(resident => resident.age >= age);
 }
 
 function employeeByName(employeeName) {
   // seu código aqui
   if (!employeeName) return {};
-  return employees.find(name => {
-    name.firstName === employeeName || name.lastName === employeeName;
-  });
+  return employees.find(name => name.firstName === employeeName || name.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -87,15 +89,15 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  const animalSpecie = animals.find(
-    animal => animal.id === employees.find(employee => employee.id === id).responsibleFor[0],
-  );
-  let maior = animalSpecie.residents[0].age;
-  animalSpecie.residents.map(element => {
-    if (element.age > maior) return (maior = element);
-  });
-  ({ name, sex, age } = maior);
-  return [name, sex, age];
+  // const animalSpecie = animals.find(
+  //   animal => animal.id === employees.find(employee => employee.id === id).responsibleFor[0],
+  // );
+  // let maior = animalSpecie.residents[0].age;
+  // animalSpecie.residents.map(element => {
+  //   if (element.age > maior) return (maior = element);
+  // });
+  // ({ name, sex, age } = maior);
+  // return [name, sex, age];
 }
 
 function increasePrices(percentage) {
