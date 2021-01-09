@@ -109,8 +109,8 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const agenda = data.hours
-  let datas = {};
+  const agenda = data.hours;
+  const datas = {};
   Object.assign(datas, agenda);
   const dia = Object.keys(datas);
   dia.forEach((each) => {
@@ -128,7 +128,6 @@ function schedule(dayName) {
   alone[dayName] = datas[dayName];
   return alone;
 }
- console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -149,7 +148,7 @@ function increasePrices(percentage) {
   return precos;
 }
 
- function employeeCoverage(idOrName) {
+function employeeCoverage(idOrName) {
 //   const empregados = data.employees;
 //   const animals = data.animals;
 //   if (!idOrName) {
@@ -175,7 +174,7 @@ function increasePrices(percentage) {
 //     result[name].push(respons.name);
 //   });
 //   return result;
- }
+}
 // console.log(employeeCoverage());
 
 module.exports = {
