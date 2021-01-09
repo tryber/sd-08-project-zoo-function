@@ -65,19 +65,16 @@ function animalCount(species) {
   }
   return animals.find(animal => animal.name === species).residents.length;
 }
+
 function entryCalculator(entrants) {
   // seu código aqui
-  if (entrants == null || Object.keys(entrants).length === 0) {
-    return 0;
-  }
-  const clientes = Object.keys(entrants);
-  const calculo = clientes.map(individuo => data.prices[individuo]);
-  const valor = Object.values(entrants);
-  const soma = valor.reduce(
-    (acumulador, posAtual, indice) => (acumulador + calculo[indice]) * posAtual,
-    0,
-  );
-  return soma;
+  if (!entrants || Object.keys(entrants) === 0) return 0;
+  const { Adult = 0, Senior = 0, Child = 0 } = entrants;
+  const adultValor = prices.Adult * Adult;
+  const seniorValor = prices.Senior * Senior;
+  const childValor = prices.Child * Child;
+  const total = (adultValor + seniorValor + childValor).toFixed(2);
+  return Number(total);
 }
 
 function animalMap(options) {
