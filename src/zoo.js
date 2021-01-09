@@ -101,16 +101,20 @@ function oldestFromFirstSpecies(id) {
   // return [name, sex, age];
 }
 
+console.clear();
+const { animals, employees, prices } = require('./data');
+const data = require('./data');
 function increasePrices(percentage) {
   // seu código aqui
-  const increase = (percentage / 100) + 1;
-  prices.Adult = +(prices.Adult * (increase + 0.001)).toFixed(2);
-  prices.Senior = +(prices.Senior * (increase + 0.001)).toFixed(2);
-  prices.Child = +(prices.Child * (increase + 0.001)).toFixed(2);
+  const increase = 1 + (percentage / 100) ;
+  prices.Adult = +((prices.Adult *= increase) + 0.001).toFixed(2);
+  prices.Senior = +((prices.Senior *= increase) + 0.001).toFixed(2);
+  prices.Child = +((prices.Child *= increase) + 0.001).toFixed(2);
 
   return prices;
 }
 
+console.log(increasePrices(50));
 function employeeCoverage(idOrName) {}
 
 module.exports = {
