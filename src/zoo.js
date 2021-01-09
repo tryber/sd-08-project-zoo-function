@@ -40,7 +40,7 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  employees.push({ id, firstName, lastName, managers, responsibleFor });
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
@@ -80,7 +80,7 @@ function animalMap(options) {
   });
 
   return locationObj;
-};
+}
 
 function schedule(dayName) {
   const allDays = Object.keys(data.hours);
@@ -112,13 +112,10 @@ function increasePrices(percentage) {
     const newPrice = val * (increase + 1);
     data.prices[key] = Math.round(newPrice * 100) / 100;
   });
-
 }
 
 function employeeCoverage(idOrName) {
- 
 }
-
 module.exports = {
   entryCalculator,
   schedule,
