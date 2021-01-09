@@ -104,7 +104,7 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
   Object.entries(prices).forEach(([key, value]) => {
-    prices[key] = parseFloat((((value + 0.001) * percentage) / 100 + 1).toFixed(2));
+    prices[key] = parseFloat((value + 0.001) * (percentage / 100 + 1).toFixed(2));
   });
 }
 
