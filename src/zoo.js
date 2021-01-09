@@ -159,8 +159,8 @@ function employeeCoverage(idOrName) {
   const result = {};
   empregados.forEach((each) => {
     const name = `${each.firstName} ${each.lastName}`;
-    const animais = each.responsibleFor.map((each) => {
-      const animres = animals.find(one => one.id === each);
+    const animais = each.responsibleFor.map((otch) => {
+      const animres = animals.find(one => one.id === otch);
       return animres.name;
     });
     result[name] = animais;
@@ -174,7 +174,6 @@ function employeeCoverage(idOrName) {
   retorno[name] = result[name];
   return retorno;
 }
-console.log(employeeCoverage('Azevado'));
 
 module.exports = {
   entryCalculator,
