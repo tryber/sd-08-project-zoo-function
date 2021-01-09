@@ -156,28 +156,25 @@ const func = (e, id) => {
 function employeeCoverage(idOrName) {
   const empregados = data.employees.slice();
   const animals = data.animals.slice();
-  const result = {}
-  if (!idOrName) {
-    empregados.forEach((each) => {
-      const name = `${each.firstName} ${each.lastName}`;
-      const animais = each.responsibleFor.map((each) => {
-        const animres = animals.find((one) => one.id === each);
-        return animres.name;
-      });
-      result[name] = animais;
+  const result = {};
+  empregados.forEach((each) => {
+    const name = `${each.firstName} ${each.lastName}`;
+    const animais = each.responsibleFor.map((each) => {
+      const animres = animals.find(one => one.id === each);
+      return animres.name;
     });
+    result[name] = animais;
+  });
+  if (!idOrName) {
     return result;
   }
-  const empregadinho = empregados.find((e) => func(e, idOrName));
+  const empregadinho = empregados.find(e => func(e, idOrName));
   const name = `${empregadinho.firstName} ${empregadinho.lastName}`;
-  const animais = empregadinho.responsibleFor.map((each) => {
-    const animres = animals.find((one) => one.id === each);
-    return animres.name;
-  });
-  result[name] = animais;
-  return result;
+  const retorno = {};
+  retorno[name] = result[name];
+  return retorno;
 }
-
+console.log(employeeCoverage('Azevado'));
 
 module.exports = {
   entryCalculator,
