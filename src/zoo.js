@@ -148,34 +148,36 @@ function increasePrices(percentage) {
   return precos;
 }
 
+const func = (e, id) => {
+  const dados = [e.id, e.firstName, e.lastName];
+  return dados.some(d => d === id);
+};
+
 function employeeCoverage(idOrName) {
-//   const empregados = data.employees;
-//   const animals = data.animals;
-//   if (!idOrName) {
-//     empregados.forEach((each) => {
-//       const name = `${each.firstName} ${each.lastName}`;
-//       const animais = each.responsibleFor;
-//       const result = {}
-//       animais.forEach((ouch, index) => {
-//         const animName = animals.find(one => ouch === one.id);
-//         //result[name]
-//       });
-//     });
-//     //return result;
-//   }
-//   const empregadinho = empregados.find((each) => {
-//     return each.id === idOrName || each.firstName === idOrName || each.lastName === idOrName;
-//   });
-//   const name = `${empregadinho.firstName} ${empregadinho.lastName}`;
-//   const animais = empregadinho.responsibleFor;
-//   result[name] = [];
-//   animais.forEach((each) => {
-//     const respons = animals.find(anim => anim.id === each);
-//     result[name].push(respons.name);
-//   });
-//   return result;
+  const empregados = data.employees.slice();
+  const animals = data.animals.slice();
+  const result = {}
+  if (!idOrName) {
+    empregados.forEach((each) => {
+      const name = `${each.firstName} ${each.lastName}`;
+      const animais = each.responsibleFor.map((each) => {
+        const animres = animals.find((one) => one.id === each);
+        return animres.name;
+      });
+      result[name] = animais;
+    });
+    return result;
+  }
+  const empregadinho = empregados.find((e) => func(e, idOrName));
+  const name = `${empregadinho.firstName} ${empregadinho.lastName}`;
+  const animais = empregadinho.responsibleFor.map((each) => {
+    const animres = animals.find((one) => one.id === each);
+    return animres.name;
+  });
+  result[name] = animais;
+  return result;
 }
-// console.log(employeeCoverage());
+
 
 module.exports = {
   entryCalculator,
