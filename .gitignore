@@ -1,5 +1,5 @@
 node_modules/
-.instalar
+instalar
 package.json
 package-lock.json
 .stylelintignore

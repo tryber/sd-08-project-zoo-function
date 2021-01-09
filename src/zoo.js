@@ -103,14 +103,14 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  Object.entries(prices).forEach(([key, value]) => {
-    prices[key] = parseFloat((value + 0.001) * (percentage / 100 + 1).toFixed(2));
+  const increase = 1 + percentage / 100;
+  Object.keys(prices).forEach(key => {
+    prices[key] = Math.round(prices[key] * increase * 100) / 100;
   });
+  return prices;
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+function employeeCoverage(idOrName) {}
 
 module.exports = {
   entryCalculator,
