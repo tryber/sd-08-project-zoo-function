@@ -46,8 +46,7 @@ function animalCount(species) {
       return acumulador;
     }, {});
   }
-    return animals.find(animais => animais.name === species).residents.length;
-
+  return animals.find(animais => animais.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
