@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -51,7 +51,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
-  return employees.some(ids => ids.managers[0] === id);
+  return employees.some(ids => ids.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -78,6 +78,10 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
+  // Olhei o código do colega Erick Massaki para entender como adicionar a multiplicação ao acumulator
+  return entrants ?
+    Object.keys(entrants).reduce((acc, curr) => acc + (entrants[curr] * prices[curr]), 0) :
+    0;
 }
 
 function animalMap(options) {
