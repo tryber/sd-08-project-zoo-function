@@ -88,14 +88,18 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
-
 }
 
+const { hours } = require('./data');
 function schedule(dayName) {
   // seu código aqui
+  const scheduleDay =  Object.entries(hours).reduce((acc, [curr, value]) => {
+    acc[curr] = value.close - value.open > 0 ? `Open from ${value.open}am until ${value.close % 12}pm` : 'CLOSED';
+    return acc;
+  }, {});
+  if (typeof dayName === 'string' && dayName.length !== 0) return { [dayName]: scheduleDay[dayName] };
+  return scheduleDay;
 }
-
-console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
