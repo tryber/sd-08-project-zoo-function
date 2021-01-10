@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/betrybe/sd-03-block9-project-zoo-functions#readme",
   "devDependencies": {
+    "babel-preset-env": "^1.7.0",
     "jest": "^25.2.3"
   }
 }
