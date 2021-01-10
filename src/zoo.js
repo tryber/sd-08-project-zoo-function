@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -50,8 +50,11 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-
+  if (entrants === undefined || Object.entries(entrants).length === 0) return 0;
+  return Object.keys(entrants)
+  .reduce((acumulador, atual) => acumulador + (entrants[atual] * prices[atual]), 0);
 }
+// https://pt.stackoverflow.com/questions/83588/em-javascript-como-verificar-que-um-objeto-est%C3%A1-vazio-sem-jquery
 
 function animalMap(options) {
   // seu código aqui
