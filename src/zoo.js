@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -78,7 +78,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  // Olhei o código do colega Erick Massaki para entender como adicionar a multiplicação ao acumulator
+  // Olhei o código do colega Erick Massaki para entender como adicionar a multip. ao acc.
   return entrants ?
     Object.keys(entrants).reduce((acc, curr) => acc + (entrants[curr] * prices[curr]), 0) :
     0;
@@ -90,6 +90,22 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
+  const { Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday } = hours;
+  const daySchedule = {};
+  const convertHours = hour => (hour > 12 ? hour - 12 : hour);
+  const weekDaysSchedule = {
+    Tuesday: `Open from ${Tuesday.open}am until ${convertHours(Tuesday.close)}pm`,
+    Wednesday: `Open from ${Wednesday.open}am until ${convertHours(Wednesday.close)}pm`,
+    Thursday: `Open from ${Thursday.open}am until ${convertHours(Thursday.close)}pm`,
+    Friday: `Open from ${Friday.open}am until ${convertHours(Friday.close)}pm`,
+    Saturday: `Open from ${Saturday.open}am until ${convertHours(Saturday.close)}pm`,
+    Sunday: `Open from ${Sunday.open}am until ${convertHours(Sunday.close)}pm`,
+    Monday: 'CLOSED',
+  };
+  daySchedule[dayName] = weekDaysSchedule[dayName];
+  return !dayName ?
+  weekDaysSchedule :
+  daySchedule;
 }
 
 function oldestFromFirstSpecies(id) {
