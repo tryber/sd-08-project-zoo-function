@@ -181,24 +181,27 @@ function employeeCoverage(idOrName) {
   let nome;
   const animaisNomeId = {};
   // data.animals.forEach((animal) => animaisIdNome[animal.id] = animal.name);
-  data.animals.forEach((animal) => animaisNomeId[animal.name] = animal.id);
+  data.animals.forEach((animal) => {
+    animaisNomeId[animal.name] = animal.id
+  });
   employees.forEach((empregado) => {
-    let nomeDoEmpregado = empregado.firstName + ' ' + empregado.lastName;
-    if (idOrName === empregado.firstName || idOrName === empregado.lastName || idOrName === empregado.id) {
+    const nomeDoEmpregado = `${empregado.firstName} ${empregado.lastName}`;
+    if (idOrName === empregado.firstName || idOrName === empregado.lastName 
+      || idOrName === empregado.id) {
       nome = nomeDoEmpregado;
     }
     const animais = animalsByIds(...empregado.responsibleFor);
-    tabela[nomeDoEmpregado] = animais.map((animal) => animal.name)
+    tabela[nomeDoEmpregado] = animais.map(animal => animal.name)
   });
   if (idOrName === undefined) {
     return tabela;
   }
   const saida = {};
   saida[nome] = tabela[nome];
-  return saida; 
+  return saida;
 }
 
-console.log(employeeCoverage())
+// console.log(employeeCoverage('Sharonda'))
 
 module.exports = {
   entryCalculator,
