@@ -128,65 +128,27 @@ function entryCalculator(entrants) {
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }))
 
 function animalMap(options) {
-  // cria mapa padrão
-  let mapa = {};
-  data.animals.forEach((animal) => {
-    mapa[animal.location] != undefined ? mapa[animal.location].push(animal.name) : mapa[animal.location] = [animal.name];
-  });
-
-  // retorna mapa padrão se não foram passados parametros
-  if (options === undefined) {
-    return mapa;
-  }
-
-  // 
-  if (options.includeNames = true) {
-    regions = Object.keys(mapa);
-    regions.forEach((region) => {
-      mapa[region].forEach((especie, index, array) => {
-        let obj = {};
-        
-        // mapeia só masculinos
-        if (options.female === true) {
-          data.animals.forEach((animal) => {
-            if (animal.name === especie && animal.sex == female) {
-              obj[especie] = animal.residents.map((resident) => {
-                return resident.name
-              });
-            }
-          });
-        } else if (options.male === true) {
-          data.animals.forEach((animal) => {
-            if (animal.name === especie && animal.sex === male) {
-              obj[especie] = animal.residents.map((resident) => {
-                return resident.name
-              });
-            }
-          });
-        } else {
-          data.animals.forEach((animal) => {
-            if (animal.name === especie) {
-              obj[especie] = animal.residents.map((resident) => {
-                return resident.name
-              });
-            }
-          });
-          // ordena os nomes se pedido
-          if (options.sorted === true) {
-            obj[especie].sort();
-          }
-        }
-        array.splice(index, 1, Object.assign({}, obj));
-      });
-    });
-  }
-  return mapa;
+  // seu código aqui
 }
-
-console.log(animalMap(includeNames = true, sort = true))
 
 function schedule(dayName) {
   // seu código aqui
+  const calendario = {};
+  const dias = Object.keys(data.hours);
+  dias.forEach((dia) => {
+    if (data.hours[dia].open != 0) {
+      calendario[dia] = `Open from ${data.hours[dia].open}am until ${data.hours[dia].close - 12}pm`;
+    } else {
+      calendario[dia] = 'CLOSED'
+    }
+  });
+  if (dayName === undefined) {
+    return calendario;
+  } else {
+    const saida = {};
+    saida[dayName] = calendario[dayName];
+    return saida;
+  }
 }
 
 function oldestFromFirstSpecies(id) {
