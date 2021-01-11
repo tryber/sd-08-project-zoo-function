@@ -93,7 +93,7 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
-  const scheduleDay =  Object.entries(hours).reduce((acc, [curr, value]) => {
+  const scheduleDay = Object.entries(hours).reduce((acc, [curr, value]) => {
     acc[curr] = value.close - value.open > 0 ? `Open from ${value.open}am until ${value.close % 12}pm` : 'CLOSED';
     return acc;
   }, {});
