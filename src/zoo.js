@@ -177,7 +177,28 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+  const tabela = {};
+  let nome;
+  const animaisNomeId = {};
+  // data.animals.forEach((animal) => animaisIdNome[animal.id] = animal.name);
+  data.animals.forEach((animal) => animaisNomeId[animal.name] = animal.id);
+  employees.forEach((empregado) => {
+    let nomeDoEmpregado = empregado.firstName + ' ' + empregado.lastName;
+    if (idOrName === empregado.firstName || idOrName === empregado.lastName || idOrName === empregado.id) {
+      nome = nomeDoEmpregado;
+    }
+    const animais = animalsByIds(...empregado.responsibleFor);
+    tabela[nomeDoEmpregado] = animais.map((animal) => animal.name)
+  });
+  if (idOrName === undefined) {
+    return tabela;
+  }
+  const saida = {};
+  saida[nome] = tabela[nome];
+  return saida; 
 }
+
+console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
