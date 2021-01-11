@@ -12,6 +12,7 @@ eslint no-unused-vars: [
 const { animals } = require('./data');
 const { employees } = require('./data');
 const { prices } = require('./data');
+const { hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -90,7 +91,6 @@ function animalMap(options) {
   // seu código aqui
 }
 
-const { hours } = require('./data');
 function schedule(dayName) {
   // seu código aqui
   const scheduleDay =  Object.entries(hours).reduce((acc, [curr, value]) => {
