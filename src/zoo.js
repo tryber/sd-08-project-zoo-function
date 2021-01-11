@@ -169,10 +169,13 @@ function increasePrices(percentage) {
   // seu código aqui
   const faixas = Object.keys(data.prices);
   faixas.forEach((idade) => {
-    data.prices[idade] = Math.round((data.prices[idade] * (percentage/100 + 1) * 100)) / 100;
+    data.prices[idade] = data.prices[idade] * ((percentage / 100) + 1);
+    data.prices[idade] = Math.round(data.prices[idade] * 100) / 100;
   });
   return data.prices;
 }
+
+console.log(increasePrices(30))
 
 function employeeCoverage(idOrName) {
   // seu código aqui
