@@ -49,7 +49,7 @@ Neste projeto, verificamos se você é capaz de:
   - [Avaliação do projeto](#avaliação-do-projeto)
   - [Ordem dos requisitos no avaliador automático](#ordem-dos-requisitos-no-avaliador-automático)
 
---- 
+---
 
 ## Entregáveis
 
