@@ -15,10 +15,10 @@ const data = require('./data');
 function animalsByIds(...ids) {
   return ids.map(id => animals.find(animal => animal.id === id));
 }
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
+function animalsOlderThan(name, age) {
+  const typeOfAnimal = animals.find(animal => animal.name === name);
+  return typeOfAnimal.residents.every(resident => resident.age >= age);
 }
 
 function employeeByName(employeeName) {
