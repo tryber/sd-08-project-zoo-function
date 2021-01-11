@@ -8,7 +8,7 @@ eslint no-unused-vars: [
   }
 ]
 */
-const { animals, prices, hours } = require('./data');
+const { animals, prices, hours, employees } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -102,7 +102,27 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  let employeeList = null;
+
+  if (idOrName === undefined) {
+    employeeList = employees;
+  } else {
+    employeeList = employees.filter(emp =>
+      idOrName === emp.id || idOrName === emp.firstName || idOrName === emp.lastName);
+  }
+
+  return employeeList.reduce((acc, emp) => {
+    const employeeName = `${emp.firstName} ${emp.lastName}`;
+
+    const animalsResponse = emp.responsibleFor.map((id) => {
+      const foundAnimals = animals.filter(animal => animal.id === id);
+      const [{ name }] = foundAnimals;
+      return name;
+    });
+
+    acc = { ...acc, [employeeName]: animalsResponse };
+    return acc;
+  }, {});
 }
 
 module.exports = {
