@@ -182,16 +182,16 @@ function employeeCoverage(idOrName) {
   const animaisNomeId = {};
   // data.animals.forEach((animal) => animaisIdNome[animal.id] = animal.name);
   data.animals.forEach((animal) => {
-    animaisNomeId[animal.name] = animal.id
+    animaisNomeId[animal.name] = animal.id;
   });
   employees.forEach((empregado) => {
     const nomeDoEmpregado = `${empregado.firstName} ${empregado.lastName}`;
-    if (idOrName === empregado.firstName || idOrName === empregado.lastName 
+    if (idOrName === empregado.firstName || idOrName === empregado.lastName
       || idOrName === empregado.id) {
       nome = nomeDoEmpregado;
     }
     const animais = animalsByIds(...empregado.responsibleFor);
-    tabela[nomeDoEmpregado] = animais.map(animal => animal.name)
+    tabela[nomeDoEmpregado] = animais.map(animal => animal.name);
   });
   if (idOrName === undefined) {
     return tabela;
