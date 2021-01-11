@@ -136,19 +136,18 @@ function schedule(dayName) {
   const calendario = {};
   const dias = Object.keys(data.hours);
   dias.forEach((dia) => {
-    if (data.hours[dia].open != 0) {
+    if (data.hours[dia].open !== 0) {
       calendario[dia] = `Open from ${data.hours[dia].open}am until ${data.hours[dia].close - 12}pm`;
     } else {
-      calendario[dia] = 'CLOSED'
+      calendario[dia] = 'CLOSED';
     }
   });
   if (dayName === undefined) {
     return calendario;
-  } else {
-    const saida = {};
-    saida[dayName] = calendario[dayName];
-    return saida;
   }
+  const saida = {};
+  saida[dayName] = calendario[dayName];
+  return saida;
 }
 
 function oldestFromFirstSpecies(id) {
