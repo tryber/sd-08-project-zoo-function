@@ -64,9 +64,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  const getAnimals = data.animals.reduce((acc, elem) => {
+  const getAnimals = data.animals.reduce(acc, elem => {
     return Object.assign(acc, {
-      [elem.name]: elem.residents.length
+      [elem.name]: elem.residents.length,
     });
   }, {});
   if (species !== undefined) {
@@ -88,28 +88,28 @@ function animalMap(options) {
 
 function schedule(dayName) {
   const workingHours = Object.entries(data.hours).reduce((acc, [key, value]) => {
-  const { open, close } = value;
-  acc[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm`: 'CLOSED'
-  return acc; 
-  },{});
+    const { open, close } = value;
+    acc[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
+    return acc;
+  }, {});
   if (dayName === undefined) {
     return workingHours;
   }
-  return {[dayName]: workingHours[dayName]};
+  return { [dayName]: workingHours[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
   const getAnimalByEmployee = data.employees.find(elem => elem.id === id).responsibleFor[0];
   const whoIsOlder = data.animals.find(elem => elem.id === getAnimalByEmployee).residents
   .reduce((acc, elem) => {
-    elem.age < acc.age ? acc : acc = elem;
+    elem.age < acc.age ? acc : (acc = elem);
     return acc;
-  })
+  });
   return Object.values(whoIsOlder);
 }
 
 function increasePrices(percentage) {
-  let perc = percentage / 100;
+  const perc = percentage / 100;
   let adultPrices = (data.prices.Adult + (data.prices.Adult * perc));
   let seniorPrices = (data.prices.Senior + (data.prices.Senior * perc));
   let childPrices = (data.prices.Child + (data.prices.Child * perc));
