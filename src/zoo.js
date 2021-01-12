@@ -50,7 +50,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  if (entrants === undefined || entrants === {}) {
+  if (entrants === undefined) {
     return 0;
   }
   const { Adult: adultPrice, Senior: seniorPrice, Child: childPrice } = prices;
