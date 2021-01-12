@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals } = require('./data');
+const { animals, employees } = require('./data');
 
 function animalsByIds(...ids) {
   if (!ids) return [];
@@ -34,12 +34,27 @@ function animalsOlderThan(animalName, age) {
   //  console.log(animalsOlderThan('otters',7));
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (!employeeName) return {};
+  return employees.find(employee => (
+      employee.firstName === employeeName || employee.lastName === employeeName));
+  // retornando uma procura pelo funcionário com aquele primeiro nome
+  // mesma coisa que com os animais, só que agora com employees ex no console.log ('Emery')
 }
 
+  //  console.log(employeeByName('Emery'));
+
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return {
+    ...personalInfo,
+    ...associatedWith,
+  };
 }
+// com o destructuring eu consigo os objetos todos personalinfo e associatedwith
+// to trazendo os objetos do data e colocando td junto no return, criando um novo objeto
+// um novo employee.
+// return Object.assign({}, personalInfo, associatedWith); tbm passa no teste-PS
+// no exemplo acima to criando um objeto novo, novo employee, copiando,
+// colocando personlInfo e associatedWith dentro dele.
 
 function isManager(id) {
   // seu código aqui
