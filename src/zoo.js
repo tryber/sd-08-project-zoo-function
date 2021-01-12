@@ -13,8 +13,18 @@ const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
   if (!ids) return [];
+
 // return ids.map(id => animals.find(animal => animal.id === id));
 // Vídeo Plantão e Vídeo PSimões, pra cada id ele vai rodar um map e trazer o animal.
+// desestrutura no global o animals , seria a mesma coisa de data.animals e da p usar direto animal
+// usa o destructuring por serem só quatro propriedades, animals, employees, prices e hours
+// ou se não usaria
+// const data = require('./data') e utilizaria data.animals,data.employees,data.prices,data.hours
+// utilizando o data.employees por ex deixaria claro que o employees advem do arquivo data
+// vscode já adiciona o global desestruturado como está na linha 12, e a sintaxe fica mais clean
+// destructuring é mais usado quando tem mtas propriedades, normalmente usa o data.hours etc.
+// limite de não usar banco de dados, depois que entra o banco de dados mais facil usar destruct.
+
   return animals.filter(animal => ids.includes(animal.id));
   // filtrando o critério (animal) e vendo se ele entra na lista - Plantão
 }
@@ -108,7 +118,7 @@ function entryCalculator(entrants) {
 
 // verificar qual o tipo de entrant, se adult, child or senior
 // percorre cada chave do entrant, e cada chave coincide entre os entrants com seus prices
-// determina o valor inicial como 0 e o atual na primeira chave do entrants
+// determina o valor inicial como 0 (indice ou index [0]) e o atual na primeira chave do entrants
 // determinado o numero de entrants,verifica o preço e multiplica um pelo outro e add no acumulator
 // prices ta desestruturado lá em cima
 
@@ -163,12 +173,54 @@ function oldestFromFirstSpecies(id) {
 // velho retorna o atual se nao o mais velho
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const increase = 1 + (percentage / 100);
+  Object.keys(prices).forEach(key => (
+    prices[key] = Math.round(prices[key] * increase * 100) / 100
+  ));
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+// Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
+// para arredondar um valor é necessário multiplicar por 100, e depois utilizar o math.round
+// e  divivir por 100 e assim retorna duas casas decimais.
+// se for porcentagem, utiliza-se o seguinte ex: 1000 * (50/100 + 1)
+// começa com object.keys, pega as chaves dos preços, faz um foreach, pega cada chave, prices
+// na chave, que vai ser um valor novo, passando o math round para arrendodar e trazer as casas.
+// como são duas casas multiplica por 100.
+
+function employeeById(id) {
+  return employees.find(employee => employee.id === id);
 }
+function employeeCoverage(idOrName) {
+  const result = employees.reduce((acc, employee) => {
+    const { firstName, lastName, responsibleFor } = employee;
+    acc[`${firstName} ${lastName}`] = responsibleFor.map(id => animalsByIds(id)[0].name);
+    return acc;
+  }, {});
+  if (typeof idOrName === 'string' && idOrName.length !== 0) {
+    const employee = employeeByName(idOrName) || employeeById(idOrName);
+    const { firstName, lastName } = employee;
+    const name = `${firstName} ${lastName}`;
+    return { [name]: result[name] };
+  }
+  return result;
+}
+
+// Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
+// uma lista de funcionários buscando o grupo mais geral dos animais, o que cada func é responsável
+// fazendo um reduce e um objeto por fora, vazio, utilizando o acumulador,percorre employee
+// suas propriedades, pedido no teste:
+// first e last name, e os seus animais responsibleFor. Faz um map no responsiblefor pega o id do
+// animal através da função animalsByIds chama c o id e utliza ela no index[0] -> elemento name.
+// o nome animais e os funcionários responsáveis.
+// quando recebe nada retorna array vazio, quando recebe id retorna array com elementos
+// como eu sei que vou passar id, ou vai ter array vazio ou array com um elemento só, o name
+
+// tendo tudo em uma lista, const result, crio a verificação id or name, se existe,
+// primeiro crio a função employeeById que vai retornar somente os id.
+// caso exista, tento encontrar o employee, const employee, e retorno objeto que tenha
+// primeiro pelo nome, caso nao encontre, procura pelo id, retornando o objeto - > funcionário
+// com os elementos(propriedades) first name, last name. const name
+// retornando propriedade [name] e o result [name].
 
 module.exports = {
   entryCalculator,
