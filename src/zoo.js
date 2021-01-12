@@ -108,10 +108,18 @@ function oldestFromFirstSpecies(id) {
   return Object.values(whoIsOlder);
 }
 
-console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
-
 function increasePrices(percentage) {
-  // seu código aqui
+  let perc = percentage / 100;
+  let adultPrices = (data.prices.Adult + (data.prices.Adult * perc));
+  let seniorPrices = (data.prices.Senior + (data.prices.Senior * perc));
+  let childPrices = (data.prices.Child + (data.prices.Child * perc));
+  adultPrices = Math.round(adultPrices * 100);
+  seniorPrices = Math.round(seniorPrices * 100);
+  childPrices = Math.round(childPrices * 100);
+  data.prices.Adult = adultPrices / 100;
+  data.prices.Senior = seniorPrices / 100;
+  data.prices.Child = childPrices / 100;
+  return data.prices;
 }
 
 function employeeCoverage(idOrName) {
