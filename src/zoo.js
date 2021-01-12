@@ -53,10 +53,9 @@ function animalCount(species) {
   } return animals.find(animal => animal.name === species).residents.length;
 }
 
-function entryCalculator(entrants) {
+function entryCalculator(...entrants) {
   // seu código aqui
 }
-
 
 function animalMap(options) {
   // seu código aqui
@@ -67,7 +66,16 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const findAnimalId = employees.find(person => person.id === id).responsibleFor[0];
+  const findAnimalSpecies = animals.find(animal => animal.id === findAnimalId);
+  const oldestAnimal = findAnimalSpecies.residents.reduce((oldest, next) => {
+    if (next.age > oldest.age) {
+      oldest = next;
+    }
+    return oldest;
+  });
+  const { name, sex, age } = oldestAnimal;
+  return [name, sex, age];
 }
 
 function increasePrices(percentage) {
