@@ -72,7 +72,7 @@ function schedule(dayName) {
     Sunday: 'Open from 8am until 8pm',
     Monday: 'CLOSED',
   };
-  return !dayName ? openTime : Object.fromEntries([dayName, openTime[dayName]]);
+  return !dayName ? openTime : Object.fromEntries([[dayName, openTime[dayName]]]);
 }
 
 function oldestFromFirstSpecies(id) {
