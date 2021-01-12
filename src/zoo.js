@@ -57,12 +57,24 @@ function createEmployee(personalInfo, associatedWith) {
 // colocando personlInfo e associatedWith dentro dele.
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(employee => employee.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+// no data se localiza o managers - no sentido de quem é o manager do employee
+// e tem o responsiblefor - o que o employee é responsável, quais ids animais ele responde
+// o return pega employees, faz um some, onde para cada employee eu verifico, se o manager
+// tem aquele id, se ele tiver significa que ele é de algum gerente.
+
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const personalInfo = { id, firstName, lastName };
+  const associatedWith = { managers, responsibleFor };
+  return employees.push(createEmployee(personalInfo, associatedWith));
 }
+
+// employees já ta desestruturado lá em cima.
+// o teste só cria id, firstName, lastName, se a gnt não determinar um padrão fica undefined
+// managers = [] e responsibleFor = [] são os objetos padrões.
+// reutiliza a função createEmployee, e passa como parametros personalInfo e associatedWith
 
 function animalCount(species) {
   // seu código aqui
