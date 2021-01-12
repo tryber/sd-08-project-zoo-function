@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
   if (!ids) return [];
@@ -110,18 +110,57 @@ function entryCalculator(entrants) {
 // percorre cada chave do entrant, e cada chave coincide entre os entrants com seus prices
 // determina o valor inicial como 0 e o atual na primeira chave do entrants
 // determinado o numero de entrants,verifica o preço e multiplica um pelo outro e add no acumulator
+// prices ta desestruturado lá em cima
 
 function animalMap(options) {
   // seu código aqui
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const endResult = Object.entries(hours).reduce((store, [key, val]) => {
+    const { open, close } = val;
+    store[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
+    return store;
+  }, {});
+  if (typeof dayName === 'string' && dayName.length !== 0) return { [dayName]: endResult[dayName] };
+  return endResult;
 }
 
+// retornar os dias, horario de abertura e horario de fechamento nessa ordem.
+// basicamente precisa criar um novo objeto, mantendo as propriedades somente
+// alterando o valor delas, horario de abertura e fechamento. Lembrando do formato de AM/PM
+// hours tá desestruturado lá em cima
+// object.entries, pegar tds entradas (hours) e partir para um reduce. Que retorna sempre
+// propriedade e valor. Vai ter um reduce no array
+// de array. A gnt mantem a propriedade mas altera o valor.
+// O primeiro valor - key é a chave e o segundo val é o valor.
+// que na sequencia tem a função que tem o acumulador e a propriedade com a mesma chave anterior
+// % módulo - 12 horas - sempre divide por 12 as horas, retornando valor inteiro assim tem AM/PM
+// determinando se o close for maior que 0 tem a condicional de quando vai abrir.
+// se a condição for verdadeira : retorna o open until, se não retorna closed.
+// sempre começando com objeto vazio e iterando dentro do acumulator
+// pegamos o objeto pronto, e testamos se o dayname for uma string e o valor maior que 0
+// retorna ele e o horário.
+
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const employee = employees.find(current => current.id === id);
+  const speciesId = employee.responsibleFor[0];
+  const animal = animalsByIds(speciesId)[0];
+  const { residents } = animal;
+  const oldestAnimal = residents.reduce((olderAnimal, actual) => (
+    actual.age > olderAnimal.age ? actual : olderAnimal
+  ));
+  return Object.values(oldestAnimal);
 }
+
+// console.log(oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+
+// passado o id de um funcionário, encontra a primeira especie de um animal gerenciado pelo
+// funcionário e retorna array com nome, sexo e idade do animal mais velho da especie.
+// Pegar o funcionário, passar seu ID e retornar o animal que ele é responsável naquele ID
+// buscados os animais, faz um reduce, com o acumulador apos o atual, itera e verifica o mais velho
+// depois dos condicionais retorna o valor encontrado, se o atual tiver idade maior que o mais
+// velho retorna o atual se nao o mais velho
 
 function increasePrices(percentage) {
   // seu código aqui
