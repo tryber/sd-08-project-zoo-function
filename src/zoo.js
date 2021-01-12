@@ -95,14 +95,20 @@ function schedule(dayName) {
   if (dayName === undefined) {
     return workingHours;
   }
-  return {[dayName]: workingHours[dayName]}
+  return {[dayName]: workingHours[dayName]};
 }
-
-console.log(schedule())
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const getAnimalByEmployee = data.employees.find(elem => elem.id === id).responsibleFor[0];
+  const whoIsOlder = data.animals.find(elem => elem.id === getAnimalByEmployee).residents
+  .reduce((acc, elem) => {
+    elem.age < acc.age ? acc : acc = elem;
+    return acc;
+  })
+  return Object.values(whoIsOlder);
 }
+
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 
 function increasePrices(percentage) {
   // seu código aqui
