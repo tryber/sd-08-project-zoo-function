@@ -66,7 +66,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   const getAnimals = data.animals.reduce((acc, elem) => {
     acc[elem.name] = elem.residents.length;
-    return acc
+    return acc;
   }, {});
   if (species !== undefined) {
     return getAnimals[species];
@@ -101,8 +101,7 @@ function oldestFromFirstSpecies(id) {
   const getAnimalByEmployee = data.employees.find(elem => elem.id === id).responsibleFor[0];
   const whoIsOlder = data.animals.find(elem => elem.id === getAnimalByEmployee).residents
   .reduce((acc, elem) => {
-    elem.age < acc.age ? acc : (acc = elem);
-    return acc;
+    elem.age < acc.age ? acc : elem;
   });
   return Object.values(whoIsOlder);
 }
