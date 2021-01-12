@@ -64,11 +64,22 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const getAnimals = data.animals.reduce((acc, elem) => {
+    return Object.assign(acc, {
+      [elem.name]: elem.residents.length
+    });
+  }, {});
+  if (species !== undefined) {
+    return getAnimals[species];
+  } return getAnimals;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  let sum = 0;
+  if (entrants === undefined || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  return sum;
 }
 
 function animalMap(options) {
