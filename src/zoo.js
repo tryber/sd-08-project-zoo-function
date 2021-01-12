@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
   if (!ids) return [];
@@ -77,12 +77,39 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 // reutiliza a função createEmployee, e passa como parametros personalInfo e associatedWith
 
 function animalCount(species) {
-  // seu código aqui
+  const result = animals.reduce((acc, cur) => {
+    acc[cur.name] = cur.residents.length;
+    return acc;
+    // return Object.assign(acc, {
+    //   [cur.name]: cur.residents.length
+    // });
+  }, {});
+  if (typeof species === 'string' && species.length !== 0) return result[species];
+  return result;
 }
 
+// olhando os animais, cada um tem um objeto geral, com name, id, popularity, residents
+// necessário iterar animais, e para cada objeto geral retornar uma propriedade desse nome
+// com o length desse array residents.
+// A função percorre o array de animais, faz um reduce, começa com objeto vazio, para cada animal a
+// pega o objeto que ta acumulando e adiciona o name e length da quantidade de animais que tem nele
+// Aula de reduce - Gus. Declara o objeto vazio, (ou no // chave valor), acumulador com cur.name,
+// não precisa do object.assign.
+// if (species) return result[species]
+// esse if acima é para fazer uma checagem na hora de passar a specie. Confia que o usuario vai
+// passar string, uma string no lugar de specie. Por isso o teste feito é mais confiável, delimita
+
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (typeof entrants !== 'object' || Object.keys(entrants).length === 0) return 0;
+  return Object.keys(entrants).reduce((accumulator, key) => (
+      accumulator + (entrants[key] * prices[key])
+  ), 0);
 }
+
+// verificar qual o tipo de entrant, se adult, child or senior
+// percorre cada chave do entrant, e cada chave coincide entre os entrants com seus prices
+// determina o valor inicial como 0 e o atual na primeira chave do entrants
+// determinado o numero de entrants,verifica o preço e multiplica um pelo outro e add no acumulator
 
 function animalMap(options) {
   // seu código aqui
