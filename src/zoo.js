@@ -137,7 +137,8 @@ function employeeCoverage(idOrName) {
     result[`${employee.firstName} ${employee.lastName}`] = [];
     employee.responsibleFor.map((id) => {
       animals.map((animal) => {
-        if (animal.id === id) return result[`${employee.firstName} ${employee.lastName}`].push(animal.name);
+        if (animal.id === id) result[`${employee.firstName} ${employee.lastName}`].push(animal.name);
+        return animal;
       });
       return employee;
     });
