@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -53,14 +53,35 @@ function animalCount(species) {
   } return animals.find(animal => animal.name === species).residents.length;
 }
 
-function entryCalculator(...entrants) {
-  // seu código aqui
+function entryCalculator(entrants) {
+  if (!entrants || Object.entries(entrants).length === 0) return 0;
+  return Object.entries(entrants).reduce((finalPrice, price, index) => {
+    const find = Object.entries(prices).find(ticket => ticket[0] === price[0]);
+    finalPrice += (price[1] * find[1]);
+    return finalPrice;
+  }, 0);
 }
 
 function animalMap(options) {
-  // seu código aqui
+  /* const locationsArray = [ 'NE', 'NW', 'SE', 'SW' ];
+  if (!options) {
+    return {
+      NE: animals.filter(animal => animal.location === 'NE').map(found => found.name),
+      NW: animals.filter(animal => animal.location === 'NW').map(found => found.name),
+      SE: animals.filter(animal => animal.location === 'SE').map(found => found.name),
+      SW: animals.filter(animal => animal.location === 'SW').map(found => found.name),
+    };
+  }
+  if (options === { includeNames: true }) {
+    return {
+      NE: animals.filter(animal => animal.location === 'NE'),
+      NW: animals.filter(animal => animal.location === 'NW'),
+      SE: animals.filter(animal => animal.location === 'SE'),
+      SW: animals.filter(animal => animal.location === 'SW'),
+    };
+  } */
 }
-console.log(animalMap({ includeNames: true }));
+// console.log(animalMap({ includeNames: true }));
 
 function schedule(dayName) {
   // seu código aqui
@@ -83,6 +104,7 @@ function increasePrices(percentage) {
   // seu código aqui
 }
 
+
 function employeeCoverage(idOrName) {
   if (!idOrName) {
     return employees.reduce((list, person) => {
@@ -98,7 +120,6 @@ function employeeCoverage(idOrName) {
     [`${employee.firstName} ${employee.lastName}`]: employee.responsibleFor.map(id => animals.find(animal => animal.id === id).name),
   };
 }
-console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
