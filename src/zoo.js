@@ -121,20 +121,18 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const getAnimalSpecies = data.animals;
   const getEmployeeData = data.employees.reduce((acc, elem) => {
-    acc[`${elem.firstName} ${elem.lastName}`] = animalsByIds(...elem.responsibleFor).map(elem => elem.name);
+    acc[`${elem.firstName} ${elem.lastName}`] = animalsByIds(...elem.responsibleFor).map(animal => animal.name);
     return acc;
   }, {});
   if (idOrName === undefined) {
     return getEmployeeData;
   }
   const { firstName, lastName, responsibleFor } = employeeByName(idOrName);
-  let name = `${firstName} ${lastName}`;
+  const name = `${firstName} ${lastName}`;
   return { [name]: animalsByIds(...responsibleFor).map(elem => elem.name) };
 }
 
-console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
