@@ -132,24 +132,24 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const result = {};
-  function animalId(employee) {
+  let result = {};
+  function resultFilter (employee) {
     result[`${employee.firstName} ${employee.lastName}`] = [];
-    employee.responsibleFor.map((id) => {
+    employee.responsibleFor.map((animalId) => {
       animals.map((animal) => {
-        if (animal.id === id) result[`${employee.firstName} ${employee.lastName}`].push(animal.name);
+        if (animal.id === animalId) result[`${employee.firstName} ${employee.lastName}`].push(animal.name);
         return animal;
       });
       return employee;
     });
   }
   employees.map((employee) => {
-    if (!idOrName) animalId(employee);
-    if (employee.id === idOrName) animalId(employee);
-    if (employee.firstName === idOrName) animalId(employee);
-    if (employee.lastName === idOrName) animalId(employee);
-    return result;
+    if (!idOrName) resultFilter(employee);
+    if (employee.id === idOrName) resultFilter(employee);
+    if (employee.firstName === idOrName) resultFilter(employee);
+    if (employee.lastName === idOrName) resultFilter(employee);
   });
+  return result;
 }
 
 module.exports = {
