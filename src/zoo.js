@@ -142,7 +142,7 @@ function employeeCoverage(idOrName) {
       });
       return employee;
     });
-  };
+  }
   employees.map((employee) => {
     if (!idOrName) animalId(employee);
     if (employee.id === idOrName) animalId(employee);
