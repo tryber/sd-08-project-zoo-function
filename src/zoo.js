@@ -22,7 +22,7 @@ function animalsOlderThan(name, age) {
 }
 
 function employeeByName(name) {
-  if (name === undefined) return {};
+  if (!name) return {};
   return employees.find(person => person.firstName === name || person.lastName === name);
 }
 
@@ -45,7 +45,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (species === undefined) {
+  if (!species) {
     return animals.reduce((list, animal) => {
       list[animal.name] = animal.residents.length;
       return list;
@@ -60,6 +60,7 @@ function entryCalculator(...entrants) {
 function animalMap(options) {
   // seu código aqui
 }
+console.log(animalMap({ includeNames: true }));
 
 function schedule(dayName) {
   // seu código aqui
@@ -83,8 +84,21 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) {
+    return employees.reduce((list, person) => {
+      list[`${person.firstName} ${person.lastName}`] = person.responsibleFor.map(id => animals.find(animal => animal.id === id).name);
+      return list;
+    }, {});
+  }
+  const employee = employees.find(info =>
+    info.firstName === idOrName ||
+    info.lastName === idOrName ||
+    info.id === idOrName);
+  return {
+    [`${employee.firstName} ${employee.lastName}`]: employee.responsibleFor.map(id => animals.find(animal => animal.id === id).name),
+  };
 }
+console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
