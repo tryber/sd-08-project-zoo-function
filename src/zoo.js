@@ -123,11 +123,11 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  const result = Object.assign(prices);
   const calculator = ((percentage / 100) + 1);
-  for (let key = 0 in result) {
-    result[key] = Math.round(result[key] * 100 * calculator) / 100;
-  }
+  const result = Object.entries(prices).reduce((acc, [curr]) => {
+    prices[curr] = Math.round(prices[curr] * 100 * calculator) / 100;
+    return prices;
+  }, {});
   return result;
 }
 
