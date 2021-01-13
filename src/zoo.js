@@ -132,8 +132,8 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  let result = {};
-  function resultFilter (employee) {
+  const result = {};
+  function resultFilter(employee) {
     result[`${employee.firstName} ${employee.lastName}`] = [];
     employee.responsibleFor.map((animalId) => {
       animals.map((animal) => {
@@ -148,6 +148,7 @@ function employeeCoverage(idOrName) {
     if (employee.id === idOrName) resultFilter(employee);
     if (employee.firstName === idOrName) resultFilter(employee);
     if (employee.lastName === idOrName) resultFilter(employee);
+    return employee;
   });
   return result;
 }
