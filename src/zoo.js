@@ -65,15 +65,21 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const adulto = prices.Adult + (prices.Adult * (percentage / 100));
+  const crianca = prices.Child + (prices.Child * (percentage / 100));
+  const idoso = prices.Senior + (prices.Senior * (percentage / 100));
+  prices.Adult = Math.round(adulto * 100) / 100;
+  prices.Child = Math.round(crianca * 100) / 100;
+  prices.Senior = Math.round(idoso * 100) / 100;
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+
 }
 
 module.exports = {
