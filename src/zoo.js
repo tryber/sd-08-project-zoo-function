@@ -9,39 +9,52 @@ eslint no-unused-vars: [
 ]
 */
 
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
+function animalsOlderThan(animalName, animalAge) {
+  return animals.find(arr => arr.name === animalName)
+  .residents.every(arr => arr.age >= animalAge);
 }
 
-function employeeByName(employeeName) {
-  // seu código aqui
+function employeeByName(employName) {
+  if (employName === undefined) return {};
+  return employees.find(emp => emp.firstName === employName || emp.lastName === employName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return ({ ...personalInfo, ...associatedWith });
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(arr => arr.managers
+  .some(arr1 => arr1 === id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined) {
+    return animals.reduce((acumulador, atual) => {
+      acumulador[atual.name] = atual.residents.length;
+      return acumulador;
+    }, {});
+  }
+  return animals.find(animais => animais.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined || Object.entries(entrants).length === 0) return 0;
+  return Object.keys(entrants)
+  .reduce((acumulador, atual) => acumulador + (entrants[atual] * prices[atual]), 0);
 }
+// https://pt.stackoverflow.com/questions/83588/em-javascript-como-verificar-que-um-objeto-est%C3%A1-vazio-sem-jquery
 
 function animalMap(options) {
   // seu código aqui
@@ -52,15 +65,21 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const adulto = prices.Adult + (prices.Adult * (percentage / 100));
+  const crianca = prices.Child + (prices.Child * (percentage / 100));
+  const idoso = prices.Senior + (prices.Senior * (percentage / 100));
+  prices.Adult = Math.round(adulto * 100) / 100;
+  prices.Child = Math.round(crianca * 100) / 100;
+  prices.Senior = Math.round(idoso * 100) / 100;
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+
 }
 
 module.exports = {
