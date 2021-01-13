@@ -132,7 +132,6 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
   let result = {};
   function animalId (employee) {
     result[`${employee.firstName} ${employee.lastName}`] = [];
@@ -144,22 +143,17 @@ function employeeCoverage(idOrName) {
       });
     });
   }; 
-  if (!idOrName) {
-    employees.map((employee) => {
-      result[`${employee.firstName} ${employee.lastName}`] = [];
+  employees.map((employee) => {
+    if (!idOrName) {
+    animalId(employee);
+    } else if (employee.id === idOrName) {
       animalId(employee);
-    });
-  } else {
-    employees.map((employee) => {
-      if (employee.id === idOrName) {
-        animalId(employee);
-      } else if (employee.firstName === idOrName) {
-        animalId(employee);
-      } else if (employee.lastName === idOrName) {
-        animalId(employee);
-      }
-    });
-  }
+    } else if (employee.firstName === idOrName) {
+      animalId(employee);
+    } else if (employee.lastName === idOrName) {
+      animalId(employee);
+    };
+  });
   return result;
 }
 
