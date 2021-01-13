@@ -142,19 +142,14 @@ function employeeCoverage(idOrName) {
         };
       });
     });
+    return result;
   };
   employees.map((employee) => {
-    if (!idOrName) {
-      animalId(employee);
-    } else if (employee.id === idOrName) {
-      animalId(employee);
-    } else if (employee.firstName === idOrName) {
-      animalId(employee);
-    } else if (employee.lastName === idOrName) {
-      animalId(employee);
-    };
+    if (!idOrName) return animalId(employee);
+    if (employee.id === idOrName) return animalId(employee);
+    if (employee.firstName === idOrName) return animalId(employee);
+    if (employee.lastName === idOrName) return animalId(employee);
   });
-  return result;
 }
 
 module.exports = {
