@@ -101,7 +101,17 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  let total = 0;
+
+  if (!entrants || Object.keys(entrants).length === 0) {
+    return total;
+  }
+
+  total += data.prices.Adult * (entrants.Adult ? entrants.Adult : 0);
+  total += data.prices.Senior * (entrants.Senior ? entrants.Senior : 0);
+  total += data.prices.Child * (entrants.Child ? entrants.Child : 0);
+
+  return total;
 }
 
 function animalMap(options) {
