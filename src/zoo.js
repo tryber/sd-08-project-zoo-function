@@ -137,10 +137,10 @@ function employeeCoverage(idOrName) {
     result[`${employee.firstName} ${employee.lastName}`] = [];
     employee.responsibleFor.map((id) => {
       animals.map((animal) => {
-        if (animal.id === id) {
-          result[`${employee.firstName} ${employee.lastName}`].push(animal.name);
-        };
+        animal.id === id ? result[`${employee.firstName} ${employee.lastName}`].push(animal.name) : '' ;
+        return animal;
       });
+      return employee;
     });
     return result;
   };
@@ -149,6 +149,7 @@ function employeeCoverage(idOrName) {
     if (employee.id === idOrName) return animalId(employee);
     if (employee.firstName === idOrName) return animalId(employee);
     if (employee.lastName === idOrName) return animalId(employee);
+    return result;
   });
 }
 
