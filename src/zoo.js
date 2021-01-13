@@ -38,11 +38,28 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  const isEmpty = (array) => {
+    if (array === undefined) {
+      return [];
+    }
+    return array;
+  }
+  data.employees.push({
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    managers: isEmpty(managers),
+    responsibleFor: isEmpty(responsibleFor),
+  });
 }
 
 function animalCount(species) {
-  // seu código aqui
+  let result = {};
+  if (species === undefined) {
+    animals.forEach((animal) => result[animal.name] = animal.residents.length)
+    return result;
+  }
+  return animals.find((animal) => animal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
