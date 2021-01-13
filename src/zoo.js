@@ -29,7 +29,7 @@ function employeeByName(string) {
     return {};
   }
   const verifyEmployee = data.employees
-  .find(elem => (elem.firstName === string || elem.lastName === string));
+  .find(elem => (elem.firstName === string || elem.lastName === string || elem.id === string));
   return verifyEmployee;
 }
 
@@ -121,8 +121,20 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const getAnimalSpecies = data.animals;
+  const getEmployeeData = data.employees.reduce((acc, elem) => {
+    acc[`${elem.firstName} ${elem.lastName}`] = animalsByIds(...elem.responsibleFor).map(elem => elem.name);
+    return acc;
+  }, {});
+  if (idOrName === undefined) {
+    return getEmployeeData;
+  }
+  const { firstName, lastName, responsibleFor } = employeeByName(idOrName);
+  let name = `${firstName} ${lastName}`;
+  return { [name]: animalsByIds(...responsibleFor).map(elem => elem.name) };
 }
+
+console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
