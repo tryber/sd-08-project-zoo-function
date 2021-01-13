@@ -43,20 +43,20 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
       return [];
     }
     return array;
-  }
+  };
   data.employees.push({
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
+    id,
+    firstName,
+    lastName,
     managers: isEmpty(managers),
     responsibleFor: isEmpty(responsibleFor),
   });
 }
 
 function animalCount(species) {
-  let result = {};
+  const result = {};
   if (species === undefined) {
-    animals.forEach(animal => result[animal.name] = animal.residents.length)
+    animals.forEach(animal => (result[animal.name] = animal.residents.length));
     return result;
   }
   return animals.find(animal => animal.name === species).residents.length;
