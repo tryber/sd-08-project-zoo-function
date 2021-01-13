@@ -1,4 +1,4 @@
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 /*
 eslint no-unused-vars: [
   "error",
@@ -61,7 +61,13 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const result = Object.entries(hours).reduce((acc, [key, val]) => {
+    const { open, close } = val;
+    acc[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
+    return acc;
+  }, {});
+  if (typeof dayName === 'string' && dayName.length !== 0) return { [dayName]: result[dayName] };
+  return result;
 }
 
 function oldestFromFirstSpecies(id) {
