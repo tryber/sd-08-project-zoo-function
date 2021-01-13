@@ -125,7 +125,7 @@ function increasePrices(percentage) {
   // seu código aqui
   const result = Object.assign(prices);
   const calculator = ((percentage / 100) + 1);
-  for (let key = 0 in result) {
+  for (let key in result) {
     result[key] = Math.round(result[key] * 100 * calculator) / 100;
   }
   return result;
