@@ -135,6 +135,7 @@ function employeeCoverage(idOrName) {
   // seu código aqui
   let result = {};
   function animalId (employee) {
+    result[`${employee.firstName} ${employee.lastName}`] = [];
     employee.responsibleFor.map((animalId) => {
       animals.map((animal) => {
         if ( animal.id === animalId) {
@@ -151,13 +152,10 @@ function employeeCoverage(idOrName) {
   } else {
     employees.map((employee) => {
       if (employee.id === idOrName) {
-        result[`${employee.firstName} ${employee.lastName}`] = [];
         animalId(employee);
       } else if (employee.firstName === idOrName) {
-        result[`${employee.firstName} ${employee.lastName}`] = [];
         animalId(employee);
       } else if (employee.lastName === idOrName) {
-        result[`${employee.firstName} ${employee.lastName}`] = [];
         animalId(employee);
       }
     });
