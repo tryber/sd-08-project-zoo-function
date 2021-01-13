@@ -53,7 +53,12 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const employee = {
+    ...personalInfo,
+    ...associatedWith,
+  };
+
+  return employee;
 }
 
 function isManager(id) {
