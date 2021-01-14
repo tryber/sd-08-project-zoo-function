@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals } = require('./data');
+const { animals, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -67,24 +67,50 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const result = {};
+  if (dayName === undefined) {
+    Object.keys(hours).forEach(day => { 
+      if (hours[day].open === 0 && hours[day].close === 0) {
+        result[day] = 'CLOSED';
+      } else {
+      result[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;};
+    });
+  } else if (dayName === 'Monday') {
+    result[dayName] = 'CLOSED';
+  } else {
+  result[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;}
+  return result;
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const employee = data.employees.find(employee => employee.id === id);
+  const animal = animals.find(specie => specie.id === employee.responsibleFor[0]).
+  residents.sort((age2, age1) => age1.age - age2.age);
+  return [animal[0].name, animal[0].sex, animal[0].age];
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.keys(data.prices)
+  .forEach(entrant => (data.prices[entrant] = Math.round(((data.prices[entrant] * (percentage / 100 + 1))
+  .toFixed(3)) * 100) / 100));
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  // const result = {};
+  // if (idOrName === undefined) {
+  //   data.employees.forEach(employee => {
+  //     result[`${employee.firstName} ${employee.lastName}`] = 
+  //     employee.responsibleFor.;
+  //   });
+  // }
+  // return result;
 }
+
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
