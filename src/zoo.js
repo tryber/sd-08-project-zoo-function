@@ -74,16 +74,13 @@ function schedule(dayName) {
   const result = {};
   if (dayName === undefined) {
     Object.keys(hours).forEach((day) => {
-      if (hours[day].open === 0 && hours[day].close === 0) {
-        result[day] = 'CLOSED';
-      } else {
-        result[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`
-      };
-    });
+        result[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+        result['Monday'] = 'CLOSED';
+      });
   } else if (dayName === 'Monday') {
     result[dayName] = 'CLOSED';
   } else {
-    result[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`
+    result[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
   }
   return result;
 }
