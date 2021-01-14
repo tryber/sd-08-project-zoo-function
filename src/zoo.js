@@ -63,25 +63,9 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  /* const locationsArray = [ 'NE', 'NW', 'SE', 'SW' ];
-  if (!options) {
-    return {
-      NE: animals.filter(animal => animal.location === 'NE').map(found => found.name),
-      NW: animals.filter(animal => animal.location === 'NW').map(found => found.name),
-      SE: animals.filter(animal => animal.location === 'SE').map(found => found.name),
-      SW: animals.filter(animal => animal.location === 'SW').map(found => found.name),
-    };
-  }
-  if (options === { includeNames: true }) {
-    return {
-      NE: animals.filter(animal => animal.location === 'NE'),
-      NW: animals.filter(animal => animal.location === 'NW'),
-      SE: animals.filter(animal => animal.location === 'SE'),
-      SW: animals.filter(animal => animal.location === 'SW'),
-    };
-  } */
+  // falta esse
 }
-// console.log(animalMap({ includeNames: true }));
+
 
 function schedule(dayName) {
   if (!dayName) {
@@ -120,9 +104,10 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.entries(prices).forEach((key) => {
+    prices[key[0]] = Math.round(key[1] * ((percentage / 100) + 1) * 100) / 100;
+  });
 }
-
 
 function employeeCoverage(idOrName) {
   if (!idOrName) {
