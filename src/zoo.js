@@ -60,8 +60,7 @@ function entryCalculator(entrants) {
 
 
 function animalMap(options) {
-  const locations = retriveLocations();
-  if(!options) return retriveAnimalsLocation(locations);
+
 }
 
 function schedule(dayName) {
