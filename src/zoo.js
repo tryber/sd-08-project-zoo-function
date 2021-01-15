@@ -91,10 +91,11 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   Object.keys(prices).forEach((element) => {
-    prices[element] *= (1 + (percentage / 100));
+    prices[element] *= ((percentage / 100) + 1);
     prices[element] = (Math.floor(Number((prices[element]) * 100) + 1) / 100).toFixed(2);
   });
 }
+
 
 function employeeCoverage(idOrName) {
   if (!idOrName) {
