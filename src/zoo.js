@@ -97,21 +97,19 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const objectFinal = {};
-  function iden(employee) {
-    objectFinal[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor.map(itemMap => data.animals.find(item => item.id === itemMap).name);
-  }
   if (!idOrName) {
-    data.employees.forEach((employee) => {
-      employee = iden(employee);
-    });
-    return robjectFinal;
+    return employees.reduce((list, person) => {
+      list[`${person.firstName} ${person.lastName}`] = person.responsibleFor.map(id => animals.find(animal => animal.id === id).name);
+      return list;
+    }, {});
   }
-  const selection = data.employees.find(employee =>
-    (employee.id === idOrName || employee.firstName === idOrName ||
-      employee.lastName === idOrName));
-  iden(selection);
-  return objectFinal;
+  const employee = employees.find(info =>
+    info.firstName === idOrName ||
+    info.lastName === idOrName ||
+    info.id === idOrName);
+  return {
+    [`${employee.firstName} ${employee.lastName}`]: employee.responsibleFor.map(id => animals.find(animal => animal.id === id).name),
+  };
 }
 
 module.exports = {
