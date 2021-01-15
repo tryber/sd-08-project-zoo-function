@@ -63,8 +63,13 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  let result = 0;
+  if (entrants === undefined) return result;
+  Object.keys(entrants).forEach(type => result += entrants[type] * data.prices[type]);
+  return result;
 }
+
+console.log(entryCalculator());
 
 function animalMap(options) {
   // seu código aqui
@@ -100,17 +105,21 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // const result = {};
-  // if (idOrName === undefined) {
-  //   data.employees.forEach(employee => {
-  //     result[`${employee.firstName} ${employee.lastName}`] =
-  //     employee.responsibleFor.;
-  //   });
-  // }
-  // return result;
+  const result = {};
+  const final = {};
+  data.employees.forEach(employee => {
+  result[`${employee.firstName} ${employee.lastName}`] =
+  animalsByIds(...employee.responsibleFor).map(animal => animal.name);
+  });
+  const employee = data.employees.find(person => person.id === idOrName ||
+  person.firstName === idOrName || person.lastName === idOrName);
+  if (employee === undefined) {
+    return result;
+  }
+  final[`${employee.firstName} ${employee.lastName}`] =
+  result[`${employee.firstName} ${employee.lastName}`]
+  return final;
 }
-
-console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
