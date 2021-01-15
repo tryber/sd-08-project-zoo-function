@@ -65,7 +65,7 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   let result = 0;
   if (entrants === undefined) return result;
-  Object.keys(entrants).forEach(type => result += entrants[type] * data.prices[type]);
+  Object.keys(entrants).forEach(type => (result += entrants[type] * data.prices[type]));
   return result;
 }
 
@@ -107,8 +107,8 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   const result = {};
   const final = {};
-  data.employees.forEach(employee => {
-  result[`${employee.firstName} ${employee.lastName}`] =
+  data.employees.forEach((employee) => {
+    result[`${employee.firstName} ${employee.lastName}`] =
   animalsByIds(...employee.responsibleFor).map(animal => animal.name);
   });
   const employee = data.employees.find(person => person.id === idOrName ||
@@ -117,7 +117,7 @@ function employeeCoverage(idOrName) {
     return result;
   }
   final[`${employee.firstName} ${employee.lastName}`] =
-  result[`${employee.firstName} ${employee.lastName}`]
+  result[`${employee.firstName} ${employee.lastName}`];
   return final;
 }
 
