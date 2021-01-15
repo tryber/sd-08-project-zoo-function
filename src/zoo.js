@@ -90,7 +90,7 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  Object.keys(data.prices).forEach((element) => {
+  Object.keys(prices).forEach((element) => {
     prices[element] *= (1 + (percentage / 100));
     prices[element] = (Math.floor(Number((prices[element]) * 100) + 1) / 100).toFixed(2);
   });
