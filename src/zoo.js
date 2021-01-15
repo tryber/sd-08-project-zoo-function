@@ -13,7 +13,8 @@ const { animals, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  return animals.filter(animal => ids.includes(animal.id));
+  const result = ids.map(id => animals.find(animal => animal.id === id));
+  return result;
 }
 
 function animalsOlderThan(animal, age) {
@@ -109,8 +110,6 @@ function employeeCoverage(idOrName) {
     result[`${employee.firstName} ${employee.lastName}`] =
   animalsByIds(...employee.responsibleFor).map(animal => animal.name);
   });
-  result['Stephanie Strauss'] = ['giraffes', 'otters'];
-  result['Emery Elser'] = ['elephants', 'bears', 'lions'];
   const employee = data.employees.find(person => person.id === idOrName ||
   person.firstName === idOrName || person.lastName === idOrName);
   if (employee === undefined) {
@@ -120,8 +119,6 @@ function employeeCoverage(idOrName) {
   result[`${employee.firstName} ${employee.lastName}`];
   return final;
 }
-
-console.log(employeeCoverage('Stephanie'));
 
 module.exports = {
   entryCalculator,
