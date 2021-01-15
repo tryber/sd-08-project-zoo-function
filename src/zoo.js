@@ -114,8 +114,91 @@ function entryCalculator(entrants) {
   return total;
 }
 
+function mapWithResidents(locations, sex) {
+  const map = locations;
+  if (!sex) {
+    Object.keys(map).forEach((key) => {
+      map[key] = data.animals
+      .filter(it => it.location === key)
+      .map((specie) => {
+        const object = {};
+        object[specie.name] = specie.residents.map(animal => animal.name);
+        return object;
+      });
+    });
+
+    return map;
+  }
+  Object.keys(map).forEach((key) => {
+    map[key] = data.animals
+    .filter(it => it.location === key)
+    .map((specie) => {
+      const object = {};
+      object[specie.name] = specie.residents
+        .filter(resident => resident.sex === sex)
+        .map(animal => animal.name);
+      return object;
+    });
+  });
+
+  return map;
+}
+
+function sortAnimalMap(locations, options) {
+  const map = locations;
+
+  if (options.sorted && options.sorted === true) {
+    Object.keys(map).forEach((key) => {
+      map[key] = map[key].map((specie) => {
+        const entries = Object.entries(specie);
+        entries[0][1] = entries[0][1].sort();
+        return Object.fromEntries(entries);
+      });
+    });
+  }
+
+  return map;
+}
+
+function hasOptions(options) {
+  const checkOptions = !options || !options.includeNames;
+
+  return checkOptions;
+}
+
+function isIncludeNames(options) {
+  const checkIncludeNames = options.includeNames && options.includeNames === true;
+
+  return checkIncludeNames;
+}
+
 function animalMap(options) {
-  // seu código aqui
+  let map = {
+    NE: [],
+    NW: [],
+    SE: [],
+    SW: [],
+  };
+
+  if (hasOptions(options)) {
+    Object.keys(map).forEach((key) => {
+      map[key] = data.animals
+        .filter(it => it.location === key)
+        .map(specie => specie.name);
+    });
+
+    return map;
+  }
+
+  if (isIncludeNames(options)) {
+    if (options.sex) {
+      map = mapWithResidents(map, options.sex);
+    } else {
+      map = mapWithResidents(map);
+    }
+    map = sortAnimalMap(map, options);
+  }
+  return map;
 }
 
 function schedule(dayName) {
