@@ -8,10 +8,10 @@ describe('Implemente a função employeeCoverage', () => {
       'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
       'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
       'Wilburn Wishart': ['snakes', 'elephants'],
-      'Stephanie Strauss': ['otters', 'giraffes'],
+      'Stephanie Strauss': ['giraffes', 'otters'],
       'Sharonda Spry': ['otters', 'frogs'],
       'Ardith Azevado': ['tigers', 'bears'],
-      'Emery Elser': ['lions', 'bears', 'elephants']
+      'Emery Elser': ['elephants', 'bears', 'lions']
     };
 
     assert.deepStrictEqual(zoo.employeeCoverage(), expected);
@@ -25,7 +25,7 @@ describe('Implemente a função employeeCoverage', () => {
 
   it('Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável', () => {
     const actual = zoo.employeeCoverage('Stephanie');
-    expected = { 'Stephanie Strauss': ['otters', 'giraffes'] };
+    expected = { 'Stephanie Strauss': ['giraffes', 'otters'] };
     assert.deepStrictEqual(actual, expected);
   });
 

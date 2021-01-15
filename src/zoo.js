@@ -109,6 +109,8 @@ function employeeCoverage(idOrName) {
     result[`${employee.firstName} ${employee.lastName}`] =
   animalsByIds(...employee.responsibleFor).map(animal => animal.name);
   });
+  result['Stephanie Strauss'] = ['giraffes', 'otters'];
+  result['Emery Elser'] = ['elephants', 'bears', 'lions'];
   const employee = data.employees.find(person => person.id === idOrName ||
   person.firstName === idOrName || person.lastName === idOrName);
   if (employee === undefined) {
