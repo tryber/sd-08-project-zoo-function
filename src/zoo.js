@@ -41,12 +41,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (!species) {
-    const animalsS = {};
-    data.animals.forEach((item) => { AanimalsS[item.name] = item.residents.length; });
-    return animalsS;
+  if (species !== undefined) {
+    return animals.find(item => item.name === species).residents.length;
   }
-  return data.animals.find(item => item.name === species).residents.length;
+  return animals.reduce((rolAnimals, eachAnimal) =>
+    ({ ...rolAnimals, [eachAnimal.name]: eachAnimal.residents.length })
+  , {});
 }
 
 function entryCalculator(entrants) {
@@ -58,25 +58,11 @@ function entryCalculator(entrants) {
   return (adultPrice * Adult) + (seniorPrice * Senior) + (childPrice * Child);
 }
 
-function retriveLocations() {
-  return ['NE', 'E','NW', 'SW', 'SE'];
-  }
-  
-function retriveAnimalsLocation(locations) {
-  const animalsByLocations = {};
-  
-  locations.forEach((location) => {
-    const filterAnimals = animals.filter((animal) => animal.location === location);
-    }); 
-    return animalsByLocations;
-    }
 
 function animalMap(options) {
   const locations = retriveLocations();
   if(!options) return retriveAnimalsLocation(locations);
 }
-
-  animalMap();
 
 function schedule(dayName) {
   const openTime = {
@@ -97,8 +83,8 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   Object.keys(data.prices).forEach((element) => {
-    data.prices[element] *= (1 + (percentage / 100));
-    data.prices[element] = (Math.floor(Number((data.prices[element]) * 100) + 1) / 100).toFixed(2);
+    prices[element] *= (1 + (percentage / 100));
+    prices[element] = (Math.floor(Number((prices[element]) * 100) + 1) / 100).toFixed(2);
   });
 }
 
