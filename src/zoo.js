@@ -201,8 +201,39 @@ function animalMap(options) {
   return map;
 }
 
+function convertToAmPm(hour) {
+  const amPmHour = hour < 12 ? hour : hour - 12;
+
+  return amPmHour;
+}
+
 function schedule(dayName) {
-  // seu código aqui
+  const hours = {};
+
+  if (!dayName) {
+    Object.keys(data.hours).forEach((day) => {
+      if (data.hours[day].open === 0 && data.hours[day].close === 0) {
+        hours[day] = 'CLOSED';
+      } else {
+        const open = data.hours[day].open;
+        const close = convertToAmPm(data.hours[day].close);
+        hours[day] = `Open from ${open}am until ${close}pm`;
+      }
+    });
+
+    return hours;
+  }
+
+  const openTime = data.hours[dayName].open;
+  const closeTime = convertToAmPm(data.hours[dayName].close);
+
+  if (openTime === 0 && closeTime === 0) {
+    hours[dayName] = 'CLOSED';
+  } else {
+    hours[dayName] = `Open from ${openTime}am until ${closeTime}pm`;
+  }
+
+  return hours;
 }
 
 function oldestFromFirstSpecies(id) {
