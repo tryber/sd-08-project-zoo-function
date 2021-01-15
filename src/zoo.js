@@ -69,8 +69,6 @@ function entryCalculator(entrants) {
   return result;
 }
 
-console.log(entryCalculator());
-
 function animalMap(options) {
   // seu código aqui
 }
@@ -120,6 +118,8 @@ function employeeCoverage(idOrName) {
   result[`${employee.firstName} ${employee.lastName}`];
   return final;
 }
+
+console.log(employeeCoverage('Stephanie'));
 
 module.exports = {
   entryCalculator,
