@@ -9,83 +9,67 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
-const animalsByIds = (...ids) => animals.filter(animal => ids.includes(animal.id));
+const { animals, employees, hours, prices } = data;
 
-const animalsOlderThan = (animal, age) => animals.find(specie => specie.name === animal)
-  .residents.every((specie => specie.age >= age));
+function animalsByIds(...ids) {       // o spread pega todos os ids e coloca no array
+  if (!ids) return [];
+  return animals.filter(animal => ids.includes(animal.id));
+}
 
+console.log(animalsByIds('baa6e93a-f295-44e7-8f70-2bcdc6f6948d', 'ef3778eb-2844-4c7c-b66c-f432073e1c6b'));
 
-const employeeByName = employeeName => employees.find(employee =>
-  employee.firstName === employeeName || employee.lastName === employeeName) || {};
+function animalsOlderThan(animalName, age) {
+  let result = animals.find(animal => animal.name === animalName);  // procura os animais com o nome
+  if (result) result = result.residents.every(animal => animal.age >= age);  // se os animais existem no zoológico e a idade perguntada for maior ou igual
+  return result;  // vai retornar True ou False, se não existir o animal, retorna undefined
+}
+  
+console.log(animalsOlderThan('otters', 7));  // a espécie de 'otters' (lontras), possuem idade maior ou igual a 7? true!
 
+function employeeByName(employeeName) {
+  // seu código aqui
+}
 
-const createEmployee = (personalInfo, associatedWith) => Object
-  .assign(personalInfo, associatedWith);
+function createEmployee(personalInfo, associatedWith) {
+  // seu código aqui
+}
 
+function isManager(id) {
+  // seu código aqui
+}
 
-const isManager = id => employees.some(employee => employee.managers.includes(id));
+function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+  // seu código aqui
+}
 
+function animalCount(species) {
+  // seu código aqui
+}
 
-const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => {
-  const personalInfo = { id, firstName, lastName };
-  const associatedWith = { managers, responsibleFor };
-  employees.push(createEmployee(personalInfo, associatedWith));
-};
-
-const animalCount = (species) => {
-  const specie = animals.reduce((acc, currentValue) => {
-    acc[currentValue.name] = currentValue.residents.length;
-    return acc;
-  }, {});
-  if (species === undefined) {
-    return specie;
-  }
-  return specie[species];
-};
-console.log(animalCount('lion'));
-
-const entryCalculator = (entrants) => {
-  if (typeof entrants === 'undefined') return 0;
-  return Object.entries(entrants).reduce((acc, [key, value]) => (
-    acc + (prices[key] * value)
-  ), 0);
-};
+function entryCalculator(entrants) {
+  // seu código aqui
+}
 
 function animalMap(options) {
   // seu código aqui
 }
+
 function schedule(dayName) {
-  const result = Object.entries(hours).reduce((acc, [key, value]) => {
-    const { open, close } = value;
-    acc[key] = close - open > 0 ? `Open from ${value.open}am until ${close % 12}pm` : 'CLOSED';
-    return acc;
-  }, {});
-  if (typeof dayName === 'string' && dayName.length !== 0) return { [dayName]: result[dayName] };
-  return result;
+  // seu código aqui
 }
 
 function oldestFromFirstSpecies(id) {
-  const employee = employees.find(current => current.id === id);
-  const firstSpeciesId = employee.responsibleFor[0];
-  const animal = animalsByIds(firstSpeciesId)[0];
-  const { residents } = animal;
-  const oldest = residents.reduce((maisVelho, atual) => (
-  atual.age > maisVelho.age ? atual : maisVelho
-  ));
-  return Object.values(oldest);
+  // seu código aqui
 }
 
 function increasePrices(percentage) {
-  const increase = 1 + (percentage / 100);
-  Object.keys(prices).forEach(key => (
-    prices[key] = Math.round(prices[key] * increase * 100) / 100
-  ));
+  // seu código aqui
 }
 
 function employeeCoverage(idOrName) {
+  // seu código aqui
 }
 
 module.exports = {
@@ -102,4 +86,5 @@ module.exports = {
   oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
+
 };
