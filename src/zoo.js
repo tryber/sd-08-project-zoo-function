@@ -22,15 +22,20 @@ console.log(animalsByIds('baa6e93a-f295-44e7-8f70-2bcdc6f6948d', 'ef3778eb-2844-
 
 function animalsOlderThan(animalName, age) {
   let result = animals.find(animal => animal.name === animalName);  // procura os animais com o nome
-  if (result) result = result.residents.every(animal => animal.age >= age);  // se os animais existem no zoológico e a idade perguntada for maior ou igual
+  if (result) result = result.residents.every(animal => animal.age >= age);
   return result;  // vai retornar True ou False, se não existir o animal, retorna undefined
 }
-  
+
 console.log(animalsOlderThan('otters', 7));  // a espécie de 'otters' (lontras), possuem idade maior ou igual a 7? true!
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (!employeeName) return {};
+  return employees.find(employee => {
+    return employee.firstName === employeeName || employee.lastName === employeeName
+  });
 }
+
+console.log(employeeByName('Emery'));
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
