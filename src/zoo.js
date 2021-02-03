@@ -30,15 +30,17 @@ console.log(animalsOlderThan('otters', 7));  // a espécie de 'otters' (lontras)
 
 function employeeByName(employeeName) {
   if (!employeeName) return {};
-  return employees.find(employee => {
-    return employee.firstName === employeeName || employee.lastName === employeeName
-  });
+  return employees.find(employee =>
+    employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
 console.log(employeeByName('Emery'));
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return {
+    ...personalInfo,
+    ...associatedWith,
+  }
 }
 
 function isManager(id) {
