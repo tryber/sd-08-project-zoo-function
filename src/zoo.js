@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, hours, prices } = data;
+const { animals, employees } = data;
 
 function animalsByIds(...ids) {       // o spread pega todos os ids e coloca no array
   if (!ids) return [];
@@ -44,7 +44,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(employee => employee.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
