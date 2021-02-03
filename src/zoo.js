@@ -38,9 +38,9 @@ console.log(employeeByName('Emery'));
 
 function createEmployee(personalInfo, associatedWith) {
   return {
-    ...personalInfo,
+    ...personalInfo,    // feito com destructuring vai criar o novo colaborador
     ...associatedWith,
-  }
+  };
 }
 
 function isManager(id) {
