@@ -83,11 +83,12 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const employee = employees.find(employee => employee.id === id);
+  const employee = employees.find(current => current.id === id);
   const firstSpeciesId = employee.responsibleFor[0];
   const animal = animalsByIds(firstSpeciesId)[0];
   const { residents } = animal;
-  const oldest = residents.reduce((maisVelho, atual) => atual.age > maisVelho.age ? atual : maisVelho);
+  const oldest = residents.reduce((maisVelho, atual) => (
+  atual.age > maisVelho.age ? atual : maisVelho));
   return Object.values(oldest);
 }
 console.log(oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
