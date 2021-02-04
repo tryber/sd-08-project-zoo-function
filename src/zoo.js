@@ -16,20 +16,17 @@ const { employees } = require('./data');
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.find(id => id === animal.id));
 }
-console.log(animalsByIds());
 
 function animalsOlderThan(animal, age) {
   return animals.find(specie => specie.name)
   .residents.every(resident => resident.age >= age);
 }
-console.log(animalsOlderThan('otters', 7));
 
 function employeeByName(employeeName) {
   if (!employeeName) return {};
   return employees.filter(employee => employeeName)
   .find(employee => employeeName === employee.firstName || employeeName === employee.lastName);
 }
-console.log(employeeByName());
 
 function createEmployee(personalInfo, associatedWith) {
   return {
@@ -41,7 +38,6 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   return employees.some((employee, index) => employee.managers[index] === id);
 }
-console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   employees.push({ id, firstName, lastName, managers, responsibleFor });
@@ -88,23 +84,32 @@ function increasePrices(percentage) {
   });
 }
 
-function especiesManager(employee) {
-  return employee.responsibleFor
-    .map(id => data.animals.find(animal => id === animal.id).name);
+function searchAnimalName(id) {
+  return animals.find(animal => id === animal.id).name
+}
+
+function searchNameResponsibleFor(nameOrId) {
+  const foundIdOrName = employees.find(element => nameOrId === element.firstName || nameOrId === element.lastName || nameOrId === element.id)
+  return `${foundIdOrName.firstName} ${foundIdOrName.lastName}`
+}
+
+function constructorObject() {
+  const object = {};
+   employees.forEach(element => {
+    object[`${element.firstName} ${element.lastName}`] = element.responsibleFor
+    .map(e => searchAnimalName(e))
+  })
+  return object;
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
-  const employeeData = employeeByName(idOrName) ||
-    data.employees.find(employee => employee.id === idOrName);
-  return idOrName ? {
-    [`${employeeData.firstName} ${employeeData.lastName}`]: especiesManager(employeeData),
-  }
-    : data.employees.reduce((acc, employee) => {
-      acc[`${employee.firstName} ${employee.lastName}`] = especiesManager(employee);
-      return acc;
-    }, {});
+    const object = constructorObject();
+    if (idOrName === undefined) return object;
+    const fullName = searchNameResponsibleFor(idOrName);    
+    return {[fullName]: object[fullName]}
 }
+
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
