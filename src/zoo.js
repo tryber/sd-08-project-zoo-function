@@ -88,13 +88,16 @@ function oldestFromFirstSpecies(id) {
   const animal = animalsByIds(firstSpeciesId)[0];
   const { residents } = animal;
   const oldest = residents.reduce((maisVelho, atual) => (
-  atual.age > maisVelho.age ? atual : maisVelho));
+    atual.age > maisVelho.age ? atual : maisVelho));
   return Object.values(oldest);
 }
 console.log(oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const increase = 1 + (percentage / 100);
+  Object.keys(prices).forEach((key) => {
+    prices[key] = Math.round(prices[key] * increase * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
