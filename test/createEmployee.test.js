@@ -1,7 +1,7 @@
 const assert = require('assert');
 const zoo = require('../src/zoo');
 
-describe.skip('Implemente a função createEmployee', () => {
+describe('Implemente a função createEmployee', () => {
   it('Cria um novo colaborador a partir de objetos contendo informações pessoais, gerentes e animais gerenciados', () => {
     let expected = {
       id: '7ed1c9bb-8570-44f6-b718-0666b869573a',
