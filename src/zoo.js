@@ -62,7 +62,7 @@ function increasePrices(percentage) {
   // seu código aqui
 }
 
-const animalId = (responsibleFor = []) => {
+const animalId = (responsibleFor) => {
   // seu código aqui
 };
 
