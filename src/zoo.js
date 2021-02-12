@@ -63,9 +63,9 @@ function increasePrices(percentage) {
   // seu código aqui
 }
 
-function animalId(responsibleFor) {
-  // seu código aqui
-}
+// function animalId(responsibleFor) {
+//   // seu código aqui
+// }
 
 function employeeCoverage(idOrName) {
   // seu código aqui
