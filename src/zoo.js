@@ -23,7 +23,7 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  if(!employeeName) return {};
+  if (!employeeName) return {};
   return employees.find(emp => emp.firstName === employeeName || emp.lastName === employeeName);
 }
 
@@ -63,7 +63,7 @@ function increasePrices(percentage) {
   // seu código aqui
 }
 
-const animalId = (responsibleFor) => {
+function animalId(responsibleFor) {
   // seu código aqui
 };
 
