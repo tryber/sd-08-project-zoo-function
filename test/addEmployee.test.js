@@ -2,7 +2,7 @@ const assert = require('assert');
 const zoo = require('../src/zoo');
 const data = require('../src/data');
 
-describe.skip('Implemente a função addEmployee', () => {
+describe('Implemente a função addEmployee', () => {
   it('Adiciona um funcionário no fim da lista', () => {
     zoo.addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe');
     assert.strictEqual(data.employees.length, 9);
