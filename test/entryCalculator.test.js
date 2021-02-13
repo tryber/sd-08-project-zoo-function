@@ -1,7 +1,7 @@
 const assert = require('assert');
 const zoo = require('../src/zoo');
 
-describe.skip('Implemente a função entryCalculator', () => {
+describe('Implemente a função entryCalculator', () => {
   it('Retorna 0 se nenhum argumento for passado', () => {
     assert.strictEqual(zoo.entryCalculator(), 0);
   });
