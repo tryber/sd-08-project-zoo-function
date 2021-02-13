@@ -52,10 +52,10 @@ function animalCount(species) {
   // seu código aqui
   if (!species) {
     return animals.reduce((acc, cur) => {
-    acc[cur.name] = cur.residents.length;
-    return acc;
-  }, {});
-}
+      acc[cur.name] = cur.residents.length;
+      return acc;
+    }, {});
+  }
   return animals.find(animal => animal.name === species)
     .residents.length;
 }
