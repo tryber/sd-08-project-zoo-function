@@ -24,3 +24,12 @@ return animals.filter(animal => ids.some(id => id === animal.id));
 // Opção 3
 return animals.filter(animal => ids.includes(animal.id));
 ```
+
+## 2 - animalsOlderThan
+
+```javascript
+const result = animals.find(({ name }) => name === animal).residents;
+return result ? result.every(({ age: animalAge }) => animalAge >= age) : false;
+```
+
+* Explicar operador ternário
