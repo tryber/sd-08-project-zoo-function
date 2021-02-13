@@ -33,3 +33,42 @@ return result ? result.every(({ age: animalAge }) => animalAge >= age) : false;
 ```
 
 * Explicar operador ternário
+
+
+## 3 - employeeByName
+
+
+```javascript
+
+// Desestruturar employees
+const { animals, employees } = require('./data');
+
+// Resolve primeiro requisito
+if (employeeName === undefined) return {};
+
+// Resolve segundo requisito
+if (employeeName === undefined) return {};
+return employees.find(({ firstName }) => employeeName === firstName);
+
+// Resolve segundo sem destructuring
+if (employeeName === undefined) return {};
+return employees.find(employee => employeeName === employee.firstName);
+
+// Resolve terceiro requisito
+if (employeeName === undefined) return {};
+return employees.find(({ firstName, lastName }) => (
+  employeeName === firstName || employeeName === lastName
+));
+
+// Resolve terceiro requisito sem destructuring
+if (employeeName === undefined) return {};
+return employees.find(employee => (
+  employeeName === employee.firstName || employeeName === employee.lastName
+));
+
+// Requisito 3, outra opção
+return employees.find(({ firstName, lastName }) => (
+  employeeName === firstName || employeeName === lastName
+)) || {};
+
+```
