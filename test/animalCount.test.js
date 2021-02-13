@@ -1,7 +1,7 @@
 const assert = require('assert');
 const zoo = require('../src/zoo');
 
-describe.skip('Implemente a função animalCount', () => {
+describe('Implemente a função animalCount', () => {
 
   it('Sem parâmetros, retorna animais e suas quantidades', () => {
     const expected = {
