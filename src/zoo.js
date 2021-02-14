@@ -104,7 +104,7 @@ function oldestFromFirstSpecies(id) {
 }
 function increasePrices(percentage) {
   Object.entries(prices).forEach(([category, price]) => {
-    const newPrice = price * (1 + percentage / 100);
+    const newPrice = price * ((1 + percentage) / 100);
     prices[category] = Math.round(newPrice * 100) / 100;
   });
 }
@@ -115,7 +115,7 @@ function employeeCoverage(idOrName) {
   const result = employees.reduce((acc, employee) => {
     acc[getEmployeeFullName(employee)] = (employee.responsibleFor
       || []).map(animalId => animalsByIds(animalId)[0].name);
-      return acc;
+    return acc;
   }, {});
   if (idOrName !== undefined) {
     const employee = employeeById(idOrName) || employeeByName(idOrName);
