@@ -10,9 +10,10 @@ eslint no-unused-vars: [
 */
 
 const { animals, employees, prices, hours } = require('./data');
-function animalsByIds(...ids) { 
-  if(ids === undefined) return [];
-  return animals.filter(({ id }) => ids.includes(id) );
+
+function animalsByIds(...ids) {
+  if (ids === undefined) return [];
+  return animals.filter(({ id }) => ids.includes(id));
 }
 function animalsOlderThan(animal, ageAnimal) {
   return animals.find( ({ name }) => name === animal)
@@ -21,14 +22,14 @@ function animalsOlderThan(animal, ageAnimal) {
 }
 function employeeByName(employeeName) {
   return employees.find(({ firstName, lastName }) =>
-  firstName === employeeName || lastName === employeeName )
+  firstName === employeeName || lastName === employeeName)
   || {};
 }
 function createEmployee(personalInfo, associatedWith) {
-  return {...personalInfo, ...associatedWith };
+  return { ...personalInfo, ...associatedWith };
 }
 function isManager(id) {
-  return employees.some(({ managers }) => managers.includes(id))  
+  return employees.some(({ managers }) => managers.includes(id));
 }
 function addEmployee(
   id,
@@ -46,11 +47,11 @@ function addEmployee(
   });
 }
 function animalCount(species) {
-  const result = animals.reduce( (acc, { name, residents}) =>{
+  const result = animals.reduce((acc, { name, residents}) => {
     acc[name] = residents.length;
     return acc;
-  },{});
-  if(species === undefined ) return result;
+  }, {});
+  if (species === undefined) return result;
   return result[species];
 }
 function entryCalculator(entrants) {
@@ -68,7 +69,7 @@ function getAnimalResidentsName(animalName, sort, sex) {
   return {[animalName]: names};
 }
 function animalMap(options = {}) {
-  const { includeNames = false, sorted = false, sex } = options;  
+  const { includeNames = false, sorted = false, sex } = options;
   let result = animals.reduce((acc, animal) => {
     if (!acc[animal.location]) acc[animal.location] = [];
     acc[animal.location].push(animal.name);
@@ -113,7 +114,7 @@ function getEmployeeFullName({ firstName, lastName }) {
 function employeeCoverage(idOrName) {
     const result = employees.reduce((acc, employee) => {
     acc[getEmployeeFullName(employee)] = (employee.responsibleFor || []).map(animalId => animalsByIds(animalId)[0].name);
-    return acc;
+      return acc;
   }, {})
   if (idOrName !== undefined) {
     const employee = employeeById(idOrName) || employeeByName(idOrName);
