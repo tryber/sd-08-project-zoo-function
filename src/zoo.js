@@ -108,22 +108,22 @@ function employeeCoverage(idOrName) {
     const lista = {};
     employees.forEach((employee) => {
       lista[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor
-      .map(speciesId => {
+      .map((speciesId) => {
         const especie = animals
-        .find(especie => especie.id === speciesId).name;
+        .find(cur => cur.id === speciesId).name;
         return especie;
-      })
+      });
     });
     return lista;
   } else {
     const employee = employees
-    .find(employee => employee.id === idOrName ||
-      employee.firstName === idOrName || employee.lastName === idOrName);
+    .find(cur => cur.id === idOrName ||
+      cur.firstName === idOrName || cur.lastName === idOrName);
     return {
       [`${employee.firstName} ${employee.lastName}`]: employee.responsibleFor
-      .map(speciesId => {
+      .map((speciesId) => {
         const especie = animals
-        .find(especie => especie.id === speciesId).name;
+        .find(cur => cur.id === speciesId).name;
         return especie;
       }),
     };
