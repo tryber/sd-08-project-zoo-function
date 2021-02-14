@@ -16,7 +16,7 @@ function animalsByIds(...ids) {
   return animals.filter(({ id }) => ids.includes(id));
 }
 function animalsOlderThan(animal, ageAnimal) {
-  return animals.find( ({ name }) => name === animal)
+  return animals.find(({ name }) => name === animal)
   .residents
   .every(({ age }) => age >= ageAnimal);
 }
@@ -55,18 +55,18 @@ function animalCount(species) {
   return result[species];
 }
 function entryCalculator(entrants) {
-  if(entrants === undefined) return 0;
-  return Object.keys(entrants).reduce((acc, cur) => acc + entrants[cur] * prices[cur], 0);
+  if (entrants === undefined) return 0;
+  return Object.keys(entrants).reduce((acc, cur) => acc + (entrants[cur] * prices[cur]), 0);
 }
 function getResidentsByName(animalName) {
   return animals.find(({ name }) => name === animalName);
 }
 function getAnimalResidentsName(animalName, sort, sex) {
   let residents = getResidentsByName(animalName).residents || [];
-  if(sex) residents = residents.filter(resident => resident.sex === sex );
-  const names = residents.map( resident => resident.name );
-  if(sort) names.sort();
-  return {[animalName]: names};
+  if (sex) residents = residents.filter(resident => resident.sex === sex );
+  const names = residents.map( resident => resident.name);
+  if (sort) names.sort();
+  return {[animalName]: names };
 }
 function animalMap(options = {}) {
   const { includeNames = false, sorted = false, sex } = options;
@@ -79,14 +79,14 @@ function animalMap(options = {}) {
     result = Object.entries(result).reduce((acc, [key, animalNames]) => {
       acc[key] = animalNames.map(animal => getAnimalResidentsName(animal, sorted, sex));
       return acc;
-    }, {})
+    }, {});
   }
   return result;
 }
 function schedule(dayName) {
   const result = Object.entries(hours).reduce((acc, [key, hour]) => {
     const { open, close } = hour;
-    acc[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED'
+    acc[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
     return acc;
   }, {});
   if (dayName !== undefined) return { [dayName]: result[dayName] };
