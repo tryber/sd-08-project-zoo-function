@@ -72,7 +72,7 @@ function animalMap(options = 0) {
       SE: animals.filter(especie => especie.location === 'SE')
       .map(especieSE => especieSE.name),
       SW: animals.filter(especie => especie.location === 'SW')
-      .map(especieSW=> especieSW.name),
+      .map(especieSW => especieSW.name),
     };
   }
   if (includeNames === true) {
@@ -106,25 +106,25 @@ function animalMap(options = 0) {
         .map(especieNE => ({
           [especieNE.name]: especieNE.residents
           .filter(residentes => residentes.sex === 'female')
-          .map(residentes => residentes.name)
+          .map(residentes => residentes.name),
         })),
         NW: animals.filter(especie => especie.location === 'NW')
         .map(especieNW => ({
           [especieNW.name]: especieNW.residents
           .filter(residentes => residentes.sex === 'female')
-          .map(residentes => residentes.name)
+          .map(residentes => residentes.name),
         })),
         SE: animals.filter(especie => especie.location === 'SE')
         .map(especieSE => ({
           [especieSE.name]: especieSE.residents
           .filter(residentes => residentes.sex === 'female')
-          .map(residentes => residentes.name)
+          .map(residentes => residentes.name),
         })),
         SW: animals.filter(especie => especie.location === 'SW')
         .map(especieSW => ({
           [especieSW.name]: especieSW.residents
           .filter(residentes => residentes.sex === 'female')
-          .map(residentes => residentes.name)
+          .map(residentes => residentes.name),
         })),
       };
     }
@@ -158,28 +158,28 @@ function animalMap(options = 0) {
         [especieNE.name]: especieNE.residents
         .filter(residentes => residentes.sex === 'female')
         .map(residentes => residentes.name)
-        .sort()
+        .sort(),
       })),
       NW: animals.filter(especie => especie.location === 'NW')
       .map(especieNW => ({
         [especieNW.name]: especieNW.residents
         .filter(residentes => residentes.sex === 'female')
         .map(residentes => residentes.name)
-        .sort()
+        .sort(),
       })),
       SE: animals.filter(especie => especie.location === 'SE')
       .map(especieSE => ({
         [especieSE.name]: especieSE.residents
         .filter(residentes => residentes.sex === 'female')
         .map(residentes => residentes.name)
-        .sort()
+        .sort(),
       })),
       SW: animals.filter(especie => especie.location === 'SW')
       .map(especieSW => ({
         [especieSW.name]: especieSW.residents
         .filter(residentes => residentes.sex === 'female')
         .map(residentes => residentes.name)
-        .sort()
+        .sort(),
       })),
     };
   }
