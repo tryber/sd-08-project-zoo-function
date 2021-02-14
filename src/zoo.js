@@ -36,7 +36,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.some(cur => cur.managers.find(cur => cur === id));
+  return employees.some(cur => cur.managers.find(item => item === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
