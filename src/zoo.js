@@ -106,8 +106,8 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   if (idOrName === undefined) {
     const lista = {};
-    employees.forEach((employee) => {
-      lista[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor
+    employees.forEach((cur) => {
+      lista[`${cur.firstName} ${cur.lastName}`] = cur.responsibleFor
       .map((speciesId) => {
         const especie = animals
         .find(cur => cur.id === speciesId).name;
