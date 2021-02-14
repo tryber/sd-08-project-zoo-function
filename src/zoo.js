@@ -261,8 +261,18 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const { id, firstName, lastName, managers, responsibleFor } = employees;
+  if (idOrName === undefined) {
+    return {}
+  } else {
+    const employee = employees.find(employee => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName);
+    const { id, firstName, lastName, managers, responsibleFor } = employee;
+    return {
+      [`${firstName} ${lastName}`]: [], 
+    };
+  }
 }
+// console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
