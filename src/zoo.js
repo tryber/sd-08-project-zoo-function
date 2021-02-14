@@ -27,7 +27,7 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  return employees.find(empregado => employeeName === empregado.firstName || employeeName === empregado.lastName);
+  return employees.find(cur => employeeName === cur.firstName || employeeName === cur.lastName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -35,7 +35,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.some(empregado => empregado.managers.find(gerente => gerente === id));
+  return employees.some(cur => cur.managers.find(cur => cur === id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -45,10 +45,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (species === undefined) {
     const lista = {};
-    animals.forEach(especie => lista[especie.name] = especie.residents.length);
+    animals.forEach(cur => lista[cur.name] = cur.residents.length);
     return lista;
   }
-  return animals.find(especie => especie.name === species).residents.length;
+  return animals.find(cur => cur.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
@@ -59,137 +59,137 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options = 0) {
-  const { includeNames = false, sorted = false, sex } = options;
-  if (options === 0) {
-    return {
-      NE: animals.filter(especie => especie.location === 'NE')
-      .map(especieNE => especieNE.name),
-      NW: animals.filter(especie => especie.location === 'NW')
-      .map(especieNW => especieNW.name),
-      SE: animals.filter(especie => especie.location === 'SE')
-      .map(especieSE => especieSE.name),
-      SW: animals.filter(especie => especie.location === 'SW')
-      .map(especieSW=> especieSW.name),
-    };
-  }
-  if (includeNames === true) {
-    if (sorted === false) {
-      if (sex === undefined) {
-        return {
-          NE: animals.filter(especie => especie.location === 'NE')
-          .map(especieNE => ({
-            [especieNE.name]: especieNE.residents
-            .map(residentes => residentes.name),
-          })),
-          NW: animals.filter(especie => especie.location === 'NW')
-          .map(especieNW => ({
-            [especieNW.name]: especieNW.residents
-            .map(residentes => residentes.name),
-          })),
-          SE: animals.filter(especie => especie.location === 'SE')
-          .map(especieSE => ({
-            [especieSE.name]: especieSE.residents
-            .map(residentes => residentes.name),
-          })),
-          SW: animals.filter(especie => especie.location === 'SW')
-          .map(especieSW => ({
-            [especieSW.name]: especieSW.residents
-            .map(residentes => residentes.name),
-          })),
-        };
-      }
-      return {
-        NE: animals.filter(especie => especie.location === 'NE')
-        .map(especieNE => ({
-          [especieNE.name]: especieNE.residents
-          .filter(residentes => residentes.sex === 'female')
-          .map(residentes => residentes.name)
-        })),
-        NW: animals.filter(especie => especie.location === 'NW')
-        .map(especieNW => ({
-          [especieNW.name]: especieNW.residents
-          .filter(residentes => residentes.sex === 'female')
-          .map(residentes => residentes.name)
-        })),
-        SE: animals.filter(especie => especie.location === 'SE')
-        .map(especieSE => ({
-          [especieSE.name]: especieSE.residents
-          .filter(residentes => residentes.sex === 'female')
-          .map(residentes => residentes.name)
-        })),
-        SW: animals.filter(especie => especie.location === 'SW')
-        .map(especieSW => ({
-          [especieSW.name]: especieSW.residents
-          .filter(residentes => residentes.sex === 'female')
-          .map(residentes => residentes.name)
-        })),
-      };
-    }
-    if (sex === undefined) {
-      return {
-        NE: animals.filter(especie => especie.location === 'NE')
-        .map(especieNE => ({
-          [especieNE.name]: especieNE.residents
-          .map(residentes => residentes.name).sort(),
-        })),
-        NW: animals.filter(especie => especie.location === 'NW')
-        .map(especieNW => ({
-          [especieNW.name]: especieNW.residents
-          .map(residentes => residentes.name).sort(),
-        })),
-        SE: animals.filter(especie => especie.location === 'SE')
-        .map(especieSE => ({
-          [especieSE.name]: especieSE.residents
-          .map(residentes => residentes.name).sort(),
-        })),
-        SW: animals.filter(especie => especie.location === 'SW')
-        .map(especieSW => ({
-          [especieSW.name]: especieSW.residents
-          .map(residentes => residentes.name).sort(),
-        })),
-      };
-    }
-    return {
-      NE: animals.filter(especie => especie.location === 'NE')
-      .map(especieNE => ({
-        [especieNE.name]: especieNE.residents
-        .filter(residentes => residentes.sex === 'female')
-        .map(residentes => residentes.name)
-        .sort()
-      })),
-      NW: animals.filter(especie => especie.location === 'NW')
-      .map(especieNW => ({
-        [especieNW.name]: especieNW.residents
-        .filter(residentes => residentes.sex === 'female')
-        .map(residentes => residentes.name)
-        .sort()
-      })),
-      SE: animals.filter(especie => especie.location === 'SE')
-      .map(especieSE => ({
-        [especieSE.name]: especieSE.residents
-        .filter(residentes => residentes.sex === 'female')
-        .map(residentes => residentes.name)
-        .sort()
-      })),
-      SW: animals.filter(especie => especie.location === 'SW')
-      .map(especieSW => ({
-        [especieSW.name]: especieSW.residents
-        .filter(residentes => residentes.sex === 'female')
-        .map(residentes => residentes.name)
-        .sort()
-      })),
-    };
-  }
-  return {
-    NE: animals.filter(especie => especie.location === 'NE')
-    .map(especieNE => especieNE.name),
-    NW: animals.filter(especie => especie.location === 'NW')
-    .map(especieNW => especieNW.name),
-    SE: animals.filter(especie => especie.location === 'SE')
-    .map(especieSE => especieSE.name),
-    SW: animals.filter(especie => especie.location === 'SW')
-    .map(especieSW => especieSW.name),
-  };
+  // const { includeNames = false, sorted = false, sex } = options;
+  // if (options === 0) {
+  //   return {
+  //     NE: animals.filter(especie => especie.location === 'NE')
+  //     .map(especieNE => especieNE.name),
+  //     NW: animals.filter(especie => especie.location === 'NW')
+  //     .map(especieNW => especieNW.name),
+  //     SE: animals.filter(especie => especie.location === 'SE')
+  //     .map(especieSE => especieSE.name),
+  //     SW: animals.filter(especie => especie.location === 'SW')
+  //     .map(especieSW=> especieSW.name),
+  //   };
+  // }
+  // if (includeNames === true) {
+  //   if (sorted === false) {
+  //     if (sex === undefined) {
+  //       return {
+  //         NE: animals.filter(especie => especie.location === 'NE')
+  //         .map(especieNE => ({
+  //           [especieNE.name]: especieNE.residents
+  //           .map(residentes => residentes.name),
+  //         })),
+  //         NW: animals.filter(especie => especie.location === 'NW')
+  //         .map(especieNW => ({
+  //           [especieNW.name]: especieNW.residents
+  //           .map(residentes => residentes.name),
+  //         })),
+  //         SE: animals.filter(especie => especie.location === 'SE')
+  //         .map(especieSE => ({
+  //           [especieSE.name]: especieSE.residents
+  //           .map(residentes => residentes.name),
+  //         })),
+  //         SW: animals.filter(especie => especie.location === 'SW')
+  //         .map(especieSW => ({
+  //           [especieSW.name]: especieSW.residents
+  //           .map(residentes => residentes.name),
+  //         })),
+  //       };
+  //     }
+  //     return {
+  //       NE: animals.filter(especie => especie.location === 'NE')
+  //       .map(especieNE => ({
+  //         [especieNE.name]: especieNE.residents
+  //         .filter(residentes => residentes.sex === 'female')
+  //         .map(residentes => residentes.name)
+  //       })),
+  //       NW: animals.filter(especie => especie.location === 'NW')
+  //       .map(especieNW => ({
+  //         [especieNW.name]: especieNW.residents
+  //         .filter(residentes => residentes.sex === 'female')
+  //         .map(residentes => residentes.name)
+  //       })),
+  //       SE: animals.filter(especie => especie.location === 'SE')
+  //       .map(especieSE => ({
+  //         [especieSE.name]: especieSE.residents
+  //         .filter(residentes => residentes.sex === 'female')
+  //         .map(residentes => residentes.name)
+  //       })),
+  //       SW: animals.filter(especie => especie.location === 'SW')
+  //       .map(especieSW => ({
+  //         [especieSW.name]: especieSW.residents
+  //         .filter(residentes => residentes.sex === 'female')
+  //         .map(residentes => residentes.name)
+  //       })),
+  //     };
+  //   }
+  //   if (sex === undefined) {
+  //     return {
+  //       NE: animals.filter(especie => especie.location === 'NE')
+  //       .map(especieNE => ({
+  //         [especieNE.name]: especieNE.residents
+  //         .map(residentes => residentes.name).sort(),
+  //       })),
+  //       NW: animals.filter(especie => especie.location === 'NW')
+  //       .map(especieNW => ({
+  //         [especieNW.name]: especieNW.residents
+  //         .map(residentes => residentes.name).sort(),
+  //       })),
+  //       SE: animals.filter(especie => especie.location === 'SE')
+  //       .map(especieSE => ({
+  //         [especieSE.name]: especieSE.residents
+  //         .map(residentes => residentes.name).sort(),
+  //       })),
+  //       SW: animals.filter(especie => especie.location === 'SW')
+  //       .map(especieSW => ({
+  //         [especieSW.name]: especieSW.residents
+  //         .map(residentes => residentes.name).sort(),
+  //       })),
+  //     };
+  //   }
+  //   return {
+  //     NE: animals.filter(especie => especie.location === 'NE')
+  //     .map(especieNE => ({
+  //       [especieNE.name]: especieNE.residents
+  //       .filter(residentes => residentes.sex === 'female')
+  //       .map(residentes => residentes.name)
+  //       .sort()
+  //     })),
+  //     NW: animals.filter(especie => especie.location === 'NW')
+  //     .map(especieNW => ({
+  //       [especieNW.name]: especieNW.residents
+  //       .filter(residentes => residentes.sex === 'female')
+  //       .map(residentes => residentes.name)
+  //       .sort()
+  //     })),
+  //     SE: animals.filter(especie => especie.location === 'SE')
+  //     .map(especieSE => ({
+  //       [especieSE.name]: especieSE.residents
+  //       .filter(residentes => residentes.sex === 'female')
+  //       .map(residentes => residentes.name)
+  //       .sort()
+  //     })),
+  //     SW: animals.filter(especie => especie.location === 'SW')
+  //     .map(especieSW => ({
+  //       [especieSW.name]: especieSW.residents
+  //       .filter(residentes => residentes.sex === 'female')
+  //       .map(residentes => residentes.name)
+  //       .sort()
+  //     })),
+  //   };
+  // }
+  // return {
+  //   NE: animals.filter(especie => especie.location === 'NE')
+  //   .map(especieNE => especieNE.name),
+  //   NW: animals.filter(especie => especie.location === 'NW')
+  //   .map(especieNW => especieNW.name),
+  //   SE: animals.filter(especie => especie.location === 'SE')
+  //   .map(especieSE => especieSE.name),
+  //   SW: animals.filter(especie => especie.location === 'SW')
+  //   .map(especieSW => especieSW.name),
+  // };
 }
 
 function schedule(dayName) {
@@ -211,8 +211,8 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const idDaEspecie = employees.find(employee => employee.id === id).responsibleFor[0];
-  const animais = animals.find(animal => animal.id === idDaEspecie).residents;
+  const idDaEspecie = employees.find(cur => cur.id === id).responsibleFor[0];
+  const animais = animals.find(cur => cur.id === idDaEspecie).residents;
   const maisVelho = animais.sort((a, b) => b.age - a.age)[0];
   return Object.values(maisVelho);
 }
