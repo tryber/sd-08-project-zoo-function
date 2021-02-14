@@ -104,14 +104,15 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
+  const retorno;
   if (idOrName === undefined) {
     const lista = {};
-    employees.forEach((employee) => {
-      lista[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor
+    employees.forEach((cur) => {
+      lista[`${cur.firstName} ${cur.lastName}`] = cur.responsibleFor
       .map((speciesId) => {
         const especie = animals
         .find(cur => cur.id === speciesId).name;
-        return especie;
+        retorno = especie;
       });
     });
     return lista;
@@ -124,10 +125,11 @@ function employeeCoverage(idOrName) {
       .map((speciesId) => {
         const especie = animals
         .find(cur => cur.id === speciesId).name;
-        return especie;
+        retorno = especie;
       }),
     };
   }
+  return retorno;
 }
 
 module.exports = {
