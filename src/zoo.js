@@ -234,7 +234,7 @@ function schedule(dayName) {
     Saturday: 'Opem from 8am until 10pm',
     Sunday: 'Opem from 8am until 8pm',
     Monday: 'CLOSED',
-  }
+  };
   if (dayName === undefined) {
     return cronograma;
   }
@@ -244,7 +244,10 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const idDaEspecie = employees.find(employee => employee.id === id).responsibleFor[0];
+  const animais = animals.find(animal => animal.id === idDaEspecie).residents;
+  const maisVelho = animais.sort((a, b) => b.age - a.age)[0];
+  return Object.values(maisVelho);
 }
 
 function increasePrices(percentage) {
