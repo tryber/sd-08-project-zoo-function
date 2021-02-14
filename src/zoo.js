@@ -64,7 +64,7 @@ function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
   }
-  return Object.keys(entrants).reduce(acc, cur => acc + entrants[cur] * prices[cur], 0);
+  return Object.keys(entrants).reduce((acc, cur) => acc + entrants[cur] * prices[cur], 0);
 }
 
 function animalMap(options = 0) {
@@ -227,12 +227,12 @@ function animalMap(options = 0) {
 
 function schedule(dayName) {
   const cronograma = {
-    Tuesday: 'Opem from 8am until 6pm',
-    Wednesday: 'Opem from 8am until 6pm',
-    Thursday: 'Opem from 10am until 8pm',
-    Friday: 'Opem from 10am until 8pm',
-    Saturday: 'Opem from 8am until 10pm',
-    Sunday: 'Opem from 8am until 8pm',
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+    Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
     Monday: 'CLOSED',
   }
   if (dayName === undefined) {
@@ -261,18 +261,24 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const { id, firstName, lastName, managers, responsibleFor } = employees;
   if (idOrName === undefined) {
-    return {}
+    const lista = {};
+    employees.forEach(employee => lista[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor.map(speciesId => {
+      const especie = animals.find(especie => especie.id === speciesId).name;
+      return especie;
+    }))
+    return lista;
   } else {
     const employee = employees.find(employee => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName);
-    const { id, firstName, lastName, managers, responsibleFor } = employee;
     return {
-      [`${firstName} ${lastName}`]: [], 
+      [`${employee.firstName} ${employee.lastName}`]: employee.responsibleFor
+      .map(speciesId => {
+        const especie = animals.find(especie => especie.id === speciesId).name;
+        return especie;
+      }),
     };
   }
 }
-// console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
