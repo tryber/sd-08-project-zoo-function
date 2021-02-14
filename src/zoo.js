@@ -47,7 +47,7 @@ function addEmployee(
   });
 }
 function animalCount(species) {
-  const result = animals.reduce((acc, { name, residents}) => {
+  const result = animals.reduce((acc, { name, residents }) => {
     acc[name] = residents.length;
     return acc;
   }, {});
@@ -63,10 +63,10 @@ function getResidentsByName(animalName) {
 }
 function getAnimalResidentsName(animalName, sort, sex) {
   let residents = getResidentsByName(animalName).residents || [];
-  if (sex) residents = residents.filter(resident => resident.sex === sex );
-  const names = residents.map( resident => resident.name);
+  if (sex) residents = residents.filter(resident => resident.sex === sex);
+  const names = residents.map(resident => resident.name);
   if (sort) names.sort();
-  return {[animalName]: names };
+  return { [animalName]: names };
 }
 function animalMap(options = {}) {
   const { includeNames = false, sorted = false, sex } = options;
@@ -92,6 +92,9 @@ function schedule(dayName) {
   if (dayName !== undefined) return { [dayName]: result[dayName] };
   return result;
 }
+function employeeById(id) {
+  return employees.find(employee => employee.id === id);
+}
 function oldestFromFirstSpecies(id) {
   const employee = employeeById(id);
   const firstSpecies = animalsByIds(employee.responsibleFor[0]);
@@ -105,17 +108,15 @@ function increasePrices(percentage) {
     prices[category] = Math.round(newPrice * 100) / 100;
   });
 }
-function employeeById(id) {
-  return employees.find(employee => employee.id === id);
-}
 function getEmployeeFullName({ firstName, lastName }) {
   return `${firstName} ${lastName}`;
 }
 function employeeCoverage(idOrName) {
-    const result = employees.reduce((acc, employee) => {
-    acc[getEmployeeFullName(employee)] = (employee.responsibleFor || []).map(animalId => animalsByIds(animalId)[0].name);
+  const result = employees.reduce((acc, employee) => {
+    acc[getEmployeeFullName(employee)] = (employee.responsibleFor
+      || []).map(animalId => animalsByIds(animalId)[0].name);
       return acc;
-  }, {})
+  }, {});
   if (idOrName !== undefined) {
     const employee = employeeById(idOrName) || employeeByName(idOrName);
     const employeeName = getEmployeeFullName(employee);
