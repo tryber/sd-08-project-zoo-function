@@ -16,18 +16,18 @@ function animalsByIds(...ids) {
   if (ids.length === 0) {
     return [];
   }
-  return animals.filter((especie, idx) => especie.id === ids[idx]);
+  return animals.filter((cur, idx) => cur.id === ids[idx]);
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.find(especie => especie.name === animal).residents.every(animal => animal.age > age);
+  return animals.find(cur => cur.name === animal).residents.every(cur => cur.age > age);
 }
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  return employees.find(employee => employeeName === employee.firstName || employeeName === employee.lastName);
+  return employees.find(empregado => employeeName === empregado.firstName || employeeName === empregado.lastName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -35,7 +35,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.some(employee => employee.managers.find(manager => manager === id));
+  return employees.some(empregado => empregado.managers.find(gerente => gerente === id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
