@@ -74,12 +74,12 @@ function schedule(dayName) {
     Saturday: 'Open from 8am until 10pm',
     Sunday: 'Open from 8am until 8pm',
     Monday: 'CLOSED',
-  }
+  };
   if (dayName === undefined) {
     return cronograma;
   }
   return {
-    [dayName]: cronograma[dayName]
+    [dayName]: cronograma[dayName],
   };
 }
 
