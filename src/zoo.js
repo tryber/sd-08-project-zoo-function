@@ -109,11 +109,8 @@ function employeeCoverage(idOrName) {
     const lista = {};
     employees.forEach((cur) => {
       lista[`${cur.firstName} ${cur.lastName}`] = cur.responsibleFor
-      .map((speciesId) => {
-        return animals.find(value => value.id === speciesId).name;
-      });
+      .map(speciesId => animals.find(value => value.id === speciesId).name);
     });
-    // return lista;
     retorno = lista;
   } else {
     const employee = employees
