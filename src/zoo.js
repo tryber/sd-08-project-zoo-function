@@ -8,9 +8,9 @@ eslint no-unused-vars: [
   }
 ]
 */
-
 const data = require('./data');
-const { animals, employees, hours, prices } = data;
+
+const { animals, employees, prices } = data;
 
 function animalsByIds(...ids) {
   if (ids.length === 0) {
@@ -31,10 +31,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return {
-    ...personalInfo,
-    ...associatedWith,
-  }
+  return { ...personalInfo, ...associatedWith, }
 }
 
 function isManager(id) {
@@ -42,13 +39,7 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  employees.push({
-    id,
-    firstName,
-    lastName,
-    managers,
-    responsibleFor
-  });
+  employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
@@ -71,17 +62,13 @@ function animalMap(options = 0) {
   const { includeNames = false, sorted = false, sex } = options;
   if (options === 0) {
     return {
-      NE: animals
-      .filter(especie => especie.location === 'NE')
+      NE: animals.filter(especie => especie.location === 'NE')
       .map(especieNE => especieNE.name),
-      NW: animals
-      .filter(especie => especie.location === 'NW')
+      NW: animals.filter(especie => especie.location === 'NW')
       .map(especieNW => especieNW.name),
-      SE: animals
-      .filter(especie => especie.location === 'SE')
+      SE: animals.filter(especie => especie.location === 'SE')
       .map(especieSE => especieSE.name),
-      SW: animals
-      .filter(especie => especie.location === 'SW')
+      SW: animals.filter(especie => especie.location === 'SW')
       .map(especieSW=> especieSW.name),
     };
   }
@@ -89,26 +76,22 @@ function animalMap(options = 0) {
     if (sorted === false) {
       if (sex === undefined) {
         return {
-          NE: animals
-          .filter(especie => especie.location === 'NE')
+          NE: animals.filter(especie => especie.location === 'NE')
           .map(especieNE => ({
             [especieNE.name]: especieNE.residents
             .map(residentes => residentes.name),
           })),
-          NW: animals
-          .filter(especie => especie.location === 'NW')
+          NW: animals.filter(especie => especie.location === 'NW')
           .map(especieNW => ({
             [especieNW.name]: especieNW.residents
             .map(residentes => residentes.name),
           })),
-          SE: animals
-          .filter(especie => especie.location === 'SE')
+          SE: animals.filter(especie => especie.location === 'SE')
           .map(especieSE => ({
             [especieSE.name]: especieSE.residents
             .map(residentes => residentes.name),
           })),
-          SW: animals
-          .filter(especie => especie.location === 'SW')
+          SW: animals.filter(especie => especie.location === 'SW')
           .map(especieSW => ({
             [especieSW.name]: especieSW.residents
             .map(residentes => residentes.name),
@@ -116,29 +99,25 @@ function animalMap(options = 0) {
         };
       }
       return {
-        NE: animals
-        .filter(especie => especie.location === 'NE')
+        NE: animals.filter(especie => especie.location === 'NE')
         .map(especieNE => ({
           [especieNE.name]: especieNE.residents
           .filter(residentes => residentes.sex === 'female')
           .map(residentes => residentes.name)
         })),
-        NW: animals
-        .filter(especie => especie.location === 'NW')
+        NW: animals.filter(especie => especie.location === 'NW')
         .map(especieNW => ({
           [especieNW.name]: especieNW.residents
           .filter(residentes => residentes.sex === 'female')
           .map(residentes => residentes.name)
         })),
-        SE: animals
-        .filter(especie => especie.location === 'SE')
+        SE: animals.filter(especie => especie.location === 'SE')
         .map(especieSE => ({
           [especieSE.name]: especieSE.residents
           .filter(residentes => residentes.sex === 'female')
           .map(residentes => residentes.name)
         })),
-        SW: animals
-        .filter(especie => especie.location === 'SW')
+        SW: animals.filter(especie => especie.location === 'SW')
         .map(especieSW => ({
           [especieSW.name]: especieSW.residents
           .filter(residentes => residentes.sex === 'female')
@@ -148,26 +127,22 @@ function animalMap(options = 0) {
     }
     if (sex === undefined) {
       return {
-        NE: animals
-        .filter(especie => especie.location === 'NE')
+        NE: animals.filter(especie => especie.location === 'NE')
         .map(especieNE => ({
           [especieNE.name]: especieNE.residents
           .map(residentes => residentes.name).sort(),
         })),
-        NW: animals
-        .filter(especie => especie.location === 'NW')
+        NW: animals.filter(especie => especie.location === 'NW')
         .map(especieNW => ({
           [especieNW.name]: especieNW.residents
           .map(residentes => residentes.name).sort(),
         })),
-        SE: animals
-        .filter(especie => especie.location === 'SE')
+        SE: animals.filter(especie => especie.location === 'SE')
         .map(especieSE => ({
           [especieSE.name]: especieSE.residents
           .map(residentes => residentes.name).sort(),
         })),
-        SW: animals
-        .filter(especie => especie.location === 'SW')
+        SW: animals.filter(especie => especie.location === 'SW')
         .map(especieSW => ({
           [especieSW.name]: especieSW.residents
           .map(residentes => residentes.name).sort(),
@@ -175,32 +150,28 @@ function animalMap(options = 0) {
       };
     }
     return {
-      NE: animals
-      .filter(especie => especie.location === 'NE')
+      NE: animals.filter(especie => especie.location === 'NE')
       .map(especieNE => ({
         [especieNE.name]: especieNE.residents
         .filter(residentes => residentes.sex === 'female')
         .map(residentes => residentes.name)
         .sort()
       })),
-      NW: animals
-      .filter(especie => especie.location === 'NW')
+      NW: animals.filter(especie => especie.location === 'NW')
       .map(especieNW => ({
         [especieNW.name]: especieNW.residents
         .filter(residentes => residentes.sex === 'female')
         .map(residentes => residentes.name)
         .sort()
       })),
-      SE: animals
-      .filter(especie => especie.location === 'SE')
+      SE: animals.filter(especie => especie.location === 'SE')
       .map(especieSE => ({
         [especieSE.name]: especieSE.residents
         .filter(residentes => residentes.sex === 'female')
         .map(residentes => residentes.name)
         .sort()
       })),
-      SW: animals
-      .filter(especie => especie.location === 'SW')
+      SW: animals.filter(especie => especie.location === 'SW')
       .map(especieSW => ({
         [especieSW.name]: especieSW.residents
         .filter(residentes => residentes.sex === 'female')
@@ -210,17 +181,13 @@ function animalMap(options = 0) {
     };
   }
   return {
-    NE: animals
-    .filter(especie => especie.location === 'NE')
+    NE: animals.filter(especie => especie.location === 'NE')
     .map(especieNE => especieNE.name),
-    NW: animals
-    .filter(especie => especie.location === 'NW')
+    NW: animals.filter(especie => especie.location === 'NW')
     .map(especieNW => especieNW.name),
-    SE: animals
-    .filter(especie => especie.location === 'SE')
+    SE: animals.filter(especie => especie.location === 'SE')
     .map(especieSE => especieSE.name),
-    SW: animals
-    .filter(especie => especie.location === 'SW')
+    SW: animals.filter(especie => especie.location === 'SW')
     .map(especieSW => especieSW.name),
   };
 }
@@ -269,7 +236,9 @@ function employeeCoverage(idOrName) {
     }))
     return lista;
   } else {
-    const employee = employees.find(employee => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName);
+    const employee = employees
+    .find(employee => employee.id === idOrName ||
+      employee.firstName === idOrName || employee.lastName === idOrName);
     return {
       [`${employee.firstName} ${employee.lastName}`]: employee.responsibleFor
       .map(speciesId => {
