@@ -91,13 +91,13 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const adulto = parseFloat((prices.Adult + percentage / 100 * prices.Adult + 0.005)
+  const adulto = parseFloat((prices.Adult + ((percentage / 100) * prices.Adult) + 0.005)
   .toFixed(2));
   prices.Adult = adulto;
-  const idoso = parseFloat((prices.Senior + percentage / 100 * prices.Senior + 0.005)
+  const idoso = parseFloat((prices.Senior + ((percentage / 100) * prices.Senior) + 0.005)
   .toFixed(2));
   prices.Senior = idoso;
-  const criança = parseFloat((prices.Child + percentage / 100 * prices.Child + 0.005)
+  const criança = parseFloat((prices.Child + ((percentage / 100) * prices.Child) + 0.005)
   .toFixed(2));
   prices.Child = criança;
   return prices;
